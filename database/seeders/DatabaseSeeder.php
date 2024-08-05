@@ -1,0 +1,52 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\User;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     */
+    public function run(): void
+    {
+        // User::factory(10)->create();
+
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
+        $this->truncateTables([
+
+            'user',
+            'Departamentos',
+            'TipoFallas',
+             'pisos',
+            'Listadoips',
+            'listado_puntos',
+
+
+        ]);
+
+        $this->call([UsersSeeder::class]);
+        $this->call([DepartamentosSeeder::class]);
+        $this->call([TipoFallasSeed::class]);
+        $this->call([PisosSeeder::class]);
+        $this->call([ListadoPuntosSeeder::class]);
+        $this->call([ListadoipSeed::class]);
+
+
+    }
+
+    public function truncateTables(array $tables)
+    {
+        // DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+        // foreach ($tables as $table) {
+        //     DB::table($table)->truncate();
+        // }
+        //DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+    }
+}
