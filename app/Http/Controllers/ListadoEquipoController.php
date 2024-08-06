@@ -38,15 +38,16 @@ class ListadoEquipoController extends Controller
     public function CreatePB(Request $request)
     {
             $ListadoEquipo = new Equipos();
-            $Departamentos = Departamentos::all();
+            $Departamentos = Departamentos::where('id','<=',21)->get();
             $machineName = gethostname();
             return view('Listado.ListadoEquipos.PB.createPB',compact('Departamentos','machineName','ListadoEquipo'));
 
     }
 
     public function CreateP1(Request $request){
+        
         $ListadoEquipo = new Equipos();
-        $Departamentos = Departamentos::all();
+        $Departamentos = Departamentos::where('id','>=',22)->where('id','<=',30)->get();
         $machineName = gethostname();
         return view('Listado.ListadoEquipos.P1.createP1',compact('Departamentos','machineName','ListadoEquipo'));
 
@@ -56,8 +57,9 @@ class ListadoEquipoController extends Controller
 
 
     public function CreateP2YP3(Request $request){
+
         $ListadoEquipo = new Equipos();
-        $Departamentos = Departamentos::all();
+        $Departamentos = Departamentos::where('id','>=',31)->get();
         $machineName = gethostname();
         return view('Listado.ListadoEquipos.P2YP3.createP2YP3',compact('Departamentos','machineName','ListadoEquipo'));
 
@@ -98,17 +100,73 @@ class ListadoEquipoController extends Controller
           $ListadoEquipo->Marca = $request->marca_equipo;
           $ListadoEquipo->Cantidad_Equipo = $request->cantidad_Equipo;
           $ListadoEquipo->Sistema_Operativo= $request->sistema_operativo;
+          $ListadoEquipo->bits = $request->bits;
           $ListadoEquipo->Version = $request->Version;
+          $ListadoEquipo->ip_escuela = $request->ip_escuela;
+          $ListadoEquipo->ip_ministerio = $request->ip_ministerio;
           $ListadoEquipo->Mouse = $request->Mouse;
           $ListadoEquipo->Teclado = $request->Teclado;
           $ListadoEquipo->Corneta = $request->Corneta;
           $ListadoEquipo->Regulador = $request->Regulador;
           $ListadoEquipo->DiscoDuroGB = $request->discoduro;
+          $ListadoEquipo->MemoriaRam = $request->memoria_ram;
           $ListadoEquipo->MacAdress = $request->mac;
-          $ListadoEquipo->ip_escuela = $request->ip_escuela;
-          $ListadoEquipo->ip_ministerio = $request->ip_ministerio;
-          $ListadoEquipo->ProxyDns = $request->proxy_dns;
+          $ListadoEquipo->Proxy = $request->Proxy;
+          $ListadoEquipo->Dns = $request->Dns;
+          $ListadoEquipo->Puerto = $request->Puerto;
+
+        //   if($request->CableCorriente == 'SI' ){
+
+        //     $ListadoEquipo->CableCorriente = $request->CableCorriente;
+            
+        //   }else{
+
+        //     $ListadoEquipo->CableCorriente = 'No';
+        //   }
+
+        //   if($request->CableVGAHDMI  == 'SI'){
+
+        //     $ListadoEquipo->CableVGAHDMI = $request->CableVGAHDMI;
+            
+        //   }else{
+
+        //     $ListadoEquipo->CableVGAHDMI =  'No';
+        //   }
+
+        //   if($request->Impresora  == 'SI'){
+
+        //     $ListadoEquipo->Impresora = $request->Impresora;
+            
+        //   }else{
+
+        //     $ListadoEquipo->Impresora =  'No';
+        //   }
+
+        //   if($request->Telefono  == 'SI'){
+
+        //     $ListadoEquipo->Telefono = $request->Telefono;
+            
+        //   }else{
+
+        //     $ListadoEquipo->Telefono =  'No';
+        //   }
+
+        //   if($ListadoEquipo->Route  == 'SI'){
+
+        //     $ListadoEquipo->Route = $request->Route;
+            
+        //   }else{
+
+        //     $ListadoEquipo->Route =  'No';
+        //   }
+        
+        $ListadoEquipo->CableCorriente = $request->CableCorriente;
+        $ListadoEquipo->CableVGAHDMI = $request->CableVGAHDMI;
+        $ListadoEquipo->Impresora = $request->Impresora;
+        $ListadoEquipo->Telefono = $request->Telefono;
+        $ListadoEquipo->Route = $request->Route;
           $ListadoEquipo->PuntoRed = $request->punto_red;
+          $ListadoEquipo->CajetinPuntos = $request->CajetinPuntos;
           $ListadoEquipo->Observacion = $request->Observaciones;
           $ListadoEquipo->CasoEspeciales = $request->caso_especiales;
           $ListadoEquipo->save();
@@ -120,12 +178,13 @@ class ListadoEquipoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request, $id)
     {
             $ListadoEquipo =  Equipos::find($id);
-            $Departamentos = Departamentos::all();
-            $machineName = gethostname();
-            return view('Listado.ListadoEquipos.show',compact('Departamentos','machineName','ListadoEquipo'));
+            $ListadoEquipoPB = Equipos::paginate();
+            // $Departamentos = Departamentos::all();
+            // $machineName = gethostname();
+            return view('Listado.ListadoEquipos.show',compact('ListadoEquipoPB','ListadoEquipo'))->with('PB', ($request->input('page', 1) - 1) * $ListadoEquipoPB->perPage());
     }
 
     /**
@@ -134,7 +193,7 @@ class ListadoEquipoController extends Controller
     public function editPB(string $id)
     {
            $ListadoEquipo =  Equipos::find($id);
-            $Departamentos = Departamentos::all();
+           $Departamentos = Departamentos::where('id','<=',21)->get();
             $machineName = gethostname();
             return view('Listado.ListadoEquipos.PB.editPB',compact('Departamentos','machineName','ListadoEquipo'));
     }
@@ -183,17 +242,27 @@ class ListadoEquipoController extends Controller
             $ListadoEquipo->Marca = $request->marca_equipo;
             $ListadoEquipo->Cantidad_Equipo = $request->cantidad_Equipo;
             $ListadoEquipo->Sistema_Operativo= $request->sistema_operativo;
+            $ListadoEquipo->bits = $request->bits;
             $ListadoEquipo->Version = $request->Version;
+            $ListadoEquipo->ip_escuela = $request->ip_escuela;
+            $ListadoEquipo->ip_ministerio = $request->ip_ministerio;
             $ListadoEquipo->Mouse = $request->Mouse;
             $ListadoEquipo->Teclado = $request->Teclado;
             $ListadoEquipo->Corneta = $request->Corneta;
             $ListadoEquipo->Regulador = $request->Regulador;
             $ListadoEquipo->DiscoDuroGB = $request->discoduro;
+            $ListadoEquipo->MemoriaRam = $request->memoria_ram;
             $ListadoEquipo->MacAdress = $request->mac;
-            $ListadoEquipo->ip_escuela = $request->ip_escuela;
-            $ListadoEquipo->ip_ministerio = $request->ip_ministerio;
-            $ListadoEquipo->ProxyDns = $request->proxy_dns;
+            $ListadoEquipo->Proxy = $request->Proxy;
+            $ListadoEquipo->Dns = $request->Dns;
+            $ListadoEquipo->Puerto = $request->Puerto;
+            $ListadoEquipo->CableCorriente = $request->CableCorriente;
+            $ListadoEquipo->CableVGAHDMI = $request->CableVGAHDMI;
+            $ListadoEquipo->Impresora = $request->Impresora;
+            $ListadoEquipo->Telefono = $request->Telefono;
+            $ListadoEquipo->Route = $request->Route;
             $ListadoEquipo->PuntoRed = $request->punto_red;
+            $ListadoEquipo->CajetinPuntos = $request->CajetinPuntos;
             $ListadoEquipo->Observacion = $request->Observaciones;
             $ListadoEquipo->CasoEspeciales = $request->caso_especiales;
             $ListadoEquipo->update();
@@ -206,7 +275,10 @@ class ListadoEquipoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Equipos::find($id)->delete();
+
+        return Redirect('ListadoEquipo')
+            ->with('success', 'ListadoEquipos deleted successfully');
     }
 
 

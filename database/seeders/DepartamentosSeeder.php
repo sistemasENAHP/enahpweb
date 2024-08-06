@@ -255,13 +255,6 @@ class departamentosSeeder extends Seeder
 
         ]);
 
-        DB::table('departamentos')->insert([
-
-            'Departamento'=>'Coordinación de Ingreso',
-            'created_at'=>now(),
-            'updated_at'=>now()
-
-           ]);
 
         DB::table('departamentos')->insert([
 

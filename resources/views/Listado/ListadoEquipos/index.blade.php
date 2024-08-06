@@ -40,106 +40,23 @@
                                 <table class="w-full divide-y divide-gray-300">
                                     <thead>
                                     <tr>
-                                        <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">ID</th>
+                                        <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" style='display:none;'>ID</th>
                                         <th colspan="0" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" >Departamento</th>
 
-                                        <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Usuario</th>
-
-                                        <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Cedula</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Equipo</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Nombre de Equipo</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Marca</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Cantidad Equipo</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Sistema Operativo</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Version</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Mouse</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Teclado</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Corneta</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Regulador</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Cap GB Disco Duro</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Mac</th>
-
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Escuela</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Ministerio</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Proxy - DNS</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Punto de Red</th>
-
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Observaciones</th>
-
-                                        <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Caso Especiales</th>
+                           
                                     </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200 bg-white">
 
-                                     @foreach ($ListadoEquipoPB as $listadoEquipoPB)
+                                     @foreach ($ListadoEquipoPB->unique('departamento_id') as $listadoEquipoPB)
                                         <tr class="even:bg-gray-50">
-                                            <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ ++$PB }}</td>
+                                            <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center" style='display:none;'>{{ ++$PB }}</td>
                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$listadoEquipoPB->departamentos->Departamento}}</td>
-                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$listadoEquipoPB->Nombre}} - {{ $listadoEquipoPB->Apellidos }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->Cedula }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->Equipo }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->Nombre_Equipo }}</td>
-
-                                             <td class="px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->Marca }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->Cantidad_Equipo }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->Sistema_Operativo }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->Version }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->Mouse }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->Teclado }}</td>
-
-                                              <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->Corneta }}</td>
-
-                                              <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->Regulador }}</td>
-
-                                              <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->DiscoDuroGB }}</td>
-
-                                              <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->MacAdress }}</td>
-
-                                               <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->ip_escuela }}</td>
-
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->ip_ministerio }}</td>
-
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->ProxyDns }}</td>
-
-                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->PuntoRed }}</td>
-
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->Observacion }}</td>
-
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoPB->CasoEspeciales }}</td>
-
-
+                                             
                                                 <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                 <form action="{{ route('ListadoEquipo.destroy', $listadoEquipoPB->id) }}" method="POST">
                                                     <a href="{{ route('ListadoEquipo.show', $listadoEquipoPB->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
-                                                    <a href="{{ route('ListadoEquipo.editPB', $listadoEquipoPB->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('ListadoEquipo.destroy', $listadoEquipoPB->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a>
+                                                   
                                                 </form>
                                             </td>
                                         </tr>
@@ -183,108 +100,25 @@
                                     <table class="w-full divide-y divide-gray-300">
                                         <thead>
                                         <tr>
-                                            <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">ID</th>
+                                            <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" style='display:none;'>ID</th>
                                             <th colspan="0" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" >Departamento</th>
 
-                                            <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Usuario</th>
-
-                                            <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Cedula</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Equipo</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Nombre de Equipo</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Marca</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Cantidad Equipo</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Sistema Operativo</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Version</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Mouse</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Teclado</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Corneta</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Regulador</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Cap GB Disco Duro</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Mac</th>
-
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Escuela</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Ministerio</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Proxy - DNS</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Punto de Red</th>
-
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Observaciones</th>
-
-
-                                            <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">Caso Especiales</td>
 
                                         </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 bg-white">
 
-                                         @foreach ($ListadoEquipoP1 as $listadoEquipoP1)
+                                         @foreach ($ListadoEquipoP1->unique('departamento_id') as $listadoEquipoP1)
                                             <tr class="even:bg-gray-50">
-                                               <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ ++$P1}}</td>
+                                               <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center" style='display:none;'>{{ ++$P1}}</td>
                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$listadoEquipoP1->departamentos->Departamento}}</td>
-                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$listadoEquipoP1->Nombre}} - {{ $listadoEquipoP1->Apellidos }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->Cedula }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->Equipo }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->Nombre_Equipo }}</td>
-
-                                             <td class="px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->Marca }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->Cantidad_Equipo }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->Sistema_Operativo }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->Version }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->Mouse }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->Teclado }}</td>
-
-                                              <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->Corneta }}</td>
-
-                                              <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->Regulador }}</td>
-
-                                              <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->DiscoDuroGB }}</td>
-
-                                              <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->MacAdress }}</td>
-
-                                               <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->ip_escuela }}</td>
-
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->ip_ministerio }}</td>
-
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->ProxyDns }}</td>
-
-                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->PuntoRed }}</td>
-
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->Observacion }}</td>
-
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoEquipoP1->CasoEspeciales }}</td>
+                                             
 
 
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                     <form action="{{ route('ListadoEquipo.destroy', $listadoEquipoP1->id) }}" method="POST">
                                                         <a href="{{ route('ListadoEquipo.show', $listadoEquipoP1->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
-                                                        <a href="{{ route('ListadoEquipo.editP1', $listadoEquipoP1->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <a href="{{ route('ListadoEquipo.destroy', $listadoEquipoP1->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a>
+                                                   
                                                     </form>
                                                 </td>
                                             </tr>
@@ -328,109 +162,25 @@
                                     <table class="w-full divide-y divide-gray-300">
                                         <thead>
                                         <tr>
-                                            <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">ID</th>
+                                            <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" style='display:none;'>ID</th>
                                             <th colspan="0" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" >Departamento</th>
 
-                                            <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Usuario</th>
-
-                                            <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Cedula</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Equipo</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Nombre de Equipo</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Marca</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Cantidad Equipo</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Sistema Operativo</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Version</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Mouse</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Teclado</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Corneta</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Regulador</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Cap GB Disco Duro</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Mac</th>
-
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Escuela</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Ministerio</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Proxy - DNS</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Punto de Red</th>
-
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Observaciones</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500"> Caso Especiales</th>
 
                                            
                                         </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 bg-white">
 
-                                        @foreach ($ListadoEquipoP2YP3 as $lListadoEquipoP2YP3)
+                                        @foreach ($ListadoEquipoP2YP3->unique('departamento_id') as $lListadoEquipoP2YP3)
                                             <tr class="even:bg-gray-50">
-                                            <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ ++$P2YP3 }}</td>
+                                            <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center" style='display:none;'>{{ ++$P2YP3 }}</td>
                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$lListadoEquipoP2YP3->departamentos->Departamento}}</td>
-                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$lListadoEquipoP2YP3->Nombre}} - {{ $lListadoEquipoP2YP3->Apellidos }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->Cedula }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->Equipo }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->Nombre_Equipo }}</td>
-
-                                             <td class="px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->Marca }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->Cantidad_Equipo }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->Sistema_Operativo }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->Version }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->Mouse }}</td>
-
-                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->Teclado }}</td>
-
-                                              <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->Corneta }}</td>
-
-                                              <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->Regulador }}</td>
-
-                                              <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->DiscoDuroGB }}</td>
-
-                                              <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->MacAdress }}</td>
-
-                                               <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->ip_escuela }}</td>
-
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->ip_ministerio }}</td>
-
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->ProxyDns }}</td>
-
-                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->PuntoRed }}</td>
-
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->Observacion }}</td>
-v
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $lListadoEquipoP2YP3->CasoEspeciales }}</td>
-
-
+                                             
 
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                     <form action="{{ route('ListadoEquipo.destroy', $lListadoEquipoP2YP3->id) }}" method="POST">
                                                         <a href="{{ route('ListadoEquipo.show', $lListadoEquipoP2YP3->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
-                                                        <a href="{{ route('ListadoEquipo.editP2YP3', $lListadoEquipoP2YP3->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <a href="{{ route('ListadoEquipo.destroy', $lListadoEquipoP2YP3->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a>
+                                                       
                                                     </form>
                                                 </td>
                                             </tr>

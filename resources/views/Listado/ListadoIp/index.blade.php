@@ -41,43 +41,24 @@
                                     <table class="w-full divide-y divide-gray-300">
                                         <thead>
                                         <tr>
-                                            <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">ID</th>
+                                            <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" style='display:none;'>ID</th>
                                             <th colspan="0" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" >Departamento</th>
-
-                                            {{-- <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Usuario</th>
-
-                                            <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Cedula</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Equipo</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Escuela</th>
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Ministerio</th>
-
-                                            <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Observaciones</th> --}}
+                                       
                                         </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 bg-white">
 
                                             @foreach ($ListadoIpPB->unique('departamento_id') as $listadoipPB)
                                             <tr class="even:bg-gray-50">
-                                                <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ ++$PB}}</td>
+                                                <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center" style='display:none;'>{{ ++$PB}}</td>
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->departamentos->Departamento}}</td>
-                                                {{-- <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Nombre}} -{{$listadoipPB->Apellido}} </td>
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Cedula}}</td>
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Equipo}}</td>
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoipPB->Escuela }}</td>
-
-                                                <td class="px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoipPB->Ministerio }}</td>
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Observacion}}</td> --}}
+                                           
 
 
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                     <form action="{{ route('ListadoIp.destroy', $listadoipPB->id) }}" method="POST">
                                                         <a href="{{ route('ListadoIp.show', $listadoipPB->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
-                                                        {{-- <a href="{{ route('ListadoIp.editPB', $listadoipPB->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <a href="{{ route('ListadoIp.destroy', $listadoipPB->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a> --}}
+                                              
                                                     </form>
                                                 </td>
                                             </tr>
@@ -123,40 +104,21 @@
                                             <tr>
                                                 <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">ID</th>
                                                 <th colspan="0" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" >Departamento</th>
-
-                                                {{-- <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Usuario</th>
-
-                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Equipo</th>
-
-                                                <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Cedula</th>
-
-                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Escuela</th>
-                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Ministerio</th>
-
-                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Observaciones</th> --}}
+                                            
                                             </tr>
                                             </thead>
                                             <tbody class="divide-y divide-gray-200 bg-white">
 
-                                                @foreach ($ListadoIpP1 as $listadoipP1)
                                                 <tr class="even:bg-gray-50">
-                                                    <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ ++$P1}}</td>
+                                                    @foreach ($ListadoIpP1->unique('departamento_id') as $listadoipP1)
+                                                    <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center" style='display:none;'>{{ ++$P1}}</td>
                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP1->departamentos->Departamento}}</td>
-                                                    {{-- <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP1->Nombre}} -{{$listadoipP1->Apellido}} </td>
-                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP1->Cedula}}</td>
-                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP1->Equipo}}</td>
-                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoipP1->Escuela }}</td>
-
-                                                    <td class="px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoipP1->Ministerio }}</td>
-                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP1->Observacion}}</td> --}}
+                                                    
 
                                                     <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                         <form action="{{ route('ListadoIp.destroy', $listadoipP1->id) }}" method="POST">
                                                             <a href="{{ route('ListadoIp.show', $listadoipP1->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
-                                                            {{-- <a href="{{ route('ListadoIp.editP1', $listadoipP1->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <a href="{{ route('ListadoIp.destroy', $listadoipP1->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a> --}}
+                                                           
                                                         </form>
                                                     </td>
                                                 </tr>
@@ -200,43 +162,24 @@
                                         <table class="w-full divide-y divide-gray-300">
                                             <thead>
                                             <tr>
-                                                <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">ID</th>
+                                                <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" style='display:none;'>ID</th>
                                                 <th colspan="0" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" >Departamento</th>
-{{-- 
-                                                <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Usuario</th>
 
-                                                <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Cedula</th>
-
-                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Equipo</th>
-
-                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Escuela</th>
-                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Ministerio</th>
-
-                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Observaciones</th> --}}
                                             </tr>
                                             </thead>
                                             <tbody class="divide-y divide-gray-200 bg-white">
 
-                                                @foreach ($ListadoIpP2YP3 as $listadoipP2YP3)
+                                                @foreach ($ListadoIpP2YP3->unique('departamento_id') as $listadoipP2YP3)
                                         <tr class="even:bg-gray-50">
-                                            <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ ++$P2YP3 }}</td>
+                                            <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center" style='display:none;'>{{ ++$P2YP3 }}</td>
                                             <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->departamentos->Departamento}}</td>
-                                            {{-- <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->Nombre}} -{{$listadoipP2YP3->Apellido}} </td>
-										    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->Cedula}}</td>
-                                            <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->Equipo}}</td>
-                                            <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoipP2YP3->Escuela }}</td>
-
-										    <td class="px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoipP2YP3->Ministerio }}</td>
-                                            <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->Observacion}}</td> --}}
+                                            
 
 
                                             <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                 <form action="{{ route('ListadoIp.destroy', $listadoipP2YP3->id) }}" method="POST">
                                                     <a href="{{ route('ListadoIp.show', $listadoipP2YP3->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
-                                                    {{-- <a href="{{ route('ListadoIp.editP2YP3', $listadoipP2YP3->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('ListadoIp.destroy', $listadoipP2YP3->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a> --}}
+                                                   
                                                 </form>
                                             </td>
                                         </tr>

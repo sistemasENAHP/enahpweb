@@ -41,7 +41,7 @@
                                 <table class="w-full divide-y divide-gray-300">
                                     <thead>
                                     <tr>
-                                        <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">ID</th>
+                                        <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" style='display:none;'>ID</th>
                                         <th colspan="0" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" >Departamento</th>
 
                                     </tr>
@@ -52,18 +52,12 @@
                                         {{-- @php $sum += $listadopunto->departamento_id  @endphp --}}
                 
                                         <tr class="even:bg-gray-50">
-                                            <td class="py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ ++$PB}}</td>
-                                            <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center"><a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" class="modal">{{$listadopunto->departamentos->Departamento}}</a></td>
+                                            <td class="py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center" style='display:none;'>{{ ++$PB}}</td>
+                                            <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$listadopunto->departamentos->Departamento}}</td>
                                             <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
 
                                                 <form action="{{ route('ListadoPunto.destroy', $listadopunto->id) }}" method="POST">
                                                     <a href="{{ route('ListadoPunto.show', $listadopunto->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2" >{{ __('Mostrar') }}</a>
-
-                                                    {{-- <a href="{{ route('ListadoPunto.editPB', $listadopunto->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a> --}}
-                                                    {{-- @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('ListadoPunto.destroy', $listadopunto->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a> --}}
-
                                                 </form>
                                             </td>
                                         </tr>
@@ -114,7 +108,7 @@
                                     <table class="w-full divide-y divide-gray-300">
                                         <thead>
                                         <tr>
-                                            <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">ID</th>
+                                            <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" style='display:none;'>ID</th>
                                         <th colspan="0" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" >Departamento</th>
                                         </tr>
                                         </thead>
@@ -122,18 +116,13 @@
 
                                        @foreach ($ListadoPuntoP1 as $listadopuntoP1)
                                         <tr class="even:bg-gray-50">
-                                            <td class="py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ ++$P1}}</td>
+                                            <td class="py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center" style='display:none;'>{{ ++$P1}}</td>
                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$listadopuntoP1->departamentos->Departamento}}</td>
                                             <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
 
                                                 <form action="{{ route('ListadoPunto.destroy', $listadopuntoP1->id) }}" method="POST">
                                                     <a href="{{ route('ListadoPunto.show', $listadopuntoP1->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
-                                                    {{-- <a href="{{ route('ListadoPunto.editP1', $listadopuntoP1->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('ListadoPunto.destroy', $listadopuntoP1->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a> --}}
-
-                                                </form>
+                                              </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -177,7 +166,7 @@
                                     <table class="w-full divide-y divide-gray-300">
                                         <thead>
                                         <tr>
-                                            <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">ID</th>
+                                            <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" style='display:none;'>ID</th>
                                             <th colspan="0" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" >Departamento</th>
 
                                         </tr>
@@ -186,7 +175,7 @@
 
                                             @foreach ($ListadoPuntoP2YP3 as $listadopuntoP2YP3)
                                             <tr class="even:bg-gray-50">
-                                                <td class="py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ ++$P2YP3}}</td>
+                                                <td class="py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center" style='display:none;'>{{ ++$P2YP3}}</td>
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$listadopuntoP2YP3->departamentos->Departamento}}</td>
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" >
 
@@ -194,12 +183,7 @@
 
                                                     <form action="{{ route('ListadoPunto.destroy', $listadopuntoP2YP3->id) }}" method="POST">
                                                         <a href="{{ route('ListadoPunto.show', $listadopuntoP2YP3->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
-                                                        {{-- <a href="{{ route('ListadoPunto.editP2YP3', $listadopuntoP2YP3->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <a href="{{ route('ListadoPunto.destroy', $listadopuntoP2YP3->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a> --}}
-
-                                                    </form>
+                                                       </form>
                                                 </td>
                                             </tr>
                                         @endforeach
