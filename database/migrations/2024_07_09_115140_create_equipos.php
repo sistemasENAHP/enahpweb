@@ -57,7 +57,7 @@ return new class extends Migration
             $table->string('CableVGAHDMI')->nullable()->default(NULL);
             $table->string('Impresora')->nullable()->default(NULL);
             $table->string('Telefono')->nullable()->default(NULL);
-            $table->string('Route')->nullable()->default(NULL);      
+            $table->string('Route')->nullable()->default(NULL);
             $table->string('Dns')->nullable()->default(NULL);
             $table->string('Puerto')->nullable()->default(NULL);
             $table->string('Proxy')->nullable()->default(NULL);
@@ -82,7 +82,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('tipo_falla_id')->constrained('tipo_fallas');
             $table->foreignId('departamento_id')->constrained('departamentos');
-            $table->integer('NControl');
+            $table->string('NControl');
             $table->string('Nombre');
             $table->string('Apellidos');
             $table->integer('Cedula');

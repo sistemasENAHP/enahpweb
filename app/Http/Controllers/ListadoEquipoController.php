@@ -114,52 +114,6 @@ class ListadoEquipoController extends Controller
           $ListadoEquipo->Proxy = $request->Proxy;
           $ListadoEquipo->Dns = $request->Dns;
           $ListadoEquipo->Puerto = $request->Puerto;
-
-        //   if($request->CableCorriente == 'SI' ){
-
-        //     $ListadoEquipo->CableCorriente = $request->CableCorriente;
-            
-        //   }else{
-
-        //     $ListadoEquipo->CableCorriente = 'No';
-        //   }
-
-        //   if($request->CableVGAHDMI  == 'SI'){
-
-        //     $ListadoEquipo->CableVGAHDMI = $request->CableVGAHDMI;
-            
-        //   }else{
-
-        //     $ListadoEquipo->CableVGAHDMI =  'No';
-        //   }
-
-        //   if($request->Impresora  == 'SI'){
-
-        //     $ListadoEquipo->Impresora = $request->Impresora;
-            
-        //   }else{
-
-        //     $ListadoEquipo->Impresora =  'No';
-        //   }
-
-        //   if($request->Telefono  == 'SI'){
-
-        //     $ListadoEquipo->Telefono = $request->Telefono;
-            
-        //   }else{
-
-        //     $ListadoEquipo->Telefono =  'No';
-        //   }
-
-        //   if($ListadoEquipo->Route  == 'SI'){
-
-        //     $ListadoEquipo->Route = $request->Route;
-            
-        //   }else{
-
-        //     $ListadoEquipo->Route =  'No';
-        //   }
-        
         $ListadoEquipo->CableCorriente = $request->CableCorriente;
         $ListadoEquipo->CableVGAHDMI = $request->CableVGAHDMI;
         $ListadoEquipo->Impresora = $request->Impresora;
@@ -182,8 +136,6 @@ class ListadoEquipoController extends Controller
     {
             $ListadoEquipo =  Equipos::find($id);
             $ListadoEquipoPB = Equipos::paginate();
-            // $Departamentos = Departamentos::all();
-            // $machineName = gethostname();
             return view('Listado.ListadoEquipos.show',compact('ListadoEquipoPB','ListadoEquipo'))->with('PB', ($request->input('page', 1) - 1) * $ListadoEquipoPB->perPage());
     }
 

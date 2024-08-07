@@ -131,34 +131,34 @@
             <div class="grid grid-cols-8 place-items-center">
            @if($ListadoEquipo->Mouse == 'on')
             <label for="">Mouse</label>
-            <input type="checkbox" id="Mouse" name="Mouse" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Mouse',$ListadoEquipo?->Mouse)" checked />
+            <input type="checkbox" id="Mouse" name="Mouse" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X" checked />
             @else
             <label for="">Mouse</label>
-            <input type="checkbox" id="Mouse" name="Mouse" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Mouse',$ListadoEquipo?->Mouse)"  />
+            <input type="checkbox" id="Mouse" name="Mouse" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X"  />
             @endif
             @if($ListadoEquipo->Teclado == 'on')
             <label for="">Teclado</label>
-            <input type="checkbox" id="Teclado" name="Teclado" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Teclado',$ListadoEquipo?->Teclado)" checked />
+            <input type="checkbox" id="Teclado" name="Teclado" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X" checked />
             @else
             <label for="">Teclado</label>
-            <input type="checkbox" id="Teclado" name="Teclado" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Teclado',$ListadoEquipo?->Teclado)"  />
+            <input type="checkbox" id="Teclado" name="Teclado" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X"  />
             @endif
 
-            @if($ListadoEquipo->Corneta == 'on')
+            @if($ListadoEquipo->Corneta == 'X')
             <label for="">Corneta</label>
-            <input type="checkbox" id="Corneta" name="Corneta" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Corneta',$ListadoEquipo?->Corneta)" checked />
+            <input type="checkbox" id="Corneta" name="Corneta" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X" checked />
             @else
             <label for="">Corneta</label>
-            <input type="checkbox" id="Corneta" name="Corneta" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Corneta',$ListadoEquipo?->Corneta)"  />
+            <input type="checkbox" id="Corneta" name="Corneta" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X"  />
             @endif
 
             @if($ListadoEquipo->Regulador == 'on')
             <label for="">Regulador</label>
-            <input type="checkbox" id="Regulador" name="Regulador" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Regulador',$ListadoEquipo?->Regulador)" checked />
+            <input type="checkbox" id="Regulador" name="Regulador" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X" checked />
             @else
 
             <label for="">Regulador</label>
-            <input type="checkbox" id="Regulador" name="Regulador" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Regulador',$ListadoEquipo?->Regulador)"  />
+            <input type="checkbox" id="Regulador" name="Regulador" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X"  />
             @endif
           </div>
           <br>

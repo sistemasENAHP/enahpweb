@@ -8,9 +8,16 @@
           <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
             <div class="md:col-span-1" >
                 <label for="NControl">N° Control</label>
-                <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="1" :value="1,old('NControl', $soporte?->NControl)" autocomplete="NControl" placeholder="" readonly />
+                @if($NControl )
+                <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$NControl->NControl+1}}"  autocomplete="NControl" placeholder="" readonly />
 
                 <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
+                    @else
+
+                    <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="100" autocomplete="NControl" placeholder="" readonly />
+
+                        <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
+                    @endif
               </div>
             <div class="md:col-span-2">
               <label for="Nombre">Nombre</label>
@@ -61,7 +68,7 @@
                 <x-text-input type="text" name="ip_maquina" id="ip_maquina" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$ip,old('ip_maquina',$soporte?->ip_maquina)}}" placeholder=""  readonly />
                 <x-input-error class="mt-2" :messages="$errors->get('ip_maquina')"/>
               </div>
-          
+
               <div class="md:col-span-3">
                 <label for="address">Fecha / Hora</label>
                 <x-text-input type="datetime"  name="FechaEntrada" id="FechaEntrada" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value="{{$date,old('FechaEntrada',$soporte?->FechaEntrada)}}" placeholder="" readonly />

@@ -2,7 +2,7 @@
     <div class="grid gap-3 gap-y-2 text-sm grid-cols-1 lg:grid-cols-2">
         <div class="text-gray-600">
           <p class="font-medium text-lg ">Registrar Equipos</p>
-          <p></p>
+          <p>{{$ListadoEquipo->Pisos->piso}}</p>
         </div>
         <div class="lg:col-span-2">
         <div class="grid gap-3 gap-y-2 text-sm grid-cols-1 md:grid-cols-4">
@@ -12,7 +12,7 @@
             <div class="md:col-span-5" >
                 <label for="departamento_id">Departamento</label>
                 <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                     <option value="">Selecciones</option>
+                    <option >Selecciones</option>
                     {{$sel = 0}}
                   @foreach($Departamentos as $dep)
                   @if($dep->id == $ListadoEquipo->departamento_id)
@@ -20,7 +20,9 @@
                   @else
                   {{$sel = ''}}
                   @endif
+                    
                           <option value="{{$dep->id}}" {{$sel}} >{{$dep->Departamento}}</option>
+                         
                   @endforeach
                 </select>
             </div>
@@ -45,8 +47,15 @@
         
                 <div class="md:col-span-2">
                     <label for="Cedula">Equipo</label>
-                    <x-text-input type="text" name="Equipo" id="Equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Equipo" placeholder="Equipo" :value="old('Equipo',$ListadoEquipo?->Equipo)" />
-                    <x-input-error class="mt-2" :messages="$errors->get('Equipo')"/>
+                    {{-- <x-text-input type="text" name="Equipo" id="Equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Equipo" placeholder="Equipo" :value="old('Equipo',$ListadoEquipo?->Equipo)" />
+                    <x-input-error class="mt-2" :messages="$errors->get('Equipo')"/> --}}
+                        <select name="Equipo" id="Equipo" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option >Selecciones</option>
+                            <option value="PC"{{$ListadoEquipo->Equipo == 'PC' ? 'selected' : ''}}>PC (Computadora) </option>
+                            <option value="Impresora"{{$ListadoEquipo->Equipo == 'Impresora' ? 'selected' : ''}}>Impresora</option>
+                            <option value="Telefono"{{$ListadoEquipo->Equipo == 'Telefono' ? 'selected' : ''}}>Telefono</option>
+                            <option value="Route"{{$ListadoEquipo->Equipo == 'Route' ? 'selected' : ''}}>Route</option>
+                        </select>
                   </div>
         
                 <div class="md:col-span-2">
@@ -116,7 +125,7 @@
                   <div class="md:col-span-1">
         
                     <label for="Cedula"> Memoria Ram</label>
-                    <x-text-input type="text" name="memoria_ram" id="memoria_ram" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="memoria_ram" placeholder="Memoria Ram" :value="old('memoria_ram',$ListadoEquipo?->MemoriaRam)" />
+                    <x-text-input type="text" name="memoria_ram" id="memoria_ram" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="memoria_ram" placeholder="Memoria Ram" :value="  'GB' ,old('memoria_ram',$ListadoEquipo?->MemoriaRam)" />
                     <x-input-error class="mt-2" :messages="$errors->get('memoria_ram')"/>
                   </div>
         
@@ -125,34 +134,34 @@
                     <div class="grid grid-cols-8 place-items-center">
                    @if($ListadoEquipo->Mouse == 'on')
                     <label for="">Mouse</label>
-                    <input type="checkbox" id="Mouse" name="Mouse" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Mouse',$ListadoEquipo?->Mouse)" checked />
+                    <input type="checkbox" id="Mouse" name="Mouse" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X" checked />
                     @else
                     <label for="">Mouse</label>
-                    <input type="checkbox" id="Mouse" name="Mouse" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Mouse',$ListadoEquipo?->Mouse)"  />
+                    <input type="checkbox" id="Mouse" name="Mouse" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X"  />
                     @endif
                     @if($ListadoEquipo->Teclado == 'on')
                     <label for="">Teclado</label>
-                    <input type="checkbox" id="Teclado" name="Teclado" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Teclado',$ListadoEquipo?->Teclado)" checked />
+                    <input type="checkbox" id="Teclado" name="Teclado" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X" checked />
                     @else
                     <label for="">Teclado</label>
-                    <input type="checkbox" id="Teclado" name="Teclado" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Teclado',$ListadoEquipo?->Teclado)"  />
+                    <input type="checkbox" id="Teclado" name="Teclado" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X"  />
                     @endif
         
-                    @if($ListadoEquipo->Corneta == 'on')
+                    @if($ListadoEquipo->Corneta == 'X')
                     <label for="">Corneta</label>
-                    <input type="checkbox" id="Corneta" name="Corneta" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Corneta',$ListadoEquipo?->Corneta)" checked />
+                    <input type="checkbox" id="Corneta" name="Corneta" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X" checked />
                     @else
                     <label for="">Corneta</label>
-                    <input type="checkbox" id="Corneta" name="Corneta" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Corneta',$ListadoEquipo?->Corneta)"  />
+                    <input type="checkbox" id="Corneta" name="Corneta" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X"  />
                     @endif
         
                     @if($ListadoEquipo->Regulador == 'on')
                     <label for="">Regulador</label>
-                    <input type="checkbox" id="Regulador" name="Regulador" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Regulador',$ListadoEquipo?->Regulador)" checked />
+                    <input type="checkbox" id="Regulador" name="Regulador" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X" checked />
                     @else
         
                     <label for="">Regulador</label>
-                    <input type="checkbox" id="Regulador" name="Regulador" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Regulador',$ListadoEquipo?->Regulador)"  />
+                    <input type="checkbox" id="Regulador" name="Regulador" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X"  />
                     @endif
                   </div>
                   <br>
@@ -179,45 +188,46 @@
                   <div class="md:col-span-5">
                     <br>
                     <div class="grid grid-cols-8 place-items-center">
-                   @if($ListadoEquipo->CableCorriente == 'on')
+                   @if($ListadoEquipo->CableCorriente == 'X')
                     <label for="">Cable Corriente</label>
-                    <input type="checkbox" id="CableCorriente" name="CableCorriente" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('CableCorriente',$ListadoEquipo?->CableCorriente)" checked />
+                    <input type="checkbox" id="CableCorriente" name="CableCorriente" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X" checked />
                     @else
                     <label for="">Cable Corriente</label>
-                    <input type="checkbox" id="CableCorriente" name="CableCorriente" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('CableCorriente',$ListadoEquipo?->CableCorriente)"  />
+                    <input type="checkbox" id="CableCorriente" name="CableCorriente" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X"  />
                     @endif
-                    @if($ListadoEquipo->CableVGAHDMI == 'on')
+        
+                    @if($ListadoEquipo->CableVGAHDMI == 'X')
                     <label for="">Cable VGA/HDMI</label>
-                    <input type="checkbox" id="CableVGAHDMI" name="CableVGAHDMI" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('CableVGA-HDMI',$ListadoEquipo?->CableVGAHDMI)" checked />
+                    <input type="checkbox" id="CableVGAHDMI" name="CableVGAHDMI" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X" checked />
                     @else
                     <label for="">Cable VGA/HDMI</label>
-                    <input type="checkbox" id="CableVGAHDMI" name="CableVGAHDMI" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('CableVGA-HDMI',$ListadoEquipo?->CableVGAHDMI)"  />
+                    <input type="checkbox" id="CableVGAHDMI" name="CableVGAHDMI" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X" />
                     @endif
         
-                    @if($ListadoEquipo->Impresora == 'on')
+                    @if($ListadoEquipo->Impresora == 'X')
                     <label for="">Impresora</label>
-                    <input type="checkbox" id="Impresora" name="Impresora" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Impresora',$ListadoEquipo?->Impresora)" checked />
+                    <input type="checkbox" id="Impresora" name="Impresora" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X" checked />
                     @else
                     <label for="">Impresora</label>
-                    <input type="checkbox" id="Impresora" name="Impresora" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Impresora',$ListadoEquipo?->Impresora)"  />
+                    <input type="checkbox" id="Impresora" name="Impresora" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X"  />
                     @endif
         
-                    @if($ListadoEquipo->Telefono == 'on')
+                    @if($ListadoEquipo->Telefono == 'X')
                     <label for="">Telefono</label>
-                    <input type="checkbox" id="Telefono" name="Telefono" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Telefono',$ListadoEquipo?->Telefono)" checked />
+                    <input type="checkbox" id="Telefono" name="Telefono" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X" checked />
                     @else
         
                     <label for="">Telefono</label>
-                    <input type="checkbox" id="Telefono" name="Telefono" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Telefono',$ListadoEquipo?->Telefono)"  />
+                    <input type="checkbox" id="Telefono" name="Telefono" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X"  />
                     @endif
         
-                    @if($ListadoEquipo->Route == 'on')
+                    @if($ListadoEquipo->Route == 'X')
                     <label for="">Route</label>
-                    <input type="checkbox" id="Route" name="Route" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Route',$ListadoEquipo?->Route)" checked />
+                    <input type="checkbox" id="Route" name="Route" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X" checked />
                     @else
         
                     <label for="">Route</label>
-                    <input type="checkbox" id="Route" name="Route" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" :value="old('Route',$ListadoEquipo?->Route)"  />
+                    <input type="checkbox" id="Route" name="Route" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X"  />
                     @endif
                   </div>
                   <br>

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 // use App\Models\Departamentos;
-use App\Models\TipoFallas;
+// use App\Models\TipoFallas;
 /**
  * Class Soportes
  *
@@ -59,5 +59,15 @@ class Soportes extends Model
     {
         return $this->belongsTo(\App\Models\TipoFallas::class, 'tipo_falla_id', 'id');
     }
+
+
+    // public static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::creating(function ($model) {
+    //         $model->NControl = generateRandomString();
+    //     });
+    // }
 
 }
