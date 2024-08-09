@@ -29,13 +29,10 @@
                 <tr>
                     <th scope="col" class="px-6 py-3 text-center text-xs" >id</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs" >N° Control</th>
-                    <th scope="col" class="px-6 py-3 text-centertext-xs">Nombre-Apellido</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs">Nombre-Apellido</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Cedula</th>
-                   <th scope="col" class="px-6 py-3 text-center text-xs">Departamento</th>
-                    {{-- <th scope="col" class="px-6 py-3">Telefono</th> --}}
-                    {{-- <th scope="col" class="px-6 py-3 text-center">Fecha</th> --}}
+                    <th scope="col" class="px-6 py-3 text-center text-xs">Departamento</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs" >ip Maquina</th>
-                    {{-- <th scope="col" class="px-6 py-3">Tipo de Falla</th> --}}
                     <th scope="col" class="px-6 py-3 text-center text-xs">Motivo de Falla</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Solucion</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Técnico</th>
@@ -50,7 +47,6 @@
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Nombre }}  - {{ $soporte->Apellidos }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Cedula }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->departamentos->Departamento}}</td>
-                    {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->FechaHora }}</td> --}}
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->ip_equipo }}</td>
                     <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Motivo_Falla }}</td>
                     <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Solucion }}</td>

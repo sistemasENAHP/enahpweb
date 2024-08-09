@@ -3,4 +3,5 @@
 return [
     App\Providers\AppServiceProvider::class,
     Jenssegers\Agent\ServiceProvider::class,
+    Spatie\EloquentSortable\EloquentSortableServiceProvider::class,
 ];
