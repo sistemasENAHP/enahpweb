@@ -8,15 +8,18 @@
           <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
             <div class="md:col-span-1" >
                 <label for="NControl">N° Control</label>
-                @if(!$NControl == '')
-                <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{ $NControl->NControl++; }}"  autocomplete="NControl" placeholder="" readonly />
+                @if($NControl == '')
 
-                <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
-                     @else
-
-                    <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{substr(Auth()->user()->name,0,1) }}{{substr(Auth()->user()->surname,0,1)}}-100" autocomplete="NControl" placeholder="" readonly />
+                   <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{substr(Auth()->user()->name,0,1) }}{{substr(Auth()->user()->surname,0,1)}}-100" autocomplete="NControl" placeholder="" readonly />
 
                         <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
+                            @else      
+
+                            <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{substr(Auth()->user()->name,0,1).substr(Auth()->user()->surname,0,1). '-' .substr($NControl->NControl++ , -3); }}"  autocomplete="NControl" placeholder="" readonly />
+
+                <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
+                     
+
                     @endif 
               </div>
             <div class="md:col-span-2">
@@ -33,7 +36,7 @@
               </div>
               <div class="md:col-span-2">
                 <label for="Cedula">Cedula</label>
-                <x-text-input type="text" name="Cedula" id="Cedula" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Cedula',$soporte?->Cedula)" autocomplete="Cedula" placeholder="" />
+                <x-text-input type="text" name="Cedula" id="Cedula" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Cedula',$soporte?->Cedula)" autocomplete="Cedula" placeholder="Cedula" />
                 <x-input-error class="mt-2" :messages="$errors->get('Cedula')"/>
               </div>
             <div class="md:col-span-3">
@@ -44,7 +47,7 @@
 
             <div class="md:col-span-2">
                 <label for="Telefono">Telefono o Extension</label>
-                <x-text-input type="text" name="Telefono" id="Telefono" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Telefono',$soporte?->Telefono)" autocomplete="Telefono"  placeholder="" />
+                <x-text-input type="text" name="Telefono" id="Telefono" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Telefono',$soporte?->Telefono)" autocomplete="Telefono"  placeholder="Telefono" />
                 <x-input-error class="mt-2" :messages="$errors->get('Telefono')"/>
               </div>
 

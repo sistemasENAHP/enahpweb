@@ -44,8 +44,7 @@ class SoporteController extends Controller
         $hostname = strtok($hostname, ' ');
         $machineName = gethostname();
         $NControl = Soportes::orderBy('NControl','desc')->first();
-         // $NControl = Soportes::orderBy('NControl','desc')->first();
-        // $NControl= Soportes::booted();
+        // $NControl = Soportes::getFormattedCodeAttribute();
 
         return view('soporte.create', compact('soporte','Departamentos','TipoFalla','ip','date','hostname','macAddress','NControl'));
     }
@@ -60,6 +59,7 @@ class SoporteController extends Controller
           $soporte = new Soportes();
           $soporte->departamento_id = $request->departamento_id;
           $soporte->tipo_falla_id = $request->tipo_falla_id;
+          
           $soporte->NControl = $request->NControl;
           $soporte->Nombre = $request->Nombre;
           $soporte->Apellidos = $request->Apellidos;
@@ -99,7 +99,10 @@ class SoporteController extends Controller
         $TipoFalla = TipoFallas::all();
         $date = $date->format('d-m-Y h:i:s A');
          $NControl = Soportes::orderBy('NControl','desc')->first();
-        return view('soporte.edit', compact('soporte','Departamentos','TipoFalla','ip','date','NControl'));
+         $id = Soportes::all();
+
+
+        return view('soporte.edit', compact('soporte','Departamentos','TipoFalla','ip','date','NControl','id'));
     }
 
     /**
@@ -111,7 +114,6 @@ class SoporteController extends Controller
            $soporte->departamento_id = $request->departamento_id;
           $soporte->tipo_falla_id = $request->tipo_falla_id;
           $soporte->NControl = $request->NControl;
-          // dd($soporte->NControl = $request->NControl);
           $soporte->Nombre = $request->Nombre;
           $soporte->Apellidos = $request->Apellidos;
           $soporte->Cedula = $request->Cedula;

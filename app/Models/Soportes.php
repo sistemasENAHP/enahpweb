@@ -65,16 +65,25 @@ class Soportes extends Model
         return $this->belongsTo(\App\Models\TipoFallas::class, 'tipo_falla_id', 'id');
     }
 
-    protected static function booted() 
+    // public static function booted() 
 
-    {
-        static::creating(function ($model) {
-            $lastProduct = static::orderBy('NControl', 'desc')->first();
-            $lastCodeNumber = preg_replace('/[^0-9]/', '', $lastProduct->NControl ?? 'SP-000');
-            // $model->NControl = substr(Auth()->user()->name,0,1)  .substr(Auth()->user()->surname,0,1) . "-".str_pad($lastCodeNumber + 1, 3, '0', STR_PAD_LEFT);
-            $model->NControl = substr(Auth()->user()->name,0,1)  .substr(Auth()->user()->surname,0,1).str_pad($lastCodeNumber + 1, 3, '0', STR_PAD_LEFT);
+    // {
+    //     static::creating(function ($model) {
+    //         $lastProduct = static::orderBy('NControl', 'desc')->first();
+    //         $lastCodeNumber = preg_replace('/[^0-9]/', '', $lastProduct->NControl ?? 'SP-000');
+    //         // $model->NControl = substr(Auth()->user()->name,0,1)  .substr(Auth()->user()->surname,0,1) . "-".str_pad($lastCodeNumber + 1, 3, '0', STR_PAD_LEFT);
+    //         $model->NControl = substr(Auth()->user()->name,0,1)  .substr(Auth()->user()->surname,0,1).str_pad($lastCodeNumber + 1, 3, '0', STR_PAD_LEFT);
 
-        });
-    }
+
+    //         return $lastProduct;
+
+    //     });
+    // }
+
+    //   public static function getFormattedCodeAttribute()
+    // {
+    //     $lastProduct = static::orderBy('NControl', 'desc')->first();
+    //     return 'SP-' . str_pad($lastProduct, 3, '0', STR_PAD_LEFT);
+    // }
 
 }

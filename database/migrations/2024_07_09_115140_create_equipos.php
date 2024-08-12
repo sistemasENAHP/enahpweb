@@ -83,6 +83,7 @@ return new class extends Migration
             $table->foreignId('tipo_falla_id')->constrained('tipo_fallas');
             $table->foreignId('departamento_id')->constrained('departamentos');
             $table->string('NControl');
+            // $table->string('NTecnico');
             $table->string('Nombre');
             $table->string('Apellidos');
             $table->integer('Cedula');
