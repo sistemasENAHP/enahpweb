@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ config('app.name', 'EnahpWeb') }}</title>
+     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--CSS-->
     @vite('resources/css/app.css')
     {{-- <link rel="stylesheet" href="{{asset('resources/css/app.css')}}"> --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
-
+     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.dataTables.css" /> --}}
+      <link rel="stylesheet" href="{{asset('/css/dataTables.css')}}"> 
+       <link rel="stylesheet" href="{{asset('/css/dataTables.min.css')}}">
 </head>
 {{-- <link rel="stylesheet" href="{{asset('Boostraps/css/bootstrap.css')}}"> --}}
 
@@ -91,13 +93,16 @@
 
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        {{-- <script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script> --}}
+         <script src="{{asset('/JS/dataTables.js')}}"></script>
+        <script src="{{asset('/JS/dataTables.min.js')}}"></script>
 
 </body>
 <script type="text/javascript">
-   $(document).ready(function() {
-    $('.select2').select2();
-});
+//    $(document).ready(function() {
+   
+// });
 </script>
 
 

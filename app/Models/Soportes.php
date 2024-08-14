@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Scout\Searchable;
 // use Spatie\EloquentSortable\Sortable;
 // use Spatie\EloquentSortable\SortableTrait;
 // use App\Models\Departamentos;
@@ -37,6 +38,7 @@ use Illuminate\Support\Facades\Auth;
 class Soportes extends Model 
 {
 
+    use Searchable;
 
     protected $perPage = 20;
 
@@ -65,25 +67,18 @@ class Soportes extends Model
         return $this->belongsTo(\App\Models\TipoFallas::class, 'tipo_falla_id', 'id');
     }
 
-    // public static function booted() 
 
-    // {
-    //     static::creating(function ($model) {
-    //         $lastProduct = static::orderBy('NControl', 'desc')->first();
-    //         $lastCodeNumber = preg_replace('/[^0-9]/', '', $lastProduct->NControl ?? 'SP-000');
-    //         // $model->NControl = substr(Auth()->user()->name,0,1)  .substr(Auth()->user()->surname,0,1) . "-".str_pad($lastCodeNumber + 1, 3, '0', STR_PAD_LEFT);
-    //         $model->NControl = substr(Auth()->user()->name,0,1)  .substr(Auth()->user()->surname,0,1).str_pad($lastCodeNumber + 1, 3, '0', STR_PAD_LEFT);
+    public function toSearchableArray()
+{
+    return [
+        'id' => (int) $this->id,
+        'Nombre' => $this->Nombre,
+        'NControl' => $this->NControl,
+        'Cedula' => $this->Cedula,
+        'Tecnico'=> $this->Tecnico,
+    ];
+}
 
-
-    //         return $lastProduct;
-
-    //     });
-    // }
-
-    //   public static function getFormattedCodeAttribute()
-    // {
-    //     $lastProduct = static::orderBy('NControl', 'desc')->first();
-    //     return 'SP-' . str_pad($lastProduct, 3, '0', STR_PAD_LEFT);
-    // }
+    
 
 }

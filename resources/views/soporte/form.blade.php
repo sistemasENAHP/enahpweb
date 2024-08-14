@@ -8,19 +8,16 @@
           <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
             <div class="md:col-span-1" >
                 <label for="NControl">N° Control</label>
-                @if($NControl == '')
-
-                   <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{substr(Auth()->user()->name,0,1) }}{{substr(Auth()->user()->surname,0,1)}}-100" autocomplete="NControl" placeholder="" readonly />
-
-                        <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
-                            @else      
-
-                            <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{substr(Auth()->user()->name,0,1).substr(Auth()->user()->surname,0,1). '-' .substr($NControl->NControl++ , -3); }}"  autocomplete="NControl" placeholder="" readonly />
+                @if($NControl )
+                <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="SP-{{ substr($NControl->NControl++, 3); }}"  autocomplete="NControl" placeholder="" readonly />
 
                 <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
-                     
+                    @else
 
-                    @endif 
+                    <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="SP-100" autocomplete="NControl" placeholder="" readonly />
+
+                        <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
+                    @endif
               </div>
             <div class="md:col-span-2">
               <label for="Nombre">Nombre</label>
@@ -104,19 +101,6 @@
                     <textarea name="Motivo_Falla" id="Motivo_Falla" cols="79" rows="3">{{$soporte->Motivo_Falla}}</textarea>
                     <x-input-error class="mt-2" :messages="$errors->get('Motivo_Falla')"/>
               </div>
-
-              <div class="md:col-span-3">
-                <label for="address">Solucion / Recomendaciones</label>
-                    <textarea name="Solucion" id="Solucion" cols="79" rows="3">{{ $soporte->Solucion }}   </textarea>
-                    <x-input-error class="mt-2" :messages="$errors->get('Solucion')"/>
-              </div>
-
-              <div class="md:col-span-5">
-                <label for="Telefono">Técnico</label>
-                <x-text-input type="text" name="tecnico" id="tecnico" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{Auth()->user()->name}}" autocomplete="tecnico"  placeholder="" readonly />
-                <x-input-error class="mt-2" :messages="$errors->get('tecnico')"/>
-              </div>
-
             <div class="md:col-span-5 text-center">
               <div class="inline-flex items-end" >
                 <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Guardar</button>
@@ -128,10 +112,4 @@
           </div>
         </div>
       </div>
-    {{-- <div>
-        <x-input-label for="departamento_id" :value="__('Departamento Id')"/>
-        <x-text-input id="departamento_id" name="departamento_id" type="text" class="mt-1 block w-full" :value="old('departamento_id', $soporte?->departamento_id)" autocomplete="departamento_id" placeholder="Departamento Id"/>
-        <x-input-error class="mt-2" :messages="$errors->get('departamento_id')"/>
-    </div>  --}}
-
 </div>

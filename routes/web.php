@@ -27,6 +27,9 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('users', UserController::class);
 Route::resource('Soportes', SoporteController::class);
+Route::get('/buscar',[SoporteController::class,'BuscadorSoporte']);
+Route::get('/buscarUser',[SoporteController::class,'buscarUsers']);
+
 Route::resource('Tecnico', TecnicoController::class);
 Route::resource('ListadoIp', ListadoipController::class);
 Route::resource('ListadoPunto', ListadoPuntoController::class);

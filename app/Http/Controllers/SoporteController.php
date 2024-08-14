@@ -10,20 +10,24 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Departamentos;
 use App\Models\TipoFallas;
-use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
-// use Jenssegers\Agent\Facades\Agent;
+use Carbon\Carbon;
 class SoporteController extends Controller
 {
+  
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
+    public function index(): View
     {
-        $soportes = Soportes::paginate();
+        // $soportes = Soportes::paginate();
 
-        return view('soporte.index', compact('soportes'))
-            ->with('i', ($request->input('page', 1) - 1) * $soportes->perPage());
+        // return view('soporte.index', compact('soportes'))
+        //     ->with('i', ($request->input('page', 1) - 1) * $soportes->perPage());
+
+        $soportes = Soportes::search(request('search'))->paginate();
+
+        return view('soporte.index', compact('soportes'));
     }
 
     /**
@@ -31,20 +35,20 @@ class SoporteController extends Controller
      */
     public function create(Request $request): View
     {
+        $Fecha = Carbon::now();
         $soporte = new Soportes();
         $date = Carbon::now();
         $ip = $request->ip();
         $Departamentos = Departamentos::all();
         $TipoFalla = TipoFallas::all();
-        $date = $date->format('d-m-Y h:i:s A');
+        $date = $Fecha->format('d-m-Y h:i:s A');
         $agent = new Agent();
         $macAddress = $agent->isDesktop();
-        // $hostname = exec('getmac');
         $hostname = exec('getmac');
         $hostname = strtok($hostname, ' ');
         $machineName = gethostname();
         $NControl = Soportes::orderBy('NControl','desc')->first();
-        // $NControl = Soportes::getFormattedCodeAttribute();
+        
 
         return view('soporte.create', compact('soporte','Departamentos','TipoFalla','ip','date','hostname','macAddress','NControl'));
     }
@@ -55,11 +59,10 @@ class SoporteController extends Controller
     public function store(Request $request): RedirectResponse
     {
         // Soportes::create($request->validated());
-
+          $Fecha = Carbon::now();
           $soporte = new Soportes();
           $soporte->departamento_id = $request->departamento_id;
           $soporte->tipo_falla_id = $request->tipo_falla_id;
-          
           $soporte->NControl = $request->NControl;
           $soporte->Nombre = $request->Nombre;
           $soporte->Apellidos = $request->Apellidos;
@@ -67,8 +70,7 @@ class SoporteController extends Controller
           $soporte->Telefono = $request->Telefono;
           $soporte->Correo = $request->Correo;
           $soporte->ip_equipo =  $request->ip_maquina;
-          $soporte->FechaEntrada = date('Y-m-d H:i:s');
-          $soporte->FechaSalida = date('Y-m-d H:i:s');
+          $soporte->FechaEntrada = $request->FechaEntrada;
           $soporte->Motivo_Falla = $request->Motivo_Falla;
           $soporte->Solucion = $request->Solucion;
           $soporte->Tecnico = $request->tecnico;
@@ -93,16 +95,16 @@ class SoporteController extends Controller
     public function edit(Request $request , $id): View
     {
         $soporte = Soportes::find($id);
-        $date = Carbon::now();
+        $Fecha = Carbon::now();
         $ip = $request->ip();
         $Departamentos = Departamentos::all();
         $TipoFalla = TipoFallas::all();
-        $date = $date->format('d-m-Y h:i:s A');
+        $dates = $Fecha->format('d-m-Y h:i:s A');
          $NControl = Soportes::orderBy('NControl','desc')->first();
          $id = Soportes::all();
 
 
-        return view('soporte.edit', compact('soporte','Departamentos','TipoFalla','ip','date','NControl','id'));
+        return view('soporte.edit', compact('soporte','Departamentos','TipoFalla','ip','dates','NControl','id'));
     }
 
     /**
@@ -110,6 +112,7 @@ class SoporteController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
+         $Fecha = Carbon::now();
          $soporte = Soportes::find($id);
            $soporte->departamento_id = $request->departamento_id;
           $soporte->tipo_falla_id = $request->tipo_falla_id;
@@ -119,9 +122,9 @@ class SoporteController extends Controller
           $soporte->Cedula = $request->Cedula;
           $soporte->Telefono = $request->Telefono;
           $soporte->Correo = $request->Correo;
-          $soporte->ip_equipo =  $request->ip_maquina;
-          $soporte->FechaEntrada = date('Y-m-d H:i:s');
-          $soporte->FechaSalida = date('Y-m-d H:i:s');
+          // $soporte->ip_equipo =  $request->ip_maquina;
+          $soporte->FechaEntrada = $request->FechaEntrada;
+          $soporte->FechaSalida = $request->FechaSalida;
           $soporte->Motivo_Falla = $request->Motivo_Falla;
           $soporte->Solucion = $request->Solucion;
           $soporte->Tecnico = $request->tecnico;
@@ -137,4 +140,39 @@ class SoporteController extends Controller
         return Redirect::route('Soportes.index')
             ->with('success', 'Soporte deleted successfully');
     }
-}
+
+
+
+    public function BuscadorSoporte(Request $request){
+
+
+           if($request->ajax()){
+             $query  = $request->get('Buscar');
+             $soportes = Soportes::where('NControl','like',"%$query%")->get();
+
+            return view('soporte.buscador', compact('soportes'));
+            //   return response()->json($soportes);
+            }
+    
+    }
+
+
+
+    // public function buscarUsers(Request $request){
+
+    //      $soporte = Soportes::search(request('search'))->get();
+
+    //      foreach($soporte as $soportes){
+
+            
+    //      }
+
+    //     return view('soporte.create', compact('soportes'));
+    
+    
+    // }
+        
+ }
+
+    
+

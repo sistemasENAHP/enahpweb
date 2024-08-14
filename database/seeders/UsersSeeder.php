@@ -43,5 +43,19 @@ class UsersSeeder extends Seeder
 
         ]);
 
+           User::create([
+
+            'name' => 'Hamilton ',
+            'surname' => 'Leon',
+            'identification_card' => 123456,
+            'user' => 'Hamilton ',
+            'email' => 'hamilton@enahp.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('enahp*2024'),
+            'created_at' => now(),
+            'updated_at' => now()
+
+        ]);
+
     }
 }
