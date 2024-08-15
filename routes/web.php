@@ -29,6 +29,7 @@ Route::resource('users', UserController::class);
 Route::resource('Soportes', SoporteController::class);
 Route::get('/buscar',[SoporteController::class,'BuscadorSoporte']);
 Route::get('/buscarUser',[SoporteController::class,'buscarUsers']);
+Route::get('/EstatusSoporte', [SoporteController::class,'EstatusSoportes']);
 
 Route::resource('Tecnico', TecnicoController::class);
 Route::resource('ListadoIp', ListadoipController::class);

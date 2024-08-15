@@ -29,7 +29,7 @@
 
                 <x-input-error class="mt-2" :messages="$errors->get('NControl')"/> --}}
 
-                     <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('NControl', substr(Auth()->user()->name,0,1).substr(Auth()->user()->surname,0,1). '-' .substr($soporte->NControl , -3))"   autocomplete="NControl" placeholder="" readonly    />
+                     <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('NControl', substr(Auth()->user()->name,0,1).substr(Auth()->user()->surname,0,1). '-' .substr($soporte?->NControl , -3))"   autocomplete="NControl" placeholder="" readonly    />
 
                 <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
                      
@@ -81,7 +81,7 @@
 
             <div class="md:col-span-2">
                 <label for="ip_maquina">Ip de la maquina</label>
-                <x-text-input type="text" name="ip_maquina" id="ip_maquina" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$ip,old('ip_maquina',$soporte?->ip_maquina)}}" placeholder=""  readonly />
+                <x-text-input type="text" name="ip_maquina" id="ip_maquina" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('ip_maquina',$soporte?->ip_equipo)}}" placeholder=""  readonly />
                 <x-input-error class="mt-2" :messages="$errors->get('ip_maquina')"/>
               </div>
 

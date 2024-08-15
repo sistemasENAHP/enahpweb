@@ -37,7 +37,7 @@ class SoporteController extends Controller
     {
         $Fecha = Carbon::now();
         $soporte = new Soportes();
-        $date = Carbon::now();
+        // $date = Carbon::now();
         $ip = $request->ip();
         $Departamentos = Departamentos::all();
         $TipoFalla = TipoFallas::all();
@@ -76,7 +76,7 @@ class SoporteController extends Controller
           $soporte->Tecnico = $request->tecnico;
           $soporte->save();
 
-        return Redirect('/Soportes/create')->with('success', 'Soporte created successfully.');
+        return Redirect('/EstatusSoporte')->with('success', 'Soporte created successfully.');
     }
 
     /**
@@ -85,8 +85,10 @@ class SoporteController extends Controller
     public function show($id): View
     {
         $soporte = Soportes::find($id);
-
-        return view('soporte.show', compact('soporte'));
+        $TipoFalla = TipoFallas::all();
+          $Departamentos = Departamentos::all();
+         
+        return view('soporte.show', compact('soporte','TipoFalla','Departamentos'));
     }
 
     /**
@@ -158,19 +160,37 @@ class SoporteController extends Controller
 
 
 
-    // public function buscarUsers(Request $request){
+    public function buscarUsers(Request $request){
+         $Fecha = Carbon::now();
+         $soportes = Soportes::search(request('UsuarioRegistrado'))->get();
+          // $Soportes = Soportes::search(request('UsuarioRegistrado'))->get();
+         $NControl = Soportes::orderBy('NControl','desc')->first();
+         $Departamentos = Departamentos::all();
+         $ip = $request->ip();
+        $TipoFalla = TipoFallas::all();
+        $date = $Fecha->format('d-m-Y h:i:s A');
 
-    //      $soporte = Soportes::search(request('search'))->get();
-
-    //      foreach($soporte as $soportes){
-
+         foreach($soportes as $soporte){
             
-    //      }
+            
 
-    //     return view('soporte.create', compact('soportes'));
+         }
+
+        return view('soporte.buscar', compact('soporte','NControl','Departamentos','TipoFalla','ip','date','soportes'));
     
-    
-    // }
+     }
+
+
+    public function EstatusSoportes(){
+
+
+       $soportes = Soportes::search(request('search'))->paginate();
+
+        return view('soporte.estatus', compact('soportes'));
+
+
+
+    }
         
  }
 

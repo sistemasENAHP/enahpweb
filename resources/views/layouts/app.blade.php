@@ -41,8 +41,11 @@
         </div>
         <ul class="mt-4 px-4 space-y-2">
             <li><a href="{{ route('dashboard') }}" class="block">Inicio</a></li>
-            <li>
-                <a href="/Soportes/create" class="block">Pedir Soporte</a>
+            <li><a href="/Soportes/create" class="block">Pedir Soporte</a>
+                 <ul class="ml-4 mt-1 space-y-1">
+             <li><a href="/EstatusSoporte" class="block">Estatus Soporte</a></li>
+
+                </ul>
 
             </li>
             <li>

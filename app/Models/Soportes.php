@@ -71,6 +71,7 @@ class Soportes extends Model
     public function toSearchableArray()
 {
     return [
+
         'id' => (int) $this->id,
         'Nombre' => $this->Nombre,
         'NControl' => $this->NControl,
@@ -78,6 +79,19 @@ class Soportes extends Model
         'Tecnico'=> $this->Tecnico,
     ];
 }
+
+
+//     public function toSearchableArray1()
+// {
+//     return [
+        
+//         'id' => (int) $this->id,
+//         'Nombre' => $this->Nombre,
+//         'NControl' => $this->NControl,
+//         'Cedula' => $this->Cedula,
+//         'Tecnico'=> $this->Tecnico,
+//     ];
+// }
 
     
 
