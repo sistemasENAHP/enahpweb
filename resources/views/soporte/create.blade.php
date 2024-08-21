@@ -40,8 +40,9 @@
           <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
             <div class="md:col-span-1" >
                 <label for="NControl">N° Control</label>
-                @if(!$soporte->NControl)
+                @if(!$NControl == '')
                 <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="SP-{{ substr($NControl->NControl++, 3); }}"  autocomplete="NControl" placeholder=""  />
+                {{-- <x-text-input type="hidden" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('NControl', substr(Auth()->user()->name,0,1).substr(Auth()->user()->surname,0,1). '-' .substr($NControl->NControl++ , -3))"   autocomplete="NControl" placeholder="" readonly    /> --}}
 
                 <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
                     @else

@@ -42,16 +42,21 @@
                                     <tbody class="divide-y divide-gray-200 bg-white">
                                     @foreach ($users as $user)
                                         <tr class="even:bg-gray-50">
-                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-center text-sm font-semibold text-gray-900">{{ ++$i }}</td>
+                                            <td class=" py-4 pl-4 pr-3 text-center text-sm font-semibold text-gray-900">{{ ++$i }}</td>
 
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{{ $user->name }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{{ $user->surname }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{{ $user->identification_card }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{{ $user->user }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{{ $user->email }}</td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500"></td>
+										<td class=" px-3 py-4 text-sm text-center text-gray-500">{{ $user->name }}</td>
+										<td class=" px-3 py-4 text-sm text-center text-gray-500">{{ $user->surname }}</td>
+										<td class=" px-3 py-4 text-sm text-center text-gray-500">{{ $user->identification_card }}</td>
+										<td class=" px-3 py-4 text-sm text-center text-gray-500">{{ $user->user }}</td>
+										<td class=" px-3 py-4 text-sm text-center text-gray-500">{{ $user->email }}</td>
+                                        <td class="p px-3 py-4 text-sm text-center text-gray-500">
+                                            @if (!empty($user->getRoleNames())) {{--Funcion de Laravel Permission tomara el nombre de los roles--}}
+                                                        @foreach ($user->getRoleNames() as $rolname)
+                                                            <span>{{ $rolname }}</span>
+                                                        @endforeach
+                                                    @endif</td>
 
-                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
+                                            <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                                     <a href="{{ route('users.show', $user->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
                                                     <a href="{{ route('users.edit', $user->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>

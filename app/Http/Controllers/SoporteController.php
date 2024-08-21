@@ -162,7 +162,7 @@ class SoporteController extends Controller
 
     public function buscarUsers(Request $request){
          $Fecha = Carbon::now();
-         $soportes = Soportes::search(request('UsuarioRegistrado'))->get();
+         $soporte = Soportes::search(request('UsuarioRegistrado'))->get();
           // $Soportes = Soportes::search(request('UsuarioRegistrado'))->get();
          $NControl = Soportes::orderBy('NControl','desc')->first();
          $Departamentos = Departamentos::all();
@@ -170,13 +170,13 @@ class SoporteController extends Controller
         $TipoFalla = TipoFallas::all();
         $date = $Fecha->format('d-m-Y h:i:s A');
 
-         foreach($soportes as $soporte){
+         // foreach($soportes as $soporte){
             
             
 
-         }
+         // }
 
-        return view('soporte.buscar', compact('soporte','NControl','Departamentos','TipoFalla','ip','date','soportes'));
+        return view('soporte.buscar', compact('soporte','NControl','Departamentos','TipoFalla','ip','date'));
     
      }
 

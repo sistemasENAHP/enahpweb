@@ -64,15 +64,7 @@
                     <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Solucion }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Tecnico }}</td>
                      <td class="px-3 py-4 text-sm text-gray-500 text-center"></td>
-                       {{--  <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 text-center">
-                            <form action="{{ route('Soportes.destroy', $soporte->id) }}" method="POST">
-                                <a href="{{ route('Soportes.show', $soporte->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar ') }}</a>
-                                <a href="{{ route('Soportes.edit', $soporte->id) }}" id="editar" name="editar" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
-                                @csrf
-                                @method('DELETE')
-                                <a href="{{ route('Soportes.destroy', $soporte->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a>
-                            </form>
-                        </td> --}}
+                       
                     </tr>
 
   @endforeach

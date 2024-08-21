@@ -2,39 +2,57 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Auth\Authenticatable;
-/**
- * Class User
- *
- * @property $id
- * @property $name
- * @property $surname
- * @property $identification_card
- * @property $user
- * @property $email
- * @property $email_verified_at
- * @property $password
- * @property $remember_token
- * @property $created_at
- * @property $updated_at
- *
- * @package App
- * @mixin \Illuminate\Database\Eloquent\Builder
- */
-class User extends Model implements AuthenticatableContract
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+// use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
+class User extends Authenticatable
 {
-    use Authenticatable;
+    use  HasFactory, Notifiable, HasRoles, Notifiable;
 
     protected $perPage = 20;
-    protected $table = 'users';
-    /**
+   /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name', 'surname', 'identification_card', 'user', 'email','password'];
+
+     protected $table = 'users';
+    protected $fillable = [
+        'id',
+        'name',
+        'surname',
+        'identification_card',
+        'user',
+        'email',
+        'password',
+    ];
+
+    public $timestamps = 'true';
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
 
 
 }

@@ -27,7 +27,7 @@ class UsersSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
 
-        ]);
+        ])->assignRole('Administrador');
 
          User::create([
 
@@ -41,7 +41,7 @@ class UsersSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
 
-        ]);
+        ])->assignRole('Tecnico');
 
            User::create([
 
@@ -55,7 +55,7 @@ class UsersSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
 
-        ]);
+        ])->assignRole('Tecnico');
 
     }
 }

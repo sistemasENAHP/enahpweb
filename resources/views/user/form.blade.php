@@ -26,6 +26,23 @@
         <x-input-error class="mt-2" :messages="$errors->get('email')"/>
     </div>
 
+       <div>
+        <label for="role">Role</label>
+        <select id="role_id" name="role_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option value="">Selecciones</option>
+           
+           @foreach($roles as $id => $roleName)
+          
+                <option value="{{ $id }}" {{ $id ==  $user->getRoleNames()->first() ? 'selected' : '' }}  >{{ $roleName }}</option>
+          
+           
+           @endforeach
+       
+
+            
+        </select>
+    </div>
+
     <div>
         <x-input-label for="password" :value="__('Contraseña')"/>
         <x-text-input id="password" name="password" type="password" class="mt-1 block w-full" :value="old('password', $user?->password)" autocomplete="password" placeholder="Contraseña"/>
@@ -39,6 +56,6 @@
     </div>
 
     <div class="flex items-center gap-4">
-        <x-primary-button>Submit</x-primary-button>
+        <x-primary-button>Guardar</x-primary-button>
     </div>
 </div>

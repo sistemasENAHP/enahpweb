@@ -13,30 +13,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
         $this->truncateTables([
-
+            'roles',
             'user',
             'Departamentos',
             'TipoFallas',
              'pisos',
             'Listadoips',
             'listado_puntos',
+            
 
 
         ]);
-
+        $this->call([RolesTableSeeder::class]);
         $this->call([UsersSeeder::class]);
         $this->call([DepartamentosSeeder::class]);
         $this->call([TipoFallasSeed::class]);
         $this->call([PisosSeeder::class]);
         $this->call([ListadoPuntosSeeder::class]);
         $this->call([ListadoipSeed::class]);
+
 
 
     }

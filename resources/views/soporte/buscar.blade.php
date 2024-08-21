@@ -11,10 +11,7 @@
             <h2 class="font-semibold text-xl text-gray-600">Soporte</h2>
             <p class="text-gray-500 mb-6"></p>
 
-            <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-                
-                    {{-- @include('soporte.buscar') --}}
-                
+            <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">                    
                  <form method="POST" action="{{ route('Soportes.store') }}"  role="form" enctype="multipart/form-data">
                     @csrf
                   <div class="space-y-6">
@@ -23,7 +20,7 @@
           <p class="font-medium text-lg">Solicitud de Soporte</p>
           <p></p>
         </div>
-        @if($soportes->count())
+        @if($soporte = $soporte->first())
          
         <div class="lg:col-span-2">
           <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">

@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-
+use Spatie\Permission\Traits\HasRoles;
+use App\Models\Role;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     /**
@@ -28,8 +31,10 @@ class UserController extends Controller
     public function create(): View
     {
         $user = new User();
+         $roles = Role::pluck('name','name')->all();
+         $UsersRoles = $user->roles()->pluck('name','name');
 
-        return view('user.create', compact('user'));
+        return view('user.create', compact('user','roles','UsersRoles'));
     }
 
     /**
@@ -40,15 +45,21 @@ class UserController extends Controller
         // $validated = $request->safe();
         // User::create($request->validated());
 
-        $User = new User();
-        $User->name = $request->name;
-        $User->surname = $request->surname;
-        $User->identification_card = $request->identification_card;
-        $User->user = $request->user;
-        $User->email = $request->email;
-        $User->password = $request->password;
-        $User->password = $request->confirm_password;
-        $User->save();
+        // $User = new User();
+        // $User->name = $request->name;
+        // $User->surname = $request->surname;
+        // $User->identification_card = $request->identification_card;
+        // $User->user = $request->user;
+        // $User->email = $request->email;
+        // $User->password = $request->password;
+        // $User->password = $request->confirm_password;
+        // $User->save();
+
+         $users = $request->all();
+        $users['password'] = Hash::make($users['password']);
+
+        $user = User::create($users);
+        $user->assignRole($request->role_id);
 
         return Redirect::route('users.index')
             ->with('success', 'User created successfully.');
@@ -69,17 +80,36 @@ class UserController extends Controller
      */
     public function edit($id): View
     {
-        $user = User::find($id);
-
-        return view('user.edit', compact('user'));
+        $user = User::FindorFail($id);
+        $roles = Role::pluck('name','name')->all();
+        $UsersRoles = $user->roles()->pluck('name','name');
+        return view('user.edit', compact('user','roles','UsersRoles'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserRequest $request, User $user): RedirectResponse
+    public function update(Request $request,$id)
     {
-        $user->update($request->validated());
+        // $user->update($request->validated());
+
+         $Users = User::FindOrFail($id);
+
+        $Users->roles()->sync($request->roles);
+        $Users->name = $request->name;
+        $Users->surname = $request->surname;
+        $Users->identification_card = $request->identification_card;
+        $Users->user = $request->user;
+        $Users->email = $request->email;
+        if($Users->password == $request->password):
+         $Users->password = $request->password;
+        else:
+         $Users->password = bcrypt($request->password);
+        endif;
+
+        $Users->update();
+         DB::table('model_has_roles')->where('model_id',$id)->delete();
+        $Users->assignRole($request->role_id);
 
         return Redirect::route('users.index')
             ->with('success', 'User updated successfully');
