@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->truncateTables([
             'roles',
-            'user',
             'Departamentos',
+            'user',
             'TipoFallas',
              'pisos',
             'Listadoips',
@@ -25,9 +25,9 @@ class DatabaseSeeder extends Seeder
 
 
         ]);
+        $this->call([DepartamentosSeeder::class]);
         $this->call([RolesTableSeeder::class]);
         $this->call([UsersSeeder::class]);
-        $this->call([DepartamentosSeeder::class]);
         $this->call([TipoFallasSeed::class]);
         $this->call([PisosSeeder::class]);
         $this->call([ListadoPuntosSeeder::class]);

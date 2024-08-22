@@ -12,6 +12,7 @@ use App\Models\Departamentos;
 use App\Models\TipoFallas;
 use Jenssegers\Agent\Agent;
 use Carbon\Carbon;
+use App\Models\User;
 class SoporteController extends Controller
 {
 

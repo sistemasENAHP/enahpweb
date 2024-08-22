@@ -1,4 +1,23 @@
 <div class="space-y-6">
+ 
+
+          <div>
+        <x-input-label for="user" :value="__('Departamentos')"/>
+        <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            {{ $sel = 0 }}
+            @foreach($Departamentos as $departamento)
+            @if($departamento->id == $user->departamento_id)
+            {{ $sel = 'selected' }}
+             @else 
+
+             {{ $sel = '' }}
+
+             @endif
+
+            <option value="{{ $departamento->id }}" {{ $sel  }}>{{ $departamento->Departamento }}</option>
+            @endforeach
+        </select>
+    </div>
 
     <div>
         <x-input-label for="name" :value="__('Nombre')"/>
@@ -20,6 +39,21 @@
         <x-text-input id="user" name="user" type="text" class="mt-1 block w-full" :value="old('user', $user?->user)" autocomplete="user" placeholder="Usuario"/>
         <x-input-error class="mt-2" :messages="$errors->get('user')"/>
     </div>
+
+     <div>
+        <x-input-label for="user" :value="__('Telefono')"/>
+        <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full" :value="old('user', $user?->telefono)" autocomplete="user" placeholder="telefono"/>
+        <x-input-error class="mt-2" :messages="$errors->get('telefono')"/>
+    </div>
+
+
+     <div>
+        <x-input-label for="ip_equipo" :value="__('ip equipo')"/>
+        <x-text-input id="ip_equipo" name="ip_equipo" type="text" class="mt-1 block w-full" value="{{old('ip_equipo', $user?->ip_equipo),$ip }}" autocomplete="user" placeholder="ip_equipo"/>
+        <x-input-error class="mt-2" :messages="$errors->get('ip_equipo')"/>
+    </div>
+
+
     <div>
         <x-input-label for="email" :value="__('Correo')"/>
         <x-text-input id="email" name="email" type="text" class="mt-1 block w-full" :value="old('email', $user?->email)" autocomplete="email" placeholder="Correo"/>

@@ -10,6 +10,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
+use App\Models\Departamentos;
+use Laravel\Scout\Searchable;
 class User extends Authenticatable
 {
     use  HasFactory, Notifiable, HasRoles, Notifiable;
@@ -24,10 +26,13 @@ class User extends Authenticatable
      protected $table = 'users';
     protected $fillable = [
         'id',
+        'departamento_id',
         'name',
         'surname',
         'identification_card',
         'user',
+        'ip_equipo',
+        'telefono',
         'email',
         'password',
     ];
@@ -52,6 +57,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    public function departamentos()
+    {
+
+          return $this->belongsTo(Departamentos::class,'departamento_id','id');
+
+    }
+
+
+       public function toSearchableArray()
+{
+    return [
+
+        'id' => (int) $this->id,
+        'Nombre' => $this->Nombre,
+        'NControl' => $this->NControl,
+        'Cedula' => $this->Cedula,
+        'Tecnico'=> $this->Tecnico,
+    ];
+}
+
 
 
 

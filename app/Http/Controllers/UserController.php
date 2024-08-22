@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
+use App\Models\Departamentos;
 class UserController extends Controller
 {
 
@@ -41,13 +42,15 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create(Request $request): View
     {
         $user = new User();
          $roles = Role::pluck('name','name')->all();
          $UsersRoles = $user->roles()->pluck('name','name');
+         $Departamentos = Departamentos::all();
+         $ip = $request->ip();
 
-        return view('user.create', compact('user','roles','UsersRoles'));
+        return view('user.create', compact('user','roles','UsersRoles','Departamentos','ip'));
     }
 
     /**
@@ -91,12 +94,14 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id): View
+    public function edit(Request $request,$id): View
     {
         $user = User::FindorFail($id);
         $roles = Role::pluck('name','name')->all();
         $UsersRoles = $user->roles()->pluck('name','name');
-        return view('user.edit', compact('user','roles','UsersRoles'));
+        $Departamentos = Departamentos::all();
+         $ip = $request->ip();
+        return view('user.edit', compact('user','roles','UsersRoles','Departamentos','ip'));
     }
 
     /**
@@ -109,8 +114,11 @@ class UserController extends Controller
          $Users = User::FindOrFail($id);
 
         $Users->roles()->sync($request->roles);
+        $Users->departamento_id = $request->departamento_id;
         $Users->name = $request->name;
         $Users->surname = $request->surname;
+        $Users->telefono = $request->telefono;
+        // $Users->ip_equipo = $request->ip_equipo;
         $Users->identification_card = $request->identification_card;
         $Users->user = $request->user;
         $Users->email = $request->email;
