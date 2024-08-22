@@ -12,8 +12,21 @@ use Spatie\Permission\Traits\HasRoles;
 use App\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 class UserController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     // los middleware donde protegera la ruta
+    //     $this->middleware('can:admin.users.index')->only('index');
+    //     $this->middleware('can:admin.users.create')->only('create', 'store', 'destroy');
+    //     $this->middleware('can:admin.users.edit')->only('edit', 'update');
+    //     $this->middleware('can:admin.users.destroy')->only('destroy');
+    // }
+
+
     /**
      * Display a listing of the resource.
      */

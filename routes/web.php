@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('users', UserController::class);
+Route::resource('/users', UserController::class);
 Route::resource('Soportes', SoporteController::class);
 Route::get('/buscar',[SoporteController::class,'BuscadorSoporte']);
 Route::get('/buscarUser',[SoporteController::class,'buscarUsers']);

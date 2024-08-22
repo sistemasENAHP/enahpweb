@@ -47,7 +47,7 @@
                     <th scope="col" class="px-6 py-3 text-center text-xs"></th>
                </tr>
             </thead>
-          
+
             <tbody>
                  @foreach ($soportes as $soporte)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" id="resultado">
@@ -59,24 +59,24 @@
                         <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->FechaEntrada }}</td>
                      <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->FechaSalida }}</td>
                     <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Motivo_Falla }}</td>
-                 
+
 
                     <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Solucion }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Tecnico }}</td>
                      <td class="px-3 py-4 text-sm text-gray-500 text-center"></td>
-                       
+
                     </tr>
 
   @endforeach
             </tbody>
-          
+
         </table>
         {{ $soportes->links() }}
          @else
-          
+
          <table id="myTable" class=" w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table table-fixed w-3/4 ">
             <caption class="p-5 text-lg font-semibold text-center rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                 Soporte
+                 Estatus Soporte
                 <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400 "></p>
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -86,16 +86,15 @@
                     <th scope="col" class="px-6 py-3 text-center text-xs">Nombre-Apellido</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Cedula</th>
                     <th scope="col" class="">Departamento</th>
-                    <th scope="col" class="px-6 py-3 text-center text-xs" >ip</th>
-                    <th scope="col" class="px-6 py-3 text-center text-xs">Motivo de Falla</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Fecha Solicitud</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Fecha Salida</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs">Motivo de Falla</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Solucion</th>
-                    <th scope="col" class="px-6 py-3 text-center text-xs">Técnico</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs">Técnico Encargado</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs"></th>
                </tr>
             </thead>
-          
+
             <tbody>
                   <tr>
                       <td class="text-center"></td>
@@ -107,7 +106,7 @@
                             </div><a href="/Soportes" id="editar" name="editar" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Regresar') }}</a> </td>
                       <td class="text-center"></td>
                       <td class="text-center"></td>
-                      
+
                   </tr>
             </tbody>
 

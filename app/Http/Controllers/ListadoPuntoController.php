@@ -14,12 +14,22 @@ use Jenssegers\Agent\Agent;
 use App\Models\Pisos;
 class ListadoPuntoController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     // los middleware donde protegera la ruta
+    //     $this->middleware('can:admin.listado.ListadoPuntos.index')->only('index');
+    //     $this->middleware('can:admin.listado.ListadoPuntos.create')->only('create', 'store', 'destroy');
+    //     $this->middleware('can:admin.listado.ListadoPuntos.edit')->only('edit', 'update');
+    //     $this->middleware('can:admin.listado.ListadoPuntos.destroy')->only('destroy');
+    // }
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request) :view
     {
-        
+
            $ListadoPuntoPB = ListadoPuntos::where('piso_id','=',1)->where('departamento_id','<=',21)->orderBy('id','asc')->paginate();
         //        $Mostrar = $request->mostrar;
         //    dd($Mostrar);

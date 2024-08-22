@@ -21,7 +21,7 @@ class RolesTableSeeder extends Seeder
 
         Permission::create(['name'=>'admin.home'])->syncRoles([$rolAdministrador,$rolTecnico,$rolUsuario]);
 
-       
+
         Permission::create([ 'name'=>'admin.listado.listadoEquipos.index'])->syncRoles([$rolAdministrador,$rolCoordinador,$rolTecnico]);
         Permission::create([ 'name'=>'admin.listado.listadoEquipos.show'])->syncRoles([$rolAdministrador,$rolCoordinador,$rolTecnico]);
         Permission::create([ 'name'=>'admin.listado.listadoEquipos.destroy'])->syncRoles([$rolAdministrador,$rolCoordinador,$rolTecnico]);
@@ -71,7 +71,7 @@ class RolesTableSeeder extends Seeder
       Permission::create([ 'name'=>'admin.listado.ListadoPuntos.index'])->syncRoles([$rolAdministrador,$rolCoordinador,$rolTecnico]);
         Permission::create([ 'name'=>'admin.listado.ListadoPuntos.show'])->syncRoles([$rolAdministrador,$rolCoordinador,$rolTecnico]);
          Permission::create([ 'name'=>'admin.listado.ListadoPuntos.destroy'])->syncRoles([$rolAdministrador,$rolCoordinador,$rolTecnico]);
-         
+
          Permission::create([ 'name'=>'admin.listado.ListadoPuntos.PB.createPB'])->syncRoles([$rolAdministrador,$rolCoordinador,$rolTecnico]);
 
         Permission::create([ 'name'=>'admin.listado.ListadoPuntos.PB.editPB'])->syncRoles([$rolAdministrador,$rolCoordinador,$rolTecnico]);
@@ -113,13 +113,13 @@ class RolesTableSeeder extends Seeder
 
 
 
-        Permission::create([ 'name'=>'admin.user.index'])->syncRoles([$rolAdministrador]);
-        Permission::create([ 'name'=>'admin.user.create'])->syncRoles([$rolAdministrador]);
-        Permission::create([ 'name'=>'admin.user.edit'])->syncRoles([$rolAdministrador]);
-        Permission::create([ 'name'=>'admin.user.show'])->syncRoles([$rolAdministrador]);
-        Permission::create([ 'name'=>'admin.user.destroy'])->syncRoles([$rolAdministrador]);
-        Permission::create([ 'name'=>'admin.user.form'])->syncRoles([$rolAdministrador]);
+        Permission::create([ 'name'=>'admin.users.index'])->syncRoles([$rolAdministrador]);
+        Permission::create([ 'name'=>'admin.users.create'])->syncRoles([$rolAdministrador]);
+        Permission::create([ 'name'=>'admin.users.edit'])->syncRoles([$rolAdministrador]);
+        Permission::create([ 'name'=>'admin.users.show'])->syncRoles([$rolAdministrador]);
+        Permission::create([ 'name'=>'admin.users.destroy'])->syncRoles([$rolAdministrador]);
+        Permission::create([ 'name'=>'admin.users.form'])->syncRoles([$rolAdministrador]);
 
 
-    } 
+    }
 }

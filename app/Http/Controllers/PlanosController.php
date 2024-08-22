@@ -6,6 +6,16 @@ use Illuminate\Http\Request;
 
 class PlanosController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     // los middleware donde protegera la ruta
+    //     $this->middleware('can:admin.Planos.index')->only('index');
+    //     $this->middleware('can:admin.Planos.create')->only('create', 'store', 'destroy');
+    //     $this->middleware('can:admin.Planos.edit')->only('edit', 'update');
+    //     $this->middleware('can:admin.Planos.destroy')->only('destroy');
+    // }
+
     /**
      * Display a listing of the resource.
      */

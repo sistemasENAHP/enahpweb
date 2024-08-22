@@ -11,7 +11,7 @@
     {{-- <link rel="stylesheet" href="{{asset('resources/css/app.css')}}"> --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
      {{-- <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.dataTables.css" /> --}}
-      <link rel="stylesheet" href="{{asset('/css/dataTables.css')}}"> 
+      <link rel="stylesheet" href="{{asset('/css/dataTables.css')}}">
        <link rel="stylesheet" href="{{asset('/css/dataTables.min.css')}}">
 </head>
 {{-- <link rel="stylesheet" href="{{asset('Boostraps/css/bootstrap.css')}}"> --}}
@@ -30,7 +30,25 @@
             <img class="w-10 h-10 rounded" src="{{ asset('img/sp2.png') }}" alt="">
             <span class="absolute bottom-0 left-8 transform translate-y-1/4 w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
             <div class="font-medium dark:text-white">
-                <div>{{Auth()->user()->name}}</div>
+                <div>  @role('Administrador')
+                    Administrador:{{auth()->user()->name}} {{auth()->user()->surname}}
+                    @endrole
+
+                    @role('Coordinador')
+                    Coordinador:{{auth()->user()->name}} {{auth()->user()->surname}}
+                    @endrole
+
+                    @role('Tecnico')
+                    Técnico:{{auth()->user()->name}} {{auth()->user()->surname}}
+                    @endrole
+
+                    @role('Usuario')
+                    Usuario:{{auth()->user()->name}} {{auth()->user()->surname}}
+                    @endrole
+
+                    @role('Psicologo')
+                    Psicologo:{{auth()->user()->name}} {{auth()->user()->surname}}
+                    @endrole</div>
                 <div class="text-sm text-gray-500 dark:text-gray-400"> @if (Auth::check())
                     <span>Último ingreso:
                         {{ Auth::user()->previous_login_at ? 'Día: ' . \Carbon\Carbon::parse(Auth::user()->previous_login_at)->format('d/m/Y') . ' Hora: ' . \Carbon\Carbon::parse(Auth::user()->previous_login_at)->format('H:i') : 'N/A' }}
@@ -40,7 +58,10 @@
         </div>
         </div>
         <ul class="mt-4 px-4 space-y-2">
+            @can('admin.home')
             <li><a href="{{ route('dashboard') }}" class="block">Inicio</a></li>
+            @endcan
+            @can('admin.soporte.create')
             <li><a href="/Soportes/create" class="block">Pedir Soporte</a>
                  <ul class="ml-4 mt-1 space-y-1">
              <li><a href="/EstatusSoporte" class="block">Estatus Soporte</a></li>
@@ -48,23 +69,38 @@
                 </ul>
 
             </li>
+            @endcan
+
+            @can('admin.soporte.index')
             <li>
-
-                <a href="/Soportes" class="block">Técnico</a>
+               <a href="/Soportes" class="block">Técnico</a>
             </li>
-            <li><a href="#" class="block">Listado</a>
-            <ul class="ml-4 mt-1 space-y-1">
-                <li><a href="/ListadoEquipo" class="block">Listado de Equipos</a></li>
-                <li><a href="/ListadoIp" class="block">Listado de IP </a></li>
-                <li><a href="/ListadoPunto" class="block">Listado de Punto </a></li>
+            @endcan
+            @can('admin.listado.listadoEquipos.index')
+            <nav>
+                <ul>
+                  <li>
+                    <a href="#" class="block">Listado</a>
+                    <ul class="ml-4 mt-1 space-y-1" role="group">
+                      <li>
+                        <a href="/ListadoEquipo" class="block">Listado de Equipos</a>
+                      </li>
+                      <li>
+                        <a href="/ListadoIp" class="block">Listado de IP</a>
+                      </li>
+                      <li>
+                        <a href="/ListadoPunto" class="block">Listado de Puntos</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+        @endcan
 
-            </ul>
-        </li>
-
-            <li><a href="/Planos" class="block">Planos</a></li>
-            <li><a href="/Estadisticas" class="block">Estadisticas</a></li>
-            <li><a href="/Auditoria" class="block">Auditoria</a></li>
-            <li><a href="/users" class="block">Usuarios</a></li>
+            @can('admin.Planos.index')<li><a href="/Planos" class="block">Planos</a></li>@endcan
+            @can('admin.Estatisticas.index')<li><a href="/Estadisticas" class="block">Estadisticas</a></li>@endcan
+            @can('')<li><a href="/Auditoria" class="block">Auditoria</a></li>@endcan
+            @can('admin.users.index')<li><a href="/users" class="block">Usuarios</a></li>@endcan
             @auth
             <li type="submit" class="btn btn-danger">
                 <form method="POST" action="{{ route('logout') }}">
@@ -104,7 +140,7 @@
 </body>
 <script type="text/javascript">
 //    $(document).ready(function() {
-   
+
 // });
 </script>
 

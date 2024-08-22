@@ -14,7 +14,16 @@ use Jenssegers\Agent\Agent;
 use Carbon\Carbon;
 class SoporteController extends Controller
 {
-  
+
+    // public function __construct()
+    // {
+    //     // los middleware donde protegera la ruta
+    //     $this->middleware('can:admin.soporte.index')->only('index');
+    //     $this->middleware('can:admin.soporte.create')->only('create', 'store', 'destroy');
+    //     $this->middleware('can:admin.soporte.edit')->only('edit', 'update');
+    //     $this->middleware('can:admin.soporte.destroy')->only('destroy');
+    // }
+
     /**
      * Display a listing of the resource.
      */
@@ -48,7 +57,7 @@ class SoporteController extends Controller
         $hostname = strtok($hostname, ' ');
         $machineName = gethostname();
         $NControl = Soportes::orderBy('NControl','desc')->first();
-        
+
 
         return view('soporte.create', compact('soporte','Departamentos','TipoFalla','ip','date','hostname','macAddress','NControl'));
     }
@@ -70,7 +79,7 @@ class SoporteController extends Controller
           $soporte->Telefono = $request->Telefono;
           $soporte->Correo = $request->Correo;
           $soporte->ip_equipo =  $request->ip_maquina;
-          $soporte->FechaEntrada = $request->FechaEntrada;
+        //   $soporte->FechaEntrada = $request->FechaEntrada;
           $soporte->Motivo_Falla = $request->Motivo_Falla;
           $soporte->Solucion = $request->Solucion;
           $soporte->Tecnico = $request->tecnico;
@@ -87,7 +96,7 @@ class SoporteController extends Controller
         $soporte = Soportes::find($id);
         $TipoFalla = TipoFallas::all();
           $Departamentos = Departamentos::all();
-         
+
         return view('soporte.show', compact('soporte','TipoFalla','Departamentos'));
     }
 
@@ -125,8 +134,8 @@ class SoporteController extends Controller
           $soporte->Telefono = $request->Telefono;
           $soporte->Correo = $request->Correo;
           // $soporte->ip_equipo =  $request->ip_maquina;
-          $soporte->FechaEntrada = $request->FechaEntrada;
-          $soporte->FechaSalida = $request->FechaSalida;
+        //   $soporte->FechaEntrada = $request->FechaEntrada;
+        //   $soporte->FechaSalida = $request->FechaSalida;
           $soporte->Motivo_Falla = $request->Motivo_Falla;
           $soporte->Solucion = $request->Solucion;
           $soporte->Tecnico = $request->tecnico;
@@ -155,7 +164,7 @@ class SoporteController extends Controller
             return view('soporte.buscador', compact('soportes'));
             //   return response()->json($soportes);
             }
-    
+
     }
 
 
@@ -171,13 +180,13 @@ class SoporteController extends Controller
         $date = $Fecha->format('d-m-Y h:i:s A');
 
          // foreach($soportes as $soporte){
-            
-            
+
+
 
          // }
 
         return view('soporte.buscar', compact('soporte','NControl','Departamentos','TipoFalla','ip','date'));
-    
+
      }
 
 
@@ -191,8 +200,8 @@ class SoporteController extends Controller
 
 
     }
-        
+
  }
 
-    
+
 

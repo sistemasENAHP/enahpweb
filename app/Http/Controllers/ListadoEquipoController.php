@@ -15,6 +15,15 @@ use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
 class ListadoEquipoController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     // los middleware donde protegera la ruta
+    //     $this->middleware('can:admin.listado.listadoEquipos.index')->only('index');
+    //     $this->middleware('can:admin.listado.listadoEquipos.create')->only('create', 'store', 'destroy');
+    //     $this->middleware('can:admin.listado.listadoEquipos.edit')->only('edit', 'update');
+    //     $this->middleware('can:admin.listado.listadoEquipos.destroy')->only('destroy');
+    // }
     /**
      * Display a listing of the resource.
      */
@@ -45,7 +54,7 @@ class ListadoEquipoController extends Controller
     }
 
     public function CreateP1(Request $request){
-        
+
         $ListadoEquipo = new Equipos();
         $Departamentos = Departamentos::where('id','>=',22)->where('id','<=',30)->get();
         $machineName = gethostname();

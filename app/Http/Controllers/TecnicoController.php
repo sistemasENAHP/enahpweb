@@ -7,6 +7,17 @@ use Illuminate\Http\Request;
 
 class TecnicoController extends Controller
 {
+
+
+    // public function __construct()
+    // {
+    //     // los middleware donde protegera la ruta
+    //     $this->middleware('can:admin.soporte.index')->only('index');
+    //     $this->middleware('can:admin.soporte.create')->only('create', 'store', 'destroy');
+    //     $this->middleware('can:admin.soporte.edit')->only('edit', 'update');
+    //     $this->middleware('can:admin.soporte.destroy')->only('destroy');
+    // }
+
     /**
      * Display a listing of the resource.
      */

@@ -14,6 +14,16 @@ use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
 class ListadoipController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     // los middleware donde protegera la ruta
+    //     $this->middleware('can:admin.listado.ListadoIp.index')->only('index');
+    //     $this->middleware('can:admin.listado.ListadoIp.create')->only('create', 'store', 'destroy');
+    //     $this->middleware('can:admin.listado.ListadoIp.edit')->only('edit', 'update');
+    //     $this->middleware('can:admin.listado.ListadoIp.destroy')->only('destroy');
+    // }
+
     /**
      * Display a listing of the resource.
      */
