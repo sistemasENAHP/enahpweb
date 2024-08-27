@@ -22,3 +22,31 @@
         </div>
       </div>
 </x-app-layout>
+
+<script>
+//     $(document).ready(function() {
+
+//         $('#dep').hide();
+
+//      $('#departamento_id').change(function() {
+//             var departamento_id = $(this).val();
+//              $('#dep').show();
+//             $.ajax({
+//                 url: "{{ route('ListadoEquipos.get') }}",
+//                 data: { departamento_id: departamento_id },
+//                 success: function(data) {
+//                     $('#dep').empty();
+//                     $.each(data, function(key, value) {
+//                         $('#dep').append('<option value="' + value.id + '">' + value.name + ' '+value.surname+'</option>');
+//                     });
+//                 },
+//                 error: function(data){
+
+//                     $('#dep').append('<option value="">"hola"</option>');
+//                 }
+//             });
+//         });
+
+
+// });
+</script>

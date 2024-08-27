@@ -118,7 +118,7 @@ class UserController extends Controller
         $Users->name = $request->name;
         $Users->surname = $request->surname;
         $Users->telefono = $request->telefono;
-        // $Users->ip_equipo = $request->ip_equipo;
+        $Users->ip_equipo = $request->ip_equipo;
         $Users->identification_card = $request->identification_card;
         $Users->user = $request->user;
         $Users->email = $request->email;

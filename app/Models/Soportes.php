@@ -35,7 +35,7 @@ use Laravel\Scout\Searchable;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Soportes extends Model 
+class Soportes extends Model
 {
 
     use Searchable;
@@ -47,7 +47,7 @@ class Soportes extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['departamento_id', 'tipo_falla_id', 'NControl', 'Nombre', 'Apellidos', 'Cedula', 'Correo', 'Telefono', 'ip_equipo','FechaEntrada','FechaSalida', 'Motivo_Falla', 'Solucion', 'Tecnico'];
+    protected $fillable = ['estatus_id','departamento_id', 'tipo_falla_id', 'NControl', 'Nombre', 'Apellidos', 'Cedula', 'Correo', 'Telefono', 'ip_equipo','FechaEntrada','FechaSalida', 'Motivo_Falla', 'Solucion', 'Tecnico'];
 
 
 
@@ -68,6 +68,13 @@ class Soportes extends Model
     }
 
 
+    public function estatus()
+    {
+        return $this->belongsTo(\App\Models\Estatus::class, 'estatus_id', 'id');
+    }
+
+
+
     public function toSearchableArray()
 {
     return [
@@ -84,7 +91,7 @@ class Soportes extends Model
 //     public function toSearchableArray1()
 // {
 //     return [
-        
+
 //         'id' => (int) $this->id,
 //         'Nombre' => $this->Nombre,
 //         'NControl' => $this->NControl,
@@ -93,6 +100,6 @@ class Soportes extends Model
 //     ];
 // }
 
-    
+
 
 }

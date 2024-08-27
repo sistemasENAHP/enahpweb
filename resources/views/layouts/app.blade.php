@@ -72,9 +72,22 @@
             @endcan
 
             @can('admin.soporte.index')
-            <li>
-               <a href="/Soportes" class="block">Técnico</a>
-            </li>
+              <ul>
+                <li>
+                    <a href="/Tecnico" class="block">Técnico</a>
+                   <ul class="ml-4 mt-1 space-y-1" role="group">
+                     <li>
+                        <a href="/Espera" class="block">Equipo En espera</a>
+                     </li>
+                     <li>
+                        <a href="/Reparacion" class="block">Equipo Reparado</a>
+                     </li>
+                     <li>
+                        <a href="/Terminado" class="block">Equipo Terminado</a>
+                     </li>
+                   </ul>
+                 </li>
+              </ul>
             @endcan
             @can('admin.listado.listadoEquipos.index')
             <nav>

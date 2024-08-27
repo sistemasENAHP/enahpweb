@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use App\Models\Departamentos;
 use App\Models\TipoFallas;
 use App\Models\Equipos;
+use App\Models\User;
 use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
 class ListadoEquipoController extends Controller
@@ -241,6 +242,24 @@ class ListadoEquipoController extends Controller
         return Redirect('ListadoEquipo')
             ->with('success', 'ListadoEquipos deleted successfully');
     }
+
+    public function depatamentoUser(Request $request){
+        
+        if($request->ajax()){
+          
+            $Departamento = User::where('departamento_id',$request->departamento_id)->get();
+
+            // foreach($Departamento as $dep){
+
+            //   $deparray[$dep->id] = $dep->departamento_id;
+
+            // }
+
+
+            return response()->json($Departamento);
+        
+}
+      }
 
 
 

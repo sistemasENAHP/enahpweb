@@ -11,8 +11,8 @@
             <p class="text-gray-500 mb-6"></p>
 
             <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-                <form method="POST" action="{{ route('Tecnico.update', $soporte->id) }}"  role="form" enctype="multipart/form-data">
-                    {{ method_field('PATCH') }}
+                <form method="POST" action="{{ route('ActualizarEquipos.TecnicoReparacionActualizar', $soporte->id) }}"  role="form" enctype="multipart/form-data">
+                    {{ method_field('PUT') }}
                     @csrf
                     {{-- @include('Soporte.form') --}}
                     <div class="space-y-6">
@@ -132,7 +132,7 @@
               <div class="inline-flex items-end" >
                 <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Guardar</button>
 
-                <div ><a href="/Tecnico"><button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" >Regresar</button></a></div>
+                <div ><a href="/Reparacion"><button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" >Regresar</button></a></div>
 
               </div>
             </div>

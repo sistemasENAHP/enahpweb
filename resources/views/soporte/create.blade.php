@@ -12,10 +12,10 @@
             <p class="text-gray-500 mb-6"></p>
 
             <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-                
+
 <div class="lg:col-span-2">
   <form action="/buscarUser" role="form" enctype="multipart/form-data" method="GET">
-                    
+
 <div class="grid gap-4 gap-y-3 text-sm grid-cols-1 md:grid-cols-5" style="margin-left:320px;">
             <div class="md:col-span-5 " style="margin-bottom: 0rem; ">
                 <label for="full_name">Usuarios Registrados</label>
@@ -27,7 +27,7 @@
             </form>
 </div>
 </div>
-                
+
                  <form method="POST" action="{{ route('Soportes.store') }}"  role="form" enctype="multipart/form-data">
                     @csrf
                   <div class="space-y-6">
@@ -97,7 +97,7 @@
 
               {{--  <x-text-input type="text" name="departamento_id" id="departamento_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{Auth()->user()->departamentos->Departamento}}" autocomplete="Telefono"  placeholder="Telefono" />
                 <x-input-error class="mt-2" :messages="$errors->get('Telefono')"/>--}}
-            </div> 
+            </div>
 
 
             @if(!$soporte->ip_equipo)
@@ -136,6 +136,10 @@
                 </select>
               </div>
 
+              <div class="md:col-span-5">
+                <x-text-input type="hidden" name="estatus_id" id="estatus_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="1" placeholder=""  readonly />
+              </div>
+
               <div class="md:col-span-3">
                 <label for="address">Especifique el Motivo de la falla</label>
                     <textarea name="Motivo_Falla" id="Motivo_Falla" cols="79" rows="3">{{$soporte->Motivo_Falla}}</textarea>
@@ -155,14 +159,14 @@
       </form>
 </div>
 
-                
+
             </div>
           </div>
         </div>
       </div>
 </x-app-layout>
 <script>
-    
+
     $(document).ready(function(){
 
 

@@ -3,22 +3,61 @@
         @csrf
 
         <!-- Name -->
+             <div>
+            <x-input-label for="name" :value="__('Departamento')" />
+            <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+           @foreach($Departamentos as $departamento)
+           <option value="{{ $departamento->id }}">{{ $departamento->Departamento }}</option>
+              @endforeach
+            </select>
+        </div>
+
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Nombre')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+          <div>
+            <x-input-label for="surname" :value="__('Apellido')" />
+            <x-text-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')" required autofocus autocomplete="surname" />
+            <x-input-error :messages="$errors->get('surname')" class="mt-2" />
         </div>
+
+         <div>
+            <x-input-label for="surname" :value="__('Cedula')" />
+            <x-text-input id="identification_card" class="block mt-1 w-full" type="text" name="identification_card" :value="old('identification_card')" required autofocus autocomplete="identification_card" />
+            <x-input-error :messages="$errors->get('identification_card')" class="mt-2" />
+        </div>
+
+         <div>
+            <x-input-label for="user" :value="__('Usuario')"/>
+        <x-text-input id="user" name="user" type="text" class="mt-1 block w-full"  autocomplete="user" placeholder=""/>
+        <x-input-error class="mt-2" :messages="$errors->get('user')"/>
+        </div>
+
+        <div>
+           <x-input-label for="user" :value="__('Telefono')"/>
+         <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full"  autocomplete="user" placeholder="telefono"/>
+        <x-input-error class="mt-2" :messages="$errors->get('telefono')"/>
+        </div>
+
+        <div>
+       {{-- <x-input-label for="ip_equipo" :value="__('ip equipo')"/> --}}
+       <x-text-input id="ip_equipo" name="ip_equipo" type="hidden" class="mt-1 block w-full" value="{{$ip }}" autocomplete="user" placeholder="ip_equipo"/>
+       <x-input-error class="mt-2" :messages="$errors->get('ip_equipo')"/>
+        </div>
+                              
+                              
+        <div>
+     <x-input-label for="email" :value="__('Correo')"/>
+    <x-text-input id="email" name="email" type="text" class="mt-1 block w-full"  autocomplete="email" placeholder="Correo"/>
+    <x-input-error class="mt-2" :messages="$errors->get('email')"/>
+         </div>
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('Contraseña')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
@@ -30,7 +69,7 @@
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <x-input-label for="password_confirmation" :value="__('Confirmar Contraseña')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
@@ -41,11 +80,11 @@
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+                {{ __('Ya estas registrado?') }}
             </a>
 
             <x-primary-button class="ms-4">
-                {{ __('Register') }}
+                {{ __('Registrar') }}
             </x-primary-button>
         </div>
     </form>

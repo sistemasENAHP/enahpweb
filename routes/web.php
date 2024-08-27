@@ -29,9 +29,36 @@ Route::resource('/users', UserController::class);
 Route::resource('Soportes', SoporteController::class);
 Route::get('/buscar',[SoporteController::class,'BuscadorSoporte']);
 Route::get('/buscarUser',[SoporteController::class,'buscarUsers']);
-Route::get('/EstatusSoporte', [SoporteController::class,'EstatusSoportes']);
 
+// Route::get('/buscarUser',[SoporteController::class,'buscarUsers']);
+Route::get('/EstatusSoporte', [SoporteController::class,'EstatusSoportes']);
 Route::resource('Tecnico', TecnicoController::class);
+Route::PUT('/Tecnico/{id}',[TecnicoController::class,'Actualizar'])->name('Tecnico.Actualizar');
+
+Route::get('/Espera',[TecnicoController::class,'TecnicoEnEspera'])->name('Espera.TecnicoEnEspera');
+
+Route::get('/Espera/{id}/edit',[TecnicoController::class,'TecnicoEsperarEditar'])->name('Espera.edit');
+
+Route::PUT('/ActualizarEspera/{id}',[TecnicoController::class,'TecnicoActualizarEspera'])->name('ActualizarEspera.TecnicoActualizarEspera');
+
+Route::get('/MostrarEspera/{id}',[TecnicoController::class,'MostrarEspera'])->name('Espera.MostrarEspera');
+
+Route::PUT('/Espera/{id}',[TecnicoController::class,'MostrarActualizarEspera'])->name('Espera.MostrarActualizarEspera');
+
+
+
+
+
+Route::get('/Reparacion',[TecnicoController::class,'TecnicoReparacion'])->name('Reparacion');
+Route::get('/Reparacion/{id}/edit',[TecnicoController::class,'TecnicoReparacionEditar'])->name('Reparacion.edit');
+Route::PUT('/ActualizarReparados/{id}',[TecnicoController::class,'TecnicoReparacionActualizar'])->name('ActualizarReparados.TecnicoReparacionActualizar');
+
+
+Route::get('/Terminado',[TecnicoController::class,'TecnicoTerminado'])->name('Terminado');
+Route::get('/Terminado/{id}/edit',[TecnicoController::class,'TecnicoTerminadoEditar'])->name('Terminado.edit');
+Route::PUT('/ActualizarTerminado/{id}',[TecnicoController::class,'TecnicoTerminadoActualizar'])->name('ActualizarEquipos.TecnicoTerminadoActualizar');
+
+
 Route::resource('ListadoIp', ListadoipController::class);
 Route::resource('ListadoPunto', ListadoPuntoController::class);
 Route::resource('ListadoEquipo', ListadoEquipoController::class);
@@ -49,6 +76,7 @@ Route::get('/ListadoEquipoCreateP2YP3',[ListadoEquipoController::class,'CreateP2
 
 Route::get('/ListadoEquipo/{id}/editP2YP3',[ListadoEquipoController::class,'editP2YP3'])->name('ListadoEquipo.editP2YP3');
 
+Route::get('/ListadoEquipos',[ListadoEquipoController::class,'depatamentoUser'])->name('ListadoEquipos.get');
 
 
 Route::get('/ListadoPuntoCreatePB',[ListadoPuntoController::class,'CreatePB'])->name('ListadoPunto.CreatePB');

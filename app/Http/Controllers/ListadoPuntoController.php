@@ -12,6 +12,7 @@ use App\Models\TipoFallas;
 use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
 use App\Models\Pisos;
+use App\Models\User;
 class ListadoPuntoController extends Controller
 {
 
@@ -190,4 +191,9 @@ class ListadoPuntoController extends Controller
          ListadoPuntos::FindOrFail($id)->delete();
         return redirect('ListadoPunto');
     }
+
+
+      
+
+
 }

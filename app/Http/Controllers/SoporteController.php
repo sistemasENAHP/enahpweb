@@ -71,6 +71,7 @@ class SoporteController extends Controller
         // Soportes::create($request->validated());
           $Fecha = Carbon::now();
           $soporte = new Soportes();
+          $soporte->estatus_id = $request->estatus_id;
           $soporte->departamento_id = $request->departamento_id;
           $soporte->tipo_falla_id = $request->tipo_falla_id;
           $soporte->NControl = $request->NControl;
@@ -94,12 +95,16 @@ class SoporteController extends Controller
      */
     public function show($id): View
     {
-        $soporte = Soportes::find($id);
         $TipoFalla = TipoFallas::all();
           $Departamentos = Departamentos::all();
 
+          $soporte = Soportes::find($id);
+
+
         return view('soporte.show', compact('soporte','TipoFalla','Departamentos'));
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -155,18 +160,18 @@ class SoporteController extends Controller
 
 
 
-    public function BuscadorSoporte(Request $request){
+    // public function BuscadorSoporte(Request $request){
 
 
-           if($request->ajax()){
-             $query  = $request->get('Buscar');
-             $soportes = Soportes::where('NControl','like',"%$query%")->get();
+    //        if($request->ajax()){
+    //          $query  = $request->get('Buscar');
+    //          $soportes = Soportes::where('NControl','like',"%$query%")->get();
 
-            return view('soporte.buscador', compact('soportes'));
-            //   return response()->json($soportes);
-            }
+    //         return view('soporte.buscador', compact('soportes'));
+    //         //   return response()->json($soportes);
+    //         }
 
-    }
+    // }
 
 
 

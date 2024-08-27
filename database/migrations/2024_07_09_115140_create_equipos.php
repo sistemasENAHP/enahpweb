@@ -30,6 +30,15 @@ return new class extends Migration
         });
 
 
+        Schema::create('estatuses', function (Blueprint $table) {
+            $table->id();
+            $table->string('Estatus');
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+
+        });
+
+
         Schema::create('equipos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('piso_id')->constrained('pisos');
@@ -80,6 +89,7 @@ return new class extends Migration
         Schema::create('soportes', function (Blueprint $table) {
 
             $table->id();
+            $table->foreignId('estatus_id')->constrained('estatuses');
             $table->foreignId('tipo_falla_id')->constrained('tipo_fallas');
             $table->foreignId('departamento_id')->constrained('departamentos');
             $table->string('NControl');

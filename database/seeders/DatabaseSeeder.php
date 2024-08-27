@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
              'pisos',
             'Listadoips',
             'listado_puntos',
-            
+            'estatus',
+
 
 
         ]);
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call([PisosSeeder::class]);
         $this->call([ListadoPuntosSeeder::class]);
         $this->call([ListadoipSeed::class]);
+        $this->call([EstatusSeeder::class]);
 
 
 
