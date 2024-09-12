@@ -249,16 +249,35 @@ class ListadoEquipoController extends Controller
           
             $Departamento = User::where('departamento_id',$request->departamento_id)->get();
 
-            // foreach($Departamento as $dep){
-
-            //   $deparray[$dep->id] = $dep->departamento_id;
-
-            // }
-
 
             return response()->json($Departamento);
         
 }
+      }
+
+
+
+      public function ListadoFuncionarios(Request $request){
+        
+        if($request->ajax()){
+        
+         $Funcionario = User::select('*')->where('id',$request->dep)->get();
+           
+
+         foreach($Funcionario as $fun){
+          
+          // $fun->name;
+
+         }
+
+
+         return response()->json($fun);
+
+
+
+        }
+
+
       }
 
 

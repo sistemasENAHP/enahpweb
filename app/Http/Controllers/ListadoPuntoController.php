@@ -50,21 +50,21 @@ class ListadoPuntoController extends Controller
     public function createPB(Request $request)
     {
         $ListadoPunto = new  ListadoPuntos();
-        $Departamentos = Departamentos::all();
+        $Departamentos = Departamentos::where('id','<=',21)->get();
         return view('Listado.ListadoPuntos.PB.createPB',compact('Departamentos','ListadoPunto'));
     }
 
       public function createP1(Request $request)
     {
         $ListadoPunto = new  ListadoPuntos();
-        $Departamentos = Departamentos::all();
+        $Departamentos = Departamentos::where('id','>=',22)->where('id','<=',30)->get();
         return view('Listado.ListadoPuntos.P1.createP1',compact('Departamentos','ListadoPunto'));
     }
 
        public function createP2YP3(Request $request)
     {
         $ListadoPunto = new  ListadoPuntos();
-        $Departamentos = Departamentos::all();
+        $Departamentos = Departamentos::where('id','>=',31)->get();
         return view('Listado.ListadoPuntos.P2YP3.createP2YP3',compact('Departamentos','ListadoPunto'));
     }
 
@@ -191,6 +191,51 @@ class ListadoPuntoController extends Controller
          ListadoPuntos::FindOrFail($id)->delete();
         return redirect('ListadoPunto');
     }
+
+
+       public function depatamentoUser(Request $request){
+        
+        if($request->ajax()){
+          
+            $Departamento = User::where('departamento_id',$request->departamento_id)->get();
+
+            // foreach($Departamento as $dep){
+
+            //   $deparray[$dep->id] = $dep->departamento_id;
+
+            // }
+
+
+            return response()->json($Departamento);
+        
+}
+      }
+
+
+
+      public function ListadoFuncionarios(Request $request){
+        
+        if($request->ajax()){
+        
+         $Funcionario = User::select('*')->where('id',$request->dep)->get();
+           
+
+         foreach($Funcionario as $fun){
+          
+          // $fun->name;
+
+         }
+
+
+         return response()->json($fun);
+
+
+
+        }
+
+
+      }
+
 
 
       

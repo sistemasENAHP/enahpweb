@@ -29,9 +29,20 @@
                             <h1 class="text-base font-semibold leading-6 text-gray-900">{{ __('Piso PB') }}</h1>
                             <p class="mt-2 text-sm text-gray-700">Listado del piso {{ __('PB') }}.</p>
                         </div>
-                        <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                            <a type="button" href="{{ route('ListadoEquipo.CreatePB') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Agregar</a>
+                        <div class="md:col-span-5 text-center">
+                            <div class="inline-flex items-end" >
+                            <a type="button" href="{{ route('ListadoEquipo.CreatePB') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Agregar</a> 
+                             <form action="/ListadoEquiposPDF" method="get">
+
+                            <input type="hidden" name="PB" id="PB" value="1">
+                            {{-- <a href="/ListadoEquiposPDF/{{ 1 }}"  target="_blank" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">PDF</a> --}}
+
+                             <button  target="_blank" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">PDF</button>
+                             </form>
+
+                              <a href="/ListadosEquiposExel"  target="_blank" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Excel</a>
                         </div>
+                    </div>
                     </div>
 
                     <div class="flow-root">
@@ -43,7 +54,7 @@
                                         <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" style='display:none;'>ID</th>
                                         <th colspan="0" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" >Departamento</th>
 
-                           
+
                                     </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200 bg-white">
@@ -52,11 +63,11 @@
                                         <tr class="even:bg-gray-50">
                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center" style='display:none;'>{{ ++$PB }}</td>
                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$listadoEquipoPB->departamentos->Departamento}}</td>
-                                             
+
                                                 <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                 <form action="{{ route('ListadoEquipo.destroy', $listadoEquipoPB->id) }}" method="POST">
                                                     <a href="{{ route('ListadoEquipo.show', $listadoEquipoPB->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
-                                                   
+
                                                 </form>
                                             </td>
                                         </tr>
@@ -89,9 +100,18 @@
                                 <h1 class="text-base font-semibold leading-6 text-gray-900">{{ __('Piso P1') }}</h1>
                                 <p class="mt-2 text-sm text-gray-700">Listado del piso {{ __('P1') }}.</p>
                             </div>
-                            <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                                <a type="button" href="{{ route('ListadoEquipo.CreateP1') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Agregar</a>
-                            </div>
+                              <div class="md:col-span-5 text-center">
+                            <div class="inline-flex items-end" >
+                            <a type="button" href="{{ route('ListadoEquipo.CreateP1') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Agregar</a>  <form action="/ListadoEquiposPDF" method="get">
+
+
+                            <input type="hidden" name="P1" id="P1" value="2">
+
+                             <button type="submit"  class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">PDF</button>
+                             </form>
+                        </div>
+                    </div>
+
                         </div>
 
                         <div class="flow-root">
@@ -112,22 +132,22 @@
                                             <tr class="even:bg-gray-50">
                                                <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center" style='display:none;'>{{ ++$P1}}</td>
                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$listadoEquipoP1->departamentos->Departamento}}</td>
-                                             
+
 
 
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                     <form action="{{ route('ListadoEquipo.destroy', $listadoEquipoP1->id) }}" method="POST">
                                                         <a href="{{ route('ListadoEquipo.show', $listadoEquipoP1->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
-                                                   
+
                                                     </form>
                                                 </td>
                                             </tr>
-                                        @endforeach 
+                                        @endforeach
                                         </tbody>
                                     </table>
 
                                     <div class="mt-4 px-4">
-                                     {!! $ListadoEquipoP1->withQueryString()->links() !!} 
+                                     {!! $ListadoEquipoP1->withQueryString()->links() !!}
                                     </div>
                                 </div>
                             </div>
@@ -151,9 +171,14 @@
                                 <h1 class="text-base font-semibold leading-6 text-gray-900">{{ __('Piso P2 Y P3') }}</h1>
                                 <p class="mt-2 text-sm text-gray-700">Listado del piso {{ __('P2 Y P3') }}.</p>
                             </div>
-                            <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                                <a type="button" href="{{ route('ListadoEquipo.CreateP2YP3') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Agregar</a>
-                            </div>
+                                 <div class="md:col-span-5 text-center">
+                            <div class="inline-flex items-end" >
+                            <a type="button" href="{{ route('ListadoEquipo.CreateP2YP3') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Agregar</a>  <form action="/ListadoEquiposPDF" method="get">
+                             <input type="hidden" name="P2YP3" id="P2YP3" value="3">
+                             <button type="submit"  class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">PDF</button>
+                             </form>
+                        </div>
+                    </div>
                         </div>
 
                         <div class="flow-root">
@@ -166,7 +191,7 @@
                                             <th colspan="0" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" >Departamento</th>
 
 
-                                           
+
                                         </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 bg-white">
@@ -175,21 +200,21 @@
                                             <tr class="even:bg-gray-50">
                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center" style='display:none;'>{{ ++$P2YP3 }}</td>
                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$lListadoEquipoP2YP3->departamentos->Departamento}}</td>
-                                             
+
 
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                     <form action="{{ route('ListadoEquipo.destroy', $lListadoEquipoP2YP3->id) }}" method="POST">
                                                         <a href="{{ route('ListadoEquipo.show', $lListadoEquipoP2YP3->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
-                                                       
+
                                                     </form>
                                                 </td>
                                             </tr>
-                                        @endforeach 
+                                        @endforeach
                                         </tbody>
                                     </table>
 
                                     <div class="mt-4 px-4">
-                                         {!! $ListadoEquipoP2YP3->withQueryString()->links() !!} 
+                                         {!! $ListadoEquipoP2YP3->withQueryString()->links() !!}
                                     </div>
                                 </div>
                             </div>

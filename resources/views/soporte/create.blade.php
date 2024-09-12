@@ -11,23 +11,6 @@
             <h2 class="font-semibold text-xl text-gray-600">Soporte</h2>
             <p class="text-gray-500 mb-6"></p>
 
-            <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-
-<div class="lg:col-span-2">
-  <form action="/buscarUser" role="form" enctype="multipart/form-data" method="GET">
-
-<div class="grid gap-4 gap-y-3 text-sm grid-cols-1 md:grid-cols-5" style="margin-left:320px;">
-            <div class="md:col-span-5 " style="margin-bottom: 0rem; ">
-                <label for="full_name">Usuarios Registrados</label>
-                <input type="text" name="UsuarioRegistrado" id="UsuarioRegistrado" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="Buscar por Numero de Cedula"  value="{{ request()->get('UsuarioRegistrado') }}"  />
-              </div>
-              <div class="md:col-span-5 " style="margin-bottom: 2rem;">
-                <button type="submit" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Buscar</button>
-              </div>
-            </form>
-</div>
-</div>
-
                  <form method="POST" action="{{ route('Soportes.store') }}"  role="form" enctype="multipart/form-data">
                     @csrf
                   <div class="space-y-6">

@@ -25,6 +25,7 @@
             </form>
         </div>
     </div>
+    <div id="prueba"></div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
          @if($soportes->count())
         <table id="myTable" class=" w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table table-fixed w-3/4 ">
@@ -70,6 +71,7 @@
                     </tr>
 @else               
 @role('Administrador')
+<div id="prueba"></div>
 
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" id="resultado">
                     <td class="px-3 py-4 text-sm text-gray-500  text-center text-black">{{ $soporte->id }}</td>
@@ -142,9 +144,40 @@
    </div>
 </x-app-layout>
 <script>
-// $(document).ready( function () {
-//     $('#myTable').DataTable();
+        $(document).ready(function() {
+           // Enable pusher logging - don't include this in production
+            Pusher.logToConsole = true;
 
-// });
+            var pusher = new Pusher('5dade7404be34deb0ac4', {
+                cluster: 'us2'
+            });
 
+            var channel = pusher.subscribe('chat-channel');
+            channel.bind('chat-event', function(data) {
+               
+                $('#prueba').append(function(){
+                 
+                       Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: "!Hola! ya el equipo se encuentra Disponible",
+                        showCancelButton: false,
+                         confirmButtonColor: false,
+                         cancelButtonColor: false,
+                         time:3000,
+
+                    }).then((result) => {
+
+                        location.reload();
+                        tr.hide();
+
+                    })
+
+                 
+
+
+                });
+
+                           });
+            });
 </script>

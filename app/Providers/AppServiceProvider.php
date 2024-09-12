@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\Domain\Orders\Events\PodcastProcessed;
+use App\Domain\Orders\Listeners\SendPodcastNotification;
+use Illuminate\Support\Facades\Event;
+use App\Events\SoporteEvento;
+use App\Listeners\SoporteListener;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -19,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Event::listen(
+           SoporteEvento::class,
+            SoporteListener::class,
+
+        );
     }
 }

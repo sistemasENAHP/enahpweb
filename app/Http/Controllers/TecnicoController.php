@@ -14,6 +14,7 @@ use App\Models\TipoFallas;
 use Jenssegers\Agent\Agent;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Events\SoporteEvento;
 class TecnicoController extends Controller
 {
 
@@ -36,6 +37,7 @@ class TecnicoController extends Controller
         $soportes = Soportes::search(request('search'))->paginate();
 
         return view('Tecnico.index', compact('soportes'));
+        
         // return view('Tecnico.index');
     }
 
@@ -300,6 +302,7 @@ class TecnicoController extends Controller
          $soporte->Solucion = $request->Solucion;
          $soporte->Tecnico = $request->tecnico;
          $soporte->update();
+         broadcast(new SoporteEvento($soporte));
 
        return Redirect('Reparacion')->with('success', 'Soporte created successfully.');
 
@@ -307,12 +310,12 @@ class TecnicoController extends Controller
     }
 
 
-    public function TecnicoTerminado(){
+    public function TecnicoTerminado(Request $request){
 
         $soportes = Soportes::search(request('search'))->paginate();
         // $soportes = Soportes::where('estatus_id','=',3);
 
-        return view('Tecnico.Terminado.index', compact('soportes'));
+        return view('Tecnico.Terminado.index', compact('soportes'))->with('i', ($request->input('page', 1) - 1) * $soportes->perPage());;
 
     }
 
@@ -356,6 +359,7 @@ class TecnicoController extends Controller
          $soporte->Solucion = $request->Solucion;
          $soporte->Tecnico = $request->tecnico;
          $soporte->update();
+         broadcast(new SoporteEvento($soporte));
 
        return Redirect('/Terminado')->with('success', 'Soporte created successfully.');
 

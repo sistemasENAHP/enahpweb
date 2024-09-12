@@ -28,7 +28,13 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+       $request->user()->last_login = now();
+       $request->user()->last_login_ip = $request->ip();
+       $request->user()->save();
+
         return redirect()->intended(route('dashboard', absolute: false));
+       
+
     }
 
     /**
@@ -36,6 +42,14 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $user = Auth::user();
+        $user->previous_login = $user->last_login;
+         $user->last_login_ip = $request->ip();
+        $user->last_login = now();
+        $user->save();
+       
+
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

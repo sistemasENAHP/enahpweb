@@ -37,7 +37,11 @@ class User extends Authenticatable
         'password',
     ];
 
+
+
     public $timestamps = 'true';
+
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -54,8 +58,12 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    // ];
+
+         protected $casts = [
+        'last_login_at' => 'datetime',
     ];
 
 
@@ -79,6 +87,13 @@ class User extends Authenticatable
         'Tecnico'=> $this->Tecnico,
     ];
 }
+
+
+// public function updateLastLogin()
+// {
+//     $this->last_login = now();
+//     $this->save();
+// }
 
 
 

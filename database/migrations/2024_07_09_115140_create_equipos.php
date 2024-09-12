@@ -53,8 +53,8 @@ return new class extends Migration
             $table->string('Sistema_Operativo');
             $table->string('bits');
             $table->string('Version');
-            $table->string('ip_escuela');
-            $table->string('ip_ministerio');
+            $table->string('ip_escuela')->nullable()->default(NULL);
+            $table->string('ip_ministerio')->nullable()->default(NULL);
             $table->string('MacAdress');
             $table->string('Mouse')->nullable()->default(NULL);
             $table->string('Teclado')->nullable()->default(NULL);
@@ -118,10 +118,10 @@ return new class extends Migration
             $table->string('Apellido')->nullable()->default(NULL);
             $table->string('Cedula')->nullable()->default(NULL);
             $table->string('Equipo')->nullable()->default(NULL);
-            $table->string('Puntos');
-            $table->string('PuertoPatch');
-             $table->string('NPuertoSwitch');
-             $table->text('Observacion',200);
+            $table->string('Puntos')->nullable()->default(NULL);;
+            $table->string('PuertoPatch')->nullable()->default(NULL);;
+             $table->string('NPuertoSwitch')->nullable()->default(NULL);;
+             $table->text('Observacion',200)->nullable()->default(NULL);;
             $table->timestamps();
             $table->engine = 'InnoDB';
 
@@ -135,9 +135,9 @@ return new class extends Migration
             $table->string('Apellido')->nullable()->default(NULL);
             $table->string('Cedula')->nullable()->default(NULL);
             $table->string('Equipo')->nullable()->default(NULL);
-            $table->string('Escuela');
-            $table->string('Ministerio');
-             $table->text('Observacion',200);
+            $table->string('Escuela')->nullable()->default(NULL);;
+            $table->string('Ministerio')->nullable()->default(NULL);;
+             $table->text('Observacion',200)->nullable()->default(NULL);;
             $table->timestamps();
             $table->engine = 'InnoDB';
 

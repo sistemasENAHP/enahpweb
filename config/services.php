@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'pusher' => [
+    'beams_instance_id' => '1ec46d32-dd36-47e3-8d16-65e747303989',
+    'beams_secret_key' => 'B76D098C732957E259D6EA3BA8DE94C7970C7F4379CD93C35F0CB010CD1FC500',
+],
+
 ];

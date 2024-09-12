@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Scout\Searchable;
+use App\Notifications\SoporteNotificacion;
+use Illuminate\Notifications\Notifiable;
 // use Spatie\EloquentSortable\Sortable;
 // use Spatie\EloquentSortable\SortableTrait;
 // use App\Models\Departamentos;
@@ -38,9 +40,10 @@ use Laravel\Scout\Searchable;
 class Soportes extends Model
 {
 
-    use Searchable;
+    use Searchable,Notifiable;
 
     protected $perPage = 20;
+     public $pushNotificationType = 'Soportes';
 
     /**
      * The attributes that are mass assignable.

@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listadoips;
+use App\Models\Soporte;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Http\Requests\ListadoipsRequest;
+use App\Http\Requests\SoporteRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Departamentos;
 use App\Models\TipoFallas;
+use App\Models\Equipos;
+use App\Models\User;
 use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
 class ListadoipController extends Controller
@@ -51,7 +54,7 @@ class ListadoipController extends Controller
     public function CreatePB(): View
     {
         $ListaIp = new Listadoips();
-        $Departamentos = Departamentos::all();
+        $Departamentos = Departamentos::where('id','<=',21)->get();
          $machineName = gethostname();
        return view('Listado.ListadoIp.PB.createPB',compact('Departamentos','machineName','ListaIp'));
 
@@ -61,7 +64,7 @@ class ListadoipController extends Controller
      public function CreateP1(): View
     {
          $ListaIp = new Listadoips();
-         $Departamentos = Departamentos::all();
+         $Departamentos = Departamentos::where('id','>=',22)->where('id','<=',30)->get();
          $machineName = gethostname();
        return view('Listado.ListadoIp.P1.createP1',compact('Departamentos','machineName','ListaIp'));
 
@@ -70,7 +73,7 @@ class ListadoipController extends Controller
       public function CreateP2YP3(): View
     {
         $ListaIp = new Listadoips();
-        $Departamentos = Departamentos::all();
+        $Departamentos = Departamentos::where('id','>=',31)->get();
          $machineName = gethostname();
 
        return view('Listado.ListadoIp.P2YP3.createP2YP3',compact('Departamentos','machineName','ListaIp'));
@@ -194,4 +197,51 @@ class ListadoipController extends Controller
         return Redirect::route('Listado.ListadoIp.index')
             ->with('success', 'Gestionip deleted successfully');
     }
+
+
+   public function depatamentoUser(Request $request){
+        
+        if($request->ajax()){
+          
+            $Departamento = User::where('departamento_id',$request->departamento_id)->get();
+
+            // foreach($Departamento as $dep){
+
+            //   $deparray[$dep->id] = $dep->departamento_id;
+
+            // }
+
+
+            return response()->json($Departamento);
+        
+}
+      }
+
+
+
+      public function ListadoFuncionarios(Request $request){
+        
+        if($request->ajax()){
+        
+         $Funcionario = User::select('*')->where('id',$request->dep)->get();
+           
+
+         foreach($Funcionario as $fun){
+          
+          // $fun->name;
+
+         }
+
+
+         return response()->json($fun);
+
+
+
+        }
+
+
+      }
+
+     
+
 }

@@ -13,6 +13,7 @@
      {{-- <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.dataTables.css" /> --}}
       <link rel="stylesheet" href="{{asset('/css/dataTables.css')}}">
        <link rel="stylesheet" href="{{asset('/css/dataTables.min.css')}}">
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
 </head>
 {{-- <link rel="stylesheet" href="{{asset('Boostraps/css/bootstrap.css')}}"> --}}
 
@@ -49,9 +50,13 @@
                     @role('Psicologo')
                     Psicologo:{{auth()->user()->name}} {{auth()->user()->surname}}
                     @endrole</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400"> @if (Auth::check())
+                <div class="text-sm text-gray-500 dark:text-gray-400"> 
+                    @if (Auth::check())
                     <span>Último ingreso:
-                        {{ Auth::user()->previous_login_at ? 'Día: ' . \Carbon\Carbon::parse(Auth::user()->previous_login_at)->format('d/m/Y') . ' Hora: ' . \Carbon\Carbon::parse(Auth::user()->previous_login_at)->format('H:i') : 'N/A' }}
+                        {{ Auth::user()->previous_login ? 'Día: ' . \Carbon\Carbon::parse(Auth::user()->previous_login)->format('d/m/Y') . ' Hora: ' . \Carbon\Carbon::parse(Auth::user()->previous_login)->format('H:i') : 'N/A' }}
+
+                        {{-- {{ Auth::user()->last_login }} --}}
+                        {{-- {{ Auth::user()->previous_login }} --}}
                     </span>
                 @endif</div>
             </div>
@@ -147,8 +152,18 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         {{-- <script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script> --}}
-         <script src="{{asset('/JS/dataTables.js')}}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+           <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+           <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
+         <script src="{{asset('/JS/service-worker.js')}}"></script>
         <script src="{{asset('/JS/dataTables.min.js')}}"></script>
+        <script src="{{asset('/JS/dataTables.js')}}"></script>
+        <script src="/Highcharts/code/highcharts.js"></script>
+        <script src="/Highcharts/code/modules/exporting.js"></script>
+        <script src="/Highcharts/code/modules/export-data.js"></script>
+        {{-- <script src="{{asset('/JS/Listado.js')}}"></script> --}}
 
 </body>
 <script type="text/javascript">

@@ -13,6 +13,9 @@ use App\Models\TipoFallas;
 use Jenssegers\Agent\Agent;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Notifications\SoporteNotificacion;
+use Illuminate\Notifications\Notifiable;
+use App\Events\SoporteEvento;
 class SoporteController extends Controller
 {
 
@@ -81,11 +84,14 @@ class SoporteController extends Controller
           $soporte->Telefono = $request->Telefono;
           $soporte->Correo = $request->Correo;
           $soporte->ip_equipo =  $request->ip_maquina;
-        //   $soporte->FechaEntrada = $request->FechaEntrada;
+          $soporte->FechaEntrada = $request->FechaEntrada;
           $soporte->Motivo_Falla = $request->Motivo_Falla;
           $soporte->Solucion = $request->Solucion;
           $soporte->Tecnico = $request->tecnico;
           $soporte->save();
+          
+                    broadcast(new SoporteEvento($soporte));
+                    $soporte->notify(new SoporteNotificacion());
 
         return Redirect('/EstatusSoporte')->with('success', 'Soporte created successfully.');
     }

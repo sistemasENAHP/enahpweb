@@ -18,9 +18,9 @@
                 <div style="">
                 <input type="text" id="search" name="search"  class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar" value="{{ request()->get('search') }}">
                 </div>
-                 <div class="flex items-center justify-end top:20px" style="">
-                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  top-50 right-20 transform translate-y-1/2">Buscar</button>
-                 </div>
+                <div class="flex items-center justify-end " style="">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ">Buscar</button>
+                    </div>
             </div>
             </form>
         </div>
@@ -54,7 +54,7 @@
                  @foreach ($soportes as $soporte)
                  @if($soporte->Tecnico == auth()->user()->name. " " .auth()->user()->surname and $soporte->estatus_id == 3)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" id="resultado">
-                    <td class="px-3 py-4 text-sm text-gray-500  text-center text-black">{{ $soporte->id }}</td>
+                    <td class="px-3 py-4 text-sm text-gray-500  text-center text-black">{{ ++$i }}</td>
                     <td class=" px-3 py-4 text-sm text-gray-500  text-center" >{{ $soporte->NControl }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Nombre }}  - {{ $soporte->Apellidos }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Cedula }}</td>
@@ -70,10 +70,10 @@
                         <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 text-center">
                             <form action="{{ route('Tecnico.destroy', $soporte->id) }}" method="POST">
                                 {{-- <a href="{{ route('Reparacion.show', $soporte->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar ') }}</a> --}}
-                                {{-- <a href="{{ route('Reparacion.edit', $soporte->id) }}" id="editar" name="editar" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a> --}}
+                                <a href="{{ route('EquiposTerminadoPDF.ReporteEquiposTerminado', $soporte->id) }}" target="_blank" id="editar" name="editar" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('PDF') }}</a>
                                 @csrf
                                 @method('DELETE')
-                                <a href="{{ route('Tecnico.destroy', $soporte->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a>
+                                <a href="{{ route('Tecnico.destroy', $soporte->id) }}"  class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a>
                             </form>
                         </td>
                     </tr>

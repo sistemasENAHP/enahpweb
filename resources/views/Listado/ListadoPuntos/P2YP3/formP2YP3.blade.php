@@ -10,6 +10,7 @@
         <div class="md:col-span-5" >
         <label for="departamento_id">Departamento</label>
         <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option>Selecciones</option>
           {{$sel = 0}}
           @foreach($Departamentos as $dep)
           @if($dep->id == $ListadoPunto->departamento_id)
@@ -21,6 +22,12 @@
           @endforeach
         </select>
     </div>
+        
+    <div class="md:col-span-5">
+                <label for="dep"></label>
+               <select name="dep" id="dep" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></select>
+            </div>
+
     <x-text-input type="hidden" id="piso_idP2YP3" name="piso_idP2YP3" :value="3,old('piso_id', $ListadoPunto?->piso_id)" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="P1" placeholder="P1"/>
     <div class="md:col-span-2">
         <label for="Nombre">Nombre</label>

@@ -27,33 +27,31 @@
                 </select>
             </div>
 
-          {{--   <div class="md:col-span-5">
+            <div class="md:col-span-5">
                 <label for="dep"></label>
                <select name="dep" id="dep" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></select>
-            </div> --}}
+            </div>
         
             <div class="md:col-span-2">
                 <label for="Nombre">Nombre</label>
-                <x-text-input type="text" id="Nombre" name="Nombre"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Nombres" placeholder="Nombres" :value="old('Nombre',$ListadoEquipo?->Nombre)" />
+                <x-text-input type="text" id="Nombre" name="Nombre"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Nombres" placeholder="Nombres" :value="old('Nombre',$ListadoEquipo?->Nombre)" readonly />
                 <x-input-error class="mt-2" :messages="$errors->get('Nombre')"/>
         
               </div>
               <div class="md:col-span-2">
                   <label for="Apellidos">Apellido</label>
-                  <x-text-input type="text" id="Apellidos" name="Apellidos" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  autocomplete="Apellidos" placeholder="Apellidos" :value="old('Apellido',$ListadoEquipo?->Apellidos)" />
+                  <x-text-input type="text" id="Apellidos" name="Apellidos" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  autocomplete="Apellidos" placeholder="Apellidos" :value="old('Apellido',$ListadoEquipo?->Apellidos)" readonly />
                   <x-input-error class="mt-2" :messages="$errors->get('Apellidos')"/>
         
                 </div>
                 <div class="md:col-span-1">
                   <label for="Cedula">Cedula</label>
-                  <x-text-input type="text" name="Cedula" id="Cedula" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Cedula" placeholder="Cedula" :value="old('Cedula',$ListadoEquipo?->Cedula)" />
+                  <x-text-input type="text" name="Cedula" id="Cedula" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Cedula" placeholder="Cedula" :value="old('Cedula',$ListadoEquipo?->Cedula)" readonly />
                   <x-input-error class="mt-2" :messages="$errors->get('Cedula')"/>
                 </div>
         
                 <div class="md:col-span-2">
                     <label for="Cedula">Equipo</label>
-                    {{-- <x-text-input type="text" name="Equipo" id="Equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Equipo" placeholder="Equipo" :value="old('Equipo',$ListadoEquipo?->Equipo)" />
-                    <x-input-error class="mt-2" :messages="$errors->get('Equipo')"/> --}}
                         <select name="Equipo" id="Equipo" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option >Selecciones</option>
                             <option value="PC"{{$ListadoEquipo->Equipo == 'PC' ? 'selected' : ''}}>PC (Computadora) </option>
