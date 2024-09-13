@@ -25,6 +25,7 @@ class SoporteEvento implements ShouldBroadcast
       public $message;
       public $Nombre;
       public $Apellido;
+      public $Cedula;
       public $Departamento;
 
     /**
@@ -37,6 +38,7 @@ class SoporteEvento implements ShouldBroadcast
        $this->broadcastVia('pusher');
        $this->Nombre = $soportes->Nombre;
        $this->Apellido = $soportes->Apellidos;
+        $this->Cedula = $soportes->Cedula;
        $this->Departamento = $soportes->departamentos->Departamento;
        
     
@@ -57,7 +59,7 @@ class SoporteEvento implements ShouldBroadcast
     {
        
           return  new Channel('chat-channel');
-    
+          return  new Channel('termino-channel');
     }
 
   
@@ -67,7 +69,7 @@ class SoporteEvento implements ShouldBroadcast
     {
          
             return new Channel('chat-event');
-        
+            return new Channel('termino-event');
     }
 
 

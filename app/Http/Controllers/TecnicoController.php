@@ -15,6 +15,7 @@ use Jenssegers\Agent\Agent;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Events\SoporteEvento;
+use App\Events\NotificacionesEvento;
 class TecnicoController extends Controller
 {
 
@@ -31,7 +32,7 @@ class TecnicoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
 
         $soportes = Soportes::search(request('search'))->paginate();
@@ -297,12 +298,12 @@ class TecnicoController extends Controller
          $soporte->Correo = $request->Correo;
          // $soporte->ip_equipo =  $request->ip_maquina;
        //   $soporte->FechaEntrada = $request->FechaEntrada;
-       //   $soporte->FechaSalida = $request->FechaSalida;
+         $soporte->FechaSalida = $request->FechaSalida;
          $soporte->Motivo_Falla = $request->Motivo_Falla;
          $soporte->Solucion = $request->Solucion;
          $soporte->Tecnico = $request->tecnico;
          $soporte->update();
-         broadcast(new SoporteEvento($soporte));
+         broadcast(new NotificacionesEvento($soporte));
 
        return Redirect('Reparacion')->with('success', 'Soporte created successfully.');
 
@@ -354,7 +355,7 @@ class TecnicoController extends Controller
          $soporte->Correo = $request->Correo;
          // $soporte->ip_equipo =  $request->ip_maquina;
        //   $soporte->FechaEntrada = $request->FechaEntrada;
-       //   $soporte->FechaSalida = $request->FechaSalida;
+         $soporte->FechaSalida = $request->FechaSalida;
          $soporte->Motivo_Falla = $request->Motivo_Falla;
          $soporte->Solucion = $request->Solucion;
          $soporte->Tecnico = $request->tecnico;

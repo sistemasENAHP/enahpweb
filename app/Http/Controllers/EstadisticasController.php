@@ -62,9 +62,15 @@ foreach($departamentos as $dep){
 }
 
 foreach($Tecnico as $tec){
+if($tec->Tecnico == ''){
+   $tecnico[]= ['name' => 'Disponible','y' => $tec->id]; 
+
+}else{
 
 $tecnico[]= ['name' => $tec->Tecnico,'y' => $tec->id];
 $tecnico1[] = $tec->Tecnico;
+
+}
 }
 
 

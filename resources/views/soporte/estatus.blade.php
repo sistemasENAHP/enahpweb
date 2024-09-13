@@ -15,11 +15,11 @@
                 <div class="absolute inset-y-0 left-0 rtl:inset-r-0 rtl:right-0 flex items-center ps-3 pointer-events-none">
 
                 </div>
-                <div style="">
+               <div style="">
                 <input type="text" id="search" name="search"  class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar" value="{{ request()->get('search') }}">
                 </div>
-                 <div class="flex items-center justify-end top:20px" style="">
-                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  top-50 right-20 transform translate-y-1/2">Buscar</button>
+                 <div class="flex items-center justify-end " style="">
+                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ">Buscar</button>
                  </div>
             </div>
             </form>
@@ -58,10 +58,16 @@
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Nombre }}  - {{ $soporte->Apellidos }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Cedula }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->departamentos->Departamento}}</td>
-                        <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->FechaEntrada }}</td>
-                     <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->FechaSalida }}</td>
-                    <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Motivo_Falla }}</td>
+                     <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{\Carbon\Carbon::parse($soporte->FechaEntrada)->format('d/m/Y H:i') }}</td>
+                     @if($soporte->FechaSalida == '')
+                     <td class=" px-3 py-4 text-sm text-gray-500 text-center"></td>
+                      @else
 
+               <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{\Carbon\Carbon::parse($soporte->FechaSalida )->format('d/m/Y H:i') }}</td>
+                @endif
+
+                    <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Motivo_Falla }}</td>
+               
 
                     <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Solucion }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Tecnico }}</td>

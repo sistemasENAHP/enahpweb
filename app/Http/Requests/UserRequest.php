@@ -24,9 +24,35 @@ class UserRequest extends FormRequest
         return [
 			'name' => 'required|string',
 			'surname' => 'required|string',
-			'identification_card' => 'required|string',
 			'user' => 'required|string',
 			'email' => 'required|string',
+            'identification_card'=>'numeric|required|unique:users|min:8|max:99999999',
         ];
+    }
+
+        public function messages(){
+
+        return[
+
+            'name.required'=>'El :attribute es obligatorio',
+            'surname.required'=>'El :attribute es obligatorio',
+            'identification_card.required'=>'La :Cedula es obligatorio',
+            'identification_card.unique'=>'La Cedula ya se encuentra registrado',
+            // 'cedula.between'=>'la :attribute debe tener 7.',
+            'sexo.required' =>'El :attribute es obligatorio',
+            'Edad.required' =>'El :attribute es obligatorio',
+            'Telefono.required' =>'La :attribute es obligatorio',
+            // 'Telefono2.required' =>'La :attribute es obligatorio',
+            'EstadoCivil.required' =>'La :attribute es obligatorio',
+            'Direccion.required' =>'La :attribute es obligatorio',
+            'Correo.required'=>'El :attribute es obligatorio',
+            'Correo.email'=>'El :attribute debe ser un correo',
+            'Correo.unique'=>'La :attribute ya se encuentra registrado',
+            'Motivo_Consulta.required'=>'El :attribute es obligatorio',
+
+
+
+        ];
+
     }
 }

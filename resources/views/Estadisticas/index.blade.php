@@ -44,13 +44,24 @@
                         @php $sum = 0;@endphp
                       
                            @foreach($Tecnico as $tec)
+                           @if($tec->Tecnico == '')
                             <tbody>
+                                <tr>
+                                    <td class="text-center  text-black" style="font-size: 95%;" colspan="2">Disponible</td>
+                                    <td class="text-center  text-black" style="font-size: 95%;" colspan="1">{{ $tec->id }}@php $sum+=$tec->id; @endphp
+                                       </td>
+                                </tr>
+                            </tbody>
+                            @else
+                                <tbody>
                                 <tr>
                                     <td class="text-center  text-black" style="font-size: 95%;" colspan="2">{{ $tec->Tecnico }}</td>
                                     <td class="text-center  text-black" style="font-size: 95%;" colspan="1">{{ $tec->id }}@php $sum+=$tec->id; @endphp
                                        </td>
                                 </tr>
                             </tbody>
+
+                            @endif
                             @endforeach
                        
 

@@ -40,7 +40,7 @@ class SoporteController extends Controller
 
         $soportes = Soportes::search(request('search'))->paginate();
 
-        return view('soporte.index', compact('soportes'));
+        return view('soporte.index', compact('soportes'))->with('i', ($request->input('page', 1) - 1) * $soportes->perPage());
     }
 
     /**
@@ -91,7 +91,7 @@ class SoporteController extends Controller
           $soporte->save();
           
                     broadcast(new SoporteEvento($soporte));
-                    $soporte->notify(new SoporteNotificacion());
+                    $soporte->notify(new SoporteNotificacion("hola"));
 
         return Redirect('/EstatusSoporte')->with('success', 'Soporte created successfully.');
     }

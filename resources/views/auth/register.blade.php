@@ -1,11 +1,12 @@
+
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" id="validacion">
         @csrf
 
         <!-- Name -->
              <div>
             <x-input-label for="name" :value="__('Departamento')" />
-            <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
            @foreach($Departamentos as $departamento)
            <option value="{{ $departamento->id }}">{{ $departamento->Departamento }}</option>
               @endforeach
@@ -26,8 +27,14 @@
 
          <div>
             <x-input-label for="surname" :value="__('Cedula')" />
-            <x-text-input id="identification_card" class="block mt-1 w-full" type="text" name="identification_card" :value="old('identification_card')" required autofocus autocomplete="identification_card" />
+            <x-text-input id="identification_card" class="block mt-1 w-full" type="text" name="identification_card" :value="old('identification_card')" required autofocus autocomplete="identification_card"  maxlength='9' onKeypress='if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;' />
             <x-input-error :messages="$errors->get('identification_card')" class="mt-2" />
+                 @if ($errors->has('Cedula'))
+                                        <small class="form-text text-danger">
+                                            * ( {{ $errors->first('identification_card') }} )
+                                        </small>
+                                    @endif
+                                    <div id="Cedula"></div>
         </div>
 
          <div>
@@ -83,7 +90,7 @@
                 {{ __('Ya estas registrado?') }}
             </a>
 
-            <x-primary-button class="ms-4">
+            <x-primary-button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                 {{ __('Registrar') }}
             </x-primary-button>
         </div>

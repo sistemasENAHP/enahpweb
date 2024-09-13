@@ -11,7 +11,7 @@
             <h2 class="font-semibold text-xl text-gray-600">Soporte</h2>
             <p class="text-gray-500 mb-6"></p>
 
-                 <form method="POST" action="{{ route('Soportes.store') }}"  role="form" enctype="multipart/form-data">
+                 <form method="POST" action="{{ route('Soportes.store') }}"  role="form" enctype="multipart/form-data" id="validacion">
                     @csrf
                   <div class="space-y-6">
     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3" id="on">
@@ -25,8 +25,7 @@
                 <label for="NControl">N° Control</label>
                 @if(!$NControl == '')
                 <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="SP-{{ substr($NControl->NControl++, 3); }}"  autocomplete="NControl" placeholder=""  />
-                {{-- <x-text-input type="hidden" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('NControl', substr(Auth()->user()->name,0,1).substr(Auth()->user()->surname,0,1). '-' .substr($NControl->NControl++ , -3))"   autocomplete="NControl" placeholder="" readonly    /> --}}
-
+             
                 <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
                     @else
 
@@ -77,9 +76,6 @@
                         <option value="{{$dep->id}}" {{$sel}} >{{$dep->Departamento}}</option>
                 @endforeach
               </select>
-
-              {{--  <x-text-input type="text" name="departamento_id" id="departamento_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{Auth()->user()->departamentos->Departamento}}" autocomplete="Telefono"  placeholder="Telefono" />
-                <x-input-error class="mt-2" :messages="$errors->get('Telefono')"/>--}}
             </div>
 
 
@@ -107,7 +103,7 @@
             <div class="md:col-span-5">
                 <label for="address">Tipo de Falla</label>
                 <select name="tipo_falla_id" id="tipo_falla_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    {{$sel = 0}}
+                   {{$sel = 0}}
                   @foreach ($TipoFalla as $tipo )
                   @if($tipo->id == $soporte->tipo_falla_id)
                   {{$sel = 'selected'}}
@@ -152,9 +148,26 @@
 
     $(document).ready(function(){
 
+              $('#validacion').on('submit', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: "Confirme si desea enviar un Soporte?",
+                    showDenyButton: true,
+                    showCancelButton: false,
+                    confirmButtonText: "Registrar",
+                    denyButtonText: `No`
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        this.submit();
+                        Swal.fire("Enviado informacion a un Técnico!", "", "success");
+                    } else if (result.isDenied) {
+                        Swal.fire("Los cambios no se guardaran", "", "info");
+                    }
+                });
+            });
 
-
-    });
+        });
 
 
 </script>

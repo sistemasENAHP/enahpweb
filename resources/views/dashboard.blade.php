@@ -26,13 +26,13 @@
                 cluster: 'us2'
             });
 
-            var channel = pusher.subscribe('chat-channel');
- channel.bind('chat-event', function(data) {
+            var channel = pusher.subscribe('termino-channel');
+ channel.bind('termino-event', function(data) {
     // +JSON.stringify(data.messager)+
     
-
+   if(data.Cedula == Auth()->user()->identification_card){   
   $('#Notificaciones').append('<div class="alert alert-info alert-dismissible fade show" role="alert"><h3 class="text-lg font-bold">¡Hola, '+ data.Nombre + ' ' +data.Apellido+ '!</h3><p class="text-sm">Ya el Equipo está Listo!</p><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
-
+}
   
 
     });

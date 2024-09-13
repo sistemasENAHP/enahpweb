@@ -9,7 +9,7 @@
             <div>
 
             </div>
-            <form method="GET">
+            <form method="GET"><i class="mdi mdi-chart-line-stacked:"></i>
             <label for="table-search" class="sr-only">Search</label>
             <div class="relative">
                 <div class="absolute inset-y-0 left-0 rtl:inset-r-0 rtl:right-0 flex items-center ps-3 pointer-events-none">
@@ -28,25 +28,25 @@
     <div id="prueba"></div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
          @if($soportes->count())
-        <table id="myTable" class=" w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table table-fixed w-3/4 ">
+        <table id="myTable" class="">
             <caption class="p-5 text-lg font-semibold text-center rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                  Equipos General
                 <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400 "></p>
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th  class="px-6 py-3 text-center text-xs" >id</th>
-                    <th scope="col" class="px-6 py-3 text-center text-xs" >N° Control</th>
-                    <th scope="col" class="px-6 py-3 text-center text-xs">Nombre-Apellido</th>
-                    <th scope="col" class="px-6 py-3 text-center text-xs">Cedula</th>
-                    <th scope="col" class="">Departamento</th>
-                    <th scope="col" class="px-6 py-3 text-center text-xs" >ip</th>
-                    <th scope="col" class="px-6 py-3 text-center text-xs">Motivo de Falla</th>
-                    <th scope="col" class="px-6 py-3 text-center text-xs">Fecha Solicitud</th>
-                    <th scope="col" class="px-6 py-3 text-center text-xs">Fecha Salida</th>
-                    <th scope="col" class="px-6 py-3 text-center text-xs">Solucion</th>
-                    <th scope="col" class="px-6 py-3 text-center text-xs">Técnico</th>
-                    <th scope="col" class="px-6 py-3 text-center text-xs">Estatus</th>
+                    <th  class="px-6 py-3 text-center text-xs" style="font-size: 95%;">id</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs" style="font-size: 95%;">N° Control</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Nombre-Apellido</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Cedula</th>
+                    <th scope="col" class=""style="font-size: 95%;">Departamento</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs" style="font-size: 95%;">ip</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Motivo de Falla</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Fecha Solicitud</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Fecha Salida</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Solucion</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Técnico</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Estatus</th>
                     {{-- <th scope="col" class="px-6 py-3 text-center text-xs"></th> --}}
                </tr>
             </thead>
@@ -54,19 +54,25 @@
             <tbody>
                  @foreach ($soportes as $soporte)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" id="resultado">
-                    <td class="px-3 py-4 text-sm text-gray-500  text-center text-black">{{ $soporte->id }}</td>
-                    <td class=" px-3 py-4 text-sm text-gray-500  text-center" >{{ $soporte->NControl }}</td>
-                    <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Nombre }}  - {{ $soporte->Apellidos }}</td>
-                    <td  scope="col" class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Cedula }}</td>
-                    <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->departamentos->Departamento}}</td>
-                    <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->ip_equipo }}</td>
-                    <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Motivo_Falla }}</td>
-                     <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->FechaEntrada }}</td>
-                     <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->FechaSalida }}</td>
+                    <td class="px-3 py-4 text-sm text-gray-500  text-center text-black" style="font-size: 90%;">{{ $soporte->id }}</td>
+                    <td class=" px-3 py-4 text-sm text-gray-500  text-center" style="font-size: 90%;">{{ $soporte->NControl }}</td>
+                    <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->Nombre }}  - {{ $soporte->Apellidos }}</td>
+                    <td  scope="col" class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->Cedula }}</td>
+                    <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->departamentos->Departamento}}</td>
+                    <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->ip_equipo }}</td>
+                    <td class=" px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->Motivo_Falla }}</td>
+                     <td class=" px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{\Carbon\Carbon::parse($soporte->FechaEntrada)->format('d/m/Y H:i') }}</td>
+                        @if($soporte->FechaSalida == '')
+                     <td class=" px-3 py-4 text-sm text-gray-500 text-center"></td>
+                      @else
+                      <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{\Carbon\Carbon::parse($soporte->FechaSalida )->format('d/m/Y H:i') }}</td>
+                     @endif
 
-                    <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Solucion }}</td>
-                    <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Tecnico }}</td>
-                    <td class="px-3 py-4 text-sm text-gray-500 text-center">{{$soporte->estatus->Estatus;}}</td>
+                    
+
+                    <td class=" px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->Solucion }}</td>
+                    <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->Tecnico }}</td>
+                    <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{$soporte->estatus->Estatus;}}</td>
                       
                     </tr>
 

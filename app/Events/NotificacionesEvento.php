@@ -10,36 +10,42 @@ use Illuminate\Contracts\Broadcasting\ShouldBeUnique;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Pacientes;
+use Illuminate\Broadcasting\InteractsWithBroadcasting;
+use app\Models\Soportes;
 use App\Models\User;
 
 class NotificacionesEvento implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable, InteractsWithSockets, SerializesModels,InteractsWithBroadcasting;
 
     /**
      * Create a new event instance.
      */
-    // public  $Cita;
-    // public  $Cantidad;
-    // public $Personal;
+      public $message;
+      public $Nombre;
+      public $Apellido;
+      public $Cedula;
+      public $Departamento;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    // public function __construct(Pacientes $Pacientes)
-    // {
+    public function __construct(Soportes $soportes)
+    {
        
 
-    //     $this->Cita = $Pacientes->cita_id;
-    //     $this->Cantidad = $Pacientes->count();
-    //     $this->Personal = $Pacientes->persona_pacientes_id;
+        $this->broadcastVia('pusher');
+         $this->Nombre = $soportes->Nombre;
+       $this->Apellido = $soportes->Apellidos;
+        $this->Cedula = $soportes->Cedula;
+       $this->Departamento = $soportes->departamentos->Departamento;
+
 
     
 
-    // }
+    }
 
 
     
@@ -52,7 +58,7 @@ class NotificacionesEvento implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('chat-channel');
+        return new Channel('termino-channel');
 
     }
 
@@ -60,7 +66,7 @@ class NotificacionesEvento implements ShouldBroadcast
 
     public function broadcastAs()
     {
-        return new Channel('chat-event');
+        return new Channel('termino-event');
 
 
     }

@@ -163,6 +163,7 @@
         <script src="/Highcharts/code/highcharts.js"></script>
         <script src="/Highcharts/code/modules/exporting.js"></script>
         <script src="/Highcharts/code/modules/export-data.js"></script>
+        <script src="{{ asset('js/ValidacionGeneral.js') }}" type="text/javascript"></script>
         {{-- <script src="{{asset('/JS/Listado.js')}}"></script> --}}
 
 </body>

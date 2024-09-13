@@ -74,6 +74,24 @@ outline:1px solid  rgb(7, 7, 7);
         </tr>
 
      </tbody>
+
+
+ <thead>
+        <tr>
+            <th class="text-center" colspan="4" >Fecha Solicitud</th>
+           <th class="text-center" colspan="22" >Fecha Culminacion</th>
+            
+    </tr>
+ </thead>
+
+ <tbody>
+    <tr>
+        <td  class="text-center" colspan="4" >{{ \Carbon\Carbon::parse($EquipoT->FechaEntrada)->format('d/m/Y H:i') }}</td>
+         <td  class="text-center" colspan="22" >{{ \Carbon\Carbon::parse($EquipoT->FechaSalida)->format('d/m/Y H:i') }}</td>
+      
+    </tr>
+ </tbody>
+
      <thead>
         <tr>
             <th class="text-center" colspan="27" >Tipo de Falla</th>
