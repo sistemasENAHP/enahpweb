@@ -12,14 +12,6 @@ return new class extends Migration
     public function up(): void
     {
 
-        Schema::create('departamentos', function (Blueprint $table) {
-            $table->id();
-            $table->string('Departamento');
-            $table->timestamps();
-            $table->engine='InnoDB';
-
-        });
-
 
              Schema::create('pisos', function (Blueprint $table) {
             $table->id();
@@ -29,6 +21,18 @@ return new class extends Migration
 
         });
 
+        Schema::create('departamentos', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('piso_id')->constrained('pisos');
+            $table->string('Departamento');
+            $table->timestamps();
+            $table->engine='InnoDB';
+
+        });
+
+
+       
+
 
         Schema::create('estatuses', function (Blueprint $table) {
             $table->id();
@@ -37,6 +41,18 @@ return new class extends Migration
             $table->engine = 'InnoDB';
 
         });
+
+        // Schema::create('marca_equipos', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('Marca');
+        //     $table->timestamps();
+        //     $table->engine = 'InnoDB';
+
+        // });
+
+
+
+
 
 
         Schema::create('equipos', function (Blueprint $table) {
@@ -100,6 +116,7 @@ return new class extends Migration
             $table->string('Telefono');
             $table->string('Correo');
             $table->string('ip_equipo');
+            $table->String('nombre_equipo');
             $table->dateTime('FechaEntrada')->nullable()->default(NULL);
             $table->dateTime('FechaSalida')->nullable()->default(NULL);
             $table->text('Motivo_Falla',500)->nullable()->default(NULL);

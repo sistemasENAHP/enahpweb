@@ -61,16 +61,18 @@
                                       <x-text-input id="identification_card" name="identification_card" type="text" class="mt-1 block w-full" :value="old('identification_card', $user?->identification_card)" autocomplete="identification_card" placeholder="Cedula"/>
                                       <x-input-error class="mt-2" :messages="$errors->get('identification_card')"/>
                                   </div>
-                                  <div>
-                                      <x-input-label for="user" :value="__('Usuario')"/>
-                                      <x-text-input id="user" name="user" type="text" class="mt-1 block w-full" :value="old('user', $user?->user)" autocomplete="user" placeholder="Usuario"/>
-                                      <x-input-error class="mt-2" :messages="$errors->get('user')"/>
-                                  </div>
+                            
                               
                                    <div>
                                       <x-input-label for="user" :value="__('Telefono')"/>
                                       <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full" :value="old('user', $user?->telefono)" autocomplete="user" placeholder="telefono"/>
                                       <x-input-error class="mt-2" :messages="$errors->get('telefono')"/>
+                                  </div>
+
+                                   <div>
+                                      <x-input-label for="telefonoI" :value="__('Celular')"/>
+                                      <x-text-input id="telefonoI" name="telefonoI" type="text" class="mt-1 block w-full"  autocomplete="user" placeholder="Celular" :value="old('telefonoI', $user?->telefonoI)" />
+                                      <x-input-error class="mt-2" :messages="$errors->get('telefonoI')"/>
                                   </div>
                               
                               
@@ -79,6 +81,12 @@
                                       <x-text-input id="ip_equipo" name="ip_equipo" type="text" class="mt-1 block w-full" value="{{old('ip_equipo', $user?->ip_equipo)}}" autocomplete="user" placeholder="ip_equipo"/>
                                       <x-input-error class="mt-2" :messages="$errors->get('ip_equipo')"/>
                                   </div>
+
+                                   <div>
+                                   <x-text-input id="nombre_equipo" name="nombre_equipo" type="text" class="mt-1 block w-full" value="
+                                   {{old('nombre_equipo', $user?->nombre_equipo)}}" autocomplete="nombre_equipo" placeholder="nombre_equipo"/>
+                                        <x-input-error class="mt-2" :messages="$errors->get('nombre_equipo')"/>
+                                        </div>
                               
                               
                                   <div>
@@ -117,7 +125,7 @@
                                   </div>
                               
                                   <div class="flex items-center gap-4">
-                                      <x-primary-button>Guardar</x-primary-button>
+                                      <x-primary-button>Actualizar</x-primary-button>
                                   </div>
                               </div>
                               

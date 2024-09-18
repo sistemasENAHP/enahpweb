@@ -52,17 +52,24 @@
                                       <x-text-input id="identification_card" name="identification_card" type="text" class="mt-1 block w-full"  autocomplete="identification_card" placeholder="Cedula"/>
                                       <x-input-error class="mt-2" :messages="$errors->get('identification_card')"/>
                                   </div>
-                                  <div>
-                                      <x-input-label for="user" :value="__('Usuario')"/>
-                                      <x-text-input id="user" name="user" type="text" class="mt-1 block w-full"  autocomplete="user" placeholder="Usuario"/>
-                                      <x-input-error class="mt-2" :messages="$errors->get('user')"/>
-                                  </div>
+                                
                               
                                    <div>
                                       <x-input-label for="user" :value="__('Telefono')"/>
                                       <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full"  autocomplete="user" placeholder="telefono"/>
                                       <x-input-error class="mt-2" :messages="$errors->get('telefono')"/>
                                   </div>
+
+                                    <div>
+                                      <x-input-label for="telefonoI" :value="__('Celular')"/>
+                                      <x-text-input id="telefonoI" name="telefonoI" type="text" class="mt-1 block w-full"  autocomplete="user" placeholder="Celular"/>
+                                      <x-input-error class="mt-2" :messages="$errors->get('telefonoI')"/>
+                                  </div>
+
+                                  <div>
+                                   <x-text-input id="nombre_equipo" name="nombre_equipo" type="hidden" class="mt-1 block w-full" value="{{$machineName }}" autocomplete="nombre_equipo" placeholder="nombre_equipo"/>
+                                        <x-input-error class="mt-2" :messages="$errors->get('ip_equipo')"/>
+                                        </div>
                               
                               
                                    <div>
@@ -80,7 +87,7 @@
                               
                                      <div>
                                       <label for="role">Role</label>
-                                      <select id="role_id" name="role_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                      <select id="role_id" name="role_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                           <option value="">Selecciones</option>
                                          
                                          @foreach($roles as $id => $roleName)

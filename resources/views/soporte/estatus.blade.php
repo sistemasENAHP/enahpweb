@@ -35,7 +35,7 @@
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th  class="px-6 py-3 text-center text-xs" >id</th>
+                   
                     <th scope="col" class="px-6 py-3 text-center text-xs" >N° Control</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Nombre-Apellido</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Cedula</th>
@@ -46,6 +46,7 @@
                     <th scope="col" class="px-6 py-3 text-center text-xs">Solucion</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Técnico Encargado</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Estatus</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"></th>
                </tr>
             </thead>
 
@@ -53,7 +54,7 @@
                  @foreach ($soportes as $soporte)
                  @if($soporte->Cedula == auth()->user()->identification_card)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" id="resultado">
-                    <td class="px-3 py-4 text-sm text-gray-500  text-center text-black">{{ $soporte->id }}</td>
+                 
                     <td class=" px-3 py-4 text-sm text-gray-500  text-center" >{{ $soporte->NControl }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Nombre }}  - {{ $soporte->Apellidos }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Cedula }}</td>
@@ -72,15 +73,24 @@
                     <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Solucion }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Tecnico }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{$soporte->estatus->Estatus;}}</td>
+                     <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 text-center">
+                            <form action="{{ route('Soportes.destroy', $soporte->id) }}" method="POST">
+                              
+                                <a href="{{ route('Soportes.edit', $soporte->id) }}" id="editar" name="editar" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
+                                @csrf
+                              
+                            </form>
+                        </td>
 
 
                     </tr>
-@else               
+@else   
+
 @role('Administrador')
 <div id="prueba"></div>
 
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" id="resultado">
-                    <td class="px-3 py-4 text-sm text-gray-500  text-center text-black">{{ $soporte->id }}</td>
+                    
                     <td class=" px-3 py-4 text-sm text-gray-500  text-center" >{{ $soporte->NControl }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Nombre }}  - {{ $soporte->Apellidos }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Cedula }}</td>
@@ -93,6 +103,14 @@
                     <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Solucion }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{ $soporte->Tecnico }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center">{{$soporte->estatus->Estatus;}}</td>
+                    <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 text-center">
+                            <form action="{{ route('Soportes.destroy', $soporte->id) }}" method="POST">
+                              
+                                <a href="{{ route('Soportes.edit', $soporte->id) }}" id="editar" name="editar" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
+                                @csrf
+                              
+                            </form>
+                        </td>
 
 
                     </tr>
@@ -103,6 +121,22 @@
             </tbody>
 
         </table>
+{{-- <MARQUEE>
+<div style="color:red;">
+    <p>Si tu Soporte no ha sido Atendido LLamen a estos Numero de Los Técnico Responsable de Cada Piso:</p>
+    PB:Dayleth Lopez : 0212544455
+     P1:
+      P2Y3:Meybis Rincones:02125656995
+</div>
+</MARQUEE> --}}
+
+<div id="mensaje" style="display:none" ><div style="color:white; background:#033B5C;">
+    <p>Si tu Soporte no ha sido Atendido LLamar a estos Numero de Lo Técnico Responsable de Cada Pisos:</p>
+    PB: Dayleth Lopez : 0212544455
+     P1: Anacarelis Palacio : 021255545
+      P2Y3: Meybis Rincones:02125656995
+</div></div>
+
         {{ $soportes->links() }}
          @else
 
@@ -113,7 +147,7 @@
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th  class="px-6 py-3 text-center text-xs" >id</th>
+                    
                     <th scope="col" class="px-6 py-3 text-center text-xs" >N° Control</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Nombre-Apellido</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Cedula</th>
@@ -186,4 +220,7 @@
 
                            });
             });
+
+ setTimeout("document.getElementById('mensaje').style.display='block';", 10000);
+
 </script>

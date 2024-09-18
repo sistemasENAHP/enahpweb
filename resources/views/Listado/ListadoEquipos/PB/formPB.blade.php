@@ -68,7 +68,12 @@
 
           <div class="md:col-span-1">
             <label for="marca_equipo">Marca Equipo</label>
-            <x-text-input type="text" name="marca_equipo" id="marca_equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="marca_equipo" placeholder="Marca del Equipo" :value="old('Marca',$ListadoEquipo?->Marca)" />
+            <select name="marca_equipo" id="marca_equipo" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option>Selecciones</option>
+              <option value="Vit"{{ $ListadoEquipo->Marca  == 'Vit' ? 'selected' : ''}}>Vit</option>
+              <option value="Vit"{{ $ListadoEquipo->Marca  == 'Siragon' ? 'selected' : ''}}>Siragon</option>
+              <option value="Vit"{{ $ListadoEquipo->Marca  == 'HP' ? 'selected' : ''}}>HP</option>
+            </select>
             <x-input-error class="mt-2" :messages="$errors->get('marca_equipo')"/>
           </div>
           <div class="md:col-span-2">
@@ -236,10 +241,10 @@
         </div>     
 
           <div class="md:col-span-3">
-            <label for="ip_ministerio">Punto de Red</label>
-            <x-text-input type="text" name="punto_red" id="punto_red" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="punto_red" placeholder="Punto de Red" :value="old('PuntoRed',$ListadoEquipo?->PuntoRed)" />
-            <x-input-error class="mt-2" :messages="$errors->get('punto_red')"/>
-          </div>
+                    <label for="ip_ministerio">Punto Switch / Punto de Red</label>
+                    <x-text-input type="text" name="punto_red" id="punto_red" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="punto_red" placeholder="Punto Switch / Punto de Red" :value="old('PuntoRed',$ListadoEquipo?->PuntoRed)" />
+                    <x-input-error class="mt-2" :messages="$errors->get('punto_red')"/>
+                  </div>
           <div class="md:col-span-2">
             <label for="CajetinPuntos">Cajetin de Puntos</label>
             <x-text-input type="text" name="CajetinPuntos" id="CajetinPuntos" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="CajetinPuntos" placeholder="Cajetin de Puntos" :value="old('PuntoRed',$ListadoEquipo?->CajetinPuntos)" />

@@ -49,8 +49,9 @@ class UserController extends Controller
          $UsersRoles = $user->roles()->pluck('name','name');
          $Departamentos = Departamentos::all();
          $ip = $request->ip();
+         $machineName = gethostname();
 
-        return view('user.create', compact('user','roles','UsersRoles','Departamentos','ip'));
+        return view('user.create', compact('user','roles','UsersRoles','Departamentos','ip','machineName'));
     }
 
     /**
@@ -118,9 +119,10 @@ class UserController extends Controller
         $Users->name = $request->name;
         $Users->surname = $request->surname;
         $Users->telefono = $request->telefono;
+        $Users->telefonoI = $request->telefonoI;
         $Users->ip_equipo = $request->ip_equipo;
+        $Users->nombre_equipo = $request->nombre_equipo;
         $Users->identification_card = $request->identification_card;
-        $Users->user = $request->user;
         $Users->email = $request->email;
         if($Users->password == $request->password):
          $Users->password = $request->password;

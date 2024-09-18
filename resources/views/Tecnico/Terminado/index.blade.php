@@ -34,10 +34,11 @@
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th  class="px-3 py-3 text-center text-xs" style="font-size: 95%;">id</th>
+                   
                     <th scope="col" class="px-2 py-3 text-center text-xs" style="font-size: 95%;">N° Control</th>
                     <th scope="col" class="px-2 py-3 text-center text-xs" style="font-size: 95%;">Nombre-Apellido</th>
                     <th scope="col" class="px-2 py-3 text-center text-xs" style="font-size: 95%;">Cedula</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Ubicacion</th>
                     <th scope="col" class="">Departamento</th>
                     <th scope="col" class="px-2 py-3 text-center text-xs"  style="font-size: 95%;">ip</th>
                     <th scope="col" class="px-2 py-2 text-center text-xs" style="font-size: 95%;">Motivo de Falla</th>
@@ -54,10 +55,11 @@
                  @foreach ($soportes as $soporte)
                  @if($soporte->Tecnico == auth()->user()->name. " " .auth()->user()->surname and $soporte->estatus_id == 3)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" id="resultado">
-                    <td class="px-1 py-1 text-sm text-gray-500  text-center text-black" style="font-size: 90%;">{{ ++$i }}</td>
+                   
                     <td class=" px-2 py-3 text-sm text-gray-500  text-center" style="font-size: 90%;">{{ $soporte->NControl }}</td>
                     <td class=" text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->Nombre }} - {{ $soporte->Apellidos }}</td>
                     <td class="px-5 py-6 text-sm text-gray-500 text-center" style="font-size: 90%;">{{ $soporte->Cedula }}</td>
+                     <td  scope="col" class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->departamentos->pisos->Pisos }}</td>
                     <td class=" text-sm text-gray-500 text-center" style="font-size: 90%;">{{ $soporte->departamentos->Departamento}}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center" style="font-size: 90%;">{{ $soporte->ip_equipo }}</td>
                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" style="font-size: 90%;">{{ $soporte->Motivo_Falla }}</td>
@@ -92,7 +94,7 @@
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th  class="px-6 py-3 text-center text-xs" >id</th>
+                    
                     <th scope="col" class="px-6 py-3 text-center text-xs" >N° Control</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Nombre-Apellido</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Cedula</th>

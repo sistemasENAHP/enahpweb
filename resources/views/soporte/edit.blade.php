@@ -24,10 +24,17 @@
         <div class="lg:col-span-2">
           <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
             <div class="md:col-span-1" >
-                <label for="NControl">N° Control</label>
-                     <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('NControl', substr(Auth()->user()->name,0,1).substr(Auth()->user()->surname,0,1). '-' .substr($soporte?->NControl , -3))"   autocomplete="NControl" placeholder="" readonly    />
-
+                   <label for="NControl">N° Control</label>
+                @if(!$NControl == '')
+                <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="SP-{{ substr($NControl->NControl++, 3); }}"  autocomplete="NControl" placeholder=""  />
+             
                 <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
+                    @else
+
+                    <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="SP-100" autocomplete="NControl" placeholder="" readonly />
+
+                        <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
+                    @endif
                      
                 
               </div>
@@ -81,17 +88,19 @@
                 <x-input-error class="mt-2" :messages="$errors->get('ip_maquina')"/>
               </div>
 
-              <div class="md:col-span-3">
+               <div class="md:col-span-3">
+                <label for="nombre_equipo">Nombre Equipo</label>
+                <x-text-input type="text" name="nombre_equipo" id="nombre_equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{ Auth()->user()->nombre_equipo }}" placeholder=""  />
+                <x-input-error class="mt-2" :messages="$errors->get('nombre_equipo')"/>
+               </div>
+
+              <div class="md:col-span-2">
                 <label for="address">Fecha solicitud</label>
                 <x-text-input type="datetime"  name="FechaEntrada" id="FechaEntrada" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value="{{ $soporte->FechaEntrada }}" placeholder="" readonly />
                   <x-input-error class="mt-2" :messages="$errors->get('FechaEntrada')"/>
               </div>
 
-              <div class="md:col-span-2">
-                <label for="address">Fecha / Hora Salida</label>
-                <x-text-input type="datetime"  name="FechaSalida" id="FechaSalida" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value=" {{$dates}}" placeholder="" readonly />
-                  <x-input-error class="mt-2" :messages="$errors->get('FechaSalida')"/>
-              </div>
+
 
             <div class="md:col-span-3">
                 <label for="address">Tipo de Falla</label>
@@ -114,12 +123,6 @@
                     <x-input-error class="mt-2" :messages="$errors->get('Motivo_Falla')"/>
               </div>
 
-              <div class="md:col-span-3">
-                <label for="address">Solucion / Recomendaciones</label>
-                    <textarea name="Solucion" id="Solucion" cols="79" rows="3">{{ $soporte->Solucion }}   </textarea>
-                    <x-input-error class="mt-2" :messages="$errors->get('Solucion')"/>
-              </div>
-
               <div class="md:col-span-5">
                 <label for="Telefono">Técnico</label>
                 <x-text-input type="text" name="tecnico" id="tecnico" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{Auth()->user()->name}} {{ Auth()->user()->surname }}" autocomplete="tecnico"  placeholder="" readonly />
@@ -128,9 +131,9 @@
 
             <div class="md:col-span-5 text-center">
               <div class="inline-flex items-end" >
-                <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Guardar</button>
+                <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Actualizar</button>
 
-                <div ><a href="/Soportes"><button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" >Regresar</button></a></div>
+                <div ><a href="/EstatusSoporte"><button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" >Regresar</button></a></div>
 
               </div>
             </div>

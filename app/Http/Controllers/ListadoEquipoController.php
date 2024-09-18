@@ -11,9 +11,11 @@ use Illuminate\View\View;
 use App\Models\Departamentos;
 use App\Models\TipoFallas;
 use App\Models\Equipos;
+use App\Models\MarcaEquipos;
 use App\Models\User;
 use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
+
 class ListadoEquipoController extends Controller
 {
 
@@ -50,6 +52,7 @@ class ListadoEquipoController extends Controller
             $ListadoEquipo = new Equipos();
             $Departamentos = Departamentos::where('id','<=',21)->get();
             $machineName = gethostname();
+            // $Marca = MarcaEquipos::all();
             return view('Listado.ListadoEquipos.PB.createPB',compact('Departamentos','machineName','ListadoEquipo'));
 
     }

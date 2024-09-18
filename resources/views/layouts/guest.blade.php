@@ -21,6 +21,7 @@
     </header>
     <body class="font-sans text-gray-900 antialiased ">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+            <br><br>
             <div>
                 <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Sistema de Gestión de Soporte</span></h1>
                 <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400"></p>

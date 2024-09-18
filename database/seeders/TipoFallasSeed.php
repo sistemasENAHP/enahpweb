@@ -93,13 +93,13 @@ DB::table('tipo_fallas')->insert([
        
 ]);
 
-DB::table('tipo_fallas')->insert([
+// DB::table('tipo_fallas')->insert([
 
-    'Tipo_Falla'=>'Problema con el Disco Duro',
-     'created_at'=>now(),
-     'updated_at'=>now()                   
+//     'Tipo_Falla'=>'Problema con el Disco Duro',
+//      'created_at'=>now(),
+//      'updated_at'=>now()                   
        
-]);
+// ]);
 
 DB::table('tipo_fallas')->insert([
 
@@ -134,30 +134,30 @@ DB::table('tipo_fallas')->insert([
        
 ]);
 
-DB::table('tipo_fallas')->insert([
+// DB::table('tipo_fallas')->insert([
 
-    'Tipo_Falla'=>'Problema con la fuente de Poder',
-     'created_at'=>now(),
-     'updated_at'=>now()                   
+//     'Tipo_Falla'=>'Problema con la fuente de Poder',
+//      'created_at'=>now(),
+//      'updated_at'=>now()                   
        
-]);
+// ]);
 
-DB::table('tipo_fallas')->insert([
+// DB::table('tipo_fallas')->insert([
 
-    'Tipo_Falla'=>'Problema de tarjeta de video',
-     'created_at'=>now(),
-     'updated_at'=>now()                   
+//     'Tipo_Falla'=>'Problema de tarjeta de video',
+//      'created_at'=>now(),
+//      'updated_at'=>now()                   
        
-]);
+// ]);
 
 
-DB::table('tipo_fallas')->insert([
+// DB::table('tipo_fallas')->insert([
 
-    'Tipo_Falla'=>'Problema de tarjeta de red',
-     'created_at'=>now(),
-     'updated_at'=>now()                   
+//     'Tipo_Falla'=>'Problema de tarjeta de red',
+//      'created_at'=>now(),
+//      'updated_at'=>now()                   
        
-]);
+// ]);
 
 
 DB::table('tipo_fallas')->insert([
@@ -176,9 +176,18 @@ DB::table('tipo_fallas')->insert([
        
 ]);
 
+
 DB::table('tipo_fallas')->insert([
 
-    'Tipo_Falla'=>'Problema con Route wifi',
+    'Tipo_Falla'=>'Problema con el SIGECOF',
+     'created_at'=>now(),
+     'updated_at'=>now()                   
+       
+]);
+
+DB::table('tipo_fallas')->insert([
+
+    'Tipo_Falla'=>'Problema con  wifi',
      'created_at'=>now(),
      'updated_at'=>now()                   
        

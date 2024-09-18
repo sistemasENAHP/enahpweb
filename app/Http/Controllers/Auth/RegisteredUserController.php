@@ -22,7 +22,8 @@ class RegisteredUserController extends Controller
     {
         $Departamentos = Departamentos::all();
         $ip = $request->ip();
-        return view('auth.register',compact('Departamentos','ip'));
+          $machineName = gethostname();
+        return view('auth.register',compact('Departamentos','ip','machineName'));
     }
 
 
@@ -46,14 +47,8 @@ class RegisteredUserController extends Controller
         $roles = $request->role_id = 4;
         $user = User::create($users);
         $user->assignRole($roles);
-
-        // $user = User::create([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password),
-        // ]);
-
-        event(new Registered($user));
+       // dd($users);
+       //  event(new Registered($user));
 
         Auth::login($user);
 

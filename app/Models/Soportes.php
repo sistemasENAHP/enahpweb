@@ -50,7 +50,7 @@ class Soportes extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['estatus_id','departamento_id', 'tipo_falla_id', 'NControl', 'Nombre', 'Apellidos', 'Cedula', 'Correo', 'Telefono', 'ip_equipo','FechaEntrada','FechaSalida', 'Motivo_Falla', 'Solucion', 'Tecnico'];
+    protected $fillable = ['estatus_id','departamento_id', 'tipo_falla_id', 'NControl', 'Nombre', 'Apellidos', 'Cedula', 'Correo', 'Telefono', 'ip_equipo','nombre_equipo','FechaEntrada','FechaSalida', 'Motivo_Falla', 'Solucion', 'Tecnico'];
 
 
 
@@ -89,6 +89,14 @@ class Soportes extends Model
         'Tecnico'=> $this->Tecnico,
     ];
 }
+
+
+   public  function incrementContador(){
+
+
+         $this->increment('NControl');
+
+    } 
 
 
 //     public function toSearchableArray1()

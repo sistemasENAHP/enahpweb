@@ -83,6 +83,7 @@
                         $('#Nombre').val(datas.name);
                         $('#Apellidos').val(datas.surname);
                         $('#Cedula').val(datas.identification_card);
+                       $('#NombreEquipo').val(datas.nombre_equipo);
                         if (datas.ip_equipo > '10.2.2.0' && datas.ip_equipo < '10.2.2.300' ) {
                         
                           $('#ip_escuela').val(datas.ip_equipo);
@@ -109,6 +110,7 @@
             $('#Cedula').val('');
             $('#ip_ministerio').val('');
             $('#ip_escuela').val(''); 
+            $('#NombreEquipo').val('');
 
          }
         

@@ -2,7 +2,10 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}" id="validacion">
         @csrf
-
+        {{--   <div>
+              <p class="text-white">hola</p>
+          </div>
+          <br> --}}
         <!-- Name -->
              <div>
             <x-input-label for="name" :value="__('Departamento')" />
@@ -38,20 +41,24 @@
         </div>
 
          <div>
-            <x-input-label for="user" :value="__('Usuario')"/>
-        <x-text-input id="user" name="user" type="text" class="mt-1 block w-full"  autocomplete="user" placeholder=""/>
-        <x-input-error class="mt-2" :messages="$errors->get('user')"/>
+            <x-input-label for="user" :value="__('Telefono')"/>
+        <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full"  autocomplete="telefono" placeholder=""/>
+        <x-input-error class="mt-2" :messages="$errors->get('telefono')"/>
         </div>
 
         <div>
-           <x-input-label for="user" :value="__('Telefono')"/>
-         <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full"  autocomplete="user" placeholder="telefono"/>
-        <x-input-error class="mt-2" :messages="$errors->get('telefono')"/>
+           <x-input-label for="user" :value="__('Celular')"/>
+         <x-text-input id="telefonoI" name="telefonoI" type="text" class="mt-1 block w-full"  autocomplete="telefonoI" placeholder=""/>
+        <x-input-error class="mt-2" :messages="$errors->get('telefonoI')"/>
         </div>
 
         <div>
        {{-- <x-input-label for="ip_equipo" :value="__('ip equipo')"/> --}}
        <x-text-input id="ip_equipo" name="ip_equipo" type="hidden" class="mt-1 block w-full" value="{{$ip }}" autocomplete="user" placeholder="ip_equipo"/>
+       <x-input-error class="mt-2" :messages="$errors->get('ip_equipo')"/>
+        </div>
+            <div>
+          <x-text-input id="nombre_equipo" name="nombre_equipo" type="hidden" class="mt-1 block w-full" value="{{$machineName }}" autocomplete="nombre_equipo" placeholder="nombre_equipo"/>
        <x-input-error class="mt-2" :messages="$errors->get('ip_equipo')"/>
         </div>
                               
@@ -90,9 +97,33 @@
                 {{ __('Ya estas registrado?') }}
             </a>
 
-            <x-primary-button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+            <x-primary-button type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                 {{ __('Registrar') }}
             </x-primary-button>
         </div>
     </form>
 </x-guest-layout>
+{{-- <script>
+
+    $(document).ready(function(){
+
+              $('#validacion').on('submit', function(e) {
+                e.preventDefault();
+                 Swal.fire({
+                        position: "top-center",
+                        icon: "info",
+                        title:'Se ha registrado exitosamente!',
+                        showConfirmButton: false,
+                        timer: 5000
+
+                    }).then((result) => {
+
+                        location.reload();
+                        tr.hide();
+
+                    })            });
+
+        });
+
+
+</script> --}}

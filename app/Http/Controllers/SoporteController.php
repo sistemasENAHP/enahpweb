@@ -40,7 +40,7 @@ class SoporteController extends Controller
 
         $soportes = Soportes::search(request('search'))->paginate();
 
-        return view('soporte.index', compact('soportes'))->with('i', ($request->input('page', 1) - 1) * $soportes->perPage());
+        return view('soporte.index', compact('soportes'));
     }
 
     /**
@@ -49,7 +49,9 @@ class SoporteController extends Controller
     public function create(Request $request): View
     {
         $Fecha = Carbon::now();
+
         $soporte = new Soportes();
+        // $soporte->increment('NControl');
         // $date = Carbon::now();
         $ip = $request->ip();
         $Departamentos = Departamentos::all();
@@ -63,7 +65,7 @@ class SoporteController extends Controller
         $NControl = Soportes::orderBy('NControl','desc')->first();
 
 
-        return view('soporte.create', compact('soporte','Departamentos','TipoFalla','ip','date','hostname','macAddress','NControl'));
+        return view('soporte.create', compact('soporte','Departamentos','TipoFalla','ip','date','hostname','macAddress','NControl','machineName'));
     }
 
     /**
@@ -84,6 +86,7 @@ class SoporteController extends Controller
           $soporte->Telefono = $request->Telefono;
           $soporte->Correo = $request->Correo;
           $soporte->ip_equipo =  $request->ip_maquina;
+           $soporte->nombre_equipo =  $request->nombre_equipo;
           $soporte->FechaEntrada = $request->FechaEntrada;
           $soporte->Motivo_Falla = $request->Motivo_Falla;
           $soporte->Solucion = $request->Solucion;
@@ -145,15 +148,15 @@ class SoporteController extends Controller
           $soporte->Cedula = $request->Cedula;
           $soporte->Telefono = $request->Telefono;
           $soporte->Correo = $request->Correo;
-          // $soporte->ip_equipo =  $request->ip_maquina;
-        //   $soporte->FechaEntrada = $request->FechaEntrada;
-        //   $soporte->FechaSalida = $request->FechaSalida;
+          $soporte->nombre_equipo =  $request->nombre_equipo;
+          $soporte->FechaEntrada = $request->FechaEntrada;
+          // $soporte->FechaSalida = $request->FechaSalida;
           $soporte->Motivo_Falla = $request->Motivo_Falla;
           $soporte->Solucion = $request->Solucion;
           $soporte->Tecnico = $request->tecnico;
           $soporte->update();
 
-        return Redirect('Soportes')->with('success', 'Soporte created successfully.');
+        return Redirect('/EstatusSoporte')->with('success', 'Soporte created successfully.');
     }
 
     public function destroy($id): RedirectResponse

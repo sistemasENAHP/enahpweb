@@ -26,11 +26,12 @@ class DatabaseSeeder extends Seeder
 
 
         ]);
+         $this->call([PisosSeeder::class]);
         $this->call([DepartamentosSeeder::class]);
         $this->call([RolesTableSeeder::class]);
         $this->call([UsersSeeder::class]);
         $this->call([TipoFallasSeed::class]);
-        $this->call([PisosSeeder::class]);
+       
         $this->call([ListadoPuntosSeeder::class]);
         $this->call([ListadoipSeed::class]);
         $this->call([EstatusSeeder::class]);

@@ -24,7 +24,7 @@ class UserRequest extends FormRequest
         return [
 			'name' => 'required|string',
 			'surname' => 'required|string',
-			'user' => 'required|string',
+			// 'user' => 'required|string',
 			'email' => 'required|string',
             'identification_card'=>'numeric|required|unique:users|min:8|max:99999999',
         ];
@@ -45,9 +45,9 @@ class UserRequest extends FormRequest
             // 'Telefono2.required' =>'La :attribute es obligatorio',
             'EstadoCivil.required' =>'La :attribute es obligatorio',
             'Direccion.required' =>'La :attribute es obligatorio',
-            'Correo.required'=>'El :attribute es obligatorio',
-            'Correo.email'=>'El :attribute debe ser un correo',
-            'Correo.unique'=>'La :attribute ya se encuentra registrado',
+            'email.required'=>'El :attribute es obligatorio',
+            'email.email'=>'El :attribute debe ser un correo',
+            'email.unique'=>'La :attribute ya se encuentra registrado',
             'Motivo_Consulta.required'=>'El :attribute es obligatorio',
 
 

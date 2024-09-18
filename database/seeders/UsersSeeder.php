@@ -16,13 +16,14 @@ class UsersSeeder extends Seeder
     public function run(): void
     {
         User::create([
-             'departamento_id' => 32, 
+             'departamento_id' => 31, 
             'name' => 'Administrador',
             'surname' => 'Administrador',
             'identification_card' => 123456,
-            'user' => 'Administrador',
             'ip_equipo' => '10.2.2.186',
+            'nombre_equipo' => 'sistema-00',
             'telefono' => '0416154545',
+            'telefonoI'=> '0416154541',
             'email' => 'Administrador@enahp.com',
             'email_verified_at' => now(),
             'password' => Hash::make('enahp*2024'),
@@ -32,13 +33,14 @@ class UsersSeeder extends Seeder
         ])->assignRole('Administrador');
 
          User::create([
-             'departamento_id' => 32, 
+             'departamento_id' => 31, 
             'name' => 'Ivan',
             'surname' => 'Jaspe',
             'identification_card' => 123456,
-            'user' => 'Jaspe',
             'ip_equipo' => '10.2.2.188',
+            'nombre_equipo' => 'sistema-04',
             'telefono' => '0416154545',
+            'telefonoI' => '0416154543',
             'email' => 'Jaspe@enahp.com',
             'email_verified_at' => now(),
             'password' => Hash::make('enahp*2024'),
@@ -48,13 +50,14 @@ class UsersSeeder extends Seeder
         ])->assignRole('Tecnico');
 
            User::create([
-            'departamento_id' => 32, 
+            'departamento_id' => 31, 
             'name' => 'Hamilton ',
             'surname' => 'Leon',
             'identification_card' => 123456,
-            'user' => 'Hamilton ',
             'ip_equipo' => '10.2.2.187',
+            'nombre_equipo' => 'sistema-05',
             'telefono' => '0416154545',
+            'telefonoI' => '0416154548',
             'email' => 'hamilton@enahp.com',
             'email_verified_at' => now(),
             'password' => Hash::make('enahp*2024'),

@@ -18,7 +18,7 @@
 {{-- <link rel="stylesheet" href="{{asset('Boostraps/css/bootstrap.css')}}"> --}}
 
 
-<body class="flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen" onload="anima_texto()">
 
     <header class="bg-eaeeee shadow-md fixed w-full z-50">
         <div class="flex justify-between items-center">
@@ -67,7 +67,7 @@
             <li><a href="{{ route('dashboard') }}" class="block">Inicio</a></li>
             @endcan
             @can('admin.soporte.create')
-            <li><a href="/Soportes/create" class="block">Pedir Soporte</a>
+            <li><a href="/Soportes/create" class="block">Solicitar Soporte</a>
                  <ul class="ml-4 mt-1 space-y-1">
              <li><a href="/EstatusSoporte" class="block">Estatus Soporte</a></li>
 
@@ -85,11 +85,15 @@
                         <a href="/Espera" class="block">Equipo En espera</a>
                      </li>
                      <li>
-                        <a href="/Reparacion" class="block">Equipo Reparado</a>
+                        <a href="/Reparacion" class="block">Equipo Reparando</a>
+                     </li>
+                     <li>
+                        <a href="/Pendiente" class="block">Equipo Pendiente</a>
                      </li>
                      <li>
                         <a href="/Terminado" class="block">Equipo Terminado</a>
                      </li>
+                     
                    </ul>
                  </li>
               </ul>

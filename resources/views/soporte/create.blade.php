@@ -63,9 +63,15 @@
                 <x-input-error class="mt-2" :messages="$errors->get('Telefono')"/>
               </div>
 
+              {{-- <div class="md:col-span-3">
+                  <label for="departamento_id">Departamento</label>
+                   <x-text-input type="text" name="departamento_id" id="departamento_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{Auth()->user()->departamentos->Departamento}}" autocomplete="departamento_id"  placeholder="Departamentos" readonly />
+                    <x-input-error class="mt-2" :messages="$errors->get('departamento_id')"  />
+              </div> --}}
+
             <div class="md:col-span-3">
               <label for="departamento_id">Departamento</label>
-              <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly="">
                 {{$sel = 0}}
                 @foreach($Departamentos as $dep)
                 @if($dep->id == Auth()->user()->departamentos->id)
@@ -94,13 +100,19 @@
 
               @endif
 
-              <div class="md:col-span-3">
+               <div class="md:col-span-3">
+                <label for="nombre_equipo">Nombre Equipo</label>
+                <x-text-input type="text" name="nombre_equipo" id="nombre_equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{ Auth()->user()->nombre_equipo }}" placeholder=""  />
+                <x-input-error class="mt-2" :messages="$errors->get('nombre_equipo')"/>
+               </div>
+
+              <div class="md:col-span-2">
                 <label for="address">Fecha / Hora</label>
                 <x-text-input type="datetime"  name="FechaEntrada" id="FechaEntrada" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value="{{$date,old('FechaEntrada',$soporte?->FechaEntrada)}}" placeholder="" readonly />
                   <x-input-error class="mt-2" :messages="$errors->get('FechaEntrada')"/>
               </div>
 
-            <div class="md:col-span-5">
+            <div class="md:col-span-3">
                 <label for="address">Tipo de Falla</label>
                 <select name="tipo_falla_id" id="tipo_falla_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                    {{$sel = 0}}

@@ -27,18 +27,19 @@
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
          @if($soportes->count())
-        <table id="myTable" class=" w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table table-fixed w-3/4 ">
+        <table id="myTable" class=" w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  table-auto w-3/4 ">
             <caption class="p-5 text-lg font-semibold text-center rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                  Equipos En Espera
                 <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400 "></p>
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th  class="px-6 py-3 text-center text-xs" style="font-size: 95%;">id</th>
+                  
                     <th scope="col" class="px-6 py-3 text-center text-xs" style="font-size: 95%;">N° Control</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Nombre-Apellido</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Cedula</th>
-                    <th scope="col" class="">Departamento</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Ubicacion</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Departamento</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs" style="font-size: 95%;">ip</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Motivo de Falla</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Fecha Solicitud</th>
@@ -54,10 +55,11 @@
                  @foreach ($soportes as $soporte)
                  @if($soporte->estatus_id == 1)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" id="resultado">
-                    <td class="px-3 py-4 text-sm text-gray-500  text-center text-black" style="font-size: 95%;">{{ $soporte->id }}</td>
+                   
                     <td class=" px-3 py-4 text-sm text-gray-500  text-center"  style="font-size: 95%;">{{ $soporte->NControl }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center" style="font-size: 95%;">{{ $soporte->Nombre }}  - {{ $soporte->Apellidos }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center" style="font-size: 95%;">{{ $soporte->Cedula }}</td>
+                     <td  scope="col" class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->departamentos->pisos->Pisos }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center" style="font-size: 95%;">{{ $soporte->departamentos->Departamento}}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center" style="font-size: 95%;">{{ $soporte->ip_equipo }}</td>
                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" style="font-size: 95%;">{{ $soporte->Motivo_Falla }}</td>
@@ -92,7 +94,7 @@
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th  class="px-6 py-3 text-center text-xs" >id</th>
+                    
                     <th scope="col" class="px-6 py-3 text-center text-xs" >N° Control</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Nombre-Apellido</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Cedula</th>
