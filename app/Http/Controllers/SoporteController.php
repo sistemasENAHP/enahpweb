@@ -96,7 +96,7 @@ class SoporteController extends Controller
                     broadcast(new SoporteEvento($soporte));
                     $soporte->notify(new SoporteNotificacion("hola"));
 
-        return Redirect('/EstatusSoporte')->with('success', 'Soporte created successfully.');
+        return Redirect('/Soportes/create')->with('success', 'Soporte created successfully.');
     }
 
     /**
@@ -156,7 +156,7 @@ class SoporteController extends Controller
           $soporte->Tecnico = $request->tecnico;
           $soporte->update();
 
-        return Redirect('/EstatusSoporte')->with('success', 'Soporte created successfully.');
+        return Redirect('/Soportes/create')->with('success', 'Soporte created successfully.');
     }
 
     public function destroy($id): RedirectResponse

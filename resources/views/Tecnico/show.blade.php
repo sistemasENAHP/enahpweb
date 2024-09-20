@@ -52,15 +52,15 @@
                                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $soporte->Telefono }}</dd><input type="hidden" name="Telefono" value="{{ $soporte->Telefono }}">
                                         </div>
                                         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                            <dt class="text-sm font-medium leading-6 text-gray-900">Fecha Llegada</dt>
+                                            <dt class="text-sm font-medium leading-6 text-gray-900">Fecha Solicitud</dt>
                                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $soporte->FechaEntrada }}</dd><input type="hidden" name="FechaEntrada" value="{{ $soporte->FechaEntrada }}">
                                         </div>
 
-                                         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                         {{-- <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                             <dt class="text-sm font-medium leading-6 text-gray-900">Fecha Salida</dt>
                                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $soporte->FechaSalida }}</dd><input type="hidden" name="FechaSalida" value="{{ $soporte->FechaSalida }}">
                                         </div>
-
+ --}}
                                 <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                     <dt class="text-sm font-medium leading-6 text-gray-900">Departamento</dt>
                                     <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $soporte->departamentos->Departamento }}</dd><select id="departamento_id" name="departamento_id" style="display: none;">

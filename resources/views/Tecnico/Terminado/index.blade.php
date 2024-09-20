@@ -29,7 +29,7 @@
          @if($soportes->count())
         <table id="myTable" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <caption class="p-5 text-lg font-semibold text-center rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                 Equipos Terminado
+                Soporte culminado
                 <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400 "></p>
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -53,7 +53,7 @@
 
             <tbody>
                  @foreach ($soportes as $soporte)
-                 @if($soporte->Tecnico == auth()->user()->name. " " .auth()->user()->surname and $soporte->estatus_id == 3)
+                 @if($soporte->Tecnico == auth()->user()->name. " " .auth()->user()->surname and $soporte->estatus_id == 4)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" id="resultado">
                    
                     <td class=" px-2 py-3 text-sm text-gray-500  text-center" style="font-size: 90%;">{{ $soporte->NControl }}</td>
@@ -89,7 +89,7 @@
 
          <table id="myTable" class=" w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table table-fixed w-3/4 ">
             <caption class="p-5 text-lg font-semibold text-center rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                 Soporte
+                    Soporte Culminado
                 <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400 "></p>
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

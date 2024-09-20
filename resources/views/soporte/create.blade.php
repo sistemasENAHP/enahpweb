@@ -63,13 +63,15 @@
                 <x-input-error class="mt-2" :messages="$errors->get('Telefono')"/>
               </div>
 
-              {{-- <div class="md:col-span-3">
-                  <label for="departamento_id">Departamento</label>
-                   <x-text-input type="text" name="departamento_id" id="departamento_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{Auth()->user()->departamentos->Departamento}}" autocomplete="departamento_id"  placeholder="Departamentos" readonly />
-                    <x-input-error class="mt-2" :messages="$errors->get('departamento_id')"  />
-              </div> --}}
+           <div class="md:col-span-3">
+                <label for="departamento_id">Departamento</label>
+                <x-text-input type="hidden" name="departamento_id" id="departamento_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('departamento_id',Auth()->user()->departamentos->id) }}" autocomplete="departamento_id"  placeholder="" />
+                <x-text-input type="text" name="" id="" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('departamento_id',Auth()->user()->departamentos->Departamento) }}" autocomplete=""  placeholder=""  readonly/>
+                <x-input-error class="mt-2" :messages="$errors->get('')"/>
+              </div>
 
-            <div class="md:col-span-3">
+
+           {{--  <div class="md:col-span-3">
               <label for="departamento_id">Departamento</label>
               <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly="">
                 {{$sel = 0}}
@@ -82,7 +84,7 @@
                         <option value="{{$dep->id}}" {{$sel}} >{{$dep->Departamento}}</option>
                 @endforeach
               </select>
-            </div>
+            </div> --}}
 
 
             @if(!$soporte->ip_equipo)
@@ -140,7 +142,9 @@
               <div class="inline-flex items-end" >
                 <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Guardar</button>
 
-                <div ><a href="/Soportes"><button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" >Regresar</button></a></div>
+                 {{-- <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Actualizar</button> --}}
+
+                {{-- <div ><a href="/Soportes"><button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" >Regresar</button></a></div> --}}
 
               </div>
             </div>

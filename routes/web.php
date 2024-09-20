@@ -64,6 +64,11 @@ Route::get('/Reparacion/{id}/edit',[TecnicoController::class,'TecnicoReparacionE
 Route::PUT('/ActualizarReparados/{id}',[TecnicoController::class,'TecnicoReparacionActualizar'])->name('ActualizarReparados.TecnicoReparacionActualizar');
 
 
+Route::get('/Pendiente',[TecnicoController::class,'TecnicoPendiente'])->name('Pendiente');
+Route::get('/Pendiente/{id}/edit',[TecnicoController::class,'TecnicoPendienteEditar'])->name('Pendiente.edit');
+Route::PUT('/ActualizarPendiente/{id}',[TecnicoController::class,'TecnicoPendienteActualizar'])->name('ActualizarEquipos.TecnicoPendienteActualizar');
+
+
 Route::get('/Terminado',[TecnicoController::class,'TecnicoTerminado'])->name('Terminado');
 Route::get('/Terminado/{id}/edit',[TecnicoController::class,'TecnicoTerminadoEditar'])->name('Terminado.edit');
 Route::PUT('/ActualizarTerminado/{id}',[TecnicoController::class,'TecnicoTerminadoActualizar'])->name('ActualizarEquipos.TecnicoTerminadoActualizar');

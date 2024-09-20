@@ -27,6 +27,14 @@ class EstatusSeeder extends Seeder
 
         ]);
 
+
+            DB::table('estatuses')->insert([
+            'Estatus' => 'Pendiente',
+            'created_at' => now(),
+            'updated_at' => now()
+
+        ]);
+
         DB::table('estatuses')->insert([
             'Estatus' => 'Terminado',
             'created_at' => now(),

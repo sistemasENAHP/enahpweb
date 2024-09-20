@@ -68,10 +68,6 @@
             @endcan
             @can('admin.soporte.create')
             <li><a href="/Soportes/create" class="block">Solicitar Soporte</a>
-                 <ul class="ml-4 mt-1 space-y-1">
-             <li><a href="/EstatusSoporte" class="block">Estatus Soporte</a></li>
-
-                </ul>
 
             </li>
             @endcan
@@ -82,16 +78,16 @@
                     <a href="/Tecnico" class="block">Técnico</a>
                    <ul class="ml-4 mt-1 space-y-1" role="group">
                      <li>
-                        <a href="/Espera" class="block">Equipo En espera</a>
+                        <a href="/Espera" class="block">Soporte En espera</a>
                      </li>
                      <li>
-                        <a href="/Reparacion" class="block">Equipo Reparando</a>
+                        <a href="/Reparacion" class="block">Soporte Requerido</a>
                      </li>
                      <li>
-                        <a href="/Pendiente" class="block">Equipo Pendiente</a>
+                        <a href="/Pendiente" class="block">Soporte Pendiente</a>
                      </li>
                      <li>
-                        <a href="/Terminado" class="block">Equipo Terminado</a>
+                        <a href="/Terminado" class="block">Soporte Culminado</a>
                      </li>
                      
                    </ul>

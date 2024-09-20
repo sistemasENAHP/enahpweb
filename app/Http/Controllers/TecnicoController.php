@@ -14,6 +14,7 @@ use App\Models\TipoFallas;
 use Jenssegers\Agent\Agent;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Estatus;
 use App\Events\SoporteEvento;
 use App\Events\NotificacionesEvento;
 class TecnicoController extends Controller
@@ -274,9 +275,10 @@ class TecnicoController extends Controller
         $dates = $Fecha->format('d-m-Y h:i:s A');
         $NControl = Soportes::orderBy('NControl','desc')->first();
         $id = Soportes::all();
+        $Estatus = Estatus::all();
 
 
-        return view('Tecnico.Reparando.edit', compact('soporte','Departamentos','TipoFalla','ip','dates','NControl','id'));
+        return view('Tecnico.Reparando.edit', compact('soporte','Departamentos','TipoFalla','ip','dates','NControl','id','Estatus'));
 
 
 
@@ -306,6 +308,68 @@ class TecnicoController extends Controller
          broadcast(new NotificacionesEvento($soporte));
 
        return Redirect('Reparacion')->with('success', 'Soporte created successfully.');
+
+
+    }
+
+
+
+        public function TecnicoPendiente(){
+
+
+
+        $soportes = Soportes::search(request('search'))->paginate();
+
+
+        return view('Tecnico.Pendientes.index', compact('soportes'));
+
+    }
+
+
+    public function TecnicoPendienteEditar(Request $request,$id){
+
+
+        $soporte = Soportes::find($id);
+        $Fecha = Carbon::now();
+        $ip = $request->ip();
+        $Departamentos = Departamentos::all();
+        $TipoFalla = TipoFallas::all();
+        $dates = $Fecha->format('d-m-Y h:i:s A');
+        $NControl = Soportes::orderBy('NControl','desc')->first();
+        $id = Soportes::all();
+        $Estatus = Estatus::all();
+
+
+        return view('Tecnico.Pendientes.edit', compact('soporte','Departamentos','TipoFalla','ip','dates','NControl','id','Estatus'));
+
+
+
+    }
+
+
+    public function TecnicoPendienteActualizar(Request $request,$id){
+
+        $Fecha = Carbon::now();
+        $soporte = Soportes::find($id);
+        $soporte->estatus_id = $request->estatus_id;
+         $soporte->departamento_id = $request->departamento_id;
+         $soporte->tipo_falla_id = $request->tipo_falla_id;
+         $soporte->NControl = $request->NControl;
+         $soporte->Nombre = $request->Nombre;
+         $soporte->Apellidos = $request->Apellidos;
+         $soporte->Cedula = $request->Cedula;
+         $soporte->Telefono = $request->Telefono;
+         $soporte->Correo = $request->Correo;
+         // $soporte->ip_equipo =  $request->ip_maquina;
+       //   $soporte->FechaEntrada = $request->FechaEntrada;
+         $soporte->FechaSalida = $request->FechaSalida;
+         $soporte->Motivo_Falla = $request->Motivo_Falla;
+         $soporte->Solucion = $request->Solucion;
+         $soporte->Tecnico = $request->tecnico;
+         $soporte->update();
+         broadcast(new NotificacionesEvento($soporte));
+
+       return Redirect('Pendiente')->with('success', 'Soporte created successfully.');
 
 
     }

@@ -89,7 +89,7 @@
 
          <table id="myTable" class=" w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table table-fixed w-3/4 ">
             <caption class="p-5 text-lg font-semibold text-center rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                 Soporte
+               Equipos En Espera
                 <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400 "></p>
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -117,7 +117,7 @@
                        <td class="text-center"></td>
                       <td class="text-center">  <div class="" role="alert">
                                 <strong class="text-red-500">!Error! No existe ningun Registro Vuelve a Intentar Nuevamente!</strong>
-                            </div><a href="/Tecnico" id="editar" name="editar" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Regresar') }}</a> </td>
+                            </div><a href="/Espera" id="editar" name="editar" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Regresar') }}</a> </td>
                       <td class="text-center"></td>
                       <td class="text-center"></td>
 
