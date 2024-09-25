@@ -18,14 +18,16 @@
                     <div class="space-y-6">
     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
         <div class="text-gray-600">
-          <p class="font-medium text-lg">Solicitud de Soporte</p>
+          <p class="font-medium text-lg">Soporte Pendiente</p>
           <p></p>
         </div>
         <div class="lg:col-span-2">
           <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
             <div class="md:col-span-1" >
                 <label for="NControl">N° Control</label>
-                     <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('NControl', substr(Auth()->user()->name,0,1).substr(Auth()->user()->surname,0,1). '-' .substr($soporte?->NControl , -3))"   autocomplete="NControl" placeholder="" readonly    />
+                     <x-text-input type="text" name="NControlTecnico" id="NControlTecnico" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Nombre', $soporte?->NControlTecnico)"   autocomplete="NControl" placeholder="" readonly    />
+
+                        <x-text-input type="hidden" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Nombre', $soporte?->NControl)"   autocomplete="NControl" placeholder="" readonly    />
 
                 <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
 
@@ -60,20 +62,12 @@
                 <x-input-error class="mt-2" :messages="$errors->get('Telefono')"/>
               </div>
 
-            <div class="md:col-span-3">
-              <label for="departamento_id">Departamento</label>
-              <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                {{$sel = 0}}
-                @foreach($Departamentos as $dep)
-                @if($dep->id == $soporte->departamento_id)
-                {{$sel = 'selected'}}
-                @else
-                {{$sel = ''}}
-                @endif
-                        <option value="{{$dep->id}}" {{$sel}} >{{$dep->Departamento}}</option>
-                @endforeach
-              </select>
-            </div>
+              <div class="md:col-span-3">
+                <label for="departamento_id">Departamento</label>
+                <x-text-input type="hidden" name="departamento_id" id="departamento_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('departamento_id',Auth()->user()->departamentos->id) }}" autocomplete="departamento_id"  placeholder="" />
+                <x-text-input type="text" name="" id="" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('departamento_id',Auth()->user()->departamentos->Departamento) }}" autocomplete=""  placeholder=""  readonly/>
+                <x-input-error class="mt-2" :messages="$errors->get('')"/>
+              </div>
 
             <div class="md:col-span-2">
                 <label for="ip_maquina">Ip de la maquina</label>
@@ -81,19 +75,25 @@
                 <x-input-error class="mt-2" :messages="$errors->get('ip_maquina')"/>
               </div>
 
-              <div class="md:col-span-3">
+                <div class="md:col-span-3">
+                <label for="nombre_equipo">Nombre Equipo</label>
+                <x-text-input type="text" name="nombre_equipo" id="nombre_equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{ Auth()->user()->nombre_equipo }}" placeholder=""  />
+                <x-input-error class="mt-2" :messages="$errors->get('nombre_equipo')"/>
+               </div>
+
+              <div class="md:col-span-2">
                 <label for="address">Fecha solicitud</label>
                 <x-text-input type="datetime"  name="FechaEntrada" id="FechaEntrada" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value="{{ $soporte->FechaEntrada }}" placeholder="" readonly />
                   <x-input-error class="mt-2" :messages="$errors->get('FechaEntrada')"/>
               </div>
 
-              <div class="md:col-span-2">
+              <div class="md:col-span-3">
                 <label for="address">Fecha / Hora Salida</label>
                 <x-text-input type="datetime"  name="FechaSalida" id="FechaSalida" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value=" {{$dates}}" placeholder="" readonly />
                   <x-input-error class="mt-2" :messages="$errors->get('FechaSalida')"/>
               </div>
 
-            <div class="md:col-span-3">
+                <div class="md:col-span-5">
                 <label for="address">Tipo de Falla</label>
                 <select name="tipo_falla_id" id="tipo_falla_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     {{$sel = 0}}
@@ -107,6 +107,8 @@
                   @endforeach
                 </select>
               </div>
+
+          
 
               <div class="md:col-span-3">
                 <label for="address">Especifique el Motivo de la falla</label>

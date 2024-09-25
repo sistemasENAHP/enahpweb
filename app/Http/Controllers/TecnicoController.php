@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tecnico;
+use App\Models\Tecnicos;
 use App\Models\Soportes;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -40,7 +40,6 @@ class TecnicoController extends Controller
 
         return view('Tecnico.index', compact('soportes'));
         
-        // return view('Tecnico.index');
     }
 
     /**
@@ -289,23 +288,37 @@ class TecnicoController extends Controller
 
         $Fecha = Carbon::now();
         $soporte = Soportes::find($id);
-        $soporte->estatus_id = $request->estatus_id;
+        if( $request->input('Pendiente') == 3){
+            
+             $soporte->estatus_id = 3;
+        
+        }else if($request->input('Pendiente') == false){
+
+            $soporte->estatus_id = 4;
+             broadcast(new NotificacionesEvento($soporte));
+        }
+        // $soporte->estatus_id = $request->estatus_id;
          $soporte->departamento_id = $request->departamento_id;
          $soporte->tipo_falla_id = $request->tipo_falla_id;
          $soporte->NControl = $request->NControl;
+         $soporte->NControlTecnico = $request->NControlTecnico;
          $soporte->Nombre = $request->Nombre;
          $soporte->Apellidos = $request->Apellidos;
          $soporte->Cedula = $request->Cedula;
          $soporte->Telefono = $request->Telefono;
          $soporte->Correo = $request->Correo;
          // $soporte->ip_equipo =  $request->ip_maquina;
-       //   $soporte->FechaEntrada = $request->FechaEntrada;
+         $soporte->FechaEntrada = $request->FechaEntrada;
          $soporte->FechaSalida = $request->FechaSalida;
          $soporte->Motivo_Falla = $request->Motivo_Falla;
+         $soporte->SolucionPendiente = $request->SolucionPendiente;
          $soporte->Solucion = $request->Solucion;
          $soporte->Tecnico = $request->tecnico;
          $soporte->update();
-         broadcast(new NotificacionesEvento($soporte));
+        
+
+
+
 
        return Redirect('Reparacion')->with('success', 'Soporte created successfully.');
 
@@ -355,6 +368,7 @@ class TecnicoController extends Controller
          $soporte->departamento_id = $request->departamento_id;
          $soporte->tipo_falla_id = $request->tipo_falla_id;
          $soporte->NControl = $request->NControl;
+         $soporte->NControlTecnico = $request->NControlTecnico;
          $soporte->Nombre = $request->Nombre;
          $soporte->Apellidos = $request->Apellidos;
          $soporte->Cedula = $request->Cedula;

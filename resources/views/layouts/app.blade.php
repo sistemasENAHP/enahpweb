@@ -14,11 +14,13 @@
       <link rel="stylesheet" href="{{asset('/css/dataTables.css')}}">
        <link rel="stylesheet" href="{{asset('/css/dataTables.min.css')}}">
        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+       {{-- <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css"  rel="stylesheet" /> --}}
+
 </head>
 {{-- <link rel="stylesheet" href="{{asset('Boostraps/css/bootstrap.css')}}"> --}}
 
 
-<body class="flex flex-col min-h-screen" onload="anima_texto()">
+<body class="flex flex-col min-h-screen" >
 
     <header class="bg-eaeeee shadow-md fixed w-full z-50">
         <div class="flex justify-between items-center">
@@ -163,8 +165,9 @@
         <script src="/Highcharts/code/highcharts.js"></script>
         <script src="/Highcharts/code/modules/exporting.js"></script>
         <script src="/Highcharts/code/modules/export-data.js"></script>
-        <script src="{{ asset('js/ValidacionGeneral.js') }}" type="text/javascript"></script>
+        {{-- <script src="{{ asset('js/ValidacionGeneral.js') }}" type="text/javascript"></script> --}}
         {{-- <script src="{{asset('/JS/Listado.js')}}"></script> --}}
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 
 </body>
 <script type="text/javascript">

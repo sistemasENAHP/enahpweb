@@ -56,7 +56,7 @@
                  @if($soporte->Tecnico == auth()->user()->name. " " .auth()->user()->surname and $soporte->estatus_id == 3)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" id="resultado">
                     
-                    <td class=" px-3 py-4 text-sm text-gray-500  text-center" style="font-size: 95%;">{{ $soporte->NControl }}</td>
+                    <td class=" px-3 py-4 text-sm text-gray-500  text-center" style="font-size: 95%;">{{ $soporte->NControlTecnico }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 95%;">{{ $soporte->Nombre }}  - {{ $soporte->Apellidos }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 95%;">{{ $soporte->Cedula }}</td>
                      <td  scope="col" class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->departamentos->pisos->Pisos }}</td>

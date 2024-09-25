@@ -59,7 +59,7 @@ class SoporteEvento implements ShouldBroadcast
     {
        
           return  new Channel('chat-channel');
-          return  new Channel('termino-channel');
+          
     }
 
   
@@ -69,7 +69,7 @@ class SoporteEvento implements ShouldBroadcast
     {
          
             return new Channel('chat-event');
-            return new Channel('termino-event');
+            
     }
 
 

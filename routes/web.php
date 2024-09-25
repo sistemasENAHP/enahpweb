@@ -13,21 +13,20 @@ use App\Http\Controllers\EstadisticasController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ExcelController;
 use App\Events\SoporteEvento;
+use App\Http\Controllers\HomeControler;
+use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/fire', function () {
-
-    // event(new SoporteEvento);
-     SoporteEvento::dispatch();
-    return 'fired';
-
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard',[HomeControler::class,'index'])->name('dashboard');
+Route::post('/dashboard',[HomeControler::class,'store'])->name('dashboard.store');
+// Route::resource('/dashboard',HomeController::class)->middleware(['auth', 'verified'])->names('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

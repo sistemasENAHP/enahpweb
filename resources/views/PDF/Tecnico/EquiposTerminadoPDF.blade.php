@@ -47,7 +47,7 @@ outline:1px solid  rgb(7, 7, 7);
         </thead>
             <tbody>
                 <tr>
-                	<td class="text-center" colspan="2">{{ $EquipoT->NControl }}</td>
+                	<td class="text-center" colspan="2">{{ $EquipoT->NControlTecnico }}</td>
                     <td class="text-center" colspan="4">{{strtoupper($EquipoT->Nombre)}} {{strtoupper($EquipoT->Apellidos)}}</td>
                     <td class="text-center" colspan="20">{{ $EquipoT->Cedula }}</td>
                     

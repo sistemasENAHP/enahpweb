@@ -1,3 +1,32 @@
+<style>
+  .tooltip-button {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Ajusta esta posición según tu diseño */
+  left: 50%;
+  margin-left: -60px; /* Ajusta este margen según el ancho */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-button:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}  
+
+</style>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -55,8 +84,8 @@
                  @foreach ($soportes as $soporte)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" id="resultado">
                     
-                    <td class=" px-3 py-4 text-sm text-gray-500  text-center" style="font-size: 90%;">{{ $soporte->NControl }}</td>
-                    <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->Nombre }}  - {{ $soporte->Apellidos }}</td>
+                    <td class=" px-3 py-4 text-sm text-gray-500  text-center" style="font-size: 90%;">{{ $soporte->NControl }} - {{ $soporte->NControlTecnico }}</td>
+                    <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->Nombre }}  -  {{ $soporte->Apellidos }}</td>
                     <td  scope="col" class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->Cedula }}</td>
                     <td  scope="col" class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->departamentos->pisos->Pisos }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->departamentos->Departamento}}</td>
@@ -71,11 +100,21 @@
 
                     
 
-                    <td class=" px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->Solucion }}</td>
+                   @if($soporte->Solucion == '')
+                   <td class=" px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;"><button class="tooltip-button">Pendiente por Solucionar<span class="tooltiptext"> <p class="text-center">Cosa Pendientes</p>{{ $soporte->SolucionPendiente }}</span></button></td>
+                   @else
+
+                   <td class=" px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->Solucion }}</td>
+
+                   @endif
+
                     <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soporte->Tecnico }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{$soporte->estatus->Estatus;}}</td>
                       
                     </tr>
+  
+
+  
 
   @endforeach
             </tbody>
@@ -127,6 +166,7 @@
         @endif
 
    </div>
+ 
 </x-app-layout>
 <script>
         $(document).ready(function() {

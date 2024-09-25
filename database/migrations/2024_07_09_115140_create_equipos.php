@@ -109,7 +109,7 @@ return new class extends Migration
             $table->foreignId('tipo_falla_id')->constrained('tipo_fallas');
             $table->foreignId('departamento_id')->constrained('departamentos');
             $table->string('NControl');
-            // $table->string('NTecnico');
+            $table->string('NControlTecnico')->nullable()->default(NULL);
             $table->string('Nombre');
             $table->string('Apellidos');
             $table->integer('Cedula');
@@ -121,10 +121,35 @@ return new class extends Migration
             $table->dateTime('FechaSalida')->nullable()->default(NULL);
             $table->text('Motivo_Falla',500)->nullable()->default(NULL);
             $table->text('Solucion',500)->nullable()->default(NULL);
+            $table->text('SolucionPendiente',500)->nullable()->default(NULL);
             $table->string('Tecnico')->nullable()->default(NULL);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
+
+
+        //     Schema::create('tecnicos', function (Blueprint $table) {
+
+        //     $table->id();
+        //     $table->foreignId('estatus_id')->constrained('estatuses');
+        //     $table->foreignId('tipo_falla_id')->constrained('tipo_fallas');
+        //     $table->foreignId('departamento_id')->constrained('departamentos');
+        //     $table->string('NControlTecnico');
+        //     $table->string('Nombre');
+        //     $table->string('Apellidos');
+        //     $table->integer('Cedula');
+        //     $table->string('Telefono');
+        //     $table->string('Correo');
+        //     $table->string('ip_equipo');
+        //     $table->String('nombre_equipo');
+        //     $table->dateTime('FechaEntrada')->nullable()->default(NULL);
+        //     $table->dateTime('FechaSalida')->nullable()->default(NULL);
+        //     $table->text('Motivo_Falla',500)->nullable()->default(NULL);
+        //     $table->text('Solucion',500)->nullable()->default(NULL);
+        //     $table->string('Tecnico')->nullable()->default(NULL);
+        //     $table->timestamps();
+        //     $table->engine = 'InnoDB';
+        // });
 
 
         Schema::create('listado_puntos', function (Blueprint $table) {

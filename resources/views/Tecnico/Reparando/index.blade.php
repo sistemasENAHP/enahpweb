@@ -73,9 +73,9 @@
                             <form action="{{ route('Tecnico.destroy', $soporte->id) }}" method="POST">
                                 {{-- <a href="{{ route('Reparacion.show', $soporte->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar ') }}</a> --}}
                                 <a href="{{ route('Reparacion.edit', $soporte->id) }}" id="editar" name="editar" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
-                                @csrf
+                               {{--  @csrf
                                 @method('DELETE')
-                                <a href="{{ route('Tecnico.destroy', $soporte->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a>
+                                <a href="{{ route('Tecnico.destroy', $soporte->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a> --}}
                             </form>
                         </td>
                     </tr>

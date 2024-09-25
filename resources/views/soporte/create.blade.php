@@ -135,7 +135,7 @@
 
               <div class="md:col-span-3">
                 <label for="address">Especifique el Motivo de la falla</label>
-                    <textarea name="Motivo_Falla" id="Motivo_Falla" cols="79" rows="3">{{$soporte->Motivo_Falla}}</textarea>
+                    <textarea name="Motivo_Falla" id="Motivo_Falla" cols="79" rows="3" required>{{$soporte->Motivo_Falla}}</textarea>
                     <x-input-error class="mt-2" :messages="$errors->get('Motivo_Falla')"/>
               </div>
             <div class="md:col-span-5 text-center">

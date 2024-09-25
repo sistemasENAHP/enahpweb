@@ -26,7 +26,7 @@
          <div class="md:col-span-1" >
                 <label for="NControl">N° Control</label>
                 @if(!$NControl == '')
-                <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="SP-{{ substr($NControl->NControl++, 3); }}"  autocomplete="NControl" placeholder=""  />
+                <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="SP-{{ substr($soporte->NControl, 3); }}"  autocomplete="NControl" placeholder=""  />
              
                 <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
                     @else
@@ -39,7 +39,7 @@
 
               <div class="md:col-span-2" >
                 <label for="NControl">N° Control Técnico</label>
-                     <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('NControl', substr(Auth()->user()->name,0,1).substr(Auth()->user()->surname,0,1). '-' .substr($soporte->NControl++ , -3))"   autocomplete="NControl" placeholder="" readonly    />
+                     <x-text-input type="text" name="NControlTecnico" id="NControlTecnico" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('NControl', substr(Auth()->user()->name,0,1).substr(Auth()->user()->surname,0,1). '-' .substr($soporte->NControl , -3))"   autocomplete="NControl" placeholder="" readonly    />
 
                 <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
 
@@ -74,28 +74,26 @@
                 <x-input-error class="mt-2" :messages="$errors->get('Telefono')"/>
               </div>
 
-            <div class="md:col-span-3">
-              <label for="departamento_id">Departamento</label>
-              <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                {{$sel = 0}}
-                @foreach($Departamentos as $dep)
-                @if($dep->id == $soporte->departamento_id)
-                {{$sel = 'selected'}}
-                @else
-                {{$sel = ''}}
-                @endif
-                        <option value="{{$dep->id}}" {{$sel}} >{{$dep->Departamento}}</option>
-                @endforeach
-              </select>
-            </div>
+           <div class="md:col-span-3">
+                <label for="departamento_id">Departamento</label>
+                <x-text-input type="hidden" name="departamento_id" id="departamento_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('departamento_id',Auth()->user()->departamentos->id) }}" autocomplete="departamento_id"  placeholder="" />
+                <x-text-input type="text" name="" id="" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('departamento_id',Auth()->user()->departamentos->Departamento) }}" autocomplete=""  placeholder=""  readonly/>
+                <x-input-error class="mt-2" :messages="$errors->get('')"/>
+              </div>
 
             <div class="md:col-span-2">
                 <label for="ip_maquina">Ip de la maquina</label>
-                <x-text-input type="text" name="ip_maquina" id="ip_maquina" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('ip_maquina',$soporte?->ip_equipo)}}" placeholder=""  readonly />
+                <x-text-input type="text" name="ip_maquina" id="ip_maquina" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('ip_equipo',$soporte?->ip_equipo)}}" placeholder=""  readonly />
                 <x-input-error class="mt-2" :messages="$errors->get('ip_maquina')"/>
               </div>
 
-              <div class="md:col-span-3">
+                <div class="md:col-span-3">
+                <label for="nombre_equipo">Nombre Equipo</label>
+                <x-text-input type="text" name="nombre_equipo" id="nombre_equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{ Auth()->user()->nombre_equipo }}" placeholder=""  />
+                <x-input-error class="mt-2" :messages="$errors->get('nombre_equipo')"/>
+               </div>
+
+              <div class="md:col-span-2">
                 <label for="address">Fecha solicitud</label>
                 <x-text-input type="datetime"  name="FechaEntrada" id="FechaEntrada" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value="{{ $soporte->FechaEntrada }}" placeholder="" readonly />
                   <x-input-error class="mt-2" :messages="$errors->get('FechaEntrada')"/>
@@ -107,7 +105,7 @@
                   <x-input-error class="mt-2" :messages="$errors->get('FechaSalida')"/>
               </div>
 
-            <div class="md:col-span-5">
+            <div class="md:col-span-3">
                 <label for="address">Tipo de Falla</label>
                 <select name="tipo_falla_id" id="tipo_falla_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     {{$sel = 0}}
@@ -133,10 +131,25 @@
                     <textarea name="Solucion" id="Solucion" cols="79" rows="3">{{ $soporte->Solucion }}   </textarea>
                     <x-input-error class="mt-2" :messages="$errors->get('Solucion')"/>
               </div>
+                 
+<div class="md:col-span-4">
+            <br>
+            <div class="grid grid-cols-8 place-items-center">
+            <label for="">Pendiente</label>
+            <input type="checkbox" id="Pendiente" name="Pendiente" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="3"  />
+            </div>
+ </div>
+ <br>
+              <div class="md:col-span-3" id="mostrar">
+                <label for="address">Pendiente</label>
+                    <textarea name="SolucionPendiente" id="SolucionPendiente" cols="79" rows="3">{{ $soporte->SolucionPendiente }}</textarea>
+                    <x-input-error class="mt-2" :messages="$errors->get('SolucionPendiente')"/>
+              </div>
+              <br>
             {{--   <div class="md:col-span-5">
                 <x-text-input type="hidden" name="estatus_id" id="estatus_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="3" placeholder=""  readonly />
               </div> --}}
-              <div class="md:col-span-5">
+           {{--    <div class="md:col-span-5">
                  <label for="Telefono">Estatus</label>
                     <select name="estatus_id" id="estatus_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                   {{$sel = 0}}
@@ -152,7 +165,7 @@
                   @endforeach
 
                     </select>
-              </div>
+              </div> --}}
               <div class="md:col-span-5">
                 <label for="Telefono">Técnico</label>
                 <x-text-input type="text" name="tecnico" id="tecnico" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{Auth()->user()->name}} {{ Auth()->user()->surname }}" autocomplete="tecnico"  placeholder="" readonly />
@@ -184,3 +197,22 @@
         </div>
       </div>
 </x-app-layout>
+<script type="text/javascript">
+    $(document).ready(function() {
+ $('#mostrar').hide();
+
+$("#Pendiente").click(function () {
+
+            if ($(this).is(":checked")) {
+                
+              
+                $("#mostrar").hide();
+                  $("#mostrar").show();
+            } else {
+                $("#mostrar").show();
+                $("#mostrar").hide();
+
+            }
+        });
+  });
+</script>

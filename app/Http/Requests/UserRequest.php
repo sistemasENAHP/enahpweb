@@ -27,6 +27,8 @@ class UserRequest extends FormRequest
 			// 'user' => 'required|string',
 			'email' => 'required|string',
             'identification_card'=>'numeric|required|unique:users|min:8|max:99999999',
+            'password' => 'required|min:8|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
+            // 'password' => 'required|min:8|confirmed|',Rules\Password::default()->symbols(),
         ];
     }
 
@@ -49,6 +51,10 @@ class UserRequest extends FormRequest
             'email.email'=>'El :attribute debe ser un correo',
             'email.unique'=>'La :attribute ya se encuentra registrado',
             'Motivo_Consulta.required'=>'El :attribute es obligatorio',
+             'password.required' => "la contraseña es obligatorio",
+             'password.min' => "la contraseña debe tener por lo menos 8 digitos",
+             'password.regex' => "la contraseña debe tener por lo menos 1 letra en mayuscula y Simbolo ",
+             'password.confirmed' => "la contraseña debe ser iguales",
 
 
 
