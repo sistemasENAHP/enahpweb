@@ -17,6 +17,7 @@ use App\Notifications\SoporteNotificacion;
 use Illuminate\Notifications\Notifiable;
 use App\Events\SoporteEvento;
 use App\Models\Notificacions;
+use App\Events\NotificacionesSistema;
 class HomeControler extends Controller
 {
     
@@ -40,6 +41,7 @@ class HomeControler extends Controller
           $Notificacion->Asuntos = $request->Asuntos;
           $Notificacion->Descripcion = $request->Descripcion;
           $Notificacion->save();
+          broadcast(new NotificacionesSistema());
           
 
  
@@ -50,10 +52,9 @@ class HomeControler extends Controller
 
    public function Eliminar($id){
 
-        Notificacions::find($id)->delete();
-
-        return Redirect::route('/dashboard')
-            ->with('success', 'Soporte deleted successfully');
+        $notificacion = Notificacions::find($id);
+        $notificacion->delete();
+        return redirect('/dashboard');
 
    }
 

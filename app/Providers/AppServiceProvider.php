@@ -7,7 +7,9 @@ use App\Domain\Orders\Events\PodcastProcessed;
 use App\Domain\Orders\Listeners\SendPodcastNotification;
 use Illuminate\Support\Facades\Event;
 use App\Events\SoporteEvento;
+use App\Events\NotificacionesSistema;
 use App\Listeners\SoporteListener;
+use App\Listeners\NotificacionesSistemaListener;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -26,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
         Event::listen(
            SoporteEvento::class,
             SoporteListener::class,
+            NotificacionesSistema::class,
+            NotificacionesSistemaListener::class
 
         );
     }

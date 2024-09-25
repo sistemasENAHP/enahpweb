@@ -26,6 +26,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/dashboard',[HomeControler::class,'index'])->name('dashboard');
 Route::post('/dashboard',[HomeControler::class,'store'])->name('dashboard.store');
+Route::get('/dashboard/{id}',[HomeControler::class,'Eliminar'])->name('dashboard.Eliminar');
 // Route::resource('/dashboard',HomeController::class)->middleware(['auth', 'verified'])->names('dashboard');
 
 Route::middleware('auth')->group(function () {
