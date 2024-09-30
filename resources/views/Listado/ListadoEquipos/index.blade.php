@@ -137,7 +137,7 @@
 
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                     <form action="{{ route('ListadoEquipo.destroy', $listadoEquipoP1->id) }}" method="POST">
-                                                        <a href="{{ route('ListadoEquipo.show', $listadoEquipoP1->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
+                                                        <a href="{{ route('ListadoEquipo.ShowP1', $listadoEquipoP1->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
 
                                                     </form>
                                                 </td>
@@ -159,7 +159,7 @@
       </div>
 
 
-      {{----------------------------------------------------------P2 Y P3---------------------------------------------}}
+   
 
       <div id="p2yp3">
         <div class="py-12">
@@ -204,7 +204,7 @@
 
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                     <form action="{{ route('ListadoEquipo.destroy', $lListadoEquipoP2YP3->id) }}" method="POST">
-                                                        <a href="{{ route('ListadoEquipo.show', $lListadoEquipoP2YP3->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
+                                                        <a href="{{ route('ListadoEquipo.showP2YP3', $lListadoEquipoP2YP3->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
 
                                                     </form>
                                                 </td>

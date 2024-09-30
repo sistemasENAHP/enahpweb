@@ -34,7 +34,7 @@ class ListadoEquipoController extends Controller
     {
        $ListadoEquipoPB = Equipos::where('piso_id','=',1)->where('departamento_id','<=',21)->paginate();
        $ListadoEquipoP1 = Equipos::where('piso_id','=',2)->where('departamento_id','>=',22)->where('departamento_id','<=',31)->paginate();
-       $ListadoEquipoP2YP3 = Equipos::where('piso_id','=',3)->where('departamento_id','>',31)->paginate();
+       $ListadoEquipoP2YP3 = Equipos::where('piso_id','=',3)->where('departamento_id','>=',30)->paginate();
 
 
 
@@ -50,8 +50,10 @@ class ListadoEquipoController extends Controller
     public function CreatePB(Request $request)
     {
             $ListadoEquipo = new Equipos();
-            $Departamentos = Departamentos::where('id','<=',21)->get();
+            $Departamentos = Departamentos::where('piso_id','=',1)->get();
             $machineName = gethostname();
+            // $sistema = php_uname('m'); // Obtiene la máquina
+            //   dd($sistema);
             // $Marca = MarcaEquipos::all();
             return view('Listado.ListadoEquipos.PB.createPB',compact('Departamentos','machineName','ListadoEquipo'));
 
@@ -60,7 +62,7 @@ class ListadoEquipoController extends Controller
     public function CreateP1(Request $request){
 
         $ListadoEquipo = new Equipos();
-        $Departamentos = Departamentos::where('id','>=',22)->where('id','<=',30)->get();
+        $Departamentos = Departamentos::where('piso_id','=',2)->get();
         $machineName = gethostname();
         return view('Listado.ListadoEquipos.P1.createP1',compact('Departamentos','machineName','ListadoEquipo'));
 
@@ -72,7 +74,7 @@ class ListadoEquipoController extends Controller
     public function CreateP2YP3(Request $request){
 
         $ListadoEquipo = new Equipos();
-        $Departamentos = Departamentos::where('id','>=',31)->get();
+        $Departamentos = Departamentos::where('piso_id','=',3)->orwhere('piso_id','=',4)->get();
         $machineName = gethostname();
         return view('Listado.ListadoEquipos.P2YP3.createP2YP3',compact('Departamentos','machineName','ListadoEquipo'));
 
@@ -127,11 +129,11 @@ class ListadoEquipoController extends Controller
           $ListadoEquipo->Proxy = $request->Proxy;
           $ListadoEquipo->Dns = $request->Dns;
           $ListadoEquipo->Puerto = $request->Puerto;
-        $ListadoEquipo->CableCorriente = $request->CableCorriente;
-        $ListadoEquipo->CableVGAHDMI = $request->CableVGAHDMI;
-        $ListadoEquipo->Impresora = $request->Impresora;
-        $ListadoEquipo->Telefono = $request->Telefono;
-        $ListadoEquipo->Route = $request->Route;
+         $ListadoEquipo->CableCorriente = $request->CableCorriente;
+          $ListadoEquipo->CableVGAHDMI = $request->CableVGAHDMI;
+          $ListadoEquipo->Impresora = $request->Impresora;
+          $ListadoEquipo->Telefono = $request->Telefono;
+          $ListadoEquipo->Route = $request->Route;
           $ListadoEquipo->PuntoRed = $request->punto_red;
           $ListadoEquipo->CajetinPuntos = $request->CajetinPuntos;
           $ListadoEquipo->Observacion = $request->Observaciones;
@@ -152,13 +154,32 @@ class ListadoEquipoController extends Controller
             return view('Listado.ListadoEquipos.show',compact('ListadoEquipoPB','ListadoEquipo'))->with('PB', ($request->input('page', 1) - 1) * $ListadoEquipoPB->perPage());
     }
 
+      public function ShowP1(Request $request,$id){
+
+
+             $ListadoEquipo =  Equipos::find($id);
+            $ListadoEquipoP1 = Equipos::paginate();
+            return view('Listado.ListadoEquipos.P1.show',compact('ListadoEquipoP1','ListadoEquipo'))->with('P1', ($request->input('page', 1) - 1) * $ListadoEquipoP1->perPage());
+
+
+                           }
+
+    public function ShowP2YP3(Request $request,$id){
+
+
+          $ListadoEquipo =  Equipos::find($id);
+            $ListadoEquipoP2YP3 = Equipos::paginate();
+            return view('Listado.ListadoEquipos.P2YP3.show',compact('ListadoEquipoP2YP3','ListadoEquipo'))->with('P2YP3', ($request->input('page', 1) - 1) * $ListadoEquipoP2YP3->perPage());
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
     public function editPB(string $id)
     {
            $ListadoEquipo =  Equipos::find($id);
-           $Departamentos = Departamentos::where('id','<=',21)->get();
+           $Departamentos = Departamentos::where('piso_id','=',1)->get();
             $machineName = gethostname();
             return view('Listado.ListadoEquipos.PB.editPB',compact('Departamentos','machineName','ListadoEquipo'));
     }
@@ -166,7 +187,7 @@ class ListadoEquipoController extends Controller
     public function editP1(string $id)
     {
         $ListadoEquipo =  Equipos::find($id);
-        $Departamentos = Departamentos::all();
+        $Departamentos = Departamentos::where('piso_id','=',2)->get();
         $machineName = gethostname();
         return view('Listado.ListadoEquipos.P1.editP1',compact('Departamentos','machineName','ListadoEquipo'));
     }
@@ -174,7 +195,7 @@ class ListadoEquipoController extends Controller
     public function editP2YP3(string $id)
     {
         $ListadoEquipo =  Equipos::find($id);
-        $Departamentos = Departamentos::all();
+        $Departamentos = Departamentos::where('piso_id','=',3)->orwhere('piso_id','=',4)->get();
         $machineName = gethostname();
         return view('Listado.ListadoEquipos.P2YP3.editP2YP3',compact('Departamentos','machineName','ListadoEquipo'));
     }
@@ -247,28 +268,28 @@ class ListadoEquipoController extends Controller
     }
 
     public function depatamentoUser(Request $request){
-        
+
         if($request->ajax()){
-          
+
             $Departamento = User::where('departamento_id',$request->departamento_id)->get();
 
 
             return response()->json($Departamento);
-        
+
 }
       }
 
 
 
       public function ListadoFuncionarios(Request $request){
-        
+
         if($request->ajax()){
-        
+
          $Funcionario = User::select('*')->where('id',$request->dep)->get();
-           
+
 
          foreach($Funcionario as $fun){
-          
+
           // $fun->name;
 
          }

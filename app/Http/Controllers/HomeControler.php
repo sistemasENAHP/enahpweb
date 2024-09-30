@@ -20,11 +20,11 @@ use App\Models\Notificacions;
 use App\Events\NotificacionesSistema;
 class HomeControler extends Controller
 {
-    
+
 
    public function index(Request $request){
 
-         $Soporte = Soportes::all();
+         $Soporte = Soportes::orderby('id','desc')->get();
          $Notificacion = Notificacions::all();
 
 
@@ -35,16 +35,16 @@ class HomeControler extends Controller
 
 
    public function store(Request $request){
-          
+
 
           $Notificacion = new  Notificacions();
           $Notificacion->Asuntos = $request->Asuntos;
           $Notificacion->Descripcion = $request->Descripcion;
           $Notificacion->save();
           broadcast(new NotificacionesSistema());
-          
 
- 
+
+
         return redirect('/dashboard');
 
    }

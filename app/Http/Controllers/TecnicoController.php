@@ -17,6 +17,7 @@ use App\Models\User;
 use App\Models\Estatus;
 use App\Events\SoporteEvento;
 use App\Events\NotificacionesEvento;
+use App\Events\NotificacionUsuario;
 class TecnicoController extends Controller
 {
 
@@ -39,23 +40,7 @@ class TecnicoController extends Controller
         $soportes = Soportes::search(request('search'))->paginate();
 
         return view('Tecnico.index', compact('soportes'));
-        
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -144,7 +129,7 @@ class TecnicoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tecnico $tecnico)
+    public function destroy($id)
     {
         Soportes::find($id)->delete();
 
@@ -179,6 +164,13 @@ class TecnicoController extends Controller
 
     public function MostrarActualizarEspera(Request $request,$id){
 
+        $Mensaje = $request->mensaje;
+
+          $Session =   $request->session()->put('Mensaje', $Mensaje);
+
+        $Mostrar = Session('Mensaje');
+        //   dd($Mostrar);
+
 
         $soporte = Soportes::find($id);
 
@@ -198,6 +190,7 @@ class TecnicoController extends Controller
        $soporte->Solucion = $request->Solucion;
        $soporte->Tecnico = $request->tecnico;
        $soporte->update();
+       broadcast(new NotificacionUsuario($soporte,$Mostrar));
 
        return Redirect('Espera')->with('success', 'Soporte created successfully.');
 
@@ -224,6 +217,8 @@ class TecnicoController extends Controller
 
     public function TecnicoActualizarEspera(Request $request,$id){
 
+
+
          $Fecha = Carbon::now();
          $soporte = Soportes::find($id);
          $soporte->estatus_id = $request->estatus_id;
@@ -234,6 +229,7 @@ class TecnicoController extends Controller
           $soporte->Apellidos = $request->Apellidos;
           $soporte->Cedula = $request->Cedula;
           $soporte->Telefono = $request->Telefono;
+          $soporte->telefonoI = $request->telefonoI;
           $soporte->Correo = $request->Correo;
           // $soporte->ip_equipo =  $request->ip_maquina;
         //   $soporte->FechaEntrada = $request->FechaEntrada;
@@ -242,6 +238,8 @@ class TecnicoController extends Controller
           $soporte->Solucion = $request->Solucion;
           $soporte->Tecnico = $request->tecnico;
           $soporte->update();
+
+
 
         return Redirect('Espera')->with('success', 'Soporte created successfully.');
 
@@ -289,9 +287,9 @@ class TecnicoController extends Controller
         $Fecha = Carbon::now();
         $soporte = Soportes::find($id);
         if( $request->input('Pendiente') == 3){
-            
+
              $soporte->estatus_id = 3;
-        
+
         }else if($request->input('Pendiente') == false){
 
             $soporte->estatus_id = 4;
@@ -315,7 +313,7 @@ class TecnicoController extends Controller
          $soporte->Solucion = $request->Solucion;
          $soporte->Tecnico = $request->tecnico;
          $soporte->update();
-        
+
 
 
 

@@ -17,9 +17,9 @@
           @else
           {{$sel = ''}}
           @endif
-            
+
                   <option value="{{$dep->id}}" {{$sel}} >{{$dep->Departamento}}</option>
-                 
+
           @endforeach
         </select>
     </div>
@@ -82,6 +82,7 @@
             <x-input-error class="mt-2" :messages="$errors->get('cantidad_Equipo')"/>
           </div>
           <div class="md:col-span-2">
+          
             <label for="Cedula">Sistema Operativo</label>
                 <select name="sistema_operativo" id="sistema_operativo" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option>Selecciones</option>
@@ -115,7 +116,7 @@
             <x-text-input type="text" name="ip_ministerio" id="ip_ministerio" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_ministerio" placeholder="IP Ministerio" :value="old('ip_ministerio',$ListadoEquipo?->ip_ministerio)" />
             <x-input-error class="mt-2" :messages="$errors->get('ip_ministerio')"/>
           </div>
-      
+
           <div class="md:col-span-2">
             <label for="Cedula">MAC ADRESS</label>
             <x-text-input type="text" name="mac" id="mac" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="mac" placeholder="MAC ADRESS" :value="old('MacAdress',$ListadoEquipo?->MacAdress)" />
@@ -172,7 +173,7 @@
             @endif
           </div>
           <br>
-        </div>     
+        </div>
 
           <div class="md:col-span-2">
             <label for="Proxy">Proxy</label>
@@ -238,7 +239,7 @@
             @endif
           </div>
           <br>
-        </div>     
+        </div>
 
           <div class="md:col-span-3">
                     <label for="ip_ministerio">Punto Switch / Punto de Red</label>

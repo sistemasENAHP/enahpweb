@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
-        $users = User::paginate();
+        $users = User::OrderBy('id','asc')->paginate();
 
         return view('user.index', compact('users'))
             ->with('i', ($request->input('page', 1) - 1) * $users->perPage());
@@ -124,6 +124,7 @@ class UserController extends Controller
         $Users->nombre_equipo = $request->nombre_equipo;
         $Users->identification_card = $request->identification_card;
         $Users->email = $request->email;
+        
         if($Users->password == $request->password):
          $Users->password = $request->password;
         else:
@@ -133,6 +134,9 @@ class UserController extends Controller
         $Users->update();
          DB::table('model_has_roles')->where('model_id',$id)->delete();
         $Users->assignRole($request->role_id);
+
+
+        
 
         return Redirect::route('users.index')
             ->with('success', 'User updated successfully');

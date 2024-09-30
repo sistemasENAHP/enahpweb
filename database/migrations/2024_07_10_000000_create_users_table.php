@@ -17,12 +17,13 @@ return new class extends Migration
             $table->foreignId('departamento_id')->constrained('departamentos');
             $table->string('name');
             $table->string('surname');
-            $table->string('identification_card');
+            $table->string('identification_card')->unique();
+            $table->timestamp('identification_card_verified_at')->nullable();
             $table->string('ip_equipo');
             $table->string('nombre_equipo');
             $table->string('telefono');
             $table->string('telefonoI');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -52,7 +53,7 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
             $table->engine = 'InnoDB';
-            
+
         });
     }
 

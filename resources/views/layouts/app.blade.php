@@ -49,10 +49,8 @@
                     Usuario:{{auth()->user()->name}} {{auth()->user()->surname}}
                     @endrole
 
-                    @role('Psicologo')
-                    Psicologo:{{auth()->user()->name}} {{auth()->user()->surname}}
-                    @endrole</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400"> 
+                   </div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">
                     @if (Auth::check())
                     <span>Último ingreso:
                         {{ Auth::user()->previous_login ? 'Día: ' . \Carbon\Carbon::parse(Auth::user()->previous_login)->format('d/m/Y') . ' Hora: ' . \Carbon\Carbon::parse(Auth::user()->previous_login)->format('H:i') : 'N/A' }}
@@ -90,8 +88,11 @@
                      </li>
                      <li>
                         <a href="/Terminado" class="block">Soporte Culminado</a>
+                        <li>
+                            <a href="/Historial" class="block">Soporte Historial</a>
+                         </li>
                      </li>
-                     
+
                    </ul>
                  </li>
               </ul>
@@ -115,6 +116,7 @@
                   </li>
                 </ul>
               </nav>
+              
         @endcan
 
             @can('admin.Planos.index')<li><a href="/Planos" class="block">Planos</a></li>@endcan

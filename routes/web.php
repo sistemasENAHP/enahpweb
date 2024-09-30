@@ -15,6 +15,7 @@ use App\Http\Controllers\ExcelController;
 use App\Events\SoporteEvento;
 use App\Http\Controllers\HomeControler;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HistorialController;
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -73,7 +74,7 @@ Route::get('/Terminado',[TecnicoController::class,'TecnicoTerminado'])->name('Te
 Route::get('/Terminado/{id}/edit',[TecnicoController::class,'TecnicoTerminadoEditar'])->name('Terminado.edit');
 Route::PUT('/ActualizarTerminado/{id}',[TecnicoController::class,'TecnicoTerminadoActualizar'])->name('ActualizarEquipos.TecnicoTerminadoActualizar');
 
-
+Route::get('/Historial', [HistorialController::class, 'HistorialSoporte'])->name('Historial');
 
 Route::resource('ListadoPunto', ListadoPuntoController::class);
 Route::resource('ListadoEquipo', ListadoEquipoController::class);
@@ -86,10 +87,14 @@ Route::get('/ListadoEquipoCreateP1',[ListadoEquipoController::class,'CreateP1'])
 
 Route::get('/ListadoEquipo/{id}/editP1',[ListadoEquipoController::class,'editP1'])->name('ListadoEquipo.editP1');
 
+Route::get('/ListadoEquipo/{id}/showP1',[ListadoEquipoController::class,'ShowP1'])->name('ListadoEquipo.ShowP1');
+
 
 Route::get('/ListadoEquipoCreateP2YP3',[ListadoEquipoController::class,'CreateP2YP3'])->name('ListadoEquipo.CreateP2YP3');
 
 Route::get('/ListadoEquipo/{id}/editP2YP3',[ListadoEquipoController::class,'editP2YP3'])->name('ListadoEquipo.editP2YP3');
+
+Route::get('/ListadoEquipo/{id}/showP2YP3',[ListadoEquipoController::class,'showP2YP3'])->name('ListadoEquipo.showP2YP3');
 
 Route::get('/ListadoEquipos',[ListadoEquipoController::class,'depatamentoUser'])->name('ListadoEquipos.get');
 
@@ -115,6 +120,9 @@ Route::get('/ListadoPuntos',[ListadoPuntoController::class,'depatamentoUser'])->
 Route::get('/ListadoFuncionario',[ListadoPuntoController::class,'ListadoFuncionarios'])->name('ListadoFuncionario.get');
 
 
+Route::get('/ListadoPuntos/{id}/showP1',[ListadoPuntoController::class,'ShowP1'])->name('ListadoPuntos.ShowP1');
+
+Route::get('/ListadoPuntos/{id}/showP2YP3',[ListadoPuntoController::class,'showP2YP3'])->name('ListadoPuntos.ShowP2YP3');
 
 
 
@@ -138,6 +146,11 @@ Route::get('/ListadoIp/{id}/editP2YP3',[ListadoipController::class,'editP2YP3'])
 Route::get('/ListadoIPS',[ListadoipController::class,'depatamentoUser'])->name('ListadoIp.get');
 
 Route::get('/ListadoFuncionario',[ListadoipController::class,'ListadoFuncionarios'])->name('ListadoFuncionario.get');
+
+
+Route::get('/ListadoIp/{id}/showP1',[ListadoipController::class,'ShowP1'])->name('ListadoIp.ShowP1');
+
+Route::get('/ListadoIp/{id}/showP2YP3',[ListadoipController::class,'showP2YP3'])->name('ListadoIp.showP2YP3');
 
 
 

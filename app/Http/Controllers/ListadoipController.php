@@ -33,8 +33,8 @@ class ListadoipController extends Controller
     public function index(Request $request): View
     {
         $ListadoIpPB = Listadoips::where('piso_id','=',1)->where('departamento_id','<=',21)->orderBy('id','asc')->paginate();
-        $ListadoIpP1 = Listadoips::where('piso_id','=',2)->where('departamento_id','>=',22)->where('departamento_id','<=',31)->orderBy('id','asc')->paginate();
-        $ListadoIpP2YP3 = Listadoips::where('piso_id','=',3)->where('departamento_id','>',31)->orderBy('id','asc')->paginate();
+        $ListadoIpP1 = Listadoips::where('piso_id','=',2)->where('departamento_id','>=',21)->where('departamento_id','<=',31)->orderBy('id','asc')->paginate();
+        $ListadoIpP2YP3 = Listadoips::where('piso_id','=',3)->where('departamento_id','>=',30)->orderBy('id','asc')->paginate();
 
         return view('Listado.ListadoIp.index', compact('ListadoIpPB','ListadoIpP1','ListadoIpP2YP3'))
             ->with('PB', ($request->input('page', 1) - 1) * $ListadoIpPB->perPage())->with('P1', ($request->input('page', 1) - 1) * $ListadoIpP1->perPage())->with('P2YP3', ($request->input('page', 1) - 1) * $ListadoIpP2YP3->perPage());
@@ -54,7 +54,7 @@ class ListadoipController extends Controller
     public function CreatePB(): View
     {
         $ListaIp = new Listadoips();
-        $Departamentos = Departamentos::where('id','<=',21)->get();
+        $Departamentos = Departamentos::where('piso_id','=',1)->get();
          $machineName = gethostname();
        return view('Listado.ListadoIp.PB.createPB',compact('Departamentos','machineName','ListaIp'));
 
@@ -64,7 +64,7 @@ class ListadoipController extends Controller
      public function CreateP1(): View
     {
          $ListaIp = new Listadoips();
-         $Departamentos = Departamentos::where('id','>=',22)->where('id','<=',30)->get();
+         $Departamentos = Departamentos::where('piso_id','=',2)->get();
          $machineName = gethostname();
        return view('Listado.ListadoIp.P1.createP1',compact('Departamentos','machineName','ListaIp'));
 
@@ -73,7 +73,7 @@ class ListadoipController extends Controller
       public function CreateP2YP3(): View
     {
         $ListaIp = new Listadoips();
-        $Departamentos = Departamentos::where('id','>=',31)->get();
+        $Departamentos = Departamentos::where('piso_id','=',3)->orwhere('piso_id','=',4)->get();
          $machineName = gethostname();
 
        return view('Listado.ListadoIp.P2YP3.createP2YP3',compact('Departamentos','machineName','ListaIp'));
@@ -123,9 +123,27 @@ class ListadoipController extends Controller
     public function show(Request $request,$id): View
     {
         $Listado = Listadoips::FindOrFail($id);
+        $ListadoIpPB = Listadoips::paginate(1000);
+
+        return view('Listado.ListadoIp.show', compact('ListadoIpPB','Listado'))->with('PB', ($request->input('page', 1) - 1) * $ListadoIpPB->perPage());
+    }
+
+
+    public function showP1(Request $request,$id): View
+    {
+        $Listado = Listadoips::FindOrFail($id);
         $ListadoIpP1 = Listadoips::paginate(1000);
 
-        return view('Listado.ListadoIp.show', compact('ListadoIpP1','Listado'))->with('P1', ($request->input('page', 1) - 1) * $ListadoIpP1->perPage());
+        return view('Listado.ListadoIp.P1.show', compact('ListadoIpP1','Listado'))->with('P1', ($request->input('page', 1) - 1) * $ListadoIpP1->perPage());
+    }
+
+
+    public function showP2YP3(Request $request,$id): View
+    {
+        $Listado = Listadoips::FindOrFail($id);
+        $ListadoIpP2YP3 = Listadoips::paginate(1000);
+
+        return view('Listado.ListadoIp.P2YP3.show', compact('ListadoIpP2YP3','Listado'))->with('P2YP3', ($request->input('page', 1) - 1) * $ListadoIpP2YP3->perPage());
     }
 
     /**
@@ -136,21 +154,21 @@ class ListadoipController extends Controller
     public function editPB($id): View
     {
         $ListaIp = Listadoips::FindOrFail($id);
-        $Departamentos = Departamentos::all();
+        $Departamentos = Departamentos::where('piso_id','=',1)->get();
         return view('Listado.ListadoIp.PB.editPB', compact('ListaIp','Departamentos'));
     }
 
     public function editP1($id): View
     {
           $ListaIp = Listadoips::FindOrFail($id);
-          $Departamentos = Departamentos::all();
+          $Departamentos =Departamentos::where('piso_id','=',2)->get();
         return view('Listado.ListadoIp.P1.editP1', compact('ListaIp','Departamentos'));
     }
 
     public function editP2YP3($id): View
     {
         $ListaIp = Listadoips::FindOrFail($id);
-        $Departamentos = Departamentos::all();
+        $Departamentos = Departamentos::where('piso_id','=',3)->orwhere('piso_id','=',4)->get();
         return view('Listado.ListadoIp.P2YP3.editP2YP3', compact('ListaIp','Departamentos'));
     }
 

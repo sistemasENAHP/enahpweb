@@ -14,7 +14,7 @@
                 <form method="POST" action="{{ route('ActualizarReparados.TecnicoReparacionActualizar', $soporte->id) }}"  role="form" enctype="multipart/form-data">
                     {{ method_field('PUT') }}
                     @csrf
-                   
+
                     <div class="space-y-6">
     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
         <div class="text-gray-600">
@@ -26,8 +26,8 @@
          <div class="md:col-span-1" >
                 <label for="NControl">N° Control</label>
                 @if(!$NControl == '')
-                <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="SP-{{ substr($soporte->NControl, 3); }}"  autocomplete="NControl" placeholder=""  />
-             
+                <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="SP-{{ substr($soporte->NControl, 3); }}"  autocomplete="NControl" placeholder="" readonly />
+
                 <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
                     @else
 
@@ -47,19 +47,19 @@
               </div>
             <div class="md:col-span-2">
               <label for="Nombre">Nombre</label>
-              <x-text-input type="text" id="Nombre" name="Nombre"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Nombre', $soporte?->Nombre)" autocomplete="Nombres" placeholder="Nombres"/>
+              <x-text-input type="text" id="Nombre" name="Nombre"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Nombre', $soporte?->Nombre)" autocomplete="Nombres" placeholder="Nombres" readonly/>
               <x-input-error class="mt-2" :messages="$errors->get('Nombre')"/>
 
             </div>
-            <div class="md:col-span-2">
+            <div class="md:col-span-3">
                 <label for="Apellidos">Apellido</label>
-                <x-text-input type="text" id="Apellidos" name="Apellidos" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Apellidos',$soporte?->Apellidos)" autocomplete="Apellidos" placeholder="Apellidos"/>
+                <x-text-input type="text" id="Apellidos" name="Apellidos" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Apellidos',$soporte?->Apellidos)" autocomplete="Apellidos" placeholder="Apellidos" readonly/>
                 <x-input-error class="mt-2" :messages="$errors->get('Apellidos')"/>
 
               </div>
-              <div class="md:col-span-3">
+              <div class="md:col-span-2">
                 <label for="Cedula">Cedula</label>
-                <x-text-input type="text" name="Cedula" id="Cedula" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Cedula',$soporte?->Cedula)" autocomplete="Cedula" placeholder="Cedula" />
+                <x-text-input type="text" name="Cedula" id="Cedula" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Cedula',$soporte?->Cedula)" autocomplete="Cedula" placeholder="Cedula" readonly />
                 <x-input-error class="mt-2" :messages="$errors->get('Cedula')"/>
               </div>
             <div class="md:col-span-3">
@@ -70,30 +70,36 @@
 
             <div class="md:col-span-2">
                 <label for="Telefono">Telefono o Extension</label>
-                <x-text-input type="text" name="Telefono" id="Telefono" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Telefono',$soporte?->Telefono)" autocomplete="Telefono"  placeholder="" />
+                <x-text-input type="text" name="Telefono" id="Telefono" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Telefono',$soporte?->Telefono)" autocomplete="Telefono"  placeholder="" readonly/>
                 <x-input-error class="mt-2" :messages="$errors->get('Telefono')"/>
               </div>
 
-           <div class="md:col-span-3">
+              <div class="md:col-span-3">
+                <label for="Telefono">Celular</label>
+                <x-text-input type="text" name="telefonoI" id="telefonoI" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('telefonoI',$soporte?->telefonoI)" autocomplete="Telefono"  placeholder="" readonly/>
+                <x-input-error class="mt-2" :messages="$errors->get('Telefono')"/>
+              </div>
+
+           <div class="md:col-span-2">
                 <label for="departamento_id">Departamento</label>
                 <x-text-input type="hidden" name="departamento_id" id="departamento_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('departamento_id',Auth()->user()->departamentos->id) }}" autocomplete="departamento_id"  placeholder="" />
                 <x-text-input type="text" name="" id="" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('departamento_id',Auth()->user()->departamentos->Departamento) }}" autocomplete=""  placeholder=""  readonly/>
                 <x-input-error class="mt-2" :messages="$errors->get('')"/>
               </div>
 
-            <div class="md:col-span-2">
+            <div class="md:col-span-3">
                 <label for="ip_maquina">Ip de la maquina</label>
                 <x-text-input type="text" name="ip_maquina" id="ip_maquina" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('ip_equipo',$soporte?->ip_equipo)}}" placeholder=""  readonly />
                 <x-input-error class="mt-2" :messages="$errors->get('ip_maquina')"/>
               </div>
 
-                <div class="md:col-span-3">
+                <div class="md:col-span-2">
                 <label for="nombre_equipo">Nombre Equipo</label>
-                <x-text-input type="text" name="nombre_equipo" id="nombre_equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{ Auth()->user()->nombre_equipo }}" placeholder=""  />
+                <x-text-input type="text" name="nombre_equipo" id="nombre_equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{ Auth()->user()->nombre_equipo }}" placeholder="" readonly />
                 <x-input-error class="mt-2" :messages="$errors->get('nombre_equipo')"/>
                </div>
 
-              <div class="md:col-span-2">
+              <div class="md:col-span-3">
                 <label for="address">Fecha solicitud</label>
                 <x-text-input type="datetime"  name="FechaEntrada" id="FechaEntrada" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value="{{ $soporte->FechaEntrada }}" placeholder="" readonly />
                   <x-input-error class="mt-2" :messages="$errors->get('FechaEntrada')"/>
@@ -105,9 +111,9 @@
                   <x-input-error class="mt-2" :messages="$errors->get('FechaSalida')"/>
               </div>
 
-            <div class="md:col-span-3">
+            {{-- <div class="md:col-span-5">
                 <label for="address">Tipo de Falla</label>
-                <select name="tipo_falla_id" id="tipo_falla_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select name="tipo_falla_id" id="tipo_falla_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
                     {{$sel = 0}}
                   @foreach ($TipoFalla as $tipo )
                   @if($tipo->id == $soporte->tipo_falla_id)
@@ -118,6 +124,13 @@
                        <option value="{{$tipo->id}}" {{$sel}}>{{$tipo->Tipo_Falla}}</option>
                   @endforeach
                 </select>
+              </div> --}}
+
+              <div class="md:col-span-5">
+                <label for="tipo_falla_id">tipo de Falla</label>
+                <x-text-input type="hidden" name="tipo_falla_id" id="tipo_falla_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('tipo_falla_id',$soporte->tipoFallas->id) }}" autocomplete="tipo_falla_id"  placeholder="" />
+                <x-text-input type="text" name="" id="" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('tipo_falla_id',$soporte->tipoFallas->Tipo_Falla) }}" autocomplete=""  placeholder=""  readonly/>
+                <x-input-error class="mt-2" :messages="$errors->get('')"/>
               </div>
 
               <div class="md:col-span-3">
@@ -131,7 +144,7 @@
                     <textarea name="Solucion" id="Solucion" cols="79" rows="3">{{ $soporte->Solucion }}   </textarea>
                     <x-input-error class="mt-2" :messages="$errors->get('Solucion')"/>
               </div>
-                 
+
 <div class="md:col-span-4">
             <br>
             <div class="grid grid-cols-8 place-items-center">
@@ -146,26 +159,7 @@
                     <x-input-error class="mt-2" :messages="$errors->get('SolucionPendiente')"/>
               </div>
               <br>
-            {{--   <div class="md:col-span-5">
-                <x-text-input type="hidden" name="estatus_id" id="estatus_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="3" placeholder=""  readonly />
-              </div> --}}
-           {{--    <div class="md:col-span-5">
-                 <label for="Telefono">Estatus</label>
-                    <select name="estatus_id" id="estatus_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                  {{$sel = 0}}
-                  @foreach ($Estatus as $estatus )
-                  @if($estatus->id >=2)
-                  @if($estatus->id == $soporte->estatus_id)
-                  {{$sel = 'selected'}}
-                  @else
-                  {{$sel = ''}}
-                  @endif
-                       <option value="{{$estatus->id}}" {{$sel}}>{{$estatus->Estatus}}</option>
-                  @endif
-                  @endforeach
 
-                    </select>
-              </div> --}}
               <div class="md:col-span-5">
                 <label for="Telefono">Técnico</label>
                 <x-text-input type="text" name="tecnico" id="tecnico" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{Auth()->user()->name}} {{ Auth()->user()->surname }}" autocomplete="tecnico"  placeholder="" readonly />
@@ -204,8 +198,8 @@
 $("#Pendiente").click(function () {
 
             if ($(this).is(":checked")) {
-                
-              
+
+
                 $("#mostrar").hide();
                   $("#mostrar").show();
             } else {

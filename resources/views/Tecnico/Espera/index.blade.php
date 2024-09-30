@@ -34,7 +34,7 @@
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                  
+
                     <th scope="col" class="px-6 py-3 text-center text-xs" style="font-size: 95%;">N° Control</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Nombre-Apellido</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Cedula</th>
@@ -55,7 +55,7 @@
                  @foreach ($soportes as $soporte)
                  @if($soporte->estatus_id == 1)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" id="resultado">
-                   
+
                     <td class=" px-3 py-4 text-sm text-gray-500  text-center"  style="font-size: 95%;">{{ $soporte->NControl }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center" style="font-size: 95%;">{{ $soporte->Nombre }}  - {{ $soporte->Apellidos }}</td>
                     <td class="px-3 py-4 text-sm text-gray-500 text-center" style="font-size: 95%;">{{ $soporte->Cedula }}</td>
@@ -94,7 +94,7 @@
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    
+
                     <th scope="col" class="px-6 py-3 text-center text-xs" >N° Control</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Nombre-Apellido</th>
                     <th scope="col" class="px-6 py-3 text-center text-xs">Cedula</th>

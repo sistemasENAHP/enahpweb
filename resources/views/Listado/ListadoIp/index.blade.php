@@ -102,7 +102,7 @@
                                         <table class="w-full divide-y divide-gray-300">
                                             <thead>
                                             <tr>
-                                                <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">ID</th>
+                                                {{-- <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">ID</th> --}}
                                                 <th colspan="0" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500" >Departamento</th>
                                             
                                             </tr>
@@ -117,7 +117,7 @@
 
                                                     <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                         <form action="{{ route('ListadoIp.destroy', $listadoipP1->id) }}" method="POST">
-                                                            <a href="{{ route('ListadoIp.show', $listadoipP1->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
+                                                            <a href="{{ route('ListadoIp.ShowP1', $listadoipP1->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
                                                            
                                                         </form>
                                                     </td>
@@ -178,7 +178,7 @@
 
                                             <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                 <form action="{{ route('ListadoIp.destroy', $listadoipP2YP3->id) }}" method="POST">
-                                                    <a href="{{ route('ListadoIp.show', $listadoipP2YP3->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
+                                                    <a href="{{ route('ListadoIp.showP2YP3', $listadoipP2YP3->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
                                                    
                                                 </form>
                                             </td>

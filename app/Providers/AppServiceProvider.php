@@ -10,6 +10,8 @@ use App\Events\SoporteEvento;
 use App\Events\NotificacionesSistema;
 use App\Listeners\SoporteListener;
 use App\Listeners\NotificacionesSistemaListener;
+use App\Events\NotificacionUsuario;
+use App\Listeners\NotificacionUsuarioListener;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -29,7 +31,9 @@ class AppServiceProvider extends ServiceProvider
            SoporteEvento::class,
             SoporteListener::class,
             NotificacionesSistema::class,
-            NotificacionesSistemaListener::class
+            NotificacionesSistemaListener::class,
+            NotificacionUsuario::class,
+            NotificacionUsuarioListener::class
 
         );
     }

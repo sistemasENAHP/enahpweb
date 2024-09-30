@@ -14,7 +14,7 @@
                 <form method="POST" action="{{ route('ActualizarEquipos.TecnicoPendienteActualizar', $soporte->id) }}"  role="form" enctype="multipart/form-data">
                     {{ method_field('PUT') }}
                     @csrf
-                   
+
                     <div class="space-y-6">
     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
         <div class="text-gray-600">
@@ -35,67 +35,73 @@
               </div>
             <div class="md:col-span-2">
               <label for="Nombre">Nombre</label>
-              <x-text-input type="text" id="Nombre" name="Nombre"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Nombre', $soporte?->Nombre)" autocomplete="Nombres" placeholder="Nombres"/>
-              <x-input-error class="mt-2" :messages="$errors->get('Nombre')"/>
+              <x-text-input type="text" id="Nombre" name="Nombre"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Nombre', $soporte?->Nombre)" autocomplete="Nombres" placeholder="Nombres" readonly/>
+              <x-input-error class="mt-2" :messages="$errors->get('Nombre')" />
 
             </div>
             <div class="md:col-span-2">
                 <label for="Apellidos">Apellido</label>
-                <x-text-input type="text" id="Apellidos" name="Apellidos" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Apellidos',$soporte?->Apellidos)" autocomplete="Apellidos" placeholder="Apellidos"/>
-                <x-input-error class="mt-2" :messages="$errors->get('Apellidos')"/>
+                <x-text-input type="text" id="Apellidos" name="Apellidos" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Apellidos',$soporte?->Apellidos)" autocomplete="Apellidos" placeholder="Apellidos" readonly/>
+                <x-input-error class="mt-2" :messages="$errors->get('Apellidos')" />
 
               </div>
               <div class="md:col-span-2">
                 <label for="Cedula">Cedula</label>
-                <x-text-input type="text" name="Cedula" id="Cedula" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Cedula',$soporte?->Cedula)" autocomplete="Cedula" placeholder="Cedula" />
+                <x-text-input type="text" name="Cedula" id="Cedula" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Cedula',$soporte?->Cedula)" autocomplete="Cedula" placeholder="Cedula" readonly/>
                 <x-input-error class="mt-2" :messages="$errors->get('Cedula')"/>
               </div>
             <div class="md:col-span-3">
               <label for="email">Correo</label>
-              <x-text-input type="email" name="Correo" id="Correo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Correo',$soporte?->Correo)" autocomplete="Correo" placeholder="enahp@enahp.com"  />
+              <x-text-input type="email" name="Correo" id="Correo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Correo',$soporte?->Correo)" autocomplete="Correo" placeholder="enahp@enahp.com" readonly />
               <x-input-error class="mt-2" :messages="$errors->get('Correo')"/>
             </div>
 
             <div class="md:col-span-2">
                 <label for="Telefono">Telefono o Extension</label>
-                <x-text-input type="text" name="Telefono" id="Telefono" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Telefono',$soporte?->Telefono)" autocomplete="Telefono"  placeholder="" />
+                <x-text-input type="text" name="Telefono" id="Telefono" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Telefono',$soporte?->Telefono)" autocomplete="Telefono"  placeholder="" readonly/>
                 <x-input-error class="mt-2" :messages="$errors->get('Telefono')"/>
               </div>
 
               <div class="md:col-span-3">
+                <label for="Telefono">Celular</label>
+                <x-text-input type="text" name="telefonoI" id="telefonoI" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('telefonoI',$soporte?->telefonoI)" autocomplete="telefonoI"  placeholder="" />
+                <x-input-error class="mt-2" :messages="$errors->get('telefonoI')"/>
+              </div>
+
+              <div class="md:col-span-2">
                 <label for="departamento_id">Departamento</label>
                 <x-text-input type="hidden" name="departamento_id" id="departamento_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('departamento_id',Auth()->user()->departamentos->id) }}" autocomplete="departamento_id"  placeholder="" />
                 <x-text-input type="text" name="" id="" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('departamento_id',Auth()->user()->departamentos->Departamento) }}" autocomplete=""  placeholder=""  readonly/>
                 <x-input-error class="mt-2" :messages="$errors->get('')"/>
               </div>
 
-            <div class="md:col-span-2">
+            <div class="md:col-span-3">
                 <label for="ip_maquina">Ip de la maquina</label>
                 <x-text-input type="text" name="ip_maquina" id="ip_maquina" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('ip_maquina',$soporte?->ip_equipo)}}" placeholder=""  readonly />
                 <x-input-error class="mt-2" :messages="$errors->get('ip_maquina')"/>
               </div>
 
-                <div class="md:col-span-3">
+                <div class="md:col-span-2">
                 <label for="nombre_equipo">Nombre Equipo</label>
-                <x-text-input type="text" name="nombre_equipo" id="nombre_equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{ Auth()->user()->nombre_equipo }}" placeholder=""  />
+                <x-text-input type="text" name="nombre_equipo" id="nombre_equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{ Auth()->user()->nombre_equipo }}" placeholder=""  readonly/>
                 <x-input-error class="mt-2" :messages="$errors->get('nombre_equipo')"/>
                </div>
 
-              <div class="md:col-span-2">
+              <div class="md:col-span-3">
                 <label for="address">Fecha solicitud</label>
                 <x-text-input type="datetime"  name="FechaEntrada" id="FechaEntrada" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value="{{ $soporte->FechaEntrada }}" placeholder="" readonly />
                   <x-input-error class="mt-2" :messages="$errors->get('FechaEntrada')"/>
               </div>
 
-              <div class="md:col-span-3">
+              <div class="md:col-span-2">
                 <label for="address">Fecha / Hora Salida</label>
                 <x-text-input type="datetime"  name="FechaSalida" id="FechaSalida" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value=" {{$dates}}" placeholder="" readonly />
                   <x-input-error class="mt-2" :messages="$errors->get('FechaSalida')"/>
               </div>
 
-                <div class="md:col-span-5">
+                {{-- <div class="md:col-span-3">
                 <label for="address">Tipo de Falla</label>
-                <select name="tipo_falla_id" id="tipo_falla_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select name="tipo_falla_id" id="tipo_falla_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly>
                     {{$sel = 0}}
                   @foreach ($TipoFalla as $tipo )
                   @if($tipo->id == $soporte->tipo_falla_id)
@@ -106,14 +112,21 @@
                        <option value="{{$tipo->id}}" {{$sel}}>{{$tipo->Tipo_Falla}}</option>
                   @endforeach
                 </select>
+              </div> --}}
+
+              <div class="md:col-span-3">
+                <label for="departamento_id">tipo de Falla</label>
+                <x-text-input type="hidden" name="tipo_falla_id" id="tipo_falla_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('tipo_falla_id',$soporte->tipoFallas->id) }}" autocomplete="tipo_falla_id"  placeholder="" />
+                <x-text-input type="text" name="" id="" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('tipo_falla_id',$soporte->tipoFallas->Tipo_Falla) }}" autocomplete=""  placeholder=""  readonly/>
+                <x-input-error class="mt-2" :messages="$errors->get('')"/>
               </div>
 
-          
+
 
               <div class="md:col-span-3">
                 <label for="address">Especifique el Motivo de la falla</label>
-                    <textarea name="Motivo_Falla" id="Motivo_Falla" cols="79" rows="3">{{$soporte->Motivo_Falla}}</textarea>
-                    <x-input-error class="mt-2" :messages="$errors->get('Motivo_Falla')"/>
+                    <textarea name="Motivo_Falla" id="Motivo_Falla" cols="79" rows="3" readonly>{{$soporte->Motivo_Falla}}</textarea>
+                    <x-input-error class="mt-2" :messages="$errors->get('Motivo_Falla')" />
               </div>
 
               <div class="md:col-span-3">
@@ -141,13 +154,7 @@
           </div>
         </div>
       </div>
-    {{-- <div>
-        <x-input-label for="departamento_id" :value="__('Departamento Id')"/>
-        <x-text-input id="departamento_id" name="departamento_id" type="text" class="mt-1 block w-full" :value="old('departamento_id', $soporte?->departamento_id)" autocomplete="departamento_id" placeholder="Departamento Id"/>
-        <x-input-error class="mt-2" :messages="$errors->get('departamento_id')"/>
-    </div>  --}}
-
-</div>
+ </div>
 
                 </form>
             </div>

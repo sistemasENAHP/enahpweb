@@ -51,6 +51,7 @@ class SoporteController extends Controller
         $Fecha = Carbon::now();
 
         $soporte = new Soportes();
+        $User = User::all();
         // $soporte->increment('NControl');
         // $date = Carbon::now();
         $ip = $request->ip();
@@ -64,8 +65,11 @@ class SoporteController extends Controller
         $machineName = gethostname();
         $NControl = Soportes::orderBy('NControl','desc')->first();
 
+        foreach($User as $user){
 
-        return view('soporte.create', compact('soporte','Departamentos','TipoFalla','ip','date','hostname','macAddress','NControl','machineName'));
+        }
+
+        return view('soporte.create', compact('soporte','Departamentos','TipoFalla','ip','date','hostname','macAddress','NControl','machineName','user'));
     }
 
     /**
@@ -84,6 +88,7 @@ class SoporteController extends Controller
           $soporte->Apellidos = $request->Apellidos;
           $soporte->Cedula = $request->Cedula;
           $soporte->Telefono = $request->Telefono;
+          $soporte->telefonoI = $request->telefonoI;
           $soporte->Correo = $request->Correo;
           $soporte->ip_equipo =  $request->ip_maquina;
            $soporte->nombre_equipo =  $request->nombre_equipo;
@@ -92,9 +97,9 @@ class SoporteController extends Controller
           $soporte->Solucion = $request->Solucion;
           $soporte->Tecnico = $request->tecnico;
           $soporte->save();
-          
+
                     broadcast(new SoporteEvento($soporte));
-                    $soporte->notify(new SoporteNotificacion("hola"));
+                    // $soporte->notify(new SoporteNotificacion("hola"));
 
         return Redirect('/Soportes/create')->with('success', 'Soporte created successfully.');
     }

@@ -48,11 +48,11 @@
                                             </thead>
                                             <tbody class="divide-y divide-gray-200 bg-white">
 
-                                                @foreach ($ListadoPuntoPB as $listadopunto)
+                                                @foreach ($ListadoPuntoP2YP3 as $listadopunto)
                                                 @if($listadopunto->departamento_id == $Listado->departamento_id)
 
                                                 <tr class="even:bg-gray-50">
-                                                    <td class="py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{++$PB }}</td>
+                                                    <td class="py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{++$P2YP3 }}</td>
                                                     <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center"><a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" class="modal">{{$listadopunto->departamentos->Departamento}}</a></td>
 
                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" >{{$listadopunto->Nombre}} - {{$listadopunto->Apellido}}</td>
@@ -70,7 +70,7 @@
                                                         <form action="{{ route('ListadoPunto.destroy', $listadopunto->id) }}" method="POST">
                                                             {{-- <a href="{{ route('ListadoPunto.show', $listadopunto->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a> --}}
 
-                                                            <a href="{{ route('ListadoPunto.editPB', $listadopunto->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
+                                                            <a href="{{ route('ListadoPunto.editP2YP3', $listadopunto->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
                                                             @csrf
                                                             @method('DELETE')
                                                             <a href="{{ route('ListadoPunto.destroy', $listadopunto->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a>
@@ -84,9 +84,8 @@
                                         </table>
 
                                         <div class="mt-4 px-4">
-                                            {!! $ListadoPuntoPB->withQueryString()->links() !!}
+                                            {!! $ListadoPuntoP2YP3->withQueryString()->links() !!}
                                         </div>
-
                                     </dl>
                                 </div>
                             </div>

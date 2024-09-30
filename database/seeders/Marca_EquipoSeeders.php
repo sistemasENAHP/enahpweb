@@ -13,21 +13,21 @@ class Marca_EquipoSeeders extends Seeder
     public function run(): void
     {
          DB::table('marca_equipos')->insert([
-            'Marca' => 'Vit'
+            'Marca' => 'Vit',
             'created_at' => now(),
             'updated_at' => now()
 
         ]);
 
            DB::table('marca_equipos')->insert([
-            'Marca' => 'Siragon'
+            'Marca' => 'Siragon',
             'created_at' => now(),
             'updated_at' => now()
 
         ]);
 
              DB::table('marca_equipos')->insert([
-            'Marca' => 'HP'
+            'Marca' => 'HP',
             'created_at' => now(),
             'updated_at' => now()
 

@@ -10,6 +10,7 @@
              <div>
             <x-input-label for="name" :value="__('Departamento')" />
             <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <option value="">Seleccione un Departamento</option>
            @foreach($Departamentos as $departamento)
            <option value="{{ $departamento->id }}">{{ $departamento->Departamento }}</option>
               @endforeach
@@ -61,8 +62,8 @@
           <x-text-input id="nombre_equipo" name="nombre_equipo" type="hidden" class="mt-1 block w-full" value="{{$machineName }}" autocomplete="nombre_equipo" placeholder="nombre_equipo"/>
        <x-input-error class="mt-2" :messages="$errors->get('ip_equipo')"/>
         </div>
-                              
-                              
+
+
         <div>
      <x-input-label for="email" :value="__('Correo')"/>
     <x-text-input id="email" name="email" type="text" class="mt-1 block w-full"  autocomplete="email" placeholder="" :value="old('email')"/>

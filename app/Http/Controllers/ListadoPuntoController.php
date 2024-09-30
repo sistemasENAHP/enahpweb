@@ -35,7 +35,7 @@ class ListadoPuntoController extends Controller
         //        $Mostrar = $request->mostrar;
         //    dd($Mostrar);
            $ListadoPuntoP1 = ListadoPuntos::where('piso_id','=',2)->where('departamento_id','>=',22)->where('departamento_id','<=',31)->orderBy('id','desc')->paginate();
-           $ListadoPuntoP2YP3 = ListadoPuntos::where('piso_id','=',3)->where('departamento_id','>',31)->orderBy('id','desc')->paginate();
+           $ListadoPuntoP2YP3 = ListadoPuntos::where('piso_id','=',3)->where('departamento_id','>=',31)->orderBy('id','desc')->paginate();
            $Piso = ListadoPuntos::all();
 
 
@@ -50,21 +50,21 @@ class ListadoPuntoController extends Controller
     public function createPB(Request $request)
     {
         $ListadoPunto = new  ListadoPuntos();
-        $Departamentos = Departamentos::where('id','<=',21)->get();
+        $Departamentos = Departamentos::where('punto_id','=',1)->get();
         return view('Listado.ListadoPuntos.PB.createPB',compact('Departamentos','ListadoPunto'));
     }
 
       public function createP1(Request $request)
     {
         $ListadoPunto = new  ListadoPuntos();
-        $Departamentos = Departamentos::where('id','>=',22)->where('id','<=',30)->get();
+        $Departamentos = Departamentos::where('punto_id','>=',2)->where('id','<=',30)->get();
         return view('Listado.ListadoPuntos.P1.createP1',compact('Departamentos','ListadoPunto'));
     }
 
        public function createP2YP3(Request $request)
     {
         $ListadoPunto = new  ListadoPuntos();
-        $Departamentos = Departamentos::where('id','>=',31)->get();
+        $Departamentos = Departamentos::where('punto_id','>=',3)->get();
         return view('Listado.ListadoPuntos.P2YP3.createP2YP3',compact('Departamentos','ListadoPunto'));
     }
 
@@ -112,6 +112,22 @@ class ListadoPuntoController extends Controller
         $ListadoPuntoPB = ListadoPuntos::paginate();
 
         return view('Listado.ListadoPuntos.show', compact('ListadoPuntoPB','Listado'))->with('PB', ($request->input('page', 1) - 1) * $ListadoPuntoPB->perPage());
+    }
+
+    public function showP1(Request $request,$id)
+    {
+        $Listado = ListadoPuntos::FindOrFail($id);
+        $ListadoPuntoP1 = ListadoPuntos::paginate();
+
+        return view('Listado.ListadoPuntos.P1.show', compact('ListadoPuntoP1','Listado'))->with('P1', ($request->input('page', 1) - 1) * $ListadoPuntoP1->perPage());
+    }
+
+    public function showP2YP3(Request $request,$id)
+    {
+        $Listado = ListadoPuntos::FindOrFail($id);
+        $ListadoPuntoP2YP3 = ListadoPuntos::paginate();
+
+        return view('Listado.ListadoPuntos.P2YP3.show', compact('ListadoPuntoP2YP3','Listado'))->with('P2YP3', ($request->input('page', 1) - 1) * $ListadoPuntoP2YP3->perPage());
     }
 
     /**

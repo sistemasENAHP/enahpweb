@@ -45,26 +45,26 @@
                                             </thead>
                                             <tbody class="divide-y divide-gray-200 bg-white">
 
-                                                @foreach ($ListadoIpPB as $listadoipPB)
-                                                @if($listadoipPB->departamento_id == $Listado->departamento_id)
+                                                @foreach ($ListadoIpP2YP3 as $listadoipP2YP3)
+                                                @if($listadoipP2YP3->departamento_id == $Listado->departamento_id)
                                                 <tr class="even:bg-gray-50">
-                                          <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{++$PB}}</td>
-                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->departamentos->Departamento}}</td>
-                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Nombre}} - {{$listadoipPB->Apellido}} </td>
-                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Cedula}}</td>
-                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Equipo}}</td>
-                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoipPB->Escuela }}</td>
+                                          <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{++$P2YP3}}</td>
+                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->departamentos->Departamento}}</td>
+                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->Nombre}} - {{$listadoipP2YP3->Apellido}} </td>
+                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->Cedula}}</td>
+                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->Equipo}}</td>
+                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoipP2YP3->Escuela }}</td>
 
-                                                    <td class="px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoipPB->Ministerio }}</td>
-                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Observacion}}</td>
+                                                    <td class="px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoipP2YP3->Ministerio }}</td>
+                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->Observacion}}</td>
 
                                                     <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
-                                                        <form action="{{ route('ListadoIp.destroy', $listadoipPB->id) }}" method="POST">
+                                                        <form action="{{ route('ListadoIp.destroy', $listadoipP2YP3->id) }}" method="POST">
                                                             {{-- <a href="{{ route('ListadoIp.show', $listadoipP1->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a> --}}
-                                                            <a href="{{ route('ListadoIp.editPB', $listadoipPB->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
+                                                            <a href="{{ route('ListadoIp.editP2YP3', $listadoipP2YP3->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
                                                             @csrf
                                                             @method('DELETE')
-                                                            <a href="{{ route('ListadoIp.destroy', $listadoipPB->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a>
+                                                            <a href="{{ route('ListadoIp.destroy', $listadoipP2YP3->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a>
                                                         </form>
                                                     </td>
                                                 </tr>
@@ -74,7 +74,7 @@
                                         </table>
 
                                         <div class="mt-4 px-4">
-                                            {!! $ListadoIpPB->withQueryString()->links() !!}
+                                            {!! $ListadoIpP2YP3->withQueryString()->links() !!}
                                         </div>
                                         {{-- <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                             <dt class="text-sm font-medium leading-6 text-gray-900">Departamento</dt>

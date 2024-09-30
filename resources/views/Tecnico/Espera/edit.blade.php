@@ -39,24 +39,24 @@
             </div>
             <div class="md:col-span-2">
                 <label for="Apellidos">Apellido</label>
-                <x-text-input type="text" id="Apellidos" name="Apellidos" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Apellidos',$soporte?->Apellidos)" autocomplete="Apellidos" placeholder="Apellidos"/>
+                <x-text-input type="text" id="Apellidos" name="Apellidos" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Apellidos',$soporte?->Apellidos)" autocomplete="Apellidos" placeholder="Apellidos" readonly/>
                 <x-input-error class="mt-2" :messages="$errors->get('Apellidos')"/>
 
               </div>
               <div class="md:col-span-2">
                 <label for="Cedula">Cedula</label>
-                <x-text-input type="text" name="Cedula" id="Cedula" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Cedula',$soporte?->Cedula)" autocomplete="Cedula" placeholder="Cedula" />
+                <x-text-input type="text" name="Cedula" id="Cedula" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Cedula',$soporte?->Cedula)" autocomplete="Cedula" placeholder="Cedula"  readonly/>
                 <x-input-error class="mt-2" :messages="$errors->get('Cedula')"/>
               </div>
             <div class="md:col-span-3">
               <label for="email">Correo</label>
-              <x-text-input type="email" name="Correo" id="Correo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Correo',$soporte?->Correo)" autocomplete="Correo" placeholder="enahp@enahp.com"  />
+              <x-text-input type="email" name="Correo" id="Correo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Correo',$soporte?->Correo)" autocomplete="Correo" placeholder="enahp@enahp.com" readonly />
               <x-input-error class="mt-2" :messages="$errors->get('Correo')"/>
             </div>
 
             <div class="md:col-span-2">
                 <label for="Telefono">Telefono o Extension</label>
-                <x-text-input type="text" name="Telefono" id="Telefono" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Telefono',$soporte?->Telefono)" autocomplete="Telefono"  placeholder="" />
+                <x-text-input type="text" name="Telefono" id="Telefono" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="old('Telefono',$soporte?->Telefono)" autocomplete="Telefono"  placeholder="" readonly/>
                 <x-input-error class="mt-2" :messages="$errors->get('Telefono')"/>
               </div>
 

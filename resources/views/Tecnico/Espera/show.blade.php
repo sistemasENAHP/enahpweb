@@ -27,7 +27,7 @@
                         <div class="mt-8 overflow-x-auto">
                             <div class="inline-block min-w-full py-2 align-middle">
                                 <div class="w-full mt-6 border-t border-gray-100" >
-                                    
+
                                         <table class="w-full text-sm text-left rtl:text-right table-auto w-3/4 border-collapse border border-slate-900 pb-8" >
                                              {{-- <table class="table table-bordered border-5 border border-info" > --}}
      <thead>
@@ -35,7 +35,7 @@
                 <th class="border border-slate-600 text-center" colspan="2">N°Control</th>
                 <th class="border border-slate-600 text-center" colspan="4">Nombre y Apellido</th>
                 <th class="border border-slate-600 text-center" colspan="20">Cedula</th>
-                
+
             </tr>
         </thead>
             <tbody>
@@ -56,6 +56,7 @@
                  <tr>
                      <th class="border border-slate-600 text-center" colspan="2">Correo</th>
                 <th class="border border-slate-600 text-center" colspan="4">Telefono</th>
+                <th class="border border-slate-600 text-center" colspan="4">Celular</th>
                 <th class="border border-slate-600 text-center" colspan="20">Fecha Solicitud</th>
                  </tr>
              </thead>
@@ -65,6 +66,8 @@
                     <input type="hidden" name="Correo" value="{{ $soporte->Correo }}">
                     <td class="border border-slate-700 text-center" colspan="4">{{$soporte->Telefono }}</td>
                     <input type="hidden" name="Telefono" value="{{ $soporte->Telefono }}">
+                    <td class="border border-slate-700 text-center" colspan="4">{{$soporte->telefonoI }}</td>
+                    <input type="hidden" name="telefonoI" value="{{ $soporte->telefonoI }}">
                     <td class="border border-slate-700 text-center" colspan="20">
                         {{\Carbon\Carbon::parse($soporte->FechaEntrada)->format('d/m/Y H:i') }}</td>
                     <input type="hidden" name="FechaEntrada" value="{{ $soporte->FechaEntrada }}">
@@ -74,7 +77,7 @@
                  <tr>
                       <th class="border border-slate-600 text-center" colspan="2">Departamento</th>
                 <th class="border border-slate-600 text-center" colspan="4">Tipo Falla</th>
-                <th class="border border-slate-600 text-center" colspan="20">Ip</th> 
+                <th class="border border-slate-600 text-center" colspan="20">Ip</th>
                  </tr>
              </thead>
              <tbody>
@@ -111,7 +114,7 @@
                  <tr>
                       <th class="border border-slate-600 text-center" colspan="2">Nombre Equipo</th>
                 <th class="border border-slate-600 text-center" colspan="4">Motivo Falla</th>
-                <th class="border border-slate-600 text-center" colspan="20">Técnico</th> 
+                <th class="border border-slate-600 text-center" colspan="20">Técnico</th>
                  </tr>
              </thead>
            <tbody>
@@ -128,11 +131,15 @@
                                     <div class="md:col-span-5">
                                     <x-text-input type="hidden" name="estatus_id" id="estatus_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="2" placeholder=""  readonly />
                                   </div>
-                                  
-   
+<br>
+                                 <div class="md:col-span-5">
+                                  <label for="">Mensaje</label>
+                                  <input type="text" name="mensaje" id="mensaje" value="Se le dará Asistencia Técnica dentro de   Minutos"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" >
+                                 </div>
 
 
-                                
+
+
                                 </div>
                             </div>
                         </div>

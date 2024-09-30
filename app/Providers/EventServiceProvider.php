@@ -1,4 +1,4 @@
-<!-- <?php -->
+<!-- <?php
 
 // namespace App\Providers;
 
@@ -24,13 +24,13 @@
 //             SendEmailVerificationNotification::class,
 //             // Notificaciones::class,
 //         ],
-       
+
 
 //        'App\Events\SoporteEvento' => [
 //             'App\Listeners\SoporteListener',
 //         ],
 
-      
+
 
 
 //     ];
