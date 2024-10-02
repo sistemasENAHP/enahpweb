@@ -51,7 +51,7 @@ class SoporteController extends Controller
         $Fecha = Carbon::now();
 
         $soporte = new Soportes();
-        $User = User::all();
+        $user = Auth()->user();
         // $soporte->increment('NControl');
         // $date = Carbon::now();
         $ip = $request->ip();
@@ -61,15 +61,11 @@ class SoporteController extends Controller
         $agent = new Agent();
         $macAddress = $agent->isDesktop();
         $hostname = exec('getmac');
-        $hostname = strtok($hostname, ' ');
+        $hostnames = strtok($hostname, ' ');
         $machineName = gethostname();
         $NControl = Soportes::orderBy('NControl','desc')->first();
 
-        foreach($User as $user){
-
-        }
-
-        return view('soporte.create', compact('soporte','Departamentos','TipoFalla','ip','date','hostname','macAddress','NControl','machineName','user'));
+        return view('soporte.create', compact('soporte','Departamentos','TipoFalla','ip','date','hostnames','macAddress','NControl','machineName','user'));
     }
 
     /**
@@ -99,7 +95,7 @@ class SoporteController extends Controller
           $soporte->save();
 
                     broadcast(new SoporteEvento($soporte));
-                    // $soporte->notify(new SoporteNotificacion("hola"));
+                  
 
         return Redirect('/Soportes/create')->with('success', 'Soporte created successfully.');
     }

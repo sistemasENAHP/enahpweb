@@ -33,9 +33,11 @@
 
                                                 <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Usuario</th>
 
+                                                 <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Cedula</th>
+
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Equipo</th>
 
-                                                <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Cedula</th>
+                                               
 
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Escuela</th>
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Ministerio</th>
@@ -51,8 +53,9 @@
                                           <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{++$PB}}</td>
                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->departamentos->Departamento}}</td>
                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Nombre}} - {{$listadoipPB->Apellido}} </td>
-                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Cedula}}</td>
+                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Cedula}}</td>
                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Equipo}}</td>
+                                                    
                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoipPB->Escuela }}</td>
 
                                                     <td class="px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoipPB->Ministerio }}</td>
@@ -60,7 +63,6 @@
 
                                                     <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                         <form action="{{ route('ListadoIp.destroy', $listadoipPB->id) }}" method="POST">
-                                                            {{-- <a href="{{ route('ListadoIp.show', $listadoipP1->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a> --}}
                                                             <a href="{{ route('ListadoIp.editPB', $listadoipPB->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
                                                             @csrf
                                                             @method('DELETE')

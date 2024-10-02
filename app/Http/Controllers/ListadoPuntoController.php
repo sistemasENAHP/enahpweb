@@ -50,21 +50,21 @@ class ListadoPuntoController extends Controller
     public function createPB(Request $request)
     {
         $ListadoPunto = new  ListadoPuntos();
-        $Departamentos = Departamentos::where('punto_id','=',1)->get();
+        $Departamentos = Departamentos::where('piso_id','=',1)->get();
         return view('Listado.ListadoPuntos.PB.createPB',compact('Departamentos','ListadoPunto'));
     }
 
       public function createP1(Request $request)
     {
         $ListadoPunto = new  ListadoPuntos();
-        $Departamentos = Departamentos::where('punto_id','>=',2)->where('id','<=',30)->get();
+        $Departamentos = Departamentos::where('piso_id','>=',2)->where('id','<=',30)->get();
         return view('Listado.ListadoPuntos.P1.createP1',compact('Departamentos','ListadoPunto'));
     }
 
        public function createP2YP3(Request $request)
     {
         $ListadoPunto = new  ListadoPuntos();
-        $Departamentos = Departamentos::where('punto_id','>=',3)->get();
+        $Departamentos = Departamentos::where('piso_id','>=',3)->get();
         return view('Listado.ListadoPuntos.P2YP3.createP2YP3',compact('Departamentos','ListadoPunto'));
     }
 

@@ -33,9 +33,10 @@
 
                                                 <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Usuario</th>
 
+                                                 <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Cedula</th>
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Equipo</th>
 
-                                                <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 ">Cedula</th>
+                                                
 
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Escuela</th>
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Ministerio</th>
@@ -51,8 +52,9 @@
                                           <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{++$P2YP3}}</td>
                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->departamentos->Departamento}}</td>
                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->Nombre}} - {{$listadoipP2YP3->Apellido}} </td>
-                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->Cedula}}</td>
+                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->Cedula}}</td>
                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->Equipo}}</td>
+                                                    
                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoipP2YP3->Escuela }}</td>
 
                                                     <td class="px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoipP2YP3->Ministerio }}</td>

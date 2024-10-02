@@ -32,8 +32,8 @@ class DatabaseSeeder extends Seeder
         $this->call([UsersSeeder::class]);
         $this->call([TipoFallasSeed::class]);
        
-        $this->call([ListadoPuntosSeeder::class]);
-        $this->call([ListadoipSeed::class]);
+        // $this->call([ListadoPuntosSeeder::class]);
+        // $this->call([ListadoipSeed::class]);
         $this->call([EstatusSeeder::class]);
 
 

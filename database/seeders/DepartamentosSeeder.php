@@ -39,6 +39,8 @@ class departamentosSeeder extends Seeder
 
         ]);
 
+      
+
         DB::table('departamentos')->insert([
           'piso_id' => 1,
          'Departamento'=>'Direccion Administrativa',
@@ -54,6 +56,15 @@ class departamentosSeeder extends Seeder
          'updated_at'=>now()
 
         ]);
+
+           DB::table('departamentos')->insert([
+          'piso_id' => 1,
+           'Departamento'=>'Bienes Nacionales',
+            'created_at'=>now(),
+            'updated_at'=>now()
+
+           ]);
+           
         DB::table('departamentos')->insert([
             'piso_id' => '1',
          'Departamento'=>'Personal',
@@ -265,13 +276,7 @@ class departamentosSeeder extends Seeder
 
            ]);
 
-           DB::table('departamentos')->insert([
-             'piso_id' => 3,
-            'Departamento'=>'Bienes Nacionales',
-            'created_at'=>now(),
-            'updated_at'=>now()
-
-           ]);
+        
 
         DB::table('departamentos')->insert([
          'piso_id' => 3,

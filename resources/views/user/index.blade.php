@@ -30,8 +30,11 @@
                         			<th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Nombre</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Apellido</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Cedula</th>
+                                      <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Departamento</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Correo</th>
                                     <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Rol</th>
+
+
 
                                         <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Accion</th>
                                     </tr>
@@ -42,7 +45,7 @@
                                          <td class=" px-3 py-4 text-sm text-center text-gray-500">{{ $user->name }}</td>
 										<td class=" px-3 py-4 text-sm text-center text-gray-500">{{ $user->surname }}</td>
 										<td class=" px-3 py-4 text-sm text-center text-gray-500">{{ $user->identification_card }}</td>
-										
+										<td class=" px-3 py-4 text-sm text-center text-gray-500">{{ $user->departamentos->Departamento }}</td>
 										<td class=" px-3 py-4 text-sm text-center text-gray-500">{{ $user->email }}</td>
                                         <td class="p px-3 py-4 text-sm text-center text-gray-500">
                                             @if (!empty($user->getRoleNames())) {{--Funcion de Laravel Permission tomara el nombre de los roles--}}

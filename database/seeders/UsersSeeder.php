@@ -16,7 +16,8 @@ class UsersSeeder extends Seeder
     public function run(): void
     {
         User::create([
-             'departamento_id' => 31,
+             
+             'departamento_id' => 32,
             'name' => 'Administrador',
             'surname' => 'Administrador',
             'identification_card' => 25213024,
@@ -33,7 +34,27 @@ class UsersSeeder extends Seeder
         ])->assignRole('Administrador');
 
          User::create([
-             'departamento_id' => 31,
+            
+             'departamento_id' => 32,
+            'name' => 'Jose ',
+            'surname' => 'Ramos',
+            'identification_card' => 12345698,
+            'ip_equipo' => '10.2.2.180',
+            'nombre_equipo' => 'sistema-01',
+            'telefono' => '0416154545',
+            'telefonoI'=> '0416154541',
+            'email' => 'Coordinador@enahp.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('Enahp*2024'),
+            'created_at' => now(),
+            'updated_at' => now()
+
+        ])->assignRole('Coordinador');
+
+
+         User::create([
+              
+             'departamento_id' => 32,
             'name' => 'Ivan',
             'surname' => 'Jaspe',
             'identification_card' => 25213025,
@@ -50,7 +71,8 @@ class UsersSeeder extends Seeder
         ])->assignRole('Tecnico');
 
            User::create([
-            'departamento_id' => 31,
+            
+            'departamento_id' => 32,
             'name' => 'Hamilton ',
             'surname' => 'Leon',
             'identification_card' => 12345678,

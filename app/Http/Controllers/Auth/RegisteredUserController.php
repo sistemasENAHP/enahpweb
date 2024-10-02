@@ -13,6 +13,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\Departamentos;
 use App\Http\Requests\UserRequest;
+use App\Models\Listadoips;
 class RegisteredUserController extends Controller
 {
     /**
@@ -22,8 +23,11 @@ class RegisteredUserController extends Controller
     {
         $Departamentos = Departamentos::all();
         $ip = $request->ip();
-          $machineName = gethostname();
-        return view('auth.register',compact('Departamentos','ip','machineName'));
+        $machineName = gethostname();
+
+        // $ip  = getenv("REMOTE_ADDR");
+        $machineName1 = getenv("computername");
+        return view('auth.register',compact('Departamentos','ip','machineName','machineName1'));
     }
 
 
@@ -44,13 +48,39 @@ class RegisteredUserController extends Controller
 
         $users = $request->all();
         $users['password'] = Hash::make($users['password']);
+        $users['nombre_equipo'] = $request->nombre_equipo;
         $roles = $request->role_id = 4;
         $user = User::create($users);
         $user->assignRole($roles);
-       // dd($users);
-       //  event(new Registered($user));
+        
 
         Auth::login($user);
+
+         $ListaIp = new Listadoips();
+
+        if( $request->departamento_id <= 21){
+
+            $ListaIp->piso_id = 1;
+
+            }else if($request->departamento_id >= 21  || $request->departamento_id <=31){
+
+              $ListaIp->piso_id = 2;
+
+            }else if($request->departamento_id >=31){
+
+              $ListaIp->piso_id = 3;
+
+            }
+            
+            $ListaIp->departamento_id = $request->departamento_id;
+            $ListaIp->Nombre = $request->name;
+            $ListaIp->Apellido = $request->surname;
+            $ListaIp->Cedula = $request->identification_card;
+            $ListaIp->Equipo = $request->nombre_equipo;
+            $ListaIp->Escuela =  $request->ip_equipo;
+            $ListaIp->Ministerio = $request->ip_ministerio;
+            $ListaIp->Observacion = $request->Observaciones;
+             $ListaIp->save();
 
         return redirect(route('dashboard', absolute: false));
     }

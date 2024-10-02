@@ -10,6 +10,7 @@
         <div class="md:col-span-5" >
         <label for="departamento_id">Departamento</label>
         <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option>Selecciones..</option>
           {{$sel = 0}}
           @foreach($Departamentos as $dep)
           @if($dep->id == $ListadoEquipo->departamento_id)
@@ -106,11 +107,11 @@
             <x-text-input type="text" name="Version" id="Version" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Version" placeholder="Version" :value="old('Version',$ListadoEquipo?->Version)" />
             <x-input-error class="mt-2" :messages="$errors->get('Version')"/>
           </div>
-          <div class="md:col-span-2">
-            <label for="ip_escuela">IP Escuela</label>
+           <div class="md:col-span-2">
+           <label for="ip_escuela">IP Escuela</label>
             <x-text-input type="text" name="ip_escuela" id="ip_escuela" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_escuela" placeholder="IP Escuela" :value="old('ip_escuela',$ListadoEquipo?->ip_escuela)" />
-            <x-input-error class="mt-2" :messages="$errors->get('ip_escuela')"/>
-          </div>
+                    <x-input-error class="mt-2" :messages="$errors->get('ip_escuela')"/>
+                  </div>
           <div class="md:col-span-1">
             <label for="ip_ministerio">IP Ministerio</label>
             <x-text-input type="text" name="ip_ministerio" id="ip_ministerio" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_ministerio" placeholder="IP Ministerio" :value="old('ip_ministerio',$ListadoEquipo?->ip_ministerio)" />

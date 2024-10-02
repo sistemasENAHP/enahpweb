@@ -26,6 +26,7 @@ class NotificacionUsuario implements ShouldBroadcast
     public $Nombre;
     public $Apellido;
     public $Departamento;
+    public $Tecnico;
     /**
      * Create a new event instance.
      */
@@ -37,6 +38,7 @@ class NotificacionUsuario implements ShouldBroadcast
         $this->Apellido = $soportes->Apellidos;
          $this->Cedula = $soportes->Cedula;
         $this->Departamento = $soportes->departamentos->Departamento;
+        $this->Tecnico = $soportes->Tecnico;
 
     }
 
@@ -64,7 +66,7 @@ class NotificacionUsuario implements ShouldBroadcast
 
 
 
-         return ['messager' => $this->Mensaje, 'cedula' =>$this->Cedula];
+         return ['messager' => $this->Mensaje, 'cedula' =>$this->Cedula, 'Tecnico' => $this->Tecnico];
 
 
 

@@ -85,7 +85,7 @@
               @else
                   <div class="md:col-span-3">
                 <label for="ip_maquina">Ip de la maquina</label>
-                <x-text-input type="text" name="ip_maquina" id="ip_maquina" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('ip_equipo',$soporte?->ip_equipo)}}" placeholder=""  readonly />
+                <x-text-input type="text" name="ip_maquina" id="ip_maquina" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('ip_equipo',$user?->ip_equipo)}}" placeholder=""  readonly />
                 <x-input-error class="mt-2" :messages="$errors->get('ip_maquina')"/>
               </div>
 
@@ -99,7 +99,7 @@
 
               <div class="md:col-span-3">
                 <label for="address">Fecha / Hora</label>
-                <x-text-input type="datetime"  name="FechaEntrada" id="FechaEntrada" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value="{{$date,old('FechaEntrada',$soporte?->FechaEntrada)}}" placeholder="" readonly />
+                <x-text-input type="datetime"  name="FechaEntrada" id="FechaEntrada" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value="{{$date,old('FechaEntrada',$user?->FechaEntrada)}}" placeholder="" readonly />
                   <x-input-error class="mt-2" :messages="$errors->get('FechaEntrada')"/>
               </div>
 
@@ -190,7 +190,7 @@ $('#NotificacionUsuario').append(function(){
 
             position: "top-center",
             icon: "info",
-            title:'Hola!  El Técnico  {{Auth()->user()->name}} {{Auth()->user()->surname}} Acepto tu Solicitud.  ' +data['messager'],
+            title:'Hola!  El Técnico ' +data['Tecnico']+ '  Acepto tu Solicitud.  ' +data['messager'],
                   
             // timer: 9000
 

@@ -12,10 +12,15 @@
             <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                 <option value="">Seleccione un Departamento</option>
            @foreach($Departamentos as $departamento)
-           <option value="{{ $departamento->id }}">{{ $departamento->Departamento }}</option>
+
+           <option value="{{ $departamento->id }} ">{{ $departamento->Departamento }}</option>
+
+           
+               
               @endforeach
             </select>
         </div>
+
 
         <div>
             <x-input-label for="name" :value="__('Nombre')" />
@@ -55,12 +60,15 @@
 
         <div>
        {{-- <x-input-label for="ip_equipo" :value="__('ip equipo')"/> --}}
-       <x-text-input id="ip_equipo" name="ip_equipo" type="hidden" class="mt-1 block w-full" value="{{$ip }}" autocomplete="user" placeholder="ip_equipo"/>
+       <x-text-input id="ip_equipo" name="ip_equipo" type="hidden" class="mt-1 block w-full" value="{{$ip}}" autocomplete="user" placeholder="ip_equipo"/>
        <x-input-error class="mt-2" :messages="$errors->get('ip_equipo')"/>
         </div>
+
+
             <div>
-          <x-text-input id="nombre_equipo" name="nombre_equipo" type="hidden" class="mt-1 block w-full" value="{{$machineName }}" autocomplete="nombre_equipo" placeholder="nombre_equipo"/>
-       <x-input-error class="mt-2" :messages="$errors->get('ip_equipo')"/>
+          {{-- <x-input-label for="user" :value="__('Nombre Equipo')"/> --}}
+          <x-text-input id="nombre_equipo" name="nombre_equipo" type="hidden" class="mt-1 block w-full" value="{{ $machineName }}" autocomplete="nombre_equipo" placeholder="nombre_equipo"/>
+       <x-input-error class="mt-2" :messages="$errors->get('nombre_equipo')"/>
         </div>
 
 
@@ -104,27 +112,9 @@
         </div>
     </form>
 </x-guest-layout>
-{{-- <script>
+<script >
+    
+$(document).ready(function(){
 
-    $(document).ready(function(){
-
-              $('#validacion').on('submit', function(e) {
-                e.preventDefault();
-                 Swal.fire({
-                        position: "top-center",
-                        icon: "info",
-                        title:'Se ha registrado exitosamente!',
-                        showConfirmButton: false,
-                        timer: 5000
-
-                    }).then((result) => {
-
-                        location.reload();
-                        tr.hide();
-
-                    })            });
-
-        });
-
-
-</script> --}}
+});
+</script>
