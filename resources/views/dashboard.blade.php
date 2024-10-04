@@ -84,7 +84,7 @@
 <script>
         $(document).ready(function() {
            // Enable pusher logging - don't include this in production
-            Pusher.logToConsole = true;
+            Pusher.logToConsole = false;
 
             var pusher = new Pusher('5dade7404be34deb0ac4', {
                 cluster: 'us2'
@@ -126,7 +126,7 @@
 
 
  // Enable pusher logging - don't include this in production
-            Pusher.logToConsole = true;
+            Pusher.logToConsole = false;
 
             var pusher = new Pusher('5dade7404be34deb0ac4', {
                 cluster: 'us2'
@@ -158,7 +158,7 @@
 
 
  // Enable pusher logging - don't include this in production
-            Pusher.logToConsole = true;
+            Pusher.logToConsole = false;
 
             var pusher = new Pusher('5dade7404be34deb0ac4', {
                 cluster: 'us2'
@@ -187,6 +187,17 @@
     });
 
       });
+
+
+//  const channel = pusher.subscribe('my-channel');
+// channel.bind('pusher:subscription_succeeded', function() {
+//   console.log('Subscribed!');
+// });
+
+// channel.bind('pusher:notification', function(data) {
+//   console.log('New notification:', data);
+//   // Mostrar la notificación en la interfaz de usuario
+// });
 
 $('#asunto').hide();
 

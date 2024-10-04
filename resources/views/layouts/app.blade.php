@@ -123,6 +123,7 @@
             @can('admin.Estatisticas.index')<li><a href="/Estadisticas" class="block">Estadisticas</a></li>@endcan
             @can('')<li><a href="/Auditoria" class="block">Auditoria</a></li>@endcan
             @can('admin.users.index')<li><a href="/users" class="block">Usuarios</a></li>@endcan
+            @role('Administrador|Coordinador|Tecnico')
             @auth
             <li type="submit" class="btn btn-danger">
                 <form method="POST" action="{{ route('logout') }}">
@@ -131,6 +132,10 @@
                 </form>
             </li>
             @endauth
+            @endrole
+            @role('Usuario')
+            <a href="javascript:close_window();">Cerrar</a>
+            @endrole
         </ul>
     </nav>
     <main class="ml-64 mt-16 flex-1 p-4">
@@ -161,7 +166,8 @@
        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
            <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
            <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
-         <script src="{{asset('/JS/service-worker.js')}}"></script>
+           
+         {{-- <script src="{{asset('/JS/service-worker.js')}}"></script> --}}
         <script src="{{asset('/JS/dataTables.min.js')}}"></script>
         <script src="{{asset('/JS/dataTables.js')}}"></script>
         <script src="/Highcharts/code/highcharts.js"></script>
@@ -172,12 +178,18 @@
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 
 </body>
-<script type="text/javascript">
-//    $(document).ready(function() {
+{{-- <script type="text/javascript">
+navigator.serviceWorker.register('/public/JS/service-worker.js')
+</script> --}}
+<script language="javascript" type="text/javascript">
+   
+function close_window() {
+    
+        window.close();
+    
+}
 
-// });
 </script>
-
 
 </html>
 

@@ -10,4 +10,5 @@ return [
      Barryvdh\DomPDF\ServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Pusher\Beams\Laravel\PusherBeamsServiceProvider::class,
 ];

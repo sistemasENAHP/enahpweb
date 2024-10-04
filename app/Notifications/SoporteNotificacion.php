@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\PusherPushNotifications\PusherChannel;
 use NotificationChannels\PusherPushNotifications\PusherMessage;
-
+use Pusher\PushNotifications\PushNotifications;
 class SoporteNotificacion extends Notification
 {
 
@@ -18,7 +18,7 @@ class SoporteNotificacion extends Notification
 
         public function __construct($message)
     {
-        $this->message = $message;
+        $this->message = "hola";
 
     }
 
@@ -39,6 +39,8 @@ class SoporteNotificacion extends Notification
             ->body("Prueba");
     }
 
+
+ 
 
     
     // public function toArray($notifiable): array
