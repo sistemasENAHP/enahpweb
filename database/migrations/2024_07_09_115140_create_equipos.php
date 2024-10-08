@@ -82,12 +82,12 @@ return new class extends Migration
             $table->string('CableVGAHDMI')->nullable()->default(NULL);
             $table->string('Impresora')->nullable()->default(NULL);
             $table->string('Telefono')->nullable()->default(NULL);
-
             $table->string('Route')->nullable()->default(NULL);
             $table->string('Dns')->nullable()->default(NULL);
             $table->string('Puerto')->nullable()->default(NULL);
             $table->string('Proxy')->nullable()->default(NULL);
             $table->string('PuntoRed')->nullable()->default(NULL);
+            $table->string('Punto_Switch')->nullable()->default(NULL);
             $table->string('CajetinPuntos')->nullable()->default(NULL);
             $table->text('Observacion',200)->nullable()->default(NULL);
             $table->text('CasoEspeciales',200)->nullable()->default(NULL);
@@ -96,12 +96,18 @@ return new class extends Migration
         });
 
 
+
+
+
           Schema::create('tipo_fallas', function (Blueprint $table) {
             $table->id();
             $table->string('Tipo_Falla');
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
+
+
+
 
         Schema::create('soportes', function (Blueprint $table) {
 
@@ -128,6 +134,36 @@ return new class extends Migration
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
+
+          Schema::create('soportehistorials', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('estatus_id')->constrained('estatuses');
+            $table->foreignId('tipo_falla_id')->constrained('tipo_fallas');
+            $table->foreignId('departamento_id')->constrained('departamentos');
+            $table->string('NControl');
+            $table->string('NControlTecnico')->nullable()->default(NULL);
+            $table->string('Nombre');
+            $table->string('Apellidos');
+            $table->integer('Cedula');
+            $table->string('Telefono');
+            $table->string('telefonoI');
+            $table->string('Correo');
+            $table->string('ip_equipo');
+            $table->String('nombre_equipo');
+            $table->dateTime('FechaEntrada')->nullable()->default(NULL);
+            $table->dateTime('FechaSalida')->nullable()->default(NULL);
+            $table->text('Motivo_Falla',500)->nullable()->default(NULL);
+            $table->text('Solucion',500)->nullable()->default(NULL);
+            $table->text('SolucionPendiente',500)->nullable()->default(NULL);
+            $table->string('Tecnico')->nullable()->default(NULL);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+
+
+        
+      
+
 
 
 
@@ -179,6 +215,8 @@ return new class extends Migration
         Schema::dropIfExists('soportes');
         Schema::dropIfExists('tipo_fallas');
         Schema::dropIfExists('usuariosoportes');
+        Schema::dropIfExists('soportehistorials');
+        
 
     }
 };

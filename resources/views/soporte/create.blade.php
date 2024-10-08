@@ -5,6 +5,7 @@
         </h2>
     </x-slot>
 <div id="NotificacionUsuario"></div>
+<div id="Notificaciones"></div>
     <div class="">
         <div class="container max-w-screen-lg mx-auto">
           <div>
@@ -129,7 +130,7 @@
               </div>
             <div class="md:col-span-5 text-center">
               <div class="inline-flex items-end" >
-                 <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Enviar..</button>
+                 <button type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" >Enviar..</button>
 
                  {{-- <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Actualizar</button> --}}
 
@@ -149,6 +150,15 @@
 </x-app-layout>
 <script>
 
+    function cerrar() { 
+              setTimeout(function(){
+            // window.location.href = 'https://www.google.com/?hl=es';
+             this.myWindow.close();
+
+        },3000); //Dejara un tiempo de 3 seg para que el usuario vea que se envio el formulario correctamente
+
+    }
+
     $(document).ready(function(){
 
               $('#validacion').on('submit', function(e) {
@@ -158,15 +168,22 @@
                     showDenyButton: true,
                     showCancelButton: false,
                     confirmButtonText: "Enviar",
-                    denyButtonText: `No`
+                    denyButtonText: `No`,
+                   
                 }).then((result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
                         this.submit();
+
                         Swal.fire("Enviado informacion a un Técnico!", "", "success");
+                        // window.location.href = 'https://www.google.com/?hl=es';
+
+                   // window.location.href = 'https://www.google.com/?hl=es';
+
 
                     } else if (result.isDenied) {
                         Swal.fire("Los cambios no se guardaran", "", "info");
+
                     }
                 });
             });
@@ -207,7 +224,47 @@ $('#NotificacionUsuario').append(function(){
 
 });
 
-        });
+       Pusher.logToConsole = false;
+
+            var pusher = new Pusher('5dade7404be34deb0ac4', {
+                cluster: 'us2'
+            });
+
+            var channel = pusher.subscribe('termino-channel');
+ channel.bind('termino-event', function(data) {
+    // +JSON.stringify(data.messager)+
+
+   if(data.Cedula == {{  Auth()->user()->identification_card}}){
+  $('#Notificaciones').append(function(){
+
+                       Swal.fire({
+                        position: "top-center",
+                        icon: "info",
+                        title:'Su equipo se encuentra Listo',
+                        showConfirmButton: false,
+                          showDenyButton: true,
+                    showCancelButton: false,
+                    confirmButtonText: "Enviar",
+                    denyButtonText: `OK`,
+                    
+
+                    }).then((result) => {
+
+                        // location.reload();
+                        tr.hide();
+
+                    })
+
+
+
+
+                });
+
+}
+
+                });  
+
+                 });       
 
 
    

@@ -49,7 +49,7 @@
                                   </div>
                                   <div>
                                       <x-input-label for="identification_card" :value="__('Cedula')"/>
-                                      <x-text-input id="identification_card" name="identification_card" type="text" class="mt-1 block w-full"  autocomplete="identification_card" placeholder="Cedula"/>
+                                      <x-text-input id="identification_card" name="identification_card" type="text" class="mt-1 block w-full"  autocomplete="identification_card" placeholder="Cedula"  maxlength='9' onKeypress='if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;' />
                                       <x-input-error class="mt-2" :messages="$errors->get('identification_card')"/>
                                   </div>
                                 

@@ -58,14 +58,14 @@
                                   </div>
                                   <div>
                                       <x-input-label for="identification_card" :value="__('Cedula')"/>
-                                      <x-text-input id="identification_card" name="identification_card" type="text" class="mt-1 block w-full" :value="old('identification_card', $user?->identification_card)" autocomplete="identification_card" placeholder="Cedula"/>
+                                      <x-text-input id="identification_card" name="identification_card" type="text" class="mt-1 block w-full" :value="old('identification_card', $user?->identification_card)" autocomplete="identification_card" placeholder="Cedula"  maxlength='9' onKeypress='if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;' />
                                       <x-input-error class="mt-2" :messages="$errors->get('identification_card')"/>
                                   </div>
                             
                               
                                    <div>
                                       <x-input-label for="user" :value="__('Telefono')"/>
-                                      <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full" :value="old('user', $user?->telefono)" autocomplete="user" placeholder="telefono"/>
+                                      <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full" :value="old('user', $user?->telefono)" autocomplete="user" placeholder="telefono"   />
                                       <x-input-error class="mt-2" :messages="$errors->get('telefono')"/>
                                   </div>
 

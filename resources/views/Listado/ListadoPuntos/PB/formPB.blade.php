@@ -10,7 +10,7 @@
         <div class="md:col-span-5" >
         <label for="departamento_id">Departamento</label>
         <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-          <option>Seleciones</option>
+          <option>Seleccione un Departamento</option>
           {{$sel = 0}}
           @foreach($Departamentos as $dep)
           @if($dep->id == $ListadoPunto->departamento_id)
@@ -47,10 +47,15 @@
           <x-input-error class="mt-2" :messages="$errors->get('Cedula')"/>
         </div>
 
-        <div class="md:col-span-2">
+         <div class="md:col-span-2">
             <label for="Cedula">Equipo</label>
-            <x-text-input type="text" name="Equipo" id="Equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Equipo" placeholder="Equipo" :value="old('Equipo', $ListadoPunto?->Equipo)"/>
-            <x-input-error class="mt-2" :messages="$errors->get('Equipo')"/>
+                <select name="Equipo" id="Equipo" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <option >Selecciones</option>
+                    <option value="PC"{{$ListaIp->Equipo == 'PC' ? 'selected' : ''}}>PC (Computadora) </option>
+                    <option value="Impresora"{{$ListaIp->Equipo == 'Impresora' ? 'selected' : ''}}>Impresora</option>
+                    <option value="Telefono"{{$ListaIp->Equipo == 'Telefono' ? 'selected' : ''}}>Telefono</option>
+                    <option value="Route"{{$ListaIp->Equipo == 'Route' ? 'selected' : ''}}>Route</option>
+                </select>
           </div>
           <div class="md:col-span-2">
             <label for="ip_ministerio">Punto de Red</label>

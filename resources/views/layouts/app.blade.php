@@ -123,7 +123,7 @@
             @can('admin.Estatisticas.index')<li><a href="/Estadisticas" class="block">Estadisticas</a></li>@endcan
             @can('')<li><a href="/Auditoria" class="block">Auditoria</a></li>@endcan
             @can('admin.users.index')<li><a href="/users" class="block">Usuarios</a></li>@endcan
-            @role('Administrador|Coordinador|Tecnico')
+             {{-- @role('Administrador|Coordinador|Tecnico') --}}
             @auth
             <li type="submit" class="btn btn-danger">
                 <form method="POST" action="{{ route('logout') }}">
@@ -132,10 +132,11 @@
                 </form>
             </li>
             @endauth
-            @endrole
-            @role('Usuario')
-            <a href="javascript:close_window();">Cerrar</a>
-            @endrole
+            {{-- @endrole --}}
+          
+           {{--  @role('Usuario')
+            <a href="javascript:cerrar();">Cerrar Sesión </a>
+            @endrole --}}
         </ul>
     </nav>
     <main class="ml-64 mt-16 flex-1 p-4">
@@ -183,8 +184,8 @@ navigator.serviceWorker.register('/public/JS/service-worker.js')
 </script> --}}
 <script language="javascript" type="text/javascript">
    
-function close_window() {
-    
+function cerrar() {
+
         window.close();
     
 }

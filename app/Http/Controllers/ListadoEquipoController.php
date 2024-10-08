@@ -135,6 +135,7 @@ class ListadoEquipoController extends Controller
           $ListadoEquipo->Telefono = $request->Telefono;
           $ListadoEquipo->Route = $request->Route;
           $ListadoEquipo->PuntoRed = $request->punto_red;
+          $ListadoEquipo->Punto_Switch = $request->punto_switch;
           $ListadoEquipo->CajetinPuntos = $request->CajetinPuntos;
           $ListadoEquipo->Observacion = $request->Observaciones;
           $ListadoEquipo->CasoEspeciales = $request->caso_especiales;
@@ -248,6 +249,7 @@ class ListadoEquipoController extends Controller
             $ListadoEquipo->Telefono = $request->Telefono;
             $ListadoEquipo->Route = $request->Route;
             $ListadoEquipo->PuntoRed = $request->punto_red;
+            $ListadoEquipo->Punto_Switch = $request->punto_switch;
             $ListadoEquipo->CajetinPuntos = $request->CajetinPuntos;
             $ListadoEquipo->Observacion = $request->Observaciones;
             $ListadoEquipo->CasoEspeciales = $request->caso_especiales;

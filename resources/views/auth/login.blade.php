@@ -2,10 +2,9 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}" id="validacion">
         @csrf
 
-        <!-- Email Address -->
         <div>
             {{-- <x-input-label for="email" :value="__('Correo')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" required autofocus autocomplete="username" />
@@ -14,7 +13,9 @@
 
         <div>
             <x-input-label for="identification_card" :value="__('Cedula')" />
-            <x-text-input id="identification_card" class="block mt-1 w-full" type="text" name="identification_card" required autofocus autocomplete="identification_card" />
+            <x-text-input id="identification_card" class="block mt-1 w-full" type="text" name="identification_card" required autofocus autocomplete="identification_card" maxlength='9' onKeypress='if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;' />
+
+                <x-input-error :messages="$errors->get('identification_card')" class="mt-2" />
         </div>
 
         <!-- Password -->
@@ -43,12 +44,44 @@
                     {{ __('Forgot your password?') }}
                 </a>
             @endif --}}
+            
+             
+          
+                     
+            
+
+             <a href="/register"><button type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Registrarse</button></a>
+
+
+         {{--     @foreach($User as $user)
+             @if($user->ip_equipo == $ip) --}}
+            <button type="submit" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Inicia Sesión</button>
+
+            {{-- @endif
+
+            @endforeach
+ --}}
+            
 
            
-             <a href="/register"><button type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Registrarse</button></a>
-           
-            <button type="submit" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Inicia Sesión</button>
            
         </div>
     </form>
 </x-guest-layout>
+<script>
+$(document).ready(function(){
+
+$('#validacion').on('submit',function(e) {
+e.preventDefault();
+
+Swal.fire({
+  position: "top-center",
+  icon: "success",
+  title: "Se esta Ingresando al Sistema",
+  showConfirmButton: false,
+  timer: 1500
+});
+
+});
+
+</script>

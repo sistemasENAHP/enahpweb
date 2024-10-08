@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Notifications\SoporteNotificacion;
 use Illuminate\Notifications\Notifiable;
 use App\Events\SoporteEvento;
+use App\Models\soportehistorials;
 class SoporteController extends Controller
 {
 
@@ -94,7 +95,27 @@ class SoporteController extends Controller
           $soporte->Tecnico = $request->tecnico;
           $soporte->save();
 
-                    broadcast(new SoporteEvento($soporte));
+            broadcast(new SoporteEvento($soporte));
+
+            $Fecha = Carbon::now();
+          $soportehistorial = new soportehistorials();
+          $soportehistorial->estatus_id = $request->estatus_id;
+          $soportehistorial->departamento_id = $request->departamento_id;
+          $soportehistorial->tipo_falla_id = $request->tipo_falla_id;
+          $soportehistorial->NControl = $request->NControl;
+          $soportehistorial->Nombre = $request->Nombre;
+          $soportehistorial->Apellidos = $request->Apellidos;
+          $soportehistorial->Cedula = $request->Cedula;
+          $soportehistorial->Telefono = $request->Telefono;
+          $soportehistorial->telefonoI = $request->telefonoI;
+          $soportehistorial->Correo = $request->Correo;
+          $soportehistorial->ip_equipo =  $request->ip_maquina;
+         $soportehistorial->nombre_equipo =  $request->nombre_equipo;
+          $soportehistorial->FechaEntrada = $request->FechaEntrada;
+          $soportehistorial->Motivo_Falla = $request->Motivo_Falla;
+          $soportehistorial->Solucion = $request->Solucion;
+          $soportehistorial->Tecnico = $request->tecnico;
+          $soportehistorial->save();
                   
 
         return Redirect('/Soportes/create')->with('success', 'Soporte created successfully.');
@@ -156,6 +177,26 @@ class SoporteController extends Controller
           $soporte->Solucion = $request->Solucion;
           $soporte->Tecnico = $request->tecnico;
           $soporte->update();
+
+              $Fecha = Carbon::now();
+          $soportehistorial = soportehistorials::find($id);
+          $soportehistorial->estatus_id = $request->estatus_id;
+          $soportehistorial->departamento_id = $request->departamento_id;
+          $soportehistorial->tipo_falla_id = $request->tipo_falla_id;
+          $soportehistorial->NControl = $request->NControl;
+          $soportehistorial->Nombre = $request->Nombre;
+          $soportehistorial->Apellidos = $request->Apellidos;
+          $soportehistorial->Cedula = $request->Cedula;
+          $soportehistorial->Telefono = $request->Telefono;
+          $soportehistorial->telefonoI = $request->telefonoI;
+          $soportehistorial->Correo = $request->Correo;
+          $soportehistorial->ip_equipo =  $request->ip_maquina;
+         $soportehistorial->nombre_equipo =  $request->nombre_equipo;
+          $soportehistorial->FechaEntrada = $request->FechaEntrada;
+          $soportehistorial->Motivo_Falla = $request->Motivo_Falla;
+          $soportehistorial->Solucion = $request->Solucion;
+          $soportehistorial->Tecnico = $request->tecnico;
+          $soportehistorial->update();
 
         return Redirect('/Soportes/create')->with('success', 'Soporte created successfully.');
     }

@@ -16,9 +16,10 @@ use App\Events\SoporteEvento;
 use App\Http\Controllers\HomeControler;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HistorialController;
-Route::get('/', function () {
-    return view('auth.login');
-});
+use App\Http\Controllers\LoginController;
+Route::get('/',[LoginController::class,'index']); 
+
+
 
 
 Route::get('/dashboard', function () {
@@ -55,10 +56,6 @@ Route::PUT('/ActualizarEspera/{id}',[TecnicoController::class,'TecnicoActualizar
 Route::get('/MostrarEspera/{id}',[TecnicoController::class,'MostrarEspera'])->name('Espera.MostrarEspera');
 
 Route::PUT('/Espera/{id}',[TecnicoController::class,'MostrarActualizarEspera'])->name('Espera.MostrarActualizarEspera');
-
-
-
-
 
 Route::get('/Reparacion',[TecnicoController::class,'TecnicoReparacion'])->name('Reparacion');
 Route::get('/Reparacion/{id}/edit',[TecnicoController::class,'TecnicoReparacionEditar'])->name('Reparacion.edit');
