@@ -200,6 +200,17 @@ return new class extends Migration
 
         });
 
+
+               Schema::create('Ip', function (Blueprint $table) {
+            $table->id();
+            $table->string('ip_escuela')->nullable()->default(NULL);
+            $table->string('ip_ministerio')->nullable()->default(NULL);
+             $table->text('Observacion',200)->nullable()->default(NULL);;
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+
+        });
+
     }
 
     /**

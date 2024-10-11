@@ -198,13 +198,16 @@ class TecnicoController extends Controller
 
 
 
-    public function MostrarEspera($id){
+    public function MostrarEspera(Request $request,$id){
+        $Cedula = $request->Cedula;
 
+        // dd($Cedula);
         $soporte = Soportes::find($id);
         $TipoFalla = TipoFallas::all();
           $Departamentos = Departamentos::all();
+           $soportes = soportehistorials::where('estatus_id','=','4')->OrderBy('id','desc')->paginate();
 
-        return view('Tecnico.Espera.show', compact('soporte','TipoFalla','Departamentos'));
+        return view('Tecnico.Espera.show', compact('soporte','TipoFalla','Departamentos','soportes'))->with('i', ($request->input('page', 1) - 1) * $soportes->perPage());
 
 
     }

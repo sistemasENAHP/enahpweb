@@ -145,6 +145,77 @@
                         </div>
                     </div>
 <br>
+                <form action="/MostrarEspera/{{  $soporte->id}}" method="get">
+                 <div class="md:col-span-5 text-center">
+              <div class="inline-flex items-end" >
+                  <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" id="historial">Ver Historial</button>
+                  <input type="hidden" id="Cedula" name="Cedula" value="{{ $soporte->Cedula }}">
+              </div>
+              </div>
+              </form>
+
+              <br>
+              <div id="mostrar">
+              <div class="relative overflow-x-auto shadow-md sm:rounded-lg" >
+                  <table id="myTable" class=" w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  table-auto w-3/4 ">
+            <caption class="p-5 text-lg font-semibold text-center rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                Historial Usuario
+                <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400 "></p>
+            </caption>
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-center text-xs" style="font-size: 95%; display:none;">id</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Nombre-Apellido</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Cedula</th>
+                     <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Ubicacion</th>
+                    <th scope="col" class=""style="font-size: 95%;">Departamento</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs" style="font-size: 95%;">ip</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Fecha Solicitud</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Fecha Salida</th>
+                     <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Motivo de Falla</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Solucion</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs"style="font-size: 95%;">Técnico</th>
+                </tr>
+            </thead>
+               @php $sum = 0;@endphp
+            <tbody>
+                @foreach($soportes as $soportes)
+                @if($soportes->Cedula == $soporte->Cedula)
+                <tr>
+                 {{-- <td class=" px-3 py-4 text-sm text-gray-500  text-center" style="font-size: 90%; display: none;">@php  $sum=$soportes->id; @endphp</td> --}}
+                   <td class=" px-3 py-4 text-sm text-gray-500  text-center" style="font-size: 90%; display: none">{{ ++$i }} @php $sum = $i @endphp</td>
+                   <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soportes->Nombre }}  -  {{ $soportes->Apellidos }}</td>
+                    <td  scope="col" class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soportes->Cedula }}</td>
+                    <td  scope="col" class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soportes->departamentos->pisos->Pisos }}</td>
+                    <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soportes->departamentos->Departamento}}</td>
+                     <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soportes->ip_equipo }}</td>
+                     <td class=" px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{\Carbon\Carbon::parse($soportes->FechaEntrada)->format('d/m/Y H:i') }}</td>
+                     <td class=" px-3 py-4 text-sm text-gray-500 text-center">{{\Carbon\Carbon::parse($soportes->FechaSalida )->format('d/m/Y H:i') }}</td>
+                    <td class=" px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soportes->Motivo_Falla }}</td>
+                    <td class=" px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soportes->Solucion }}</td>
+                    <td class="px-3 py-4 text-sm text-gray-500 text-center"style="font-size: 90%;">{{ $soportes->Tecnico }}</td>
+
+                         
+                                  
+               </tr>
+
+               @endif
+               @endforeach
+        
+            </tbody>
+          
+        </table>
+        </div>
+        <div class="md:col-span-5 text-right">
+              <div class="inline-flex items-end" >
+          <strong>Cantidad de veces que ha Recibido Soporte: {{ $sum }}</strong>
+          </div>
+      </div>
+              </div>
+
+              <br>
+
+
                     <div class="md:col-span-5 text-center">
               <div class="inline-flex items-end" >
                 <button type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Aceptar Soporte</button>
@@ -155,3 +226,17 @@
         </div>
     </div>
 </x-app-layout>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+       $('#mostrar').hide();
+
+          $('#historial').click(function(e){
+                 e.preventDefault();
+                $('#mostrar').toggle();
+
+
+            });
+
+    });
+</script>

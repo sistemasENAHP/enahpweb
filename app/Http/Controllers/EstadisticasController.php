@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\soportes;
+use App\Models\Soportes;
 use Carbon\Carbon; 
 class EstadisticasController extends Controller
 {
@@ -28,11 +28,13 @@ class EstadisticasController extends Controller
     $CAños = DB::table('soportes')->select(DB::raw('extract(YEAR FROM created_at) as anio'),DB::raw('count(*) as id'))
     ->groupBy(DB::raw('extract(YEAR FROM created_at)'))->OrderBy('id','desc')->get();
 
-    $CMes = soportes::select(DB::raw('extract(month from created_at) as month'),DB::raw('COUNT(1) as id'))->groupBy('month')->OrderBy('id','desc')->get();
+    $CMes = Soportes::select(DB::raw('extract(month from created_at) as month'),DB::raw('COUNT(1) as id'))->groupBy('month')->OrderBy('id','desc')->get();
 
 
         $ConsultaMes = soportes::select(DB::raw('extract(month from created_at) as month'),DB::raw('COUNT(1) as count'))->groupBy('month')->get()->toArray();
 
+
+$Meses = [];
 
 foreach($ConsultaMes as $consultaxmes){
 
