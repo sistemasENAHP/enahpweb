@@ -80,7 +80,7 @@
                   {{$sel = ''}}
                   @endif
                     
-                          <option value="{{$ips->id}}" {{$sel}} >{{$ips->ip_Ministerio}}</option>
+                          <option value="{{$ips->id}}" {{$sel}} >{{$ips->ip_ministerio}}</option>
                          
                   @endforeach
                 </select>
