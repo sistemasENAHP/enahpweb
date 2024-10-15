@@ -50,15 +50,9 @@
 
         <div class="md:col-span-2">
             <label for="Cedula">Equipo</label>
-            {{-- <x-text-input type="text" name="Equipo" id="Equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Equipo" placeholder="Equipo" :value="old('Equipo',$ListadoEquipo?->Equipo)" />
-            <x-input-error class="mt-2" :messages="$errors->get('Equipo')"/> --}}
-                <select name="Equipo" id="Equipo" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                    <option >Selecciones</option>
-                    <option value="PC"{{$ListadoEquipo->Equipo == 'PC' ? 'selected' : ''}}>PC (Computadora) </option>
-                    <option value="Impresora"{{$ListadoEquipo->Equipo == 'Impresora' ? 'selected' : ''}}>Impresora</option>
-                    <option value="Telefono"{{$ListadoEquipo->Equipo == 'Telefono' ? 'selected' : ''}}>Telefono</option>
-                    <option value="Route"{{$ListadoEquipo->Equipo == 'Route' ? 'selected' : ''}}>Route</option>
-                </select>
+            <x-text-input type="text" name="Equipo" id="Equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Equipo" placeholder="Equipo" :value="old('Equipo',$ListadoEquipo?->Equipo)" value="Computadora"  />
+            <x-input-error class="mt-2" :messages="$errors->get('Equipo')"/>
+            
           </div>
 
         <div class="md:col-span-2">

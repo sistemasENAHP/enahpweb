@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ config('app.name', 'EnahpWeb') }}</title>
+    <title>{{ 'Soporte Técnico' }}</title>
      <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--CSS-->
     @vite('resources/css/app.css')
@@ -50,6 +50,9 @@
                     @endrole
 
                    </div>
+
+
+                   
                 <div class="text-sm text-gray-500 dark:text-gray-400">
                     @if (Auth::check())
                     <span>Último ingreso:
@@ -111,6 +114,13 @@
                       </li>
                       <li>
                         <a href="/ListadoPunto" class="block">Listado de Puntos</a>
+                      </li>
+                      <li>
+                        <a href="#" class="block">Telefono VOIP</a>
+                      </li>
+
+                      <li>
+                        <a href="/ListadoImpresora" class="block">Impresora</a>
                       </li>
                     </ul>
                   </li>

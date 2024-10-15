@@ -17,6 +17,7 @@ use App\Http\Controllers\HomeControler;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ImpresorasController;
 Route::get('/',[LoginController::class,'index']); 
 
 
@@ -126,6 +127,10 @@ Route::get('/ListadoPuntos/{id}/showP2YP3',[ListadoPuntoController::class,'showP
 
 Route::resource('ListadoIp', ListadoipController::class);
 
+Route::get('/ListadoIpGeneral',[ListadoipController::class,'createGeneral'])->name('ListadoIp.createGeneral');
+
+Route::post('/ListadoIpStore',[ListadoipController::class,'storeGeneral'])->name('ListadoIpStore.storeGeneral');
+
 Route::get('/ListadoIpCreatePB',[ListadoipController::class,'CreatePB'])->name('ListadoIp.CreatePB');
 
 Route::get('/ListadoIp/{id}/editPB',[ListadoipController::class,'editPB'])->name('ListadoIp.editPB');
@@ -149,6 +154,8 @@ Route::get('/ListadoIp/{id}/showP1',[ListadoipController::class,'ShowP1'])->name
 
 Route::get('/ListadoIp/{id}/showP2YP3',[ListadoipController::class,'showP2YP3'])->name('ListadoIp.showP2YP3');
 
+
+Route::resource('/ListadoImpresora',ImpresorasController::class);
 
 
 Route::resource('/Planos',PlanosController::class);

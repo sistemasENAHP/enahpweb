@@ -13,6 +13,7 @@ use App\Models\Departamentos;
 use App\Models\TipoFallas;
 use App\Models\Equipos;
 use App\Models\User;
+use App\Models\ips;
 use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
 class ListadoipController extends Controller
@@ -32,22 +33,42 @@ class ListadoipController extends Controller
      */
     public function index(Request $request): View
     {
+        $ListadoGeneral = ips::search(request('search'))->orderBy('id','asc')->paginate(10);
         $ListadoIpPB = Listadoips::where('departamento_id','<=',21)->orderBy('id','asc')->paginate();
         $ListadoIpP1 = Listadoips::where('departamento_id','>=',21)->where('departamento_id','<=',31)->orderBy('id','asc')->paginate();
         $ListadoIpP2YP3 = Listadoips::where('departamento_id','>',31)->orderBy('id','asc')->paginate();
 
-        return view('Listado.ListadoIp.index', compact('ListadoIpPB','ListadoIpP1','ListadoIpP2YP3'))
+        return view('Listado.ListadoIp.index', compact('ListadoGeneral','ListadoIpPB','ListadoIpP1','ListadoIpP2YP3'))
             ->with('PB', ($request->input('page', 1) - 1) * $ListadoIpPB->perPage())->with('P1', ($request->input('page', 1) - 1) * $ListadoIpP1->perPage())->with('P2YP3', ($request->input('page', 1) - 1) * $ListadoIpP2YP3->perPage());
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function createGeneral(): View
     {
-        $ListaIp = new Listadoips();
+        $ListaIp = new ips();
 
-        return view('Listado.ListadoIp.create', compact('ListaIp'));
+        return view('Listado.ListadoIp.General.create', compact('ListaIp'));
+    }
+
+
+    public function storeGeneral(Request $request): RedirectResponse
+     {
+          $id = ips::orderBy('id', 'desc')->first();
+          $ultimoId = $id->id;
+          // dd( $ultimoId);
+          $ListaIp = new ips();
+          $ListaIp->id =  $ultimoId+1 ;
+          $ListaIp->ip_escuela = $request->ip_escuela;
+          $ListaIp->ip_ministerio = $request->ip_ministerio;
+          $ListaIp->Observacion   = $request->Observaciones;
+          $ListaIp->save();
+          
+
+           return redirect('ListadoIp')->with('success', 'Listado de Ip created successfully.');
+         
+
     }
 
 
@@ -219,9 +240,9 @@ class ListadoipController extends Controller
 
 
    public function depatamentoUser(Request $request){
-        
+
         if($request->ajax()){
-          
+
             $Departamento = User::where('departamento_id',$request->departamento_id)->get();
 
             // foreach($Departamento as $dep){
@@ -232,21 +253,21 @@ class ListadoipController extends Controller
 
 
             return response()->json($Departamento);
-        
+
 }
       }
 
 
 
       public function ListadoFuncionarios(Request $request){
-        
+
         if($request->ajax()){
-        
+
          $Funcionario = User::select('*')->where('id',$request->dep)->get();
-           
+
 
          foreach($Funcionario as $fun){
-          
+
           // $fun->name;
 
          }
@@ -259,8 +280,12 @@ class ListadoipController extends Controller
         }
 
 
+
+
+
+
       }
 
-     
+
 
 }

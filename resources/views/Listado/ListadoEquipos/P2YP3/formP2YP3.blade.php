@@ -49,8 +49,15 @@
                   <x-text-input type="text" name="Cedula" id="Cedula" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Cedula" placeholder="Cedula" :value="old('Cedula',$ListadoEquipo?->Cedula)" maxlength='9' onKeypress='if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;'  />
                   <x-input-error class="mt-2" :messages="$errors->get('Cedula')"/>
                 </div>
-        
+
                 <div class="md:col-span-2">
+            <label for="Cedula">Equipo</label>
+            <x-text-input type="text" name="Equipo" id="Equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Equipo" placeholder="Equipo" :value="old('Equipo',$ListadoEquipo?->Equipo)" value="Computadora"  />
+            <x-input-error class="mt-2" :messages="$errors->get('Equipo')"/>
+            
+          </div>
+        
+           {{--      <div class="md:col-span-2">
                     <label for="Cedula">Equipo</label>
                         <select name="Equipo" id="Equipo" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                             <option >Selecciones</option>
@@ -59,7 +66,7 @@
                             <option value="Telefono"{{$ListadoEquipo->Equipo == 'Telefono' ? 'selected' : ''}}>Telefono</option>
                             <option value="Route"{{$ListadoEquipo->Equipo == 'Route' ? 'selected' : ''}}>Route</option>
                         </select>
-                  </div>
+                  </div> --}}
         
                 <div class="md:col-span-2">
                     <label for="Cedula">Nombre de Equipo</label>
