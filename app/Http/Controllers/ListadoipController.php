@@ -33,15 +33,18 @@ class ListadoipController extends Controller
      */
     public function index(Request $request): View
     {
-    
-        
+          
+          $buscar = $request->search;
+                
         $ListadoGeneral = ips::search(request('search'))->orderBy('id','asc')->paginate(10);
-        $User =  new User();        
+          // $ListadoGeneral = ips::select('ips.user_id','ips.ip_escuela','ips.ip_ministerio','ips.Observacion','users.id','users.ip_equipo')->join('users','ips.user_id','=','users.id')->paginate(10);
+        $User = new User();
+
         $ListadoIpPB = Listadoips::where('departamento_id','<=',21)->orderBy('id','asc')->paginate();
         $ListadoIpP1 = Listadoips::where('departamento_id','>=',21)->where('departamento_id','<=',31)->orderBy('id','asc')->paginate();
         $ListadoIpP2YP3 = Listadoips::where('departamento_id','>',31)->orderBy('id','asc')->paginate();
 
-        return view('Listado.ListadoIp.index', compact('ListadoGeneral','User','ListadoIpPB','ListadoIpP1','ListadoIpP2YP3'))
+        return view('Listado.ListadoIp.index', compact('User','ListadoGeneral','ListadoIpPB','ListadoIpP1','ListadoIpP2YP3'))
             ->with('PB', ($request->input('page', 1) - 1) * $ListadoIpPB->perPage())->with('P1', ($request->input('page', 1) - 1) * $ListadoIpP1->perPage())->with('P2YP3', ($request->input('page', 1) - 1) * $ListadoIpP2YP3->perPage());
     }
 

@@ -265,16 +265,17 @@
                                         <tbody class="divide-y divide-gray-200 bg-white">
 
                                             @foreach ($ListadoGeneral as $ListadoGenerals)
-
+                                             
                                             <tr class="even:bg-gray-50">
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$ListadoGenerals->id}}</td>
                                                 @if($ListadoGenerals->ip_escuela == Auth()->user()->ip_equipo)
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0" style="color:red">{{$ListadoGenerals->ip_escuela}}</td>
+                                                <td class="px-3 py-4 text-sm text-gray-500 text-center text-red-500" colspan="0" >{{$ListadoGenerals->ip_escuela}}</td>
                                                 @else
 
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0" >{{$ListadoGenerals->ip_escuela}}</td>
 
                                                 @endif
+
                                                 @if($ListadoGenerals->ip_ministerio == Auth()->user()->ip_equipo)
 
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0" style="color: red">{{$ListadoGenerals->ip_ministerio}}</td>
@@ -296,7 +297,9 @@
 
 
                                             </tr>
-                                    @endforeach
+                                    
+                         
+                                      @endforeach
                                         </tbody>
                                     </table>
 

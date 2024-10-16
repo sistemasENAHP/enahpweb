@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+use App\Models\User;
 class Ips extends Model
 {
     use HasFactory, Searchable;
@@ -19,5 +20,15 @@ class Ips extends Model
 
         ];
     }
+
+    public function Users()
+    {
+
+          return $this->belongsTo(User::class);
+
+    }
+
+
+
 
 }

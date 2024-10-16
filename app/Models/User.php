@@ -12,6 +12,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
 use App\Models\Departamentos;
 use Laravel\Scout\Searchable;
+use App\Models\Ips;
 class User extends Authenticatable
 {
     use  HasFactory, Notifiable, HasRoles, Notifiable;
@@ -26,6 +27,7 @@ class User extends Authenticatable
      protected $table = 'users';
     protected $fillable = [
         'id',
+        'ips_id',
         'departamento_id',
         'name',
         'surname',
@@ -75,6 +77,13 @@ class User extends Authenticatable
           return $this->belongsTo(Departamentos::class,'departamento_id','id');
 
     }
+
+    // public function ips()
+    // {
+
+    //       return $this->belongsTo(Ips::class);
+
+    // }
 
 
        public function toSearchableArray()

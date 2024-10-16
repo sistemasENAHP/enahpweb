@@ -17,7 +17,7 @@ class UsersSeeder extends Seeder
     {
         User::create([
              
-             'departamento_id' => 32,
+            'departamento_id' => 32,
             'name' => 'Administrador',
             'surname' => 'Administrador',
             'identification_card' => 25213024,
@@ -36,6 +36,7 @@ class UsersSeeder extends Seeder
          User::create([
             
              'departamento_id' => 32,
+
             'name' => 'Jose ',
             'surname' => 'Ramos',
             'identification_card' => 12345698,

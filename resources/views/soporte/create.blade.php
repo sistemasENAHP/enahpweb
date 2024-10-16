@@ -77,27 +77,7 @@
                 <x-input-error class="mt-2" :messages="$errors->get('')"/>
               </div>
 
-            @if(!$soporte->ip_equipo)
-            <div class="md:col-span-3">
-                <label for="ip_maquina">Ip de la maquina</label>
-                <x-text-input type="text" name="ip_maquina" id="ip_maquina" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$user->ip_equipo}}" placeholder=""  readonly />
-                <x-input-error class="mt-2" :messages="$errors->get('ip_maquina')"/>
-              </div>
-              @else
-                  <div class="md:col-span-3">
-                <label for="ip_maquina">Ip de la maquina</label>
-                <x-text-input type="text" name="ip_maquina" id="ip_maquina" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('ip_equipo',$user?->ip_equipo)}}" placeholder=""  readonly />
-                <x-input-error class="mt-2" :messages="$errors->get('ip_maquina')"/>
-              </div>
-
-              @endif
-
-               <div class="md:col-span-2">
-                <label for="nombre_equipo">Nombre Equipo</label>
-                <x-text-input type="text" name="nombre_equipo" id="nombre_equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{ $user->nombre_equipo }}" placeholder=""  readonly/>
-                <x-input-error class="mt-2" :messages="$errors->get('nombre_equipo')"/>
-               </div>
-
+       
               <div class="md:col-span-3">
                 <label for="address">Fecha / Hora</label>
                 <x-text-input type="datetime"  name="FechaEntrada" id="FechaEntrada" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value="{{$date,old('FechaEntrada',$user?->FechaEntrada)}}" placeholder="" readonly />
@@ -118,6 +98,28 @@
                   @endforeach
                 </select>
               </div>
+
+                   @if(!$soporte->ip_equipo)
+            <div class="md:col-span-3">
+                {{-- <label for="ip_maquina">Ip de la maquina</label> --}}
+                <x-text-input type="hidden" name="ip_maquina" id="ip_maquina" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$user->ip_equipo}}" placeholder=""  readonly />
+                <x-input-error class="mt-2" :messages="$errors->get('ip_maquina')"/>
+              </div>
+              @else
+                  <div class="md:col-span-3">
+                {{-- <label for="ip_maquina">Ip de la maquina</label> --}}
+                <x-text-input type="hidden" name="ip_maquina" id="ip_maquina" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('ip_equipo',$user?->ip_equipo)}}" placeholder=""  readonly />
+                <x-input-error class="mt-2" :messages="$errors->get('ip_maquina')"/>
+              </div>
+
+              @endif
+
+               <div class="md:col-span-2">
+                {{-- <label for="nombre_equipo">Nombre Equipo</label> --}}
+                <x-text-input type="hidden" name="nombre_equipo" id="nombre_equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{ $user->nombre_equipo }}" placeholder=""  readonly/>
+                <x-input-error class="mt-2" :messages="$errors->get('nombre_equipo')"/>
+               </div>
+
 
               <div class="md:col-span-5">
                 <x-text-input type="hidden" name="estatus_id" id="estatus_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="1" placeholder=""  readonly />

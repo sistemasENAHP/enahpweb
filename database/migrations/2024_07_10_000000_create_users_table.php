@@ -11,6 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+          
         Schema::create('users', function (Blueprint $table) {
 
             $table->id();
@@ -32,7 +34,15 @@ return new class extends Migration
             $table->engine = 'InnoDB';
 
         });
+    Schema::create('ips', function (Blueprint $table) {
+            $table->id();
+            $table->string('ip_escuela')->nullable()->default(NULL);
+            $table->string('ip_ministerio')->nullable()->default(NULL);
+             $table->text('Observacion',200)->nullable()->default(NULL);;
+            $table->timestamps();
+            $table->engine = 'InnoDB';
 
+        });
 
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -65,5 +75,6 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('ips');
     }
 };
