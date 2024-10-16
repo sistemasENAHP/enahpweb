@@ -145,14 +145,14 @@
                         </div>
                     </div>
 <br>
-                <form action="/MostrarEspera/{{  $soporte->id}}" method="get">
+                
                  <div class="md:col-span-5 text-center">
               <div class="inline-flex items-end" >
                   <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" id="historial">Ver Historial</button>
                   <input type="hidden" id="Cedula" name="Cedula" value="{{ $soporte->Cedula }}">
               </div>
               </div>
-              </form>
+             
 
               <br>
               <div id="mostrar">
