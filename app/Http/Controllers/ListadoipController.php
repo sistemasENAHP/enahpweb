@@ -13,7 +13,7 @@ use App\Models\Departamentos;
 use App\Models\TipoFallas;
 use App\Models\Equipos;
 use App\Models\User;
-use App\Models\ips;
+use App\Models\Ips;
 use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
 class ListadoipController extends Controller
@@ -36,7 +36,7 @@ class ListadoipController extends Controller
           
           $buscar = $request->search;
                 
-        $ListadoGeneral = ips::search(request('search'))->orderBy('id','asc')->paginate(10);
+        $ListadoGeneral = Ips::search(request('search'))->orderBy('id','asc')->paginate(10);
           // $ListadoGeneral = ips::select('ips.user_id','ips.ip_escuela','ips.ip_ministerio','ips.Observacion','users.id','users.ip_equipo')->join('users','ips.user_id','=','users.id')->paginate(10);
         $User = new User();
 
@@ -53,7 +53,7 @@ class ListadoipController extends Controller
      */
     public function createGeneral(): View
     {
-        $ListaIp = new ips();
+        $ListaIp = new Ips();
 
         return view('Listado.ListadoIp.General.create', compact('ListaIp'));
     }
@@ -61,9 +61,9 @@ class ListadoipController extends Controller
 
     public function storeGeneral(Request $request): RedirectResponse
      {
-          $id = ips::orderBy('id', 'desc')->first();
+          $id = Ips::orderBy('id', 'desc')->first();
           $ultimoId = $id->id;
-          $ListaIp = new ips();
+          $ListaIp = new Ips();
           $ListaIp->id =  $ultimoId+1 ;
           $ListaIp->ip_escuela = $request->ip_escuela;
           $ListaIp->ip_ministerio = $request->ip_ministerio;
