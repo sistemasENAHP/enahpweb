@@ -14,6 +14,7 @@ use Illuminate\View\View;
 use App\Models\Departamentos;
 use App\Http\Requests\UserRequest;
 use App\Models\Listadoips;
+use App\Models\Ips;
 class RegisteredUserController extends Controller
 {
     /**
@@ -81,6 +82,47 @@ class RegisteredUserController extends Controller
             $ListaIp->Ministerio = $request->ip_ministerio;
             $ListaIp->Observacion = $request->Observaciones;
              $ListaIp->save();
+
+             $ip = $request->ip();
+             $ipr = substr($ip,7);
+             
+             $ips = ips::FindOrFail($ipr);
+             if($ips->ip_escuela > '10.2.2.0' && $ips->ip_escuela < '10.2.2.400'){
+                $ips->ip_escuela = $ip;
+                $ips->Observacion = 'Ocupado';
+             
+             }elseif($ips->ip_ministerio > '10.95.10.0' && $ips->ip_ministerio < '10.95.10.400'){
+
+                $ips->ip_ministerio = $ip;
+                $ips->Observacion = 'Ocupado';
+
+             } 
+
+              $ips->update();
+
+
+            //  if($ips->ip_escuela > '192.168.0.1' && $ips->ip_escuela > '192.168.1.1' && $ips->ip_escuela < '192.168.0.500' && $ips->ip_escuela < '192.168.1.500'){
+
+            //      return Redirect::route('users.index')->with('success', 'User deleted successfully');
+
+               
+        
+            // } 
+
+
+            // if($ips->ip_escuela == '127.0.0.1' ){
+
+            //      return Redirect::route('users.index')->with('success', 'User deleted successfully');
+
+
+            // }
+             
+            
+
+
+
+
+             
 
         return redirect(route('dashboard', absolute: false));
     }

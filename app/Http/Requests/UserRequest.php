@@ -26,6 +26,7 @@ class UserRequest extends FormRequest
 			'surname' => 'required|string',
 			// 'user' => 'required|string',
 			'email' => 'required|string',
+            'ip_equipo' => 'String|unique:users',
             'identification_card'=>'numeric|required|unique:users|min:8|max:99999999',
             'password' => 'required|min:8|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
             // 'password' => 'required|min:8|confirmed|',Rules\Password::default()->symbols(),
@@ -55,6 +56,7 @@ class UserRequest extends FormRequest
              'password.min' => "la contraseña debe tener por lo menos 8 digitos",
              'password.regex' => "la contraseña debe tener por lo menos 1 letra en mayuscula y Simbolo ",
              'password.confirmed' => "la contraseña debe ser iguales",
+             'ip_equipo' => "La Ip ya se encuentra registrado",
 
 
 

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use App\Models\Departamentos;
+use App\Models\Ips;
 class UserController extends Controller
 {
 
@@ -136,15 +137,59 @@ class UserController extends Controller
         $Users->assignRole($request->role_id);
 
 
+           $ip = $request->ip();
+             $ipr = substr($ip,7);
+             
+             $ips = ips::FindOrFail($ipr);
+             if($ips->ip_escuela > '10.2.2.0' && $ips->ip_escuela < '10.2.2.400'){
+                $ips->ip_escuela = $ip;
+                $ips->Observacion = 'Ocupado';
+             
+             }elseif($ips->ip_ministerio > '10.95.10.0' && $ips->ip_ministerio < '10.95.10.400'){
+
+                $ips->ip_ministerio = $ip;
+                $ips->Observacion = 'Ocupado';
+
+             }else{
+                       
+                     echo   '<script>alert("No me jodas")</script>';
+                 
+
+             }
+
+         
+             
+             $ips->update();
+
+
         
 
         return Redirect::route('users.index')
             ->with('success', 'User updated successfully');
     }
 
-    public function destroy($id): RedirectResponse
+    public function destroy(Request $request,$id): RedirectResponse
     {
-        User::find($id)->delete();
+          $user =   User::find($id);
+          
+
+             $ip = $request->ip();
+             $ipr = substr($ip,7);
+             
+             $ips = ips::FindOrFail($ipr);
+             if($ips->ip_escuela > '10.2.2.0' && $ips->ip_escuela < '10.2.2.400'){
+                // $ips->ip_escuela = $ip;
+                $ips->Observacion = 'Libre';
+             
+             }elseif($ips->ip_ministerio > '10.95.10.0' && $ips->ip_ministerio < '10.95.10.400'){
+
+                // $ips->ip_ministerio = $ip;
+                $ips->Observacion = 'Libre';
+
+             }
+                   
+             $ips->update();
+             $user->delete();
 
         return Redirect::route('users.index')
             ->with('success', 'User deleted successfully');

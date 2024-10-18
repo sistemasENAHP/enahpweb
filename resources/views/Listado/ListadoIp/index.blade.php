@@ -260,23 +260,32 @@
 
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Observaciones</th>
 
+                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Accion</th>
+
                                         </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 bg-white">
-
+                                     
                                             @foreach ($ListadoGeneral as $ListadoGenerals)
                                              
+                                               
                                             <tr class="even:bg-gray-50">
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$ListadoGenerals->id}}</td>
-                                                @if($ListadoGenerals->ip_escuela == Auth()->user()->ip_equipo)
+                                                
+                                                @if($ListadoGenerals->Observacion == 'Ocupado')
+
                                                 <td class="px-3 py-4 text-sm text-gray-500 text-center text-red-500" colspan="0" >{{$ListadoGenerals->ip_escuela}}</td>
+
                                                 @else
 
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0" >{{$ListadoGenerals->ip_escuela}}</td>
 
                                                 @endif
 
-                                                @if($ListadoGenerals->ip_ministerio == Auth()->user()->ip_equipo)
+                                               
+                                              
+
+                                                @if($ListadoGenerals->ip_ministerio == 'Ocupado')
 
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0" style="color: red">{{$ListadoGenerals->ip_ministerio}}</td>
 
@@ -285,21 +294,31 @@
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$ListadoGenerals->ip_ministerio}}</td>
 
                                                 @endif
-                                                @if($ListadoGenerals->ip_escuela == Auth()->user()->ip_equipo)
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">Ocupado</td>
-                                                @else
 
+                                                @if($ListadoGenerals->Observacion == 'Libre')
+                                            
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$ListadoGenerals->Observacion}}</td>
 
+                                                @else
 
+                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$ListadoGenerals->Observacion}}</td>
+                                                
                                                 @endif
+
+                                                 <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900 text-center">
+                                                    <form action="#" method="POST">
+                                                        <a href="#" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
+
+                                                    </form>
+                                                </td>
 
 
 
                                             </tr>
                                     
                          
-                                      @endforeach
+                                   
+                                     @endforeach
                                         </tbody>
                                     </table>
 

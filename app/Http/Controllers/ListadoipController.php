@@ -37,8 +37,14 @@ class ListadoipController extends Controller
           $buscar = $request->search;
                 
         $ListadoGeneral = Ips::search(request('search'))->orderBy('id','asc')->paginate(10);
-          // $ListadoGeneral = ips::select('ips.user_id','ips.ip_escuela','ips.ip_ministerio','ips.Observacion','users.id','users.ip_equipo')->join('users','ips.user_id','=','users.id')->paginate(10);
-        $User = new User();
+          // $ListadoGeneral = ips::select('*')->join('users','ips.ip_escuela','=','users.ip_equipo')->paginate(10);
+        $User = User::get();
+       
+
+
+
+   
+
 
         $ListadoIpPB = Listadoips::where('departamento_id','<=',21)->orderBy('id','asc')->paginate();
         $ListadoIpP1 = Listadoips::where('departamento_id','>=',21)->where('departamento_id','<=',31)->orderBy('id','asc')->paginate();
