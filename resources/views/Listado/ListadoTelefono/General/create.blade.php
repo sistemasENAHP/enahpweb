@@ -8,22 +8,22 @@
     <div class="">
         <div class="container max-w-screen-lg mx-auto">
           <div>
-            <h2 class="font-semibold text-xl text-gray-600">Piso PB</h2>
+            <h2 class="font-semibold text-xl text-gray-600">Listado General</h2>
             <p class="text-gray-500 mb-6"></p>
 
             <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-                 <form method="POST" action="{{ route('ListadoEquipo.store') }}"  role="form" enctype="multipart/form-data">
+                 <form method="POST" action="#"  role="form" enctype="multipart/form-data">
                     @csrf
-                    @include('Listado.ListadoEquipos.PB.formPB')
+
+                    @include('Listado.ListadoImpresora.General.form')
                 </form>
             </div>
           </div>
         </div>
       </div>
 </x-app-layout>
-
-<script>
-    $(document).ready(function() {
+{{-- <script>
+      $(document).ready(function() {
 
         $('#dep').hide();
 
@@ -32,25 +32,25 @@
             console.log(departamento_id);
              $('#dep').show();
             $.ajax({
-                url: "{{ route('ListadoEquipos.get') }}",
+                url: "{{ route('ListadoIp.get') }}",
                 data: { departamento_id: departamento_id },
                 success: function(data) {
                     $('#dep').empty();
-                     $('#dep').append('<option value="0">Selecciones</option>');
+                     $('#dep').append('<option value="0">Selecciones</option>');                             
                     $.each(data, function(key, value) {
 
                         $('#dep').append('<option value="' + value.id + '">' + value.name + ' '+value.surname+'</option>');
-
-
+                             
+                                 
                     });
 
-
+                   
 
 
                 },
                 error: function(data){
 
-
+                    
                 }
             });
 
@@ -78,27 +78,26 @@
                 datatype:'JSON',
                 success: function(datas) {
                     $('#Nombre').empty();
-
+                     
 
                         $('#Nombre').val(datas.name);
                         $('#Apellidos').val(datas.surname);
                         $('#Cedula').val(datas.identification_card);
-                       $('#NombreEquipo').val(datas.nombre_equipo);
                         if (datas.ip_equipo > '10.2.2.0' && datas.ip_equipo < '10.2.2.300' ) {
-
+                        
                           $('#ip_escuela').val(datas.ip_equipo);
                         $('#ip_ministerio').val('');
                          }else if(datas.ip_equipo > '10.95.10.0' && datas.ip_equipo < '10.95.10.300' ){
 
                              $('#ip_ministerio').val(datas.ip_equipo);
-                             $('#ip_escuela').val('');
+                             $('#ip_escuela').val(''); 
 
                          }
-
+                     
                 },
                 error: function(datas){
 
-
+                    
                 }
             });
 
@@ -109,19 +108,18 @@
             $('#Apellidos').val('');
             $('#Cedula').val('');
             $('#ip_ministerio').val('');
-            $('#ip_escuela').val('');
-            $('#NombreEquipo').val('');
+            $('#ip_escuela').val(''); 
 
          }
+        
 
 
-
-        });
-
+        });  
 
 
+     
 
 
 });
-
 </script>
+ --}}

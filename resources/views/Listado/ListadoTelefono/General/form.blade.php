@@ -24,29 +24,7 @@
                 </select>
             </div>
 
-              <div class="md:col-span-5">
-        <label for="dep"></label>
-       <select name="user_id" id="user_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option value="">Seleccione</option>
-        {{$sel = 0}}
-        @foreach($User as $user)
-        @if($user->id == $ListadoImpresora->user_id)
-        {{$sel = 'selected'}}
-        @else
-
-        {{$sel = ''}}
-
-        @endif
-
-                <option value="{{$user->id}}" {{$sel}}>{{$user->name}} {{$user->surname}}</option>
-
-        @endforeach
-
-
-       </select>
-    </div>
-
-             <div class="md:col-span-5">
+             <div class="md:col-span-2">
             <label for="ip_ministerio">Ubicacion</label>
             <select id="ip_piso" name="id_piso" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                      <option >Seleccione Piso</option>
@@ -73,12 +51,41 @@
           </div>
 
            <div class="md:col-span-2">
-            <label for="ip_escuela">Ip</label>
-            <x-text-input type="text" name="ip_equipo" id="ip_equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_equipo" placeholder="ip_equipo" :value="old('ip_equipo',$ListadoImpresora?->ip_equipo)" />
-            <x-input-error class="mt-2" :messages="$errors->get('ip_equipo')"/>
+            <label for="ip_escuela">Ip Escuela</label>
+            <select id="ip_escuela" name="ip_escuela" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                     <option >Seleccione </option>
+                    {{$sel = 0}}
+                  @foreach($Ip as $ips)
+                  @if($ips->id == $ListadoImpresora->ip_id)
+                  {{$sel = 'selected'}}
+                  @else
+                  {{$sel = ''}}
+                  @endif
+                    
+                          <option value="{{$ips->id}}" {{$sel}} >{{$ips->ip_escuela}}</option>
+                         
+                  @endforeach
+                </select>
           </div>
 
-         
+             <div class="md:col-span-2">
+            <label for="ip_escuela">Ip Ministerio</label>
+            <select id="ip_ministerio" name="ip_ministerio" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option >Seleccione </option>
+                    {{$sel = 0}}
+                  @foreach($Ip as $ips)
+                  @if($ips->id == $ListadoImpresora->ip_id)
+                  {{$sel = 'selected'}}
+                  @else
+                  {{$sel = ''}}
+                  @endif
+                    
+                          <option value="{{$ips->id}}" {{$sel}} >{{$ips->ip_ministerio}}</option>
+                         
+                  @endforeach
+                </select>
+          </div>
+
           <div class="md:col-span-2">
             <label for="ip_escuela">Marca</label>
             <x-text-input type="text" name="Marca" id="Marca" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Marca" placeholder="Marca" :value="old('Marca',$ListadoImpresora?->Marca)" />

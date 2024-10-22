@@ -13,28 +13,7 @@ return new class extends Migration
     {
 
 
-             Schema::create('pisos', function (Blueprint $table) {
-            $table->id();
-            $table->string('Pisos');
-            $table->timestamps();
-            $table->engine = 'InnoDB';
-
-        });
-
-        Schema::create('departamentos', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('piso_id')->constrained('pisos');
-            $table->string('Departamento');
-            $table->timestamps();
-            $table->engine='InnoDB';
-
-        });
-
-
-
-
-
-        Schema::create('estatuses', function (Blueprint $table) {
+            Schema::create('estatuses', function (Blueprint $table) {
             $table->id();
             $table->string('Estatus');
             $table->timestamps();
@@ -42,26 +21,12 @@ return new class extends Migration
 
         });
 
-        // Schema::create('marca_equipos', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('Marca');
-        //     $table->timestamps();
-        //     $table->engine = 'InnoDB';
-
-        // });
-
-
-
-
-
 
         Schema::create('equipos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('piso_id')->constrained('pisos');
             $table->foreignId('departamento_id')->constrained('departamentos');
-            $table->string('Nombre');
-            $table->string('Apellidos');
-            $table->integer('Cedula');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('Equipo');
             $table->string('Marca');
             $table->string('Nombre_Equipo');
@@ -171,6 +136,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('piso_id')->constrained('pisos');
             $table->foreignId('departamento_id')->constrained('departamentos');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('Nombre')->nullable()->default(NULL);
             $table->string('Apellido')->nullable()->default(NULL);
             $table->string('Cedula')->nullable()->default(NULL);
@@ -200,7 +166,7 @@ return new class extends Migration
 
         });
 
-         
+
 
     }
 
@@ -211,14 +177,14 @@ return new class extends Migration
     {
         Schema::dropIfExists('listado_puntos');
         Schema::dropIfExists('listadoips');
-        Schema::dropIfExists('pisos');
+        // Schema::dropIfExists('pisos');
         Schema::dropIfExists('equipos');
-        Schema::dropIfExists('departamentos');
+        // Schema::dropIfExists('departamentos');
         Schema::dropIfExists('soportes');
         Schema::dropIfExists('tipo_fallas');
         Schema::dropIfExists('usuariosoportes');
         Schema::dropIfExists('soportehistorials');
-        
+
 
 
     }

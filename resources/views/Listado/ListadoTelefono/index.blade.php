@@ -1,17 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Listado de Impresora') }}
+            {{ __('Listado de Telefono') }}
         </h2>
     </x-slot>
-    <h4 class="text-center"><strong>Listado de Impresora</strong></h4>
+    <h4 class="text-center"><strong>Listado de Telefono</strong></h4>
     <br>
     <div class="py-12">
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
 
             {{--   <a href="#" aria-current="page" class="General px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white" style="background-color: #033B5C; color: white;">
               Tabla General Ip
-              </a> 
+              </a> --}}
 
             <a href="#" aria-current="page" class="PB px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white" style="background-color: #033B5C; color: white;">
               PB
@@ -21,7 +21,7 @@
             </a>
             <a href="#" class="P2YP3 px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white" style="background-color: #033B5C; color: white;">
               P2 Y P3
-            </a>--}}
+            </a>
           </div>
 
 <br>
@@ -56,27 +56,27 @@
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 bg-white">
 
-                                            @foreach ($ListadoImpresoraPB->unique('departamento_id') as $listadoImpresoraPB)
+                                            {{-- @foreach ($ListadoIpPB->unique('departamento_id') as $listadoipPB)
                                             <tr class="even:bg-gray-50">
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center" style='display:none;'>{{ ++$PB}}</td>
-                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoImpresoraPB->users?->departamentos->Departamento}}</td>
+                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->departamentos->Departamento}}</td>
 
 
 
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
-                                                    <form action="{{ route('ListadoIp.destroy', $listadoImpresoraPB->id) }}" method="POST">
-                                                        <a href="{{ route('ListadoIp.show', $listadoImpresoraPB->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
+                                                    <form action="{{ route('ListadoIp.destroy', $listadoipPB->id) }}" method="POST">
+                                                        <a href="{{ route('ListadoIp.show', $listadoipPB->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
 
                                                     </form>
                                                 </td>
                                             </tr>
-                                    @endforeach
+                                    @endforeach --}}
                                         </tbody>
                                     </table>
 
-                                    <div class="mt-4 px-4">
-                                        {!! $ListadoImpresoraPB->withQueryString()->links() !!}
-                                    </div>
+                                    {{-- <div class="mt-4 px-4">
+                                        {!! $ListadoIpPB->withQueryString()->links() !!}
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -118,25 +118,26 @@
                                             <tbody class="divide-y divide-gray-200 bg-white">
 
                                                 <tr class="even:bg-gray-50">
-                                                    @foreach ($ListadoImpresoraIpP1->unique('departamento_id') as $listadoImpresoraIpP1)
+                                                   {{--  @foreach ($ListadoIpP1->unique('departamento_id') as $listadoipP1)
                                                     <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center" style='display:none;'>{{ ++$P1}}</td>
-                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoImpresoraIpP1->users?->departamentos->Departamento}}</td>
+                                                    <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP1->departamentos->Departamento}}</td>
 
 
                                                     <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
-                                                        <form action="{{ route('ListadoIp.destroy', $listadoImpresoraIpP1->id) }}" method="POST">
-                                                            <a href="{{ route('ListadoIp.ShowP1', $listadoImpresoraIpP1->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
+                                                        <form action="{{ route('ListadoIp.destroy', $listadoipP1->id) }}" method="POST">
+                                                            <a href="{{ route('ListadoIp.ShowP1', $listadoipP1->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
 
                                                         </form>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                                                </td>
+                                           
+                                            @endforeach --}}
+                                             </tr>
                                             </tbody>
                                         </table>
 
-                                        <div class="mt-4 px-4">
-                                            {!! $ListadoImpresoraIpP1->withQueryString()->links() !!}
-                                        </div>
+                                        {{-- <div class="mt-4 px-4">
+                                            {!! $ListadoIpP1->withQueryString()->links() !!}
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -177,27 +178,28 @@
                                             </thead>
                                             <tbody class="divide-y divide-gray-200 bg-white">
 
-                                                @foreach ($ListadoImpresoraIpP2YP3->unique('departamento_id') as $listadoImpresoraIpP2YP3)
+                                                {{-- @foreach ($ListadoIpP2YP3->unique('departamento_id') as $listadoipP2YP3)
                                         <tr class="even:bg-gray-50">
                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center" style='display:none;'>{{ ++$P2YP3 }}</td>
-                                            <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoImpresoraIpP2YP3->users?->departamentos->Departamento}}</td>
+                                            <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipP2YP3->departamentos->Departamento}}</td>
 
 
 
                                             <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
-                                                <form action="{{ route('ListadoIp.destroy', $listadoImpresoraIpP2YP3->id) }}" method="POST">
-                                                    <a href="{{ route('ListadoIp.showP2YP3', $listadoImpresoraIpP2YP3->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
+                                                <form action="{{ route('ListadoIp.destroy', $listadoipP2YP3->id) }}" method="POST">
+                                                    <a href="{{ route('ListadoIp.showP2YP3', $listadoipP2YP3->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
 
                                                 </form>
                                             </td>
-                                        </tr>
-                                    @endforeach
+                                       
+                                    @endforeach --}}
+                                     </tr>
                                             </tbody>
                                         </table>
 
-                                        <div class="mt-4 px-4">
-                                            {!! $ListadoImpresoraIpP2YP3->withQueryString()->links() !!}
-                                        </div>
+                                        {{-- <div class="mt-4 px-4">
+                                            {!! $ListadoIpP2YP3->withQueryString()->links() !!}
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -241,7 +243,7 @@
                         <div class="sm:flex sm:items-center">
                             <div class="sm:flex-auto">
                                 <h1 class="text-base font-semibold leading-6 text-gray-900">{{ __('Listado General') }}</h1>
-                                <p class="mt-2 text-sm text-gray-700">Listado General  de  Impresora</p>
+                                <p class="mt-2 text-sm text-gray-700">Listado General  de  Telefono</p>
                             </div>
                             <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                                 <a type="button" href="{{ route('ListadoImpresora.create') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Agregar</a>
@@ -255,62 +257,29 @@
                                         <thead>
                                         <tr>
                                               <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">ID</th>
-
-
-
                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Departamento</th>
-
-                                               <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Ubicacion</th>
-
-                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Usuario</th>
-
-                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Equipo</th>
+                                               <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Usuario</th>
+                                               <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Extesion</th>
                                                
-                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">IP</th>
-
-                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Marca</th>
-                                                  <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Modelo</th>
-                                                   <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Root</th>
-                                                    <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Clave</th>
 
                                         </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 bg-white">
 
-                                            @foreach ($ListadoGeneralImpresora as $listadoGeneralImpresora)
+                                          
 
                                             <tr class="even:bg-gray-50">
-
-                                                <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->id  }}</td>
-                                                <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->users?->departamentos->Departamento  }}</td>
-                                                <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->pisos->Pisos  }}</td>
-                                                <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->users?->name}} {{ $listadoGeneralImpresora->users?->surname }}</td>
-                                                <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->Equipo }}</td>
-                                                <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->ip_equipo }}</td>
-                                                <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->Marca }}</td>
-                                                <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->Modelo }}</td>
-                                                <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->Root }}</td>
-                                                <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->Clave }}</td>
-
-                                                    <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
-                                                        <form action="{{ route('ListadoImpresora.destroy', $listadoGeneralImpresora->id) }}" method="POST">
-                                                            {{-- <a href="{{ route('ListadoEquipo.show', $listadoEquipoPB->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a> --}}
-                                                            <a href="{{ route('ListadoImpresora.edit', $listadoGeneralImpresora->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <a href="{{ route('ListadoImpresora.destroy', $listadoGeneralImpresora->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a>
-                                                        </form>
-                                                    </td>
+                                                
 
 
-                                            
-                                           </tr>
-                                    @endforeach
+
+                                            </tr>
+                           
                                         </tbody>
                                     </table>
 
                                     <div class="mt-4 px-4">
-                                        {!! $ListadoGeneralImpresora->withQueryString()->links() !!}
+                                        {{-- {!! $ListadoGeneral->withQueryString()->links() !!} --}}
                                     </div>
                                 </div>
                             </div>
@@ -335,23 +304,7 @@
             $('#p1').hide();
             $('#p2yp3').hide();
 
-            // $('.General').click(function(e){
-            //      e.preventDefault();
-            //     $('#General').toggle();
-
-
-            // });
-
-
-            // $('.buscar').click(function(){
-
-
-            //     $('#regresar').show();
-            // });
-
-
-
-
+            
             $('.PB').click(function(e){
                  e.preventDefault();
                 $('#pb').toggle();

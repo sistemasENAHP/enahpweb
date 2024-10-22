@@ -10,19 +10,24 @@
 
           <div class="md:col-span-2">
             <label for="ip_escuela">IP Escuela</label>
-            <x-text-input type="text" name="ip_escuela" id="ip_escuela" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_escuela" placeholder="IP Escuela" :value="old('Escuela',$ListaIp?->Escuela)" />
+            <x-text-input type="text" name="ip_escuela" id="ip_escuela" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_escuela" placeholder="IP Escuela" :value="old('Escuela',$Ips?->ip_escuela)" />
             <x-input-error class="mt-2" :messages="$errors->get('ip_escuela')"/>
           </div>
           <div class="md:col-span-2">
             <label for="ip_ministerio">IP Ministerio</label>
-            <x-text-input type="text" name="ip_ministerio" id="ip_ministerio" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_ministerio" placeholder="IP Ministerio" :value="old('Ministerio',$ListaIp?->Ministerio)" />
+            <x-text-input type="text" name="ip_ministerio" id="ip_ministerio" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_ministerio" placeholder="IP Ministerio" :value="old('Ministerio',$Ips?->ip_ministerio)" />
             <x-input-error class="mt-2" :messages="$errors->get('ip_ministerio')"/>
           </div>
 
-          <div class="md:col-span-2">
-            <label for="ip_ministerio">Observaciones</label>
-            <textarea name="Observaciones" id="Observaciones" cols="118" rows="3"></textarea>
-            <x-input-error class="mt-2" :messages="$errors->get('Observaciones')"/>
+          <div class="md:col-span-4">
+            <label for="Observacion">Observaciones</label>
+            <select name="Observacion" id="Observacion" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value>Selecciones</option>
+                <option value="libre" {{$Ips->Observacion == 'libre' ? 'selected' : ''}}>Libre</option>
+                <option value="Ocupado" {{$Ips->Observacion == 'Ocupado' ? 'selected' : ''}} >Ocupado</option>
+           </select>
+            {{-- <textarea name="Observaciones" id="Observaciones" cols="118" rows="3"></textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('Observaciones')"/> --}}
           </div>
           <div class="md:col-span-5 text-center">
             <div class="inline-flex items-end" >

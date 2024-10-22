@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Departamentos;
 use App\Models\Pisos;
+use App\Models\User;
 class ListadoPuntos extends Model
 {
     use HasFactory;
@@ -17,7 +18,7 @@ class ListadoPuntos extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['departamento_id','piso_id','Nombre','Apellido','Cedula','Puntos','PuertoPatch','NPuertoSwitch','Observacion'];
+    protected $fillable = ['departamento_id','piso_id','user_id','Nombre','Apellido','Cedula','Puntos','PuertoPatch','NPuertoSwitch','Observacion'];
 
 
  /**
@@ -34,6 +35,14 @@ class ListadoPuntos extends Model
   public function pisos()
   {
       return $this->belongsTo(Pisos::class, 'piso_id','id');
+
+  }
+
+
+  public function users()
+  {
+
+        return $this->belongsTo(User::class,'user_id','id');
 
   }
 

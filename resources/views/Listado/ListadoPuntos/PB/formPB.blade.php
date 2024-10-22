@@ -22,11 +22,28 @@
           @endforeach
         </select>
     </div>
-        
+
     <div class="md:col-span-5">
-                <label for="dep"></label>
-               <select name="dep" id="dep" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></select>
-            </div>
+        <label for="dep"></label>
+       <select name="dep" id="dep" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        {{-- <option value=""></option> --}}
+        {{$sel = 0}}
+        @foreach($User as $user)
+        @if($user->id == $ListadoPunto->user_id)
+        {{$sel = 'selected'}}
+        @else
+
+        {{$sel = ''}}
+
+        @endif
+
+                <option value="{{$user->id}}" {{$sel}}>{{$user->name}} {{$user->surname}}</option>
+
+        @endforeach
+
+
+       </select>
+    </div>
 
     <x-text-input type="hidden" id="piso_idPB" name="piso_idPB" :value=1 class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="PB" placeholder="PB"/>
     <div class="md:col-span-2">
@@ -47,16 +64,13 @@
           <x-input-error class="mt-2" :messages="$errors->get('Cedula')"/>
         </div>
 
-         <div class="md:col-span-2">
+        <div class="md:col-span-2">
             <label for="Cedula">Equipo</label>
-                <select name="Equipo" id="Equipo" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                    <option >Selecciones</option>
-                    <option value="PC"{{$ListaIp->Equipo == 'PC' ? 'selected' : ''}}>PC (Computadora) </option>
-                    <option value="Impresora"{{$ListaIp->Equipo == 'Impresora' ? 'selected' : ''}}>Impresora</option>
-                    <option value="Telefono"{{$ListaIp->Equipo == 'Telefono' ? 'selected' : ''}}>Telefono</option>
-                    <option value="Route"{{$ListaIp->Equipo == 'Route' ? 'selected' : ''}}>Route</option>
-                </select>
+            <x-text-input type="text" name="Equipo" id="Equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Equipo" placeholder="Equipo" :value="old('Equipo',$ListadoEquipo?->Equipo)" value="Computadora"  />
+            <x-input-error class="mt-2" :messages="$errors->get('Equipo')"/>
+
           </div>
+
           <div class="md:col-span-2">
             <label for="ip_ministerio">Punto de Red</label>
             <x-text-input type="text" name="punto_red" id="punto_red" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="punto_red" placeholder="Punto de Red"  :value="old('Puntos', $ListadoPunto?->Puntos)" />

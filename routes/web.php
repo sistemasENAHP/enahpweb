@@ -18,7 +18,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ImpresorasController;
-Route::get('/',[LoginController::class,'index']); 
+use App\Http\Controllers\ListadoTelefonosController;
+
+Route::get('/',[LoginController::class,'index']);
 
 
 
@@ -131,6 +133,11 @@ Route::get('/ListadoIpGeneral',[ListadoipController::class,'createGeneral'])->na
 
 Route::post('/ListadoIpStore',[ListadoipController::class,'storeGeneral'])->name('ListadoIpStore.storeGeneral');
 
+
+Route::get('/ListadoIp/{id}/EditGeneral',[ListadoipController::class,'Editgeneral'])->name('ListadoIp.EditGeneral');
+
+Route::PUT('/ListadoIpActualizar/{id}',[ListadoipController::class,'ActualizarIpGeneral'])->name('ListadoIpActualizar.ActualizarIpGeneral');
+
 Route::get('/ListadoIpCreatePB',[ListadoipController::class,'CreatePB'])->name('ListadoIp.CreatePB');
 
 Route::get('/ListadoIp/{id}/editPB',[ListadoipController::class,'editPB'])->name('ListadoIp.editPB');
@@ -157,6 +164,7 @@ Route::get('/ListadoIp/{id}/showP2YP3',[ListadoipController::class,'showP2YP3'])
 
 Route::resource('/ListadoImpresora',ImpresorasController::class);
 
+Route::resource('/ListadoTelefono',ListadoTelefonosController::class);
 
 Route::resource('/Planos',PlanosController::class);
 

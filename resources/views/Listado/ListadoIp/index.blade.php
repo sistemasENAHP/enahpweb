@@ -255,23 +255,28 @@
                                         <thead>
                                         <tr>
                                               <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">ID</th>
+                                              <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Departamento</th>
+                                              <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Usuario</th>
+                                              <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Cedula</th>
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Escuela</th>
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Ministerio</th>
 
-                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Observaciones</th>
+                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Estatus</th>
 
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Accion</th>
 
                                         </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 bg-white">
-                                     
+
                                             @foreach ($ListadoGeneral as $ListadoGenerals)
-                                             
-                                               
                                             <tr class="even:bg-gray-50">
+
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$ListadoGenerals->id}}</td>
-                                                
+                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$ListadoGenerals->users?->departamentos->Departamento}}</td>
+                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$ListadoGenerals->users?->name}} {{$ListadoGenerals->users?->surname}}</td>
+                                                <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$ListadoGenerals->users?->identification_card}}</td>
+
                                                 @if($ListadoGenerals->Observacion == 'Ocupado')
 
                                                 <td class="px-3 py-4 text-sm text-gray-500 text-center text-red-500" colspan="0" >{{$ListadoGenerals->ip_escuela}}</td>
@@ -281,9 +286,6 @@
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0" >{{$ListadoGenerals->ip_escuela}}</td>
 
                                                 @endif
-
-                                               
-                                              
 
                                                 @if($ListadoGenerals->ip_ministerio == 'Ocupado')
 
@@ -296,18 +298,18 @@
                                                 @endif
 
                                                 @if($ListadoGenerals->Observacion == 'Libre')
-                                            
+
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$ListadoGenerals->Observacion}}</td>
 
                                                 @else
 
                                                  <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$ListadoGenerals->Observacion}}</td>
-                                                
+
                                                 @endif
 
                                                  <td class=" py-4 pl-4 pr-3 text-sm font-medium text-gray-900 text-center">
                                                     <form action="#" method="POST">
-                                                        <a href="#" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
+                                                        <a href="{{route('ListadoIp.EditGeneral',$ListadoGenerals->id)}}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Editar') }}</a>
 
                                                     </form>
                                                 </td>
@@ -315,9 +317,9 @@
 
 
                                             </tr>
-                                    
-                         
-                                   
+
+
+
                                      @endforeach
                                         </tbody>
                                     </table>

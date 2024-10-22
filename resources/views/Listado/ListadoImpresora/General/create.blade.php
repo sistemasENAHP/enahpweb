@@ -12,7 +12,7 @@
             <p class="text-gray-500 mb-6"></p>
 
             <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-                 <form method="POST" action="#"  role="form" enctype="multipart/form-data">
+                 <form method="POST" action="{{ route('ListadoImpresora.store') }}"  role="form" enctype="multipart/form-data">
                     @csrf
 
                     @include('Listado.ListadoImpresora.General.form')

@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('impresoras', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('piso_id')->constrained('pisos');
             $table->foreignId('departamento_id')->constrained('departamentos');
-            $table->foreignId('ip_id')->constrained('ips');
+            $table->String('Equipo')->nullable()->default(NULL);
+            $table->String('ip_equipo')->nullable()->default(NULL);
             $table->String('Root')->nullable()->default(NULL);
             $table->String('Clave')->nullable()->default(NULL);
             $table->String('Marca')->nullable()->default(NULL);

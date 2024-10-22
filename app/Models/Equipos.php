@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Departamentos;
 use App\Models\Pisos;
-
+use App\Models\User;
 class Equipos extends Model
 {
     use HasFactory;
@@ -18,7 +18,7 @@ class Equipos extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['piso_id','departamento_id','Nombre','Apellidos','Cedula','Equipo','Marca','Cantidad_Equipo','Sistema_Operativo','Version','Mouse','Teclado','Corneta','Regulador','DiscoDuroGB','Nombre_Equipo','MacAdress','ip_escuela','ip_ministerio','ProxyDns','Observacion','CasoEspeciales'];
+    protected $fillable = ['piso_id','departamento_id','user_id','Nombre','Apellidos','Cedula','Equipo','Marca','Cantidad_Equipo','Sistema_Operativo','Version','Mouse','Teclado','Corneta','Regulador','DiscoDuroGB','Nombre_Equipo','MacAdress','ip_escuela','ip_ministerio','ProxyDns','Observacion','CasoEspeciales'];
 
 
     public function departamentos()
@@ -34,4 +34,12 @@ class Equipos extends Model
 
         return $this->belongsTo(Pisos::class,'piso_id','id');
     }
+
+    public function users()
+    {
+
+          return $this->belongsTo(User::class,'user_id','id');
+
+    }
+
 }

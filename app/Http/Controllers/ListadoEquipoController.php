@@ -15,7 +15,7 @@ use App\Models\MarcaEquipos;
 use App\Models\User;
 use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
-
+use App\Models\Impresoras;
 class ListadoEquipoController extends Controller
 {
 
@@ -55,7 +55,8 @@ class ListadoEquipoController extends Controller
             // $sistema = php_uname('m'); // Obtiene la máquina
             //   dd($sistema);
             // $Marca = MarcaEquipos::all();
-            return view('Listado.ListadoEquipos.PB.createPB',compact('Departamentos','machineName','ListadoEquipo'));
+            $User = User::all();
+            return view('Listado.ListadoEquipos.PB.createPB',compact('User','Departamentos','machineName','ListadoEquipo'));
 
     }
 
@@ -64,7 +65,8 @@ class ListadoEquipoController extends Controller
         $ListadoEquipo = new Equipos();
         $Departamentos = Departamentos::where('piso_id','=',2)->get();
         $machineName = gethostname();
-        return view('Listado.ListadoEquipos.P1.createP1',compact('Departamentos','machineName','ListadoEquipo'));
+        $User = User::all();
+        return view('Listado.ListadoEquipos.P1.createP1',compact('User','Departamentos','machineName','ListadoEquipo'));
 
 
 
@@ -74,9 +76,11 @@ class ListadoEquipoController extends Controller
     public function CreateP2YP3(Request $request){
 
         $ListadoEquipo = new Equipos();
+         $Impresoras = new  Impresoras();
         $Departamentos = Departamentos::where('piso_id','=',3)->orwhere('piso_id','=',4)->get();
         $machineName = gethostname();
-        return view('Listado.ListadoEquipos.P2YP3.createP2YP3',compact('Departamentos','machineName','ListadoEquipo'));
+        $User = User::all();
+        return view('Listado.ListadoEquipos.P2YP3.createP2YP3',compact('Impresoras','User','Departamentos','machineName','ListadoEquipo'));
 
 
 
@@ -90,6 +94,7 @@ class ListadoEquipoController extends Controller
      */
     public function store(Request $request)
     {
+
 
           $ListadoEquipo = new Equipos();
 
@@ -107,9 +112,10 @@ class ListadoEquipoController extends Controller
 
           }
           $ListadoEquipo->departamento_id = $request->departamento_id;
-          $ListadoEquipo->Nombre = $request->Nombre;
-          $ListadoEquipo->Apellidos = $request->Apellidos;
-          $ListadoEquipo->Cedula = $request->Cedula;
+          $ListadoEquipo->user_id = $request->dep;
+        //   $ListadoEquipo->Nombre = $request->Nombre;
+        //   $ListadoEquipo->Apellidos = $request->Apellidos;
+        //   $ListadoEquipo->Cedula = $request->Cedula;
           $ListadoEquipo->Equipo = $request->Equipo;
           $ListadoEquipo->Nombre_Equipo = $request->NombreEquipo;
           $ListadoEquipo->Marca = $request->marca_equipo;
@@ -141,6 +147,32 @@ class ListadoEquipoController extends Controller
           $ListadoEquipo->CasoEspeciales = $request->caso_especiales;
           $ListadoEquipo->save();
 
+            $Users = User::all();
+        $Impresora = new Impresoras();
+        $Impresora->departamento_id = $request->departamento_id;
+          if( $request->piso_idPB == 1){
+
+          $Impresora->piso_id = $request->piso_idPB;
+
+          }else if($request->piso_idP1 == 2){
+
+            $Impresora->piso_id = $request->piso_idP1;
+
+          }else if($request->piso_idP2YP3 == 3){
+
+            $Impresora->piso_id = $request->piso_idP2YP3;
+
+          }
+        // $Impresora->piso_id = $request->id_piso;
+        $Impresora->user_id = $request->dep;
+        $Impresora->Equipo = $request->Impresora;
+        $Impresora->ip_equipo = $request->ip_equipo;
+        $Impresora->Marca = $request->Marca;
+        $Impresora->Modelo = $request->Modelo;
+        $Impresora->Root = $request->Root;
+        $Impresora->Clave = $request->Clave;
+        $Impresora->save();
+
        return Redirect('ListadoEquipo');
 
     }
@@ -152,7 +184,8 @@ class ListadoEquipoController extends Controller
     {
             $ListadoEquipo =  Equipos::find($id);
             $ListadoEquipoPB = Equipos::paginate();
-            return view('Listado.ListadoEquipos.show',compact('ListadoEquipoPB','ListadoEquipo'))->with('PB', ($request->input('page', 1) - 1) * $ListadoEquipoPB->perPage());
+            $Impresoras =  Impresoras::find($id);
+            return view('Listado.ListadoEquipos.show',compact('Impresoras','ListadoEquipoPB','ListadoEquipo'))->with('PB', ($request->input('page', 1) - 1) * $ListadoEquipoPB->perPage());
     }
 
       public function ShowP1(Request $request,$id){
@@ -168,9 +201,11 @@ class ListadoEquipoController extends Controller
     public function ShowP2YP3(Request $request,$id){
 
 
-          $ListadoEquipo =  Equipos::find($id);
+            $ListadoEquipo =  Equipos::find($id);
             $ListadoEquipoP2YP3 = Equipos::paginate();
-            return view('Listado.ListadoEquipos.P2YP3.show',compact('ListadoEquipoP2YP3','ListadoEquipo'))->with('P2YP3', ($request->input('page', 1) - 1) * $ListadoEquipoP2YP3->perPage());
+            $Impresoras =  Impresoras::find($id);
+            $Impresorass =  Impresoras::all();
+            return view('Listado.ListadoEquipos.P2YP3.show',compact('Impresorass','Impresoras','ListadoEquipoP2YP3','ListadoEquipo'))->with('P2YP3', ($request->input('page', 1) - 1) * $ListadoEquipoP2YP3->perPage());
 
     }
 
@@ -181,24 +216,28 @@ class ListadoEquipoController extends Controller
     {
            $ListadoEquipo =  Equipos::find($id);
            $Departamentos = Departamentos::where('piso_id','=',1)->get();
+           $User = User::all();
             $machineName = gethostname();
-            return view('Listado.ListadoEquipos.PB.editPB',compact('Departamentos','machineName','ListadoEquipo'));
+            return view('Listado.ListadoEquipos.PB.editPB',compact('User','Departamentos','machineName','ListadoEquipo'));
     }
 
     public function editP1(string $id)
     {
         $ListadoEquipo =  Equipos::find($id);
         $Departamentos = Departamentos::where('piso_id','=',2)->get();
+        $User = User::all();
         $machineName = gethostname();
-        return view('Listado.ListadoEquipos.P1.editP1',compact('Departamentos','machineName','ListadoEquipo'));
+        return view('Listado.ListadoEquipos.P1.editP1',compact('User','Departamentos','machineName','ListadoEquipo'));
     }
 
     public function editP2YP3(string $id)
     {
         $ListadoEquipo =  Equipos::find($id);
+        $Impresoras =  Impresoras::find($id);
+        $User = User::all();
         $Departamentos = Departamentos::where('piso_id','=',3)->orwhere('piso_id','=',4)->get();
         $machineName = gethostname();
-        return view('Listado.ListadoEquipos.P2YP3.editP2YP3',compact('Departamentos','machineName','ListadoEquipo'));
+        return view('Listado.ListadoEquipos.P2YP3.editP2YP3',compact('Impresoras','Departamentos','machineName','ListadoEquipo','User'));
     }
 
     /**
@@ -221,9 +260,10 @@ class ListadoEquipoController extends Controller
 
             }
             $ListadoEquipo->departamento_id = $request->departamento_id;
-            $ListadoEquipo->Nombre = $request->Nombre;
-            $ListadoEquipo->Apellidos = $request->Apellidos;
-            $ListadoEquipo->Cedula = $request->Cedula;
+            $ListadoEquipo->user_id = $request->dep;
+            // $ListadoEquipo->Nombre = $request->Nombre;
+            // $ListadoEquipo->Apellidos = $request->Apellidos;
+            // $ListadoEquipo->Cedula = $request->Cedula;
             $ListadoEquipo->Equipo = $request->Equipo;
             $ListadoEquipo->Nombre_Equipo = $request->NombreEquipo;
             $ListadoEquipo->Marca = $request->marca_equipo;
@@ -254,6 +294,32 @@ class ListadoEquipoController extends Controller
             $ListadoEquipo->Observacion = $request->Observaciones;
             $ListadoEquipo->CasoEspeciales = $request->caso_especiales;
             $ListadoEquipo->update();
+
+                
+        $Impresora =  Impresoras::find($id);;
+        $Impresora->departamento_id = $request->departamento_id;
+          if( $request->piso_idPB == 1){
+
+          $Impresora->piso_id = $request->piso_idPB;
+
+          }else if($request->piso_idP1 == 2){
+
+            $Impresora->piso_id = $request->piso_idP1;
+
+          }else if($request->piso_idP2YP3 == 3){
+
+            $Impresora->piso_id = $request->piso_idP2YP3;
+
+          }
+        // $Impresora->piso_id = $request->id_piso;
+        $Impresora->user_id = $request->dep;
+        $Impresora->Equipo = $request->Impresora;
+        $Impresora->ip_equipo = $request->ip_equipo;
+        $Impresora->Marca = $request->Marca;
+        $Impresora->Modelo = $request->Modelo;
+        $Impresora->Root = $request->Root;
+        $Impresora->Clave = $request->Clave;
+        $Impresora->update();
 
             return Redirect('ListadoEquipo');
     }
@@ -291,15 +357,9 @@ class ListadoEquipoController extends Controller
 
 
          foreach($Funcionario as $fun){
-
           // $fun->name;
-
          }
-
-
          return response()->json($fun);
-
-
 
         }
 

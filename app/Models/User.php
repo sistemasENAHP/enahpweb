@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
 use App\Models\Departamentos;
-use Laravel\Scout\Searchable;
 use App\Models\Ips;
+use Laravel\Scout\Searchable;
 class User extends Authenticatable
 {
-    use  HasFactory, Notifiable, HasRoles, Notifiable;
+    use  HasFactory, Notifiable, HasRoles, Notifiable,Searchable;
 
     protected $perPage = 20;
    /**
@@ -27,7 +27,6 @@ class User extends Authenticatable
      protected $table = 'users';
     protected $fillable = [
         'id',
-        'ips_id',
         'departamento_id',
         'name',
         'surname',
@@ -91,10 +90,7 @@ class User extends Authenticatable
     return [
 
         'id' => (int) $this->id,
-        'Nombre' => $this->Nombre,
-        'NControl' => $this->NControl,
-        'Cedula' => $this->Cedula,
-        'Tecnico'=> $this->Tecnico,
+         'name' => $this->name,
     ];
 }
 

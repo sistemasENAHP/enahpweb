@@ -12,10 +12,10 @@
             <p class="text-gray-500 mb-6"></p>
 
             <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-                <form method="POST" action="{{ route('ListadoIp.update', $ListaIp->id) }}"  role="form" enctype="multipart/form-data">
-                    {{ method_field('PATCH') }}
+                <form method="post" action="{{ route('ListadoIpActualizar.ActualizarIpGeneral', $Ips->id) }}"  role="form" enctype="multipart/form-data">
+                    {{ method_field('PUT') }}
                     @csrf
-                    @include('Listado.ListadoIp.PB.formPB')
+                    @include('Listado.ListadoIp.General.form')
                 </form>
             </div>
           </div>

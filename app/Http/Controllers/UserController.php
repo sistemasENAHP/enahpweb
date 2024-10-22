@@ -34,7 +34,7 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
-        $users = User::OrderBy('id','asc')->paginate();
+        $users = User::search(request('search'))->OrderBy('id','asc')->paginate();
 
         return view('user.index', compact('users'))
             ->with('i', ($request->input('page', 1) - 1) * $users->perPage());
@@ -114,7 +114,6 @@ class UserController extends Controller
         // $user->update($request->validated());
 
          $Users = User::FindOrFail($id);
-
         $Users->roles()->sync($request->roles);
         $Users->departamento_id = $request->departamento_id;
         $Users->name = $request->name;
@@ -125,7 +124,7 @@ class UserController extends Controller
         $Users->nombre_equipo = $request->nombre_equipo;
         $Users->identification_card = $request->identification_card;
         $Users->email = $request->email;
-        
+
         if($Users->password == $request->password):
          $Users->password = $request->password;
         else:
@@ -139,30 +138,28 @@ class UserController extends Controller
 
            $ip = $request->ip();
              $ipr = substr($ip,7);
-             
+
              $ips = ips::FindOrFail($ipr);
              if($ips->ip_escuela > '10.2.2.0' && $ips->ip_escuela < '10.2.2.400'){
+                $ips->user_id = $Users->id;
                 $ips->ip_escuela = $ip;
                 $ips->Observacion = 'Ocupado';
-             
-             }elseif($ips->ip_ministerio > '10.95.10.0' && $ips->ip_ministerio < '10.95.10.400'){
 
+             }elseif($ips->ip_ministerio > '10.95.10.0' && $ips->ip_ministerio < '10.95.10.400'){
+                $ips->user_id = $Users->id;
                 $ips->ip_ministerio = $ip;
                 $ips->Observacion = 'Ocupado';
 
              }else{
-                       
+
                      echo   '<script>alert("No me jodas")</script>';
-                 
+
 
              }
-
-         
-             
              $ips->update();
 
 
-        
+
 
         return Redirect::route('users.index')
             ->with('success', 'User updated successfully');
@@ -170,24 +167,23 @@ class UserController extends Controller
 
     public function destroy(Request $request,$id): RedirectResponse
     {
-          $user =   User::find($id);
-          
-
+            $user =   User::find($id);
              $ip = $request->ip();
              $ipr = substr($ip,7);
-             
+
              $ips = ips::FindOrFail($ipr);
              if($ips->ip_escuela > '10.2.2.0' && $ips->ip_escuela < '10.2.2.400'){
+                $ips->user_id = Null;
                 // $ips->ip_escuela = $ip;
                 $ips->Observacion = 'Libre';
-             
-             }elseif($ips->ip_ministerio > '10.95.10.0' && $ips->ip_ministerio < '10.95.10.400'){
 
+             }elseif($ips->ip_ministerio > '10.95.10.0' && $ips->ip_ministerio < '10.95.10.400'){
+                $ips->user_id = Null;
                 // $ips->ip_ministerio = $ip;
                 $ips->Observacion = 'Libre';
 
              }
-                   
+
              $ips->update();
              $user->delete();
 

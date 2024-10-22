@@ -27,13 +27,13 @@ class ImpresorasController extends Controller
     {
 
         // $ListadoGeneral = Impresoras::search(request('search'))->orderBy('id','asc')->paginate(10);
-        $ListadoGeneral = Impresoras::all();
-        $ListadoIpPB = Impresoras::where('departamento_id','<=',21)->orderBy('id','asc')->paginate();
-        $ListadoIpP1 = Impresoras::where('departamento_id','>=',21)->where('departamento_id','<=',31)->orderBy('id','asc')->paginate();
-        $ListadoIpP2YP3 = Impresoras::where('departamento_id','>',31)->orderBy('id','asc')->paginate();
+        $ListadoGeneralImpresora = Impresoras::search(request('search'))->orderBy('id','asc')->paginate(10);
+        $ListadoImpresoraPB = Impresoras::join('users','impresoras.user_id','=','users.id')->where('users.departamento_id','<=',21)->orderBy('impresoras.id','asc')->paginate();
+        $ListadoImpresoraIpP1 = Impresoras::join('users','impresoras.user_id','=','users.id')->where('users.departamento_id','>=',21)->where('users.departamento_id','<=',31)->orderBy('impresoras.id','asc')->paginate();
+        $ListadoImpresoraIpP2YP3 = Impresoras::join('users','impresoras.user_id','=','users.id')->where('users.departamento_id','>',31)->orderBy('impresoras.id','asc')->paginate();
 
-        return view('Listado.ListadoImpresora.index', compact('ListadoGeneral','ListadoIpPB','ListadoIpP1','ListadoIpP2YP3'))
-            ->with('PB', ($request->input('page', 1) - 1) * $ListadoIpPB->perPage())->with('P1', ($request->input('page', 1) - 1) * $ListadoIpP1->perPage())->with('P2YP3', ($request->input('page', 1) - 1) * $ListadoIpP2YP3->perPage());
+        return view('Listado.ListadoImpresora.index', compact('ListadoGeneralImpresora','ListadoImpresoraPB','ListadoImpresoraIpP1','ListadoImpresoraIpP2YP3'))
+            ->with('PB', ($request->input('page', 1) - 1) * $ListadoImpresoraPB->perPage())->with('P1', ($request->input('page', 1) - 1) * $ListadoImpresoraIpP1->perPage())->with('P2YP3', ($request->input('page', 1) - 1) * $ListadoImpresoraIpP2YP3->perPage());
         
         
     }
@@ -48,8 +48,9 @@ class ImpresorasController extends Controller
         $Departamentos = Departamentos::all();
         $Pisos = Pisos::all();
         $Ip = ips::all();
+        $User = User::all();
         
-        return view('Listado.ListadoImpresora.General.create',compact('ListadoImpresora','Departamentos','Pisos','Ip'));
+        return view('Listado.ListadoImpresora.General.create',compact('ListadoImpresora','Departamentos','Pisos','Ip','User'));
     }
 
     /**
@@ -57,7 +58,21 @@ class ImpresorasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Users = User::all();
+        $Impresora = new Impresoras();
+        $Impresora->departamento_id = $request->departamento_id;
+        $Impresora->piso_id = $request->id_piso;
+        $Impresora->user_id = $request->user_id;
+        $Impresora->Equipo = $request->equipo;
+        $Impresora->ip_equipo = $request->ip_equipo;
+        $Impresora->Marca = $request->Marca;
+        $Impresora->Modelo = $request->Modelo;
+        $Impresora->Root = $request->Root;
+        $Impresora->Clave = $request->Clave;
+        $Impresora->save();
+
+
+        return Redirect('/ListadoImpresora')->with('status','Se ha Registrado Exitosamente!');
     }
 
     /**
@@ -73,7 +88,13 @@ class ImpresorasController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $ListadoImpresora = Impresoras::Find($id);
+        $Departamentos = Departamentos::all();
+        $Pisos = Pisos::all();
+        $Ip = ips::all();
+        $User = User::all();
+
+        return view('Listado.ListadoImpresora.General.edit',compact('ListadoImpresora','Departamentos','Pisos','Ip','User'));
     }
 
     /**
@@ -81,7 +102,20 @@ class ImpresorasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $Users = User::all();
+        $Impresora = Impresoras::Find($id);
+        $Impresora->departamento_id = $request->departamento_id;
+        $Impresora->piso_id = $request->id_piso;
+        $Impresora->user_id = $request->user_id;
+        $Impresora->Equipo = $request->equipo;
+        $Impresora->ip_equipo = $request->ip_equipo;
+        $Impresora->Marca = $request->Marca;
+        $Impresora->Modelo = $request->Modelo;
+        $Impresora->Root = $request->Root;
+        $Impresora->Clave = $request->Clave;
+        $Impresora->update();
+
+         return Redirect('/ListadoImpresora')->with('status','Se ha Registrado Exitosamente!');
     }
 
     /**

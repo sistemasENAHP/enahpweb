@@ -51,21 +51,24 @@ class ListadoPuntoController extends Controller
     {
         $ListadoPunto = new  ListadoPuntos();
         $Departamentos = Departamentos::where('piso_id','=',1)->get();
-        return view('Listado.ListadoPuntos.PB.createPB',compact('Departamentos','ListadoPunto'));
+        $User = User::all();
+        return view('Listado.ListadoPuntos.PB.createPB',compact('User','Departamentos','ListadoPunto'));
     }
 
       public function createP1(Request $request)
     {
         $ListadoPunto = new  ListadoPuntos();
+        $User = User::all();
         $Departamentos = Departamentos::where('piso_id','>=',2)->where('id','<=',30)->get();
-        return view('Listado.ListadoPuntos.P1.createP1',compact('Departamentos','ListadoPunto'));
+        return view('Listado.ListadoPuntos.P1.createP1',compact('User','Departamentos','ListadoPunto'));
     }
 
        public function createP2YP3(Request $request)
     {
         $ListadoPunto = new  ListadoPuntos();
         $Departamentos = Departamentos::where('piso_id','>=',3)->get();
-        return view('Listado.ListadoPuntos.P2YP3.createP2YP3',compact('Departamentos','ListadoPunto'));
+        $User = User::all();
+        return view('Listado.ListadoPuntos.P2YP3.createP2YP3',compact('User','Departamentos','ListadoPunto'));
     }
 
     /**
@@ -137,14 +140,16 @@ class ListadoPuntoController extends Controller
     {
         $ListadoPunto = ListadoPuntos::FindOrFail($id);
         $Departamentos = Departamentos::all();
-        return view('Listado.ListadoPuntos.PB.editPB',compact('Departamentos','ListadoPunto'));
+        $User = User::all();
+        return view('Listado.ListadoPuntos.PB.editPB',compact('User','Departamentos','ListadoPunto'));
     }
 
     public function editPB(string $id)
     {
         $ListadoPunto = ListadoPuntos::FindOrFail($id);
         $Departamentos = Departamentos::all();
-        return view('Listado.ListadoPuntos.PB.editPB',compact('Departamentos','ListadoPunto'));
+        $User = User::all();
+        return view('Listado.ListadoPuntos.PB.editPB',compact('User','Departamentos','ListadoPunto'));
 
     }
 
@@ -152,7 +157,8 @@ class ListadoPuntoController extends Controller
     {
         $ListadoPunto = ListadoPuntos::FindOrFail($id);
         $Departamentos = Departamentos::all();
-        return view('Listado.ListadoPuntos.P1.editP1',compact('Departamentos','ListadoPunto'));
+        $User = User::all();
+        return view('Listado.ListadoPuntos.P1.editP1',compact('User','Departamentos','ListadoPunto'));
 
     }
 
@@ -160,7 +166,8 @@ class ListadoPuntoController extends Controller
     {
         $ListadoPunto = ListadoPuntos::FindOrFail($id);
         $Departamentos = Departamentos::all();
-        return view('Listado.ListadoPuntos.P2YP3.editP2YP3',compact('Departamentos','ListadoPunto'));
+        $User = User::all();
+        return view('Listado.ListadoPuntos.P2YP3.editP2YP3',compact('User','Departamentos','ListadoPunto'));
 
     }
 
@@ -210,9 +217,9 @@ class ListadoPuntoController extends Controller
 
 
        public function depatamentoUser(Request $request){
-        
+
         if($request->ajax()){
-          
+
             $Departamento = User::where('departamento_id',$request->departamento_id)->get();
 
             // foreach($Departamento as $dep){
@@ -223,21 +230,21 @@ class ListadoPuntoController extends Controller
 
 
             return response()->json($Departamento);
-        
+
 }
       }
 
 
 
       public function ListadoFuncionarios(Request $request){
-        
+
         if($request->ajax()){
-        
+
          $Funcionario = User::select('*')->where('id',$request->dep)->get();
-           
+
 
          foreach($Funcionario as $fun){
-          
+
           // $fun->name;
 
          }
@@ -254,7 +261,7 @@ class ListadoPuntoController extends Controller
 
 
 
-      
+
 
 
 }

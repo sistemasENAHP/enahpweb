@@ -33,19 +33,8 @@ class ListadoipController extends Controller
      */
     public function index(Request $request): View
     {
-          
-          $buscar = $request->search;
-                
-        $ListadoGeneral = Ips::search(request('search'))->orderBy('id','asc')->paginate(10);
-          // $ListadoGeneral = ips::select('*')->join('users','ips.ip_escuela','=','users.ip_equipo')->paginate(10);
+        $ListadoGeneral = Ips::search(request('search'))->orderBy('id','asc')->Paginate();
         $User = User::get();
-       
-
-
-
-   
-
-
         $ListadoIpPB = Listadoips::where('departamento_id','<=',21)->orderBy('id','asc')->paginate();
         $ListadoIpP1 = Listadoips::where('departamento_id','>=',21)->where('departamento_id','<=',31)->orderBy('id','asc')->paginate();
         $ListadoIpP2YP3 = Listadoips::where('departamento_id','>',31)->orderBy('id','asc')->paginate();
@@ -59,9 +48,9 @@ class ListadoipController extends Controller
      */
     public function createGeneral(): View
     {
-        $ListaIp = new Ips();
+        $Ips = new Ips();
 
-        return view('Listado.ListadoIp.General.create', compact('ListaIp'));
+        return view('Listado.ListadoIp.General.create', compact('Ips'));
     }
 
 
@@ -75,12 +64,36 @@ class ListadoipController extends Controller
           $ListaIp->ip_ministerio = $request->ip_ministerio;
           $ListaIp->Observacion   = $request->Observaciones;
           $ListaIp->save();
-          
+
 
            return redirect('ListadoIp')->with('success', 'Listado de Ip created successfully.');
-         
+
 
     }
+
+
+    public function Editgeneral($id)
+    {
+        $Ips = Ips::FindOrFail($id);
+
+
+        return view('Listado.listadoIp.General.edit',compact('Ips'));
+
+    }
+
+
+    public function ActualizarIpGeneral(Request $request,$id){
+
+        $Ips = Ips::FindOrFail($id);
+        $Ips->ip_escuela = $request->ip_escuela;
+        $Ips->ip_ministerio = $request->ip_ministerio;
+        $Ips->Observacion = $request->Observacion;
+        $Ips->update();
+
+        return redirect('/ListadoIp')->with('Se Actualizo exitosamente');
+
+    }
+
 
 
     public function CreatePB(): View
@@ -182,6 +195,8 @@ class ListadoipController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+
+
 
 
     public function editPB($id): View

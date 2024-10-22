@@ -116,7 +116,7 @@
                         <a href="/ListadoPunto" class="block">Listado de Puntos</a>
                       </li>
                       <li>
-                        <a href="#" class="block">Telefono VOIP</a>
+                        <a href="/ListadoTelefono" class="block">Telefono VOIP</a>
                       </li>
 
                       <li>
