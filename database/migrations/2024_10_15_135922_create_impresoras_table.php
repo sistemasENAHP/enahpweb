@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('departamento_id')->constrained('departamentos');
             $table->String('Equipo')->nullable()->default(NULL);
             $table->String('ip_equipo')->nullable()->default(NULL);
-            $table->String('Root')->nullable()->default(NULL);
-            $table->String('Clave')->nullable()->default(NULL);
+            $table->String('tipo_conexion')->nullable()->default(NULL);
+            $table->String('Punto_Red')->nullable()->default(NULL);
             $table->String('Marca')->nullable()->default(NULL);
             $table->String('Modelo')->nullable()->default(NULL);
             $table->timestamps();

@@ -25,7 +25,7 @@
             </div>
 
               <div class="md:col-span-5">
-        <label for="dep"></label>
+        <label for="dep">Usuario</label>
        <select name="user_id" id="user_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         <option value="">Seleccione</option>
         {{$sel = 0}}
@@ -72,10 +72,27 @@
             <x-input-error class="mt-2" :messages="$errors->get('equipo')"/>
           </div>
 
+
+           <div class="md:col-span-2">
+            <label for="ip_ministerio">Tipo Conexion</label>
+            <select id="tipo_conexion" name="tipo_conexion" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                     <option >Seleccione</option>
+                     <option value="USB"{{ $ListadoImpresora->tipo_conexion == 'USB' ? 'selected' : '' }}>USB</option>
+                     <option value="IP"{{ $ListadoImpresora->tipo_conexion == 'IP' ? 'selected' : '' }}>IP</option>
+                                  
+            </select>
+          </div>
+
            <div class="md:col-span-2">
             <label for="ip_escuela">Ip</label>
             <x-text-input type="text" name="ip_equipo" id="ip_equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_equipo" placeholder="ip_equipo" :value="old('ip_equipo',$ListadoImpresora?->ip_equipo)" />
             <x-input-error class="mt-2" :messages="$errors->get('ip_equipo')"/>
+          </div>
+
+           <div class="md:col-span-2">
+            <label for="ip_escuela">Punto de red</label>
+            <x-text-input type="text" name="punto_impresora" id="punto_impresora" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="punto_impresora" placeholder="punto impresora" :value="old('Punto_Red',$ListadoImpresora?->Punto_Red)" />
+            <x-input-error class="mt-2" :messages="$errors->get('punto_impresora')"/>
           </div>
 
          
@@ -89,18 +106,6 @@
             <label for="ip_escuela">Modelo</label>
             <x-text-input type="text" name="Modelo" id="Modelo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Modelo" placeholder="Modelo" :value="old('Modelo',$ListadoImpresora?->Modelo)" />
             <x-input-error class="mt-2" :messages="$errors->get('Modelo')"/>
-          </div>
-
-           <div class="md:col-span-2">
-            <label for="ip_escuela">Root</label>
-            <x-text-input type="text" name="Root" id="Root" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Marca" placeholder="Root" :value="old('Root',$ListadoImpresora?->Root)" />
-            <x-input-error class="mt-2" :messages="$errors->get('Root')"/>
-          </div>
-
-          <div class="md:col-span-2">
-            <label for="ip_escuela">Clave</label>
-            <x-text-input type="text" name="Clave" id="Clave" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Clave" placeholder="Clave" :value="old('Clave',$ListadoImpresora?->Clave)" />
-            <x-input-error class="mt-2" :messages="$errors->get('Clave')"/>
           </div>
          
 <br><br>

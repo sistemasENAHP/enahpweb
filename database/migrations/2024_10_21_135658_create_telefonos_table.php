@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('telefonos', function (Blueprint $table) {
             $table->id();
+             $table->foreignId('piso_id')->constrained('pisos');
+            $table->foreignId('departamento_id')->constrained('departamentos');
             $table->foreignId('user_id')->constrained('users')->nullable()->default(NULL);
+            $table->string('Equipo')->nullable()->default(NULL);
             $table->string('Extension')->nullable()->default(NULL);
+             $table->string('Punto_Red')->nullable()->default(NULL);
             $table->text('Observacion')->nullable()->default(NULL);
             $table->timestamps();
         });

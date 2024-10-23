@@ -74,17 +74,6 @@
 
           </div>
 
-           {{--      <div class="md:col-span-2">
-                    <label for="Cedula">Equipo</label>
-                        <select name="Equipo" id="Equipo" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                            <option >Selecciones</option>
-                            <option value="PC"{{$ListadoEquipo->Equipo == 'PC' ? 'selected' : ''}}>PC (Computadora) </option>
-                            <option value="Impresora"{{$ListadoEquipo->Equipo == 'Impresora' ? 'selected' : ''}}>Impresora</option>
-                            <option value="Telefono"{{$ListadoEquipo->Equipo == 'Telefono' ? 'selected' : ''}}>Telefono</option>
-                            <option value="Route"{{$ListadoEquipo->Equipo == 'Route' ? 'selected' : ''}}>Route</option>
-                        </select>
-                  </div> --}}
-
                 <div class="md:col-span-2">
                     <label for="Cedula">Nombre de Equipo</label>
                     <x-text-input type="text" name="NombreEquipo" id="NombreEquipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="NombreEquipo" placeholder="Nombre de Equipo" :value="old('Nombre_Equipo',$ListadoEquipo?->Nombre_Equipo)" />
@@ -92,7 +81,7 @@
                   </div>
 
                    <div class="md:col-span-1">
-            <label for="marca_equipo">Marca Equipo</label>
+            <label for="marca_equipo">Marca de Equipo</label>
             <select name="marca_equipo" id="marca_equipo" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
               <option>Selecciones</option>
               <option value="Vit"{{ $ListadoEquipo->Marca  == 'Vit' ? 'selected' : ''}}>Vit</option>
@@ -102,7 +91,7 @@
             <x-input-error class="mt-2" :messages="$errors->get('marca_equipo')"/>
           </div>
                   <div class="md:col-span-2">
-                   <label for="cantidad_Equipo">Cantida de  Equipo</label>
+                   <label for="cantidad_Equipo">Cantidad de  Equipo</label>
                     <x-text-input type="text" name="cantidad_Equipo" id="cantidad_Equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="cantidad_Equipo" placeholder="Cantidad de Equipo" :value="old('Cantidad_Equipo',$ListadoEquipo?->Cantidad_Equipo)"  required />
                     <x-input-error class="mt-2" :messages="$errors->get('cantidad_Equipo')"/>
                   </div>
@@ -114,6 +103,7 @@
                             <option value="Windows 8"{{$ListadoEquipo->Sistema_Operativo == 'Windows 8' ? 'selected' : ''}}>Windows 8</option>
                             <option value="Windows 10"{{$ListadoEquipo->Sistema_Operativo == 'Windows 10' ? 'selected' : ''}}>Windows 10</option>
                             <option value="Windows 11"{{$ListadoEquipo->Sistema_Operativo == 'Windows 11' ? 'selected' : ''}}>Windows 11</option>
+                            <option value="Linux"{{$ListadoEquipo->Sistema_Operativo == 'Linux' ? 'selected' : ''}}>Linux</option>
                         </select>
                   </div>
                   <div class="md:col-span-1">
@@ -130,12 +120,23 @@
                     <x-text-input type="text" name="Version" id="Version" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Version" placeholder="Version" :value="old('Version',$ListadoEquipo?->Version)" required />
                     <x-input-error class="mt-2" :messages="$errors->get('Version')"/>
                   </div>
-                  <div class="md:col-span-2">
+                    <div class="md:col-span-2">
+                    <label for="Cedula">Edicion Windows</label>
+                     <select id="edicion" name="edicion" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                       <option>Seleciones</option>
+                       <option value="Windows Home" {{ $ListadoEquipo->Edicion == 'Windows Home'  ? 'selected' : ''}}>Windows Home</option>
+                       <option value="Windows Pro" {{ $ListadoEquipo->Edicion == 'Windows Pro'  ? 'selected' : ''}} >Windows Pro</option>
+                        <option value="Windows Enterprise"{{ $ListadoEquipo->Edicion == 'Windows Enterprise'  ? 'selected' : ''}} >Windows Enterprise </option>
+                        <option value="Windows Education" {{ $ListadoEquipo->Edicion == 'Windows Education'  ? 'selected' : ''}}>Windows Education </option>
+                        <option value="Windows Pro Education" {{ $ListadoEquipo->Edicion == 'Windows Pro Education'  ? 'selected' : ''}}>Windows Pro Education </option>
+                     </select>
+                  </div>
+                  <div class="md:col-span-1">
                     <label for="ip_escuela">IP Escuela</label>
                     <x-text-input type="text" name="ip_escuela" id="ip_escuela" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_escuela" placeholder="IP Escuela" :value="old('ip_escuela',$ListadoEquipo?->ip_escuela)" />
                     <x-input-error class="mt-2" :messages="$errors->get('ip_escuela')" required />
                   </div>
-                  <div class="md:col-span-1">
+                  <div class="md:col-span-2">
                     <label for="ip_ministerio">IP Ministerio</label>
                     <x-text-input type="text" name="ip_ministerio" id="ip_ministerio" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_ministerio" placeholder="IP Ministerio" :value="old('ip_ministerio',$ListadoEquipo?->ip_ministerio)" />
                     <x-input-error class="mt-2" :messages="$errors->get('ip_ministerio')"  required />
@@ -147,7 +148,7 @@
                     <x-input-error class="mt-2" :messages="$errors->get('mac')"/>
                   </div>
 
-                  <div class="md:col-span-2">
+                  <div class="md:col-span-1">
 
                     <label for="Cedula">Capacidad Disco Duro GB</label>
                     <x-text-input type="text" name="discoduro" id="discoduro" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="discoduro" placeholder="Disco Duro" :value=" 'GB'  ,old('DiscoDuroGB',$ListadoEquipo?->DiscoDuroGB)" />
@@ -285,28 +286,67 @@
 
                    <div class="formimpresoras md:col-span-1">
                     <label for="Equipo">Equipo</label>
-                    <x-text-input type="text" name="Impresora" id="Impresora" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Equipo" placeholder="" :value="'Impresora',old('Equipo',$Impresoras?->Equipo)" />
+                    <x-text-input type="text" name="Impresoras" id="Impresoras" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Equipo" placeholder="" :value="'Impresora',old('Equipo',$Impresoras?->Equipo)" />
                     <x-input-error class="mt-2" :messages="$errors->get('Equipo')" required />
                   </div>
 
                    <div class="formimpresoras md:col-span-2">
-                    <label for="ip_equipo">IP Impresora</label>
-                    <x-text-input type="text" name="ip_equipo" id="ip_equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_equipo" placeholder="" :value="old('ip_equipo',$Impresoras?->ip_equipo)" />
-                    <x-input-error class="mt-2" :messages="$errors->get('ip_equipo')" required />
-                  </div>
+            <label for="ip_ministerio">Tipo Conexion</label>
+            <select id="tipo_conexion" name="tipo_conexion" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                     <option >Seleccione</option>
+                     <option value="USB" {{ $Impresoras?->tipo_conexion == 'USB' ? 'selected' : '' }}>USB</option>
+                     <option value="IP" {{ $Impresoras?->tipo_conexion == 'IP' ? 'selected' : '' }}>IP</option>
+                                  
+            </select>
+          </div>
 
                    <div class="formimpresoras md:col-span-2">
-                    <label for="Root">Root</label>
-                    <x-text-input type="text" name="Root" id="Root" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Root" placeholder="" :value="old('Root',$Impresoras?->Root)" />
-                    <x-input-error class="mt-2" :messages="$errors->get('Root')" required />
+                    <label for="ip_impresora">IP Impresora</label>
+                    <x-text-input type="text" name="ip_impresora" id="ip_impresora" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_impresora" placeholder="" :value="old('ip_impresora',$Impresoras?->ip_equipo)" />
+                    <x-input-error class="mt-2" :messages="$errors->get('ip_impresora')" required />
                   </div>
 
-                   <div class="formimpresoras md:col-span-1">
-                    <label for="Clave">Clave</label>
-                    <x-text-input type="text" name="Clave" id="Clave" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Clave" placeholder="" :value="old('PuntoRed',$Impresoras?->Clave)" />
-                    <x-input-error class="mt-2" :messages="$errors->get('Clave')" required />
+                  <div class="formimpresoras md:col-span-1">
+            <label for="ip_escuela">Punto de red</label>
+            <x-text-input type="text" name="punto_impresora" id="punto_impresora" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="punto_impresora" placeholder="punto impresora" :value="old('Punto_Red',$Impresoras?->Punto_Red)" />
+            <x-input-error class="mt-2" :messages="$errors->get('punto_impresora')"/>
+          </div>
+
+                    <div class="formtelefono md:col-span-5">
+                     <h2 class="text-center" style="font-size: 20px;">Telefono</h2>
+                   </div>
+            
+                                     
+                   <div class="formtelefono md:col-span-3">
+                                      
+                    <label for="punto_red">Equipo</label>
+                    <x-text-input type="text" name="Equipo_Telefono" id="Equipo_Telefono" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="punto_red" placeholder="Equipo Telefono" :value="old('Equipo_Telefono',$Telefonos?->Equipo)" />
+                    <x-input-error class="mt-2" :messages="$errors->get('punto_red')" required />
+                                   
                   </div>
-              
+
+                  <div class="formtelefono md:col-span-2">
+                    <label for="Extension">Extension</label>
+                      <x-text-input type="text" name="Extension" id="Extension" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Extension" placeholder="Extension" :value="old('Extension',$Telefonos?->Extension)" />
+                    <x-input-error class="mt-2" :messages="$errors->get('Extension')" required />
+
+                  </div>
+
+                       <div class="formtelefono md:col-span-3">
+                    <label for="punto_telefono">Punto de Red Telefono</label>
+                      <x-text-input type="text" name="punto_telefono" id="punto_telefono" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="punto_telefono" placeholder="Punto de Red Telefono" :value="old('punto_telefono',$Telefonos?->punto_telefono)" />
+                    <x-input-error class="mt-2" :messages="$errors->get('punto_telefono')" required />
+
+                  </div>
+
+                  <div class="formtelefono md:col-span-2">
+            <label for="Observacion">Observacion</label>
+              <textarea name="Observaciones" id="Observaciones" cols="55" rows="3">{{ $Telefonos->Observacion }}</textarea>
+                    <x-input-error class="mt-2" :messages="$errors->get('Observaciones')"   />
+          </div>
+
+
+                      
                   
 
 

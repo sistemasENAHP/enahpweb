@@ -265,14 +265,17 @@
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Usuario</th>
 
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Equipo</th>
+
+                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Tipo Conexion</th>
                                                
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">IP</th>
 
+                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Punto de Red</th>
+
                                                  <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Marca</th>
                                                   <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Modelo</th>
-                                                   <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Root</th>
-                                                    <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Clave</th>
-
+                                                   
+                                                   
                                         </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 bg-white">
@@ -286,11 +289,13 @@
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->pisos->Pisos  }}</td>
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->users?->name}} {{ $listadoGeneralImpresora->users?->surname }}</td>
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->Equipo }}</td>
+                                                 <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->tipo_conexion }}</td>
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->ip_equipo }}</td>
+                                                 <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->Punto_Red  }}</td>
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->Marca }}</td>
                                                 <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->Modelo }}</td>
-                                                <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->Root }}</td>
-                                                <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{ $listadoGeneralImpresora->Clave }}</td>
+                                               
+                                               
 
                                                     <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                         <form action="{{ route('ListadoImpresora.destroy', $listadoGeneralImpresora->id) }}" method="POST">

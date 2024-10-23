@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('Sistema_Operativo');
             $table->string('bits');
             $table->string('Version');
+            $table->string('Edicion');
             $table->string('ip_escuela')->nullable()->default(NULL);
             $table->string('ip_ministerio')->nullable()->default(NULL);
             $table->string('MacAdress');

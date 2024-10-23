@@ -64,11 +64,11 @@ class ImpresorasController extends Controller
         $Impresora->piso_id = $request->id_piso;
         $Impresora->user_id = $request->user_id;
         $Impresora->Equipo = $request->equipo;
+        $Impresora->tipo_conexion = $request->tipo_conexion;
         $Impresora->ip_equipo = $request->ip_equipo;
+        $Impresora->Punto_Red = $request->punto_impresora;
         $Impresora->Marca = $request->Marca;
         $Impresora->Modelo = $request->Modelo;
-        $Impresora->Root = $request->Root;
-        $Impresora->Clave = $request->Clave;
         $Impresora->save();
 
 
@@ -108,11 +108,11 @@ class ImpresorasController extends Controller
         $Impresora->piso_id = $request->id_piso;
         $Impresora->user_id = $request->user_id;
         $Impresora->Equipo = $request->equipo;
+        $Impresora->tipo_conexion = $request->tipo_conexion;
         $Impresora->ip_equipo = $request->ip_equipo;
+        $Impresora->Punto_Red = $request->punto_impresora;
         $Impresora->Marca = $request->Marca;
         $Impresora->Modelo = $request->Modelo;
-        $Impresora->Root = $request->Root;
-        $Impresora->Clave = $request->Clave;
         $Impresora->update();
 
          return Redirect('/ListadoImpresora')->with('status','Se ha Registrado Exitosamente!');

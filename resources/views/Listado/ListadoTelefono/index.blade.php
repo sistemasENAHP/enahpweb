@@ -13,7 +13,7 @@
               Tabla General Ip
               </a> --}}
 
-            <a href="#" aria-current="page" class="PB px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white" style="background-color: #033B5C; color: white;">
+           {{--  <a href="#" aria-current="page" class="PB px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white" style="background-color: #033B5C; color: white;">
               PB
             </a>
             <a href="#" class="P1 px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white" style="background-color: #033B5C; color: white;">
@@ -21,7 +21,7 @@
             </a>
             <a href="#" class="P2YP3 px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white" style="background-color: #033B5C; color: white;">
               P2 Y P3
-            </a>
+            </a> --}}
           </div>
 
 <br>
@@ -246,7 +246,7 @@
                                 <p class="mt-2 text-sm text-gray-700">Listado General  de  Telefono</p>
                             </div>
                             <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                                <a type="button" href="{{ route('ListadoImpresora.create') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Agregar</a>
+                                <a type="button" href="{{ route('ListadoTelefono.create') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Agregar</a>
                             </div>
                         </div>
 
@@ -256,25 +256,42 @@
                                     <table class="w-full divide-y divide-gray-300">
                                         <thead>
                                         <tr>
-                                              <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">ID</th>
+                                            
                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Departamento</th>
+                                               <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Ubicacion</th>
                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Usuario</th>
                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Extesion</th>
-                                               
+                                               <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Punto de Red</th>
+                                               <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Observacion</th>
 
                                         </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 bg-white">
+                                             @foreach($Telefonos as $telefono)
+                                          <tr class="even:bg-gray-50">
+                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$telefono->users?->departamentos->Departamento}}</td>
+                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$telefono->pisos->Pisos}}</td>
 
-                                          
+                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$telefono->users->name}} {{$telefono->users->surname}}</td>
 
-                                            <tr class="even:bg-gray-50">
+                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$telefono->Extension}}</td>
+
+                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$telefono->Punto_Red}}</td>
+
+                                             <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{$telefono->Observacion}}</td>
+
+                                              <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
+                                                        <form action="{{ route('ListadoTelefono.destroy', $telefono->id) }}" method="POST">
+                                                            {{-- <a href="{{ route('ListadoEquipo.show', $listadoEquipoPB->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a> --}}
+                                                            <a href="{{ route('ListadoTelefono.edit', $telefono->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <a href="{{ route('ListadoTelefono.destroy', $telefono->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a>
+                                                        </form>
+                                                    </td>
                                                 
-
-
-
                                             </tr>
-                           
+                                              @endforeach
                                         </tbody>
                                     </table>
 

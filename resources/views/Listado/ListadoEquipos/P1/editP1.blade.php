@@ -22,3 +22,20 @@
         </div>
       </div>
 </x-app-layout>
+<script>
+     $(document).ready(function(){
+
+
+
+     $('.formimpresoras').hide();
+
+       $("#Impresora").click(function () {
+
+        $('.formimpresoras').toggle();
+
+        });
+
+
+
+    });
+</script>

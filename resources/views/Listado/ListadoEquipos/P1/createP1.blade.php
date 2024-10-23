@@ -119,6 +119,14 @@
         });  
 
 
+$('.formimpresoras').hide();
+
+       $("#Impresora").click(function () {
+
+        $('.formimpresoras').toggle();
+
+        });
+
      
 
 
