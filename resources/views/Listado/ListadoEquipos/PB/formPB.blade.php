@@ -81,7 +81,7 @@
                   </div>
 
                    <div class="md:col-span-1">
-            <label for="marca_equipo">Marca Equipo</label>
+            <label for="marca_equipo">Marca de Equipo</label>
             <select name="marca_equipo" id="marca_equipo" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
               <option>Selecciones</option>
               <option value="Vit"{{ $ListadoEquipo->Marca  == 'Vit' ? 'selected' : ''}}>Vit</option>
@@ -91,7 +91,7 @@
             <x-input-error class="mt-2" :messages="$errors->get('marca_equipo')"/>
           </div>
                   <div class="md:col-span-2">
-                   <label for="cantidad_Equipo">Cantida de  Equipo</label>
+                   <label for="cantidad_Equipo">Cantidad de  Equipo</label>
                     <x-text-input type="text" name="cantidad_Equipo" id="cantidad_Equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="cantidad_Equipo" placeholder="Cantidad de Equipo" :value="old('Cantidad_Equipo',$ListadoEquipo?->Cantidad_Equipo)"  required />
                     <x-input-error class="mt-2" :messages="$errors->get('cantidad_Equipo')"/>
                   </div>
@@ -286,7 +286,7 @@
 
                    <div class="formimpresoras md:col-span-1">
                     <label for="Equipo">Equipo</label>
-                    <x-text-input type="text" name="Impresora" id="Impresora" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Equipo" placeholder="" :value="'Impresora',old('Equipo',$Impresoras?->Equipo)" />
+                    <x-text-input type="text" name="Impresoras" id="Impresoras" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Equipo" placeholder="" :value="'Impresora',old('Equipo',$Impresoras?->Equipo)" />
                     <x-input-error class="mt-2" :messages="$errors->get('Equipo')" required />
                   </div>
 
@@ -311,6 +311,100 @@
             <x-text-input type="text" name="punto_impresora" id="punto_impresora" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="punto_impresora" placeholder="punto impresora" :value="old('Punto_Red',$Impresoras?->Punto_Red)" />
             <x-input-error class="mt-2" :messages="$errors->get('punto_impresora')"/>
           </div>
+
+                    <div class="formtelefono md:col-span-5">
+                     <h2 class="text-center" style="font-size: 20px;">Telefono</h2>
+                   </div>
+            
+                                     
+                   <div class="formtelefono md:col-span-3">
+                                      
+                    <label for="punto_red">Equipo</label>
+                    <x-text-input type="text" name="Equipo_Telefono" id="Equipo_Telefono" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="punto_red" placeholder="Equipo Telefono" :value="old('Equipo_Telefono',$Telefonos?->Equipo)" />
+                    <x-input-error class="mt-2" :messages="$errors->get('punto_red')" required />
+                                   
+                  </div>
+
+                  <div class="formtelefono md:col-span-2">
+                    <label for="Extension">Extension</label>
+                      <x-text-input type="text" name="Extension" id="Extension" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Extension" placeholder="Extension" :value="old('Extension',$Telefonos?->Extension)" />
+                    <x-input-error class="mt-2" :messages="$errors->get('Extension')" required />
+
+                  </div>
+
+                       <div class="formtelefono md:col-span-3">
+                    <label for="punto_telefono">Punto de Red Telefono</label>
+                      <x-text-input type="text" name="punto_telefono" id="punto_telefono" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="punto_telefono" placeholder="Punto de Red Telefono" :value="old('punto_telefono',$Telefonos?->punto_telefono)" />
+                    <x-input-error class="mt-2" :messages="$errors->get('punto_telefono')" required />
+
+                  </div>
+
+                  <div class="formtelefono md:col-span-2">
+            <label for="Observacion">Observacion</label>
+              <textarea name="Observaciones" id="Observaciones" cols="55" rows="3">{{ $Telefonos->Observacion }}</textarea>
+                    <x-input-error class="mt-2" :messages="$errors->get('Observaciones')"   />
+          </div>
+
+                      <div class="formrouter md:col-span-5">
+                     <h2 class="text-center" style="font-size: 20px;">Router</h2>
+                   </div>
+
+
+
+          <div class="formrouter md:col-span-2">
+            <label for="ip_escuela">Equipo</label>
+            <x-text-input type="text" name="Equipo" id="Equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="equipo" placeholder="" :value="'Router',old('Router',$Router?->Equipo)" />
+            <x-input-error class="mt-2" :messages="$errors->get('Equipo')"/>
+          </div>
+
+          <div class="formrouter md:col-span-2">
+            <label for="ip_escuela">Nombre de Wifi</label>
+            <x-text-input type="text" name="Nombre_Wifi" id="Nombre_Wifi" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="equipo" placeholder="Nombre Wifi" :value="old('Nombre_Wifi',$Router?->Nombre_Wifi)" />
+            <x-input-error class="mt-2" :messages="$errors->get('Nombre_Wifi')"/>
+          </div>
+
+            <div class="formrouter md:col-span-1">
+            <label for="ip_escuela">Clave Wifi</label>
+            <x-text-input type="text" name="Clave_Wifi" id="Clave_Wifi" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Clave_Wifi" placeholder="Clave Wifi" :value="old('Clave_Wifi',$Router?->Clave_Wifi)" />
+            <x-input-error class="mt-2" :messages="$errors->get('Clave_Wifi')"/>
+          </div>
+
+          <div class="formrouter md:col-span-2">
+            <label for="ip_escuela">Usuario Root</label>
+            <x-text-input type="text" name="Usuario_Root" id="Usuario_Root" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Usuario_Root" placeholder="Usuario Root" :value="old('Usuario_Root',$Router?->Usuario_Root)" />
+            <x-input-error class="mt-2" :messages="$errors->get('Usuario_Root')"/>
+          </div>
+
+          <div class="formrouter md:col-span-2">
+            <label for="ip_escuela">Clave Root</label>
+            <x-text-input type="text" name="Clave_Root" id="Clave_Root" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Clave_Root" placeholder="Clave Root" :value="old('Clave_Root',$Router?->Clave_Root)" />
+            <x-input-error class="mt-2" :messages="$errors->get('Clave_Root')"/>
+          </div>
+
+          <div class="formrouter md:col-span-1">
+            <label for="ip_escuela">Ip Acceso</label>
+            <x-text-input type="text" name="ip_acceso" id="ip_acceso" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_acceso" placeholder="Ip acceso" :value="old('ip_acceso',$Router?->ip_acceso)" />
+            <x-input-error class="mt-2" :messages="$errors->get('ip_acceso')"/>
+          </div>
+
+           <div class="formrouter md:col-span-2">
+            <label for="ip_escuela">Ip Route</label>
+            <x-text-input type="text" name="ip_route" id="ip_route" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_route" placeholder="Ip Route" :value="old('ip_route',$Router?->ip_route)" />
+            <x-input-error class="mt-2" :messages="$errors->get('ip_route')"/>
+          </div>
+
+          <div class="formrouter md:col-span-2">
+            <label for="ip_escuela">Punto de Red de Route</label>
+            <x-text-input type="text" name="Punto_Red" id="Punto_Red" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Punto_Red" placeholder="Punto de Red" :value="old('Punto_Red',$Router?->Punto_Red)" />
+            <x-input-error class="mt-2" :messages="$errors->get('Punto_Red')"/>
+          </div>
+
+          {{-- <div class="formrouter md:col-span-1">
+            <label for="Observacion">Observacion</label>
+              <textarea name="Observaciones" id="Observaciones" cols="55" rows="3">{{ $Router->Observacion }}</textarea>
+                    <x-input-error class="mt-2" :messages="$errors->get('Observaciones')"   />
+          </div> --}}
+
 
                       
                   

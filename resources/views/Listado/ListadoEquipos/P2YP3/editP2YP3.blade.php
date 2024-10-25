@@ -35,6 +35,24 @@
 
         });
 
+         $('.formtelefono').hide();
+
+        $("#Telefono").click(function () {
+
+        $('.formtelefono').toggle();
+
+        });
+
+
+        $('.formrouter').hide();
+
+        $("#Route").click(function () {
+
+        $('.formrouter').toggle();
+
+        });
+
+
 
 
     });

@@ -19,6 +19,7 @@ use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ImpresorasController;
 use App\Http\Controllers\ListadoTelefonosController;
+use App\Http\Controllers\ListadoRouterController;
 
 Route::get('/',[LoginController::class,'index']);
 
@@ -165,6 +166,8 @@ Route::get('/ListadoIp/{id}/showP2YP3',[ListadoipController::class,'showP2YP3'])
 Route::resource('/ListadoImpresora',ImpresorasController::class);
 
 Route::resource('/ListadoTelefono',ListadoTelefonosController::class);
+
+Route::resource('/ListadoRouter',ListadoRouterController::class);
 
 Route::resource('/Planos',PlanosController::class);
 

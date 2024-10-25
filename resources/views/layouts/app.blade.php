@@ -116,11 +116,15 @@
                         <a href="/ListadoPunto" class="block">Listado de Puntos</a>
                       </li>
                       <li>
-                        <a href="/ListadoTelefono" class="block">Telefono VOIP</a>
+                        <a href="/ListadoTelefono" class="block">Listado de Telefono VOIP</a>
                       </li>
 
                       <li>
-                        <a href="/ListadoImpresora" class="block">Impresora</a>
+                        <a href="/ListadoImpresora" class="block">Listado de Impresora</a>
+                      </li>
+
+                      <li>
+                        <a href="/ListadoRouter" class="block">Listado de Router</a>
                       </li>
                     </ul>
                   </li>

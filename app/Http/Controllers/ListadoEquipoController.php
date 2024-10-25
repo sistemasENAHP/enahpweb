@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
 use App\Models\Impresoras;
 use App\Models\Telefonos;
+use App\Models\ListadoRouter;
 class ListadoEquipoController extends Controller
 {
 
@@ -54,12 +55,13 @@ class ListadoEquipoController extends Controller
             $Departamentos = Departamentos::where('piso_id','=',1)->get();
              $Impresoras = new  Impresoras();
                $Telefonos = new Telefonos();
+               $Router = new ListadoRouter();
             $machineName = gethostname();
             // $sistema = php_uname('m'); // Obtiene la máquina
             //   dd($sistema);
             // $Marca = MarcaEquipos::all();
             $User = User::all();
-            return view('Telefonos','Listado.ListadoEquipos.PB.createPB',compact('Impresoras','User','Departamentos','machineName','ListadoEquipo'));
+            return view('Listado.ListadoEquipos.PB.createPB',compact('Router','Telefonos','Impresoras','User','Departamentos','machineName','ListadoEquipo'));
 
     }
 
@@ -67,11 +69,12 @@ class ListadoEquipoController extends Controller
 
         $ListadoEquipo = new Equipos();
         $Departamentos = Departamentos::where('piso_id','=',2)->get();
-         $Impresoras = new  Impresoras();
-           $Telefonos = new Telefonos();
+        $Impresoras = new  Impresoras();
+        $Telefonos = new Telefonos();
+        $Router = new ListadoRouter();
         $machineName = gethostname();
         $User = User::all();
-        return view('Listado.ListadoEquipos.P1.createP1',compact('Telefonos','Impresoras','User','Departamentos','machineName','ListadoEquipo'));
+        return view('Listado.ListadoEquipos.P1.createP1',compact('Router','Telefonos','Impresoras','User','Departamentos','machineName','ListadoEquipo'));
 
 
 
@@ -83,10 +86,11 @@ class ListadoEquipoController extends Controller
         $ListadoEquipo = new Equipos();
          $Impresoras = new  Impresoras();
          $Telefonos = new Telefonos();
+           $Router = new ListadoRouter();
         $Departamentos = Departamentos::where('piso_id','=',3)->orwhere('piso_id','=',4)->get();
         $machineName = gethostname();
         $User = User::all();
-        return view('Listado.ListadoEquipos.P2YP3.createP2YP3',compact('Telefonos','Impresoras','User','Departamentos','machineName','ListadoEquipo'));
+        return view('Listado.ListadoEquipos.P2YP3.createP2YP3',compact('Router','Telefonos','Impresoras','User','Departamentos','machineName','ListadoEquipo'));
 
 
 
@@ -198,6 +202,35 @@ class ListadoEquipoController extends Controller
         $ListadoTelefono->Observacion = $request->Observacion;
         $ListadoTelefono->Punto_Red = $request->punto_telefono;
         $ListadoTelefono->save();
+
+
+        $Router = new  ListadoRouter();
+          if( $request->piso_idPB == 1){
+
+          $Router->piso_id = $request->piso_idPB;
+
+          }else if($request->piso_idP1 == 2){
+
+            $Router->piso_id = $request->piso_idP1;
+
+          }else if($request->piso_idP2YP3 == 3){
+
+            $Router->piso_id = $request->piso_idP2YP3;
+
+          }
+
+          $Router->departamento_id = $request->departamento_id;
+          $Router->user_id = $request->dep;
+          $Router->Equipo = $request->Equipo;
+          $Router->Nombre_Wifi = $request->Nombre_Wifi;
+          $Router->Clave_Wifi = $request->Clave_Wifi;
+          $Router->Usuario_Root = $request->Usuario_Root;
+          $Router->Clave_Root = $request->Clave_Root;
+           $Router->ip_acceso = $request->ip_acceso;
+           $Router->ip_route = $request->ip_route;
+             $Router->Punto_Red = $request->Punto_Red;
+              $Router->Observacion = $request->Observacion;
+              $Router->save();
 
        return Redirect('ListadoEquipo');
 
@@ -328,7 +361,7 @@ class ListadoEquipoController extends Controller
             $ListadoEquipo->update();
 
                 
-        $Impresora =  Impresoras::find($id);;
+        $Impresora =  Impresoras::find($id);
         $Impresora->departamento_id = $request->departamento_id;
           if( $request->piso_idPB == 1){
 
@@ -352,6 +385,35 @@ class ListadoEquipoController extends Controller
         $Impresora->Marca = $request->Marca;
         $Impresora->Modelo = $request->Modelo;
         $Impresora->update();
+
+          $Router =   ListadoRouter::find($id);
+
+          if( $request->piso_idPB == 1){
+
+          $Router->piso_id = $request->piso_idPB;
+
+          }else if($request->piso_idP1 == 2){
+
+            $Router->piso_id = $request->piso_idP1;
+
+          }else if($request->piso_idP2YP3 == 3){
+
+            $Router->piso_id = $request->piso_idP2YP3;
+
+          }
+          
+          $Router->departamento_id = $request->departamento_id;
+          $Router->user_id = $request->dep;
+          $Router->Equipo = $request->Equipo;
+          $Router->Nombre_Wifi = $request->Nombre_Wifi;
+          $Router->Clave_Wifi = $request->Clave_Wifi;
+          $Router->Usuario_Root = $request->Usuario_Root;
+          $Router->Clave_Root = $request->Clave_Root;
+           $Router->ip_acceso = $request->ip_acceso;
+           $Router->ip_route = $request->ip_route;
+             $Router->Punto_Red = $request->Punto_Red;
+              $Router->Observacion = $request->Observacion;
+              $Router->update();
 
             return Redirect('ListadoEquipo');
     }

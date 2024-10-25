@@ -345,6 +345,66 @@
                     <x-input-error class="mt-2" :messages="$errors->get('Observaciones')"   />
           </div>
 
+                      <div class="formrouter md:col-span-5">
+                     <h2 class="text-center" style="font-size: 20px;">Router</h2>
+                   </div>
+
+
+
+          <div class="formrouter md:col-span-2">
+            <label for="ip_escuela">Equipo</label>
+            <x-text-input type="text" name="Equipo" id="Equipo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="equipo" placeholder="" :value="'Router',old('Router',$Router?->Equipo)" />
+            <x-input-error class="mt-2" :messages="$errors->get('Equipo')"/>
+          </div>
+
+          <div class="formrouter md:col-span-2">
+            <label for="ip_escuela">Nombre de Wifi</label>
+            <x-text-input type="text" name="Nombre_Wifi" id="Nombre_Wifi" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="equipo" placeholder="Nombre Wifi" :value="old('Nombre_Wifi',$Router?->Nombre_Wifi)" />
+            <x-input-error class="mt-2" :messages="$errors->get('Nombre_Wifi')"/>
+          </div>
+
+            <div class="formrouter md:col-span-1">
+            <label for="ip_escuela">Clave Wifi</label>
+            <x-text-input type="text" name="Clave_Wifi" id="Clave_Wifi" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Clave_Wifi" placeholder="Clave Wifi" :value="old('Clave_Wifi',$Router?->Clave_Wifi)" />
+            <x-input-error class="mt-2" :messages="$errors->get('Clave_Wifi')"/>
+          </div>
+
+          <div class="formrouter md:col-span-2">
+            <label for="ip_escuela">Usuario Root</label>
+            <x-text-input type="text" name="Usuario_Root" id="Usuario_Root" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Usuario_Root" placeholder="Usuario Root" :value="old('Usuario_Root',$Router?->Usuario_Root)" />
+            <x-input-error class="mt-2" :messages="$errors->get('Usuario_Root')"/>
+          </div>
+
+          <div class="formrouter md:col-span-2">
+            <label for="ip_escuela">Clave Root</label>
+            <x-text-input type="text" name="Clave_Root" id="Clave_Root" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Clave_Root" placeholder="Clave Root" :value="old('Clave_Root',$Router?->Clave_Root)" />
+            <x-input-error class="mt-2" :messages="$errors->get('Clave_Root')"/>
+          </div>
+
+          <div class="formrouter md:col-span-1">
+            <label for="ip_escuela">Ip Acceso</label>
+            <x-text-input type="text" name="ip_acceso" id="ip_acceso" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_acceso" placeholder="Ip acceso" :value="old('ip_acceso',$Router?->ip_acceso)" />
+            <x-input-error class="mt-2" :messages="$errors->get('ip_acceso')"/>
+          </div>
+
+           <div class="formrouter md:col-span-2">
+            <label for="ip_escuela">Ip Route</label>
+            <x-text-input type="text" name="ip_route" id="ip_route" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_route" placeholder="Ip Route" :value="old('ip_route',$Router?->ip_route)" />
+            <x-input-error class="mt-2" :messages="$errors->get('ip_route')"/>
+          </div>
+
+          <div class="formrouter md:col-span-2">
+            <label for="ip_escuela">Punto de Red de Route</label>
+            <x-text-input type="text" name="Punto_Red" id="Punto_Red" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Punto_Red" placeholder="Punto de Red" :value="old('Punto_Red',$Router?->Punto_Red)" />
+            <x-input-error class="mt-2" :messages="$errors->get('Punto_Red')"/>
+          </div>
+
+          {{-- <div class="formrouter md:col-span-1">
+            <label for="Observacion">Observacion</label>
+              <textarea name="Observaciones" id="Observaciones" cols="55" rows="3">{{ $Router->Observacion }}</textarea>
+                    <x-input-error class="mt-2" :messages="$errors->get('Observaciones')"   />
+          </div> --}}
+
 
                       
                   

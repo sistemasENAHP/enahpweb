@@ -27,13 +27,31 @@
 
 
 
-     $('.formimpresoras').hide();
+    $('.formimpresoras').hide();
 
        $("#Impresora").click(function () {
 
         $('.formimpresoras').toggle();
 
         });
+
+         $('.formtelefono').hide();
+
+        $("#Telefono").click(function () {
+
+        $('.formtelefono').toggle();
+
+        });
+
+
+        $('.formrouter').hide();
+
+        $("#Route").click(function () {
+
+        $('.formrouter').toggle();
+
+        });
+
 
 
 

@@ -99,6 +99,8 @@ class ListadoTelefonosController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+         $ListadoTelefono = Telefonos::find($id);
+         $ListadoTelefono->destroy();
+         return redirect('/ListadoTelefono');
     }
 }
