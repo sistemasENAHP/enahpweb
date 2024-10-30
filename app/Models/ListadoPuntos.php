@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Departamentos;
 use App\Models\Pisos;
 use App\Models\User;
+use Laravel\Scout\Searchable;
 class ListadoPuntos extends Model
 {
-    use HasFactory;
+    use Searchable,HasFactory;
 
     protected $perPage = 20;
 
@@ -45,6 +46,19 @@ class ListadoPuntos extends Model
         return $this->belongsTo(User::class,'user_id','id');
 
   }
+
+
+       public function toSearchableArray()
+{
+    return [
+
+        'id' => (int) $this->id,
+        'Nombre_Wifi' => $this->Nombre_Wifi,
+        'Usuario_Root' => $this->Usuario_Root,
+        'ip_route' => $this->ip_route,
+        'ip_acceso'=> $this->ip_acceso,
+    ];
+}
 
 
 }

@@ -13,11 +13,14 @@ use Spatie\Permission\Models\Role;
 use App\Models\Departamentos;
 use App\Models\Ips;
 use Laravel\Scout\Searchable;
+use App\Notifications\SoporteNotificacion;
 class User extends Authenticatable
 {
     use  HasFactory, Notifiable, HasRoles, Notifiable,Searchable;
 
     protected $perPage = 20;
+
+    public $pushNotificationType = 'users';
    /**
      * The attributes that are mass assignable.
      *
@@ -101,6 +104,11 @@ class User extends Authenticatable
 //     $this->save();
 // }
 
+
+public function routeNotificationForPusherPushNotifications($notification): string
+{
+    return 'your.custom.interest.string';
+}
 
 
 

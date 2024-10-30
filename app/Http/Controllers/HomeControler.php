@@ -26,6 +26,7 @@ class HomeControler extends Controller
 
          $Soporte = Soportes::orderby('id','desc')->get();
          $Notificacion = Notificacions::all();
+         // $Soporte->notify(new SoporteNotificacion('¡Tienes un nuevo mensaje!'));
 
 
         return view('dashboard',compact('Soporte','Notificacion'));

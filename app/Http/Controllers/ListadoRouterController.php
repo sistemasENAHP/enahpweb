@@ -14,7 +14,7 @@ class ListadoRouterController extends Controller
      */
     public function index()
     {
-        $Router = ListadoRouter::all();
+        $Router = ListadoRouter::search(request('search'))->paginate();
         return view('Listado.ListadoRouter.index',compact('Router'));
     }
 
@@ -48,7 +48,7 @@ class ListadoRouterController extends Controller
            $Router->ip_acceso = $request->ip_acceso;
            $Router->ip_route = $request->ip_route;
              $Router->Punto_Red = $request->Punto_Red;
-              $Router->Observacion = $request->Observacion;
+              $Router->Observacion = $request->Observaciones;
               $Router->save();
 
               return redirect('/ListadoRouter');
@@ -68,7 +68,11 @@ class ListadoRouterController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $Router = ListadoRouter::find($id);
+        $Departamentos = Departamentos::all();
+        $Pisos = Pisos::all();
+        $User = User::all();
+        return view('Listado.ListadoRouter.General.edit',compact('Router','Departamentos','Pisos','User'));
     }
 
     /**
@@ -76,7 +80,22 @@ class ListadoRouterController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $Router =ListadoRouter::find($id);
+          $Router->piso_id = $request->id_piso;
+          $Router->departamento_id = $request->departamento_id;
+          $Router->user_id = $request->user_id;
+          $Router->Equipo = $request->Equipo;
+          $Router->Nombre_Wifi = $request->Nombre_Wifi;
+          $Router->Clave_Wifi = $request->Clave_Wifi;
+          $Router->Usuario_Root = $request->Usuario_Root;
+          $Router->Clave_Root = $request->Clave_Root;
+           $Router->ip_acceso = $request->ip_acceso;
+           $Router->ip_route = $request->ip_route;
+             $Router->Punto_Red = $request->Punto_Red;
+              $Router->Observacion = $request->Observaciones;
+              $Router->update();
+
+              return redirect('/ListadoRouter');
     }
 
     /**
@@ -84,6 +103,10 @@ class ListadoRouterController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
+        $Router = ListadoRouter::find($id);
+        $Router->delete();
+
+         return redirect('/ListadoRouter');
     }
 }

@@ -12,46 +12,39 @@ use Pusher\PushNotifications\PushNotifications;
 class SoporteNotificacion extends Notification
 {
 
-      use Queueable;
+ use Queueable;
 
-         public $message;
+    protected $message;
 
-        public function __construct($message)
+    public function __construct($message)
     {
-        $this->message = "hola";
-
+        $this->message = $message;
     }
 
-    public function via($notifiable){
+    public function via($notifiable)
+    {
+        // return ['pusher'];
 
         return [PusherChannel::class];
-        // return ['pusher_beams'];
-
     }
 
-
-   public function toPushNotification($notifiable)
+    public function toPushNotification($notifiable)
     {
-        return PusherMessage::create()
-            ->platform('web')
+        // $beamsClient = new PushNotifications();
+
+        // // ... configuración de Pusher
+
+        // return $beamsClient->publish()
+        //     ->toUser('user_id')
+        //     ->with(['title' => 'Nuevo mensaje', 'body' => $this->message])
+        //     ->send();
+
+          return PusherMessage::create()
+            ->iOS()
             ->badge(1)
             ->sound('success')
-            ->body("Prueba");
+            ->body("Your {$notifiable->service} account was approved!");
     }
-
-
- 
-
-    
-    // public function toArray($notifiable): array
-    // {
-    //     //    event( new PostLiked($notifiable->id ,$this->message));
-    //     return [
-
-    //         'title' => 'New Post',
-    //         'body' => 'Check out the latest post!',
-    //         'interests' => ['new_posts'],
-    //     ];
-    // }
 }
+
 

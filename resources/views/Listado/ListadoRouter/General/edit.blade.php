@@ -12,7 +12,7 @@
             <p class="text-gray-500 mb-6"></p>
 
             <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-                <form method="POST" action="{{ route('ListadoRouter.update', $ListadoTelefono->id) }}"  role="form" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('ListadoRouter.update', $Router->id) }}"  role="form" enctype="multipart/form-data">
                     {{ method_field('PATCH') }}
                     @csrf
                     @include('Listado.ListadoRouter.General.form')

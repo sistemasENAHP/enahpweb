@@ -11,4 +11,5 @@ return [
         Barryvdh\Snappy\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Pusher\Beams\Laravel\PusherBeamsServiceProvider::class,
+         Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
 ];

@@ -53,14 +53,17 @@
                                                             <span>{{ $rolname }}</span>
                                                         @endforeach
                                                     @endif</td>
+                                              
 
                                             <td class=" text-sm font-medium text-gray-900">
                                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                                     <a href="{{ route('users.show', $user->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Mostrar') }}</a>
                                                     <a href="{{ route('users.edit', $user->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Editar') }}</a>
+                                                    @role('Administrador|Coordinador')
                                                     @csrf
                                                     @method('DELETE')
                                                     <a href="{{ route('users.destroy', $user->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Eliminar') }}</a>
+                                                    @endrole
                                                 </form>
                                             </td>
                                         </tr>

@@ -156,6 +156,8 @@ class ListadoEquipoController extends Controller
           $ListadoEquipo->save();
 
             $Users = User::all();
+
+         if($request->input('Impresora') == 'X'){   
         $Impresora = new Impresoras();
         $Impresora->departamento_id = $request->departamento_id;
           if( $request->piso_idPB == 1){
@@ -180,7 +182,9 @@ class ListadoEquipoController extends Controller
         $Impresora->Modelo = $request->Modelo;
 
         $Impresora->save();
+        }
 
+if($request->input('Telefono') == 'X'){   
         $ListadoTelefono = new Telefonos();
         if( $request->piso_idPB == 1){
 
@@ -202,8 +206,9 @@ class ListadoEquipoController extends Controller
         $ListadoTelefono->Observacion = $request->Observacion;
         $ListadoTelefono->Punto_Red = $request->punto_telefono;
         $ListadoTelefono->save();
+      }
 
-
+         if($request->input('Route') == 'X'){   
         $Router = new  ListadoRouter();
           if( $request->piso_idPB == 1){
 
@@ -231,6 +236,7 @@ class ListadoEquipoController extends Controller
              $Router->Punto_Red = $request->Punto_Red;
               $Router->Observacion = $request->Observacion;
               $Router->save();
+            }
 
        return Redirect('ListadoEquipo');
 
@@ -360,7 +366,7 @@ class ListadoEquipoController extends Controller
             $ListadoEquipo->CasoEspeciales = $request->caso_especiales;
             $ListadoEquipo->update();
 
-                
+        if($request->input('Impresora') == 'X'){   
         $Impresora =  Impresoras::find($id);
         $Impresora->departamento_id = $request->departamento_id;
           if( $request->piso_idPB == 1){
@@ -385,7 +391,33 @@ class ListadoEquipoController extends Controller
         $Impresora->Marca = $request->Marca;
         $Impresora->Modelo = $request->Modelo;
         $Impresora->update();
+      }
 
+      if($request->input('Telefono') == 'X'){   
+        $ListadoTelefono = Telefonos::find($id);
+        if( $request->piso_idPB == 1){
+
+          $ListadoTelefono->piso_id = $request->piso_idPB;
+
+          }else if($request->piso_idP1 == 2){
+
+            $ListadoTelefono->piso_id = $request->piso_idP1;
+
+          }else if($request->piso_idP2YP3 == 3){
+
+            $ListadoTelefono->piso_id = $request->piso_idP2YP3;
+
+          }
+         $ListadoTelefono->departamento_id = $request->departamento_id;
+        $ListadoTelefono->user_id = $request->dep;
+        $ListadoTelefono->Equipo = $request->Equipo_Telefono;
+        $ListadoTelefono->Extension = $request->Extension;
+        $ListadoTelefono->Observacion = $request->Observacion;
+        $ListadoTelefono->Punto_Red = $request->punto_telefono;
+        $ListadoTelefono->update();
+      }
+         
+            if($request->input('Route') == 'X'){  
           $Router =   ListadoRouter::find($id);
 
           if( $request->piso_idPB == 1){
@@ -414,6 +446,7 @@ class ListadoEquipoController extends Controller
              $Router->Punto_Red = $request->Punto_Red;
               $Router->Observacion = $request->Observacion;
               $Router->update();
+            }
 
             return Redirect('ListadoEquipo');
     }
