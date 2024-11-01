@@ -37,7 +37,7 @@ return new class extends Migration
 
     Schema::create('ips', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->nullable()->default(NULL);
+            $table->foreignId('user_id')->nullable()->constrained('users');
              // $table->string('equipo')->nullable()->default(NULL);
             $table->string('ip_escuela')->nullable()->default(NULL);
             $table->string('ip_ministerio')->nullable()->default(NULL);

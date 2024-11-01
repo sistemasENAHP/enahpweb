@@ -130,33 +130,51 @@ class UserController extends Controller
         else:
          $Users->password = bcrypt($request->password);
         endif;
+         
+
 
         $Users->update();
+        
+         // dd($ips);
          DB::table('model_has_roles')->where('model_id',$id)->delete();
         $Users->assignRole($request->role_id);
 
-
-           $ip = $request->ip();
+            $ip = $request->ip_equipo;
+            $ip_vieja = $request->ip_viejo;
              $ipr = substr($ip,7);
-
-             $ips = ips::FindOrFail($ipr);
+            
+             $ips = Ips::Find($ipr);
              if($ips->ip_escuela > '10.2.2.0' && $ips->ip_escuela < '10.2.2.400'){
                 $ips->user_id = $Users->id;
-                $ips->ip_escuela = $ip;
+                $ips->ip_escuela = $request->ip_equipo;
                 $ips->Observacion = 'Ocupado';
 
              }elseif($ips->ip_ministerio > '10.95.10.0' && $ips->ip_ministerio < '10.95.10.400'){
                 $ips->user_id = $Users->id;
-                $ips->ip_ministerio = $ip;
+                $ips->ip_ministerio = $request->ip_equipo;
                 $ips->Observacion = 'Ocupado';
 
-             }else{
+             }
+          
+         $ips->update();
 
-                     echo   '<script>alert("No me jodas")</script>';
 
+           $ipviejo = substr($ip_vieja,7);
+            
+             $ips = Ips::Find($ipviejo);
+             if($ips->ip_escuela > '10.2.2.0' && $ips->ip_escuela < '10.2.2.400'){
+                $ips->user_id = null;
+                $ips->ip_escuela = $request->ip_viejo;
+                $ips->Observacion = 'Libre';
+
+             }elseif($ips->ip_ministerio > '10.95.10.0' && $ips->ip_ministerio < '10.95.10.400'){
+                $ips->user_id = null;
+                $ips->ip_ministerio = $request->ip_viejo;
+                $ips->Observacion = 'Libre';
 
              }
-             $ips->update();
+          
+         $ips->update();
 
 
 

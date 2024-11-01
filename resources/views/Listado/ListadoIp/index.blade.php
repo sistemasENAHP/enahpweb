@@ -261,6 +261,8 @@
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Escuela</th>
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion Ministerio</th>
 
+                                                <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Fecha</th>
+
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Estatus</th>
 
                                                 <th scope="col" class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Accion</th>
@@ -296,6 +298,9 @@
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$ListadoGenerals->ip_ministerio}}</td>
 
                                                 @endif
+
+                                                  <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$ListadoGenerals->updated_at}}</td>
+
 
                                                 @if($ListadoGenerals->Observacion == 'Libre')
 

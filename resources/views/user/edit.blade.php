@@ -82,7 +82,10 @@
                                       <x-input-error class="mt-2" :messages="$errors->get('ip_equipo')"/>
                                   </div>
 
+                                  <x-text-input id="ip_viejo" name="ip_viejo" type="hidden" class="mt-1 block w-full" value="{{old('ip_equipo', $user?->ip_equipo)}}" autocomplete="user" placeholder="ip_equipo"/>
+
                                    <div>
+                                    <x-input-label for="ip_equipo" :value="__('Nombre Equipo')"/>
                                    <x-text-input id="nombre_equipo" name="nombre_equipo" type="text" class="mt-1 block w-full" value="
                                    {{old('nombre_equipo', $user?->nombre_equipo)}}" autocomplete="nombre_equipo" placeholder="nombre_equipo"/>
                                         <x-input-error class="mt-2" :messages="$errors->get('nombre_equipo')"/>

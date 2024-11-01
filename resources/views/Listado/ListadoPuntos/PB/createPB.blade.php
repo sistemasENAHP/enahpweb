@@ -12,7 +12,7 @@
             <p class="text-gray-500 mb-6"></p>
 
             <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-                 <form method="POST" action="{{ route('ListadoPunto.store') }}"  role="form" enctype="multipart/form-data">
+                 <form method="POST" action="{{ route('ListadoPunto.store') }}"  role="form" enctype="multipart/form-data" id="validacion">
                     @csrf
                     @include('Listado.ListadoPuntos.PB.formPB')
                 </form>
@@ -115,10 +115,23 @@
 
 
         });  
+ 
+$('#validacion').on('submit', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                position: "top-center",
+                icon: "success",
+                 title: "la Informacion se ha Guardado Exitosamente",
+                 showConfirmButton: false,
+                 timer: 1500
+                  }).then((result) => {
+
+                     this.submit();
 
 
-     
+                                       }); 
 
+                                     });
 
 });
 </script>

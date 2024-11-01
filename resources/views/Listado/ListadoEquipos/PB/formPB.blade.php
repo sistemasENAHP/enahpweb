@@ -51,19 +51,19 @@
 
             <div class="md:col-span-2">
                 <label for="Nombre">Nombre</label>
-                <x-text-input type="text" id="Nombre" name="Nombre"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Nombres" placeholder="Nombres" :value="old('Nombre',$ListadoEquipo->users?->name)"  />
+                <x-text-input type="text" id="Nombre" name="Nombre"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Nombres" placeholder="Nombres" :value="old('Nombre',$ListadoEquipo->users?->name)"  readonly />
                 <x-input-error class="mt-2" :messages="$errors->get('Nombre')"/>
 
               </div>
               <div class="md:col-span-2">
                   <label for="Apellidos">Apellido</label>
-                  <x-text-input type="text" id="Apellidos" name="Apellidos" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  autocomplete="Apellidos" placeholder="Apellidos" :value="old('Apellido',$ListadoEquipo->users?->surname)"  />
+                  <x-text-input type="text" id="Apellidos" name="Apellidos" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  autocomplete="Apellidos" placeholder="Apellidos" :value="old('Apellido',$ListadoEquipo->users?->surname)" readonly />
                   <x-input-error class="mt-2" :messages="$errors->get('Apellidos')"/>
 
                 </div>
                 <div class="md:col-span-1">
                   <label for="Cedula">Cedula</label>
-                  <x-text-input type="text" name="Cedula" id="Cedula" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Cedula" placeholder="Cedula" :value="old('Cedula',$ListadoEquipo->users?->identification_card)" maxlength='9' onKeypress='if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;'  />
+                  <x-text-input type="text" name="Cedula" id="Cedula" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Cedula" placeholder="Cedula" :value="old('Cedula',$ListadoEquipo->users?->identification_card)" maxlength='9' onKeypress='if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;' readonly  />
                   <x-input-error class="mt-2" :messages="$errors->get('Cedula')"/>
                 </div>
 
@@ -449,4 +449,20 @@
         </div>
     </div>
 </div>
+<script>
+   $(document).ready(function(){
+
+              $('#validacion').on('submit', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                position: "top-center",
+                icon: "success",
+                 title: "",
+                 showConfirmButton: false,
+                 timer: 1500
+});
+                });
+            });
+
+</script>
 
