@@ -41,10 +41,6 @@
                                        }); 
 
                                      });
-                               });
-</script>
-{{-- <script>
-      $(document).ready(function() {
 
         $('#dep').hide();
 
@@ -136,11 +132,6 @@
 
 
         });  
-
-
-     
-
-
+ 
 });
 </script>
- --}}

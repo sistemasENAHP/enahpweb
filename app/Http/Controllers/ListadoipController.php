@@ -75,20 +75,56 @@ class ListadoipController extends Controller
     public function Editgeneral($id)
     {
         $Ips = Ips::FindOrFail($id);
+        $Departamentos = Departamentos::all();
+        $User = User::all();
 
-
-        return view('Listado.listadoIp.General.edit',compact('Ips'));
+        return view('Listado.listadoIp.General.edit',compact('Ips','Departamentos','User'));
 
     }
 
 
     public function ActualizarIpGeneral(Request $request,$id){
 
-        $Ips = Ips::FindOrFail($id);
-        $Ips->ip_escuela = $request->ip_escuela;
-        $Ips->ip_ministerio = $request->ip_ministerio;
-        $Ips->Observacion = $request->Observacion;
-        $Ips->update();
+         $user = $request->dep;
+                      
+             $ips = Ips::Find($id);
+           
+             if($ips->ip_escuela > '10.2.2.0' && $ips->ip_escuela < '10.2.2.400'){
+                $ips->user_id = $request->dep;
+                $ips->ip_escuela = $request->ip_escuela;
+                $ips->Observacion = $request->Observacion;
+
+
+             }elseif($ips->ip_ministerio > '10.95.10.0' && $ips->ip_ministerio < '10.95.10.400'){
+                $ips->user_id = $request->dep;
+                $ips->ip_ministerio = $request->ip_ministerio;
+                $ips->Observacion = $request->Observacion;
+
+
+             }
+          
+         $ips->update();
+
+           
+              $ip_vieja = $request->dep_viejo;
+    
+             $ips = Ips::Find($ip_vieja);
+    
+             if($ips->ip_escuela > '10.2.2.0' && $ips->ip_escuela < '10.2.2.400'){
+                $ips->user_id = null;
+                $ips->ip_escuela = $request->ip_escuela;
+                $ips->Observacion = 'Libre';
+
+             }elseif($ips->ip_ministerio > '10.95.10.0' && $ips->ip_ministerio < '10.95.10.400'){
+                $ips->user_id = null;
+                $ips->ip_ministerio = $request->ip_ministerio;
+                $ips->Observacion = 'Libre';
+
+             }
+          
+         $ips->update();
+
+
 
         return redirect('/ListadoIp')->with('Se Actualizo exitosamente');
 
