@@ -279,7 +279,7 @@
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$ListadoGenerals->users?->name}} {{$ListadoGenerals->users?->surname}}</td>
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$ListadoGenerals->users?->identification_card}}</td>
 
-                                                @if($ListadoGenerals->Observacion == 'Ocupado')
+                                                @if($ListadoGenerals->ip_escuela == $ListadoGenerals->users?->ip_equipo)
 
                                                 <td class="px-3 py-4 text-sm text-gray-500 text-center text-red-500" colspan="0" >{{$ListadoGenerals->ip_escuela}}</td>
 
@@ -289,7 +289,7 @@
 
                                                 @endif
 
-                                                @if($ListadoGenerals->ip_ministerio == 'Ocupado')
+                                                @if($ListadoGenerals->ip_ministerio == $ListadoGenerals->users?->ip_equipo)
 
                                                 <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0" style="color: red">{{$ListadoGenerals->ip_ministerio}}</td>
 

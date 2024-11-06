@@ -32,7 +32,9 @@
 									<th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Cedula</th>
                                       <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Departamento</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Correo</th>
+                                    @role('Administrador|Coordinador')
                                     <th scope="col" class="py-3 pl-4 pr-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Rol</th>
+                                    @endrole
 
 
 
@@ -47,12 +49,14 @@
 										<td class=" px-3 py-4 text-sm text-center text-gray-500">{{ $user->identification_card }}</td>
 										<td class=" px-3 py-4 text-sm text-center text-gray-500">{{ $user->departamentos->Departamento }}</td>
 										<td class=" px-3 py-4 text-sm text-center text-gray-500">{{ $user->email }}</td>
+                                        @role('Administrador|Coordinador')
                                         <td class="p px-3 py-4 text-sm text-center text-gray-500">
                                             @if (!empty($user->getRoleNames())) {{--Funcion de Laravel Permission tomara el nombre de los roles--}}
                                                         @foreach ($user->getRoleNames() as $rolname)
                                                             <span>{{ $rolname }}</span>
                                                         @endforeach
                                                     @endif</td>
+                                                    @endrole
                                               
 
                                             <td class=" text-sm font-medium text-gray-900">

@@ -140,45 +140,81 @@ class UserController extends Controller
         $Users->assignRole($request->role_id);
 
             $ip = $request->ip_equipo;
-            $ip_vieja = $request->ip_viejo;
-             $ipr = substr($ip,7);
             
+             
+             if($ip > '10.2.2.0' and $ip < '10.2.2.400' ){
+           
+             $ipr = substr($ip,7);
              $ips = Ips::Find($ipr);
-             if($ips->ip_escuela > '10.2.2.0' && $ips->ip_escuela < '10.2.2.400'){
-                $ips->user_id = $Users->id;
-                $ips->ip_escuela = $request->ip_equipo;
+              $ips->user_id = $Users->id;
+              $ips->ip_escuela = $request->ip_equipo;
                 $ips->Observacion = 'Ocupado';
+                 $ips->update();
 
-             }elseif($ips->ip_ministerio > '10.95.10.0' && $ips->ip_ministerio < '10.95.10.400'){
-                $ips->user_id = $Users->id;
+
+             }elseif($ip > '10.95.10.0' and $ip < '10.95.10.400' ){
+
+                $ipr = substr($ip,9);
+                 $ips = Ips::Find($ipr);
+                 $ips->user_id = $Users->id;
                 $ips->ip_ministerio = $request->ip_equipo;
                 $ips->Observacion = 'Ocupado';
+                      $ips->update();
 
              }
-          
-         $ips->update();
-
-
-           $ipviejo = substr($ip_vieja,7);
             
-             $ips = Ips::Find($ipviejo);
-             if($ips->ip_escuela > '10.2.2.0' && $ips->ip_escuela < '10.2.2.400'){
-                $ips->user_id = null;
+            
+                      
+   
+
+
+                 $ip_vieja = $request->ip_viejo;
+                
+              
+               if($ip_vieja > '10.2.2.0' and $ip_vieja < '10.2.2.400' ){
+                 
+                 $ipviejo = substr($ip_vieja,7);
+                 $ips = Ips::Find($ipviejo);
+                 $ips->user_id = null;
                 $ips->ip_escuela = $request->ip_viejo;
                 $ips->Observacion = 'Libre';
+                 $ips->update();    
+                
 
-             }elseif($ips->ip_ministerio > '10.95.10.0' && $ips->ip_ministerio < '10.95.10.400'){
+             }elseif($ip_vieja > '10.95.10.0' and $ip_vieja < '10.95.10.400' ){
+
+                 $ipviejo = substr($ip_vieja,9);
+                 $ips = Ips::Find($ipviejo);
                 $ips->user_id = null;
                 $ips->ip_ministerio = $request->ip_viejo;
                 $ips->Observacion = 'Libre';
-
+                 $ips->update();
+                
              }
-          
-         $ips->update();
 
+             if($ip_vieja > '10.2.2.0' and $ip_vieja < '10.2.2.400' ){
+                 
+                 $ipviejo = substr($ip_vieja,7);
+                 $ips = Ips::Find($ipviejo);
+                 $ips->user_id = null;
+                $ips->ip_escuela = $request->ip_viejo;
+                $ips->Observacion = 'Libre';
+                 $ips->update();    
+                
 
+             }elseif($ip_vieja > '10.95.10.0' and $ip_vieja < '10.95.10.400' ){
 
+                 $ipviejo = substr($ip_vieja,9);
+                 $ips = Ips::Find($ipviejo);
+                $ips->user_id = null;
+                $ips->ip_ministerio = $request->ip_viejo;
+                $ips->Observacion = 'Libre';
+                 $ips->update();
+                
+             }
+              
 
+    
         return Redirect::route('users.index')
             ->with('success', 'User updated successfully');
     }
