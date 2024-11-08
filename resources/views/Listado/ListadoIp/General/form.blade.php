@@ -6,7 +6,7 @@
         </div>
         <div class="lg:col-span-2">
         <div class="grid gap-3 gap-y-2 text-sm grid-cols-1 md:grid-cols-4">
-              <div class="md:col-span-2" >
+              {{-- <div class="md:col-span-2" >
                 <label for="departamento_id">Departamento</label>
                 <select name="departamento_id" id="departamento_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option >Seleccione un Departamento</option>
@@ -22,11 +22,11 @@
 
                   @endforeach
                 </select>
-            </div>
+            </div> --}}
 
-            <div class="md:col-span-3">
+            <div class="md:col-span-5">
                 <label for="dep">Usuario</label>
-               <select name="dep" id="dep" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+               <select name="usuario_id" id="usuario_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="null">Selecciones</option>
                 {{$sel = 0}}
                 @foreach($User as $user)
@@ -47,37 +47,27 @@
             </div>
 
         <x-text-input type="hidden" id="dep_viejo" name="dep_viejo"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Nombres" placeholder="Nombres" :value="old('Nombre',$Ips->users?->id)"  />
-
+ 
+         
+      
             <div class="md:col-span-2">
-                <label for="Nombre">Nombre</label>
-                <x-text-input type="text" id="Nombre" name="Nombre"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Nombres" placeholder="Nombres" :value="old('Nombre',$Ips->users?->name)"  />
-                <x-input-error class="mt-2" :messages="$errors->get('Nombre')"/>
-
-              </div>
-              <div class="md:col-span-2">
-                  <label for="Apellidos">Apellido</label>
-                  <x-text-input type="text" id="Apellidos" name="Apellidos" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  autocomplete="Apellidos" placeholder="Apellidos" :value="old('Apellido',$Ips->users?->surname)"  />
-                  <x-input-error class="mt-2" :messages="$errors->get('Apellidos')"/>
-
-                </div>
-                <div class="md:col-span-1">
-                  <label for="Cedula">Cedula</label>
-                  <x-text-input type="text" name="Cedula" id="Cedula" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="Cedula" placeholder="Cedula" :value="old('Cedula',$Ips->users?->identification_card)" maxlength='9' onKeypress='if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;'  />
-                  <x-input-error class="mt-2" :messages="$errors->get('Cedula')"/>
-                </div>
-
-          <div class="md:col-span-2">
+             <input type="checkbox" id="escuela" name="escuela" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X"  />
             <label for="ip_escuela">IP Escuela</label>
-            <x-text-input type="text" name="ip_escuela" id="ip_escuela" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_escuela" placeholder="IP Escuela" :value="old('Escuela',$Ips?->ip_escuela)" />
+            <x-text-input type="text" name="ip_escuela" id="ip_escuela" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_escuela" placeholder="IP Escuela" :value="old('Escuela',$Ips?->ip_escuela)" readonly />
             <x-input-error class="mt-2" :messages="$errors->get('ip_escuela')"/>
+
           </div>
               <x-text-input type="hidden" name="ip_escuela_viejo" id="ip_escuela_viejo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_escuela" placeholder="IP Escuela" :value="old('Escuela',$Ips?->ip_escuela)" />
+         
           <div class="md:col-span-2">
+            <input type="checkbox" id="ministerio" name="ministerio" class="text-blue-500 border-blue-300 rounded h-5 w-5 cursor-pointer" value="X"  />
             <label for="ip_ministerio">IP Ministerio</label>
-            <x-text-input type="text" name="ip_ministerio" id="ip_ministerio" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_ministerio" placeholder="IP Ministerio" :value="old('Ministerio',$Ips?->ip_ministerio)" />
+            <x-text-input type="text" name="ip_ministerio" id="ip_ministerio" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_ministerio" placeholder="IP Ministerio" :value="old('Ministerio',$Ips?->ip_ministerio)" readonly />
           </div>
 
-          <div class="md:col-span-1">
+            <x-text-input type="hidden" name="ip_ministerio_viejo" id="ip_ministerio_viejo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="ip_ministerio" placeholder="IP Ministerio" :value="old('Ministerio',$Ips?->ip_ministerio)" />
+
+          <div class="md:col-span-2">
             <label for="Observacion">Observaciones</label>
             <select name="Observacion" id="Observacion" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value>Selecciones</option>

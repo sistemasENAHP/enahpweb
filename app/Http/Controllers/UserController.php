@@ -135,7 +135,7 @@ class UserController extends Controller
 
         $Users->update();
         
-         // dd($ips);
+
          DB::table('model_has_roles')->where('model_id',$id)->delete();
         $Users->assignRole($request->role_id);
 

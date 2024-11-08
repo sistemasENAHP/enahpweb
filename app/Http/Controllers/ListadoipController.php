@@ -85,79 +85,119 @@ class ListadoipController extends Controller
 
     public function ActualizarIpGeneral(Request $request,$id){
 
-            $ip_escuelas = $request->ip_escuela;
+             $ip_escuelas = $request->ip_escuela;
+             $ip_ministerios = $request->ip_ministerio;
 
-            $ip_ministerios = $request->ip_ministerio;
-            
+             $id_usuario = $request->usuario_id;
+           
+            $Users = User::Find($id_usuario);
+           
+            if($ip_escuelas > '10.2.2.0' and $ip_escuelas < '10.2.2.400' or $request->input('escuela') == 'X'){
+
+              $Users->ip_equipo = $request->ip_escuela;
+               
+         
+            }elseif($ip_ministerios > '10.95.10.0'  and $ip_ministerios < '10.95.10.400' or $request->input('ministerio') == 'X' ){
+
+              $Users->ip_equipo = $request->ip_ministerio;
              
-             if($ip_escuelas > '10.2.2.0' and $ip_escuelas < '10.2.2.400' ){
+            
+        }
+
+            $Users->update();
+
+
+
+
+
+             if($ip_escuelas > '10.2.2.0' and $ip_escuelas < '10.2.2.400' or $request->input('escuela') == 'X'){
            
              $ipr = substr($ip_escuelas,7);
              $ips = Ips::Find($ipr);
-              $ips->user_id = $request->dep;
+              $ips->user_id = $Users->id;
               $ips->ip_escuela = $request->ip_escuela;
                 $ips->Observacion = 'Ocupado';
                  $ips->update();
 
 
-             }elseif($ip_ministerios > '10.95.10.0' and $ip_ministerios < '10.95.10.400' ){
+             }elseif($ip_ministerios > '10.95.10.0' and $ip_ministerios < '10.95.10.400' or $request->input('ministerio') == 'X' ){
 
                 $ipr = substr($ip_ministerios,9);
                  $ips = Ips::Find($ipr);
-                 $ips->user_id = $request->dep;
+                 $ips->user_id = $Users->id;
                 $ips->ip_ministerio = $request->ip_ministerio;
                 $ips->Observacion = 'Ocupado';
-                      $ips->update();
+                $ips->update();
 
              }
             
-                          
-             //         $ip_vieja = $request->ip_viejo;
-                
+
+
+          // $Ips = Ips::Find($id);
+          // $Ips->user_id = $Users->id;
+          // $Ips->ip_escuela = $request->ip_escuela;
+          // $Ips->ip_ministerio = $request->ip_ministerio;
+          // $Ips->Observacion = $request->Observacion;
+          // $Ips->update();
+
+
+
+           $ip_escuela_viejos = $request->ip_escuela_viejo;
+           $ip_ministerio_viejos = $request->ip_ministerio_viejo; 
+           $ipviejo = $request->dep_viejo;
+
+
+  
               
-             //   if($ip_vieja > '10.2.2.0' and $ip_vieja < '10.2.2.400' ){
+               if($ip_escuela_viejos > '10.2.2.0' and $ip_escuela_viejos < '10.2.2.400' ){
                  
-             //     $ipviejo = substr($ip_vieja,7);
-             //     $ips = Ips::Find($ipviejo);
-             //     $ips->user_id = null;
-             //    $ips->ip_escuela = $request->ip_viejo;
-             //    $ips->Observacion = 'Libre';
-             //     $ips->update();    
+                 // $ipviejo = substr($ip_escuela_viejos,7);
+                 $ips = Ips::Find($ipviejo);
+                 $ips->user_id = null;
+                $ips->ip_escuela = $request->ip_escuela_viejo;
+                $ips->Observacion = 'Libre';
+                 $ips->update();    
                 
 
-             // }elseif($ip_vieja > '10.95.10.0' and $ip_vieja < '10.95.10.400' ){
+             }elseif($ip_ministerio_viejos > '10.95.10.0' and $ip_ministerio_viejos < '10.95.10.400' ){
 
-             //     $ipviejo = substr($ip_vieja,9);
-             //     $ips = Ips::Find($ipviejo);
-             //    $ips->user_id = null;
-             //    $ips->ip_ministerio = $request->ip_viejo;
-             //    $ips->Observacion = 'Libre';
-             //     $ips->update();
+                 // $ipviejo = substr($ip_ministerio_viejos,9);
+                 $ips = Ips::Find($ipviejo);
+                $ips->user_id = null;
+                $ips->ip_ministerio = $request->ip_ministerio_viejo;
+                $ips->Observacion = 'Libre';
+                 $ips->update();
                 
-             // }
+             }
 
-             // if($ip_vieja > '10.2.2.0' and $ip_vieja < '10.2.2.400' ){
+             if($ip_escuela_viejos > '10.2.2.0' and $ip_escuela_viejos < '10.2.2.400' ){
                  
-             //     $ipviejo = substr($ip_vieja,7);
-             //     $ips = Ips::Find($ipviejo);
-             //     $ips->user_id = null;
-             //    $ips->ip_escuela = $request->ip_viejo;
-             //    $ips->Observacion = 'Libre';
-             //     $ips->update();    
+                 // $ipviejo = substr($ip_escuela_viejos,7);
+                 $ips = Ips::Find($ipviejo);
+                 $ips->user_id = null;
+                $ips->ip_escuela = $request->ip_escuela_viejo;
+                $ips->Observacion = 'Libre';
+                 $ips->update();    
                 
 
-             // }elseif($ip_vieja > '10.95.10.0' and $ip_vieja < '10.95.10.400' ){
+             }elseif($ip_ministerio_viejos > '10.95.10.0' and $ip_ministerio_viejos < '10.95.10.400' ){
 
-             //     $ipviejo = substr($ip_vieja,9);
-             //     $ips = Ips::Find($ipviejo);
-             //    $ips->user_id = null;
-             //    $ips->ip_ministerio = $request->ip_viejo;
-             //    $ips->Observacion = 'Libre';
-             //     $ips->update();
+                 // $ipviejo = substr($ip_ministerio_viejos,9);
+                 $ips = Ips::Find($ipviejo);
+                $ips->user_id = null;
+                $ips->ip_ministerio = $request->ip_ministerio_viejo;
+                $ips->Observacion = 'Libre';
+                 $ips->update();
                 
-             // }
-              
+             }
 
+          // $ip_vieja = $request->dep_viejo;
+          // $Ips = Ips::Find($ip_vieja);
+          // $Ips->user_id = null;
+          // $Ips->ip_escuela = $request->ip_escuela;
+          // $Ips->ip_ministerio = $request->ip_ministerio;
+          // $Ips->Observacion = $request->Observacion;
+          // $Ips->update();
 
         return redirect('/ListadoIp')->with('Se Actualizo exitosamente');
 

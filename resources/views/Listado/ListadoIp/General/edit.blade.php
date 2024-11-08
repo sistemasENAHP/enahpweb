@@ -23,8 +23,45 @@
       </div>
 </x-app-layout>
 <script>
-    <script>
     $(document).ready(function(){
+
+             $('#escuela').click(function(){
+         
+         
+                 if ($(this).is(":checked")) {
+
+                      $('#ip_escuela').prop('readonly',false);
+
+                      $('#ip_ministerio').prop('readonly',false);
+
+                  }else{
+
+                    $('#ip_escuela').prop('readonly',true);
+
+                    $('#ip_ministerio').prop('readonly',false);
+
+
+
+                  }
+
+
+    });
+
+              $('#ministerio').click(function(){
+
+                if ($(this).is(":checked")) {
+
+                   $('#ip_ministerio').prop('readonly',false);
+
+                  }else{
+                    
+                    $('#ip_ministerio').prop('readonly',true);
+
+                  }
+
+
+                 });
+         
 
     $('#validacion').on('submit', function(e) {
                 e.preventDefault();

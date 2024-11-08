@@ -23,7 +23,10 @@
       </div>
 </x-app-layout>
 <script>
+    
     $(document).ready(function(){
+
+    
 
     $('#validacion').on('submit', function(e) {
                 e.preventDefault();
@@ -131,7 +134,12 @@
         
 
 
-        });  
+        }); 
+
+       
+
+
+ 
  
 });
 </script>
