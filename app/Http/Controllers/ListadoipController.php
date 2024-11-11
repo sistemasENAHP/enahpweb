@@ -84,7 +84,8 @@ class ListadoipController extends Controller
 
 
     public function ActualizarIpGeneral(Request $request,$id){
-
+              
+              if($request->guardar == ''){
              $ip_escuelas = $request->ip_escuela;
              $ip_ministerios = $request->ip_ministerio;
 
@@ -107,17 +108,17 @@ class ListadoipController extends Controller
             $Users->update();
 
 
+               $ipviejo = $request->dep_viejo;
 
-
-
+            
              if($ip_escuelas > '10.2.2.0' and $ip_escuelas < '10.2.2.400' or $request->input('escuela') == 'X'){
            
              $ipr = substr($ip_escuelas,7);
              $ips = Ips::Find($ipr);
-              $ips->user_id = $Users->id;
-              $ips->ip_escuela = $request->ip_escuela;
-                $ips->Observacion = 'Ocupado';
-                 $ips->update();
+             $ips->user_id = $Users->id;
+             $ips->ip_escuela = $request->ip_escuela;
+             $ips->Observacion = 'Ocupado';
+             $ips->update();
 
 
              }elseif($ip_ministerios > '10.95.10.0' and $ip_ministerios < '10.95.10.400' or $request->input('ministerio') == 'X' ){
@@ -130,78 +131,28 @@ class ListadoipController extends Controller
                 $ips->update();
 
              }
-            
 
+         }else{
 
-          // $Ips = Ips::Find($id);
-          // $Ips->user_id = $Users->id;
-          // $Ips->ip_escuela = $request->ip_escuela;
-          // $Ips->ip_ministerio = $request->ip_ministerio;
-          // $Ips->Observacion = $request->Observacion;
-          // $Ips->update();
-
-
-
+        
            $ip_escuela_viejos = $request->ip_escuela_viejo;
-           $ip_ministerio_viejos = $request->ip_ministerio_viejo; 
-           $ipviejo = $request->dep_viejo;
-
-
-  
-              
-               if($ip_escuela_viejos > '10.2.2.0' and $ip_escuela_viejos < '10.2.2.400' ){
-                 
-                 // $ipviejo = substr($ip_escuela_viejos,7);
-                 $ips = Ips::Find($ipviejo);
-                 $ips->user_id = null;
-                $ips->ip_escuela = $request->ip_escuela_viejo;
-                $ips->Observacion = 'Libre';
-                 $ips->update();    
-                
-
-             }elseif($ip_ministerio_viejos > '10.95.10.0' and $ip_ministerio_viejos < '10.95.10.400' ){
-
-                 // $ipviejo = substr($ip_ministerio_viejos,9);
-                 $ips = Ips::Find($ipviejo);
-                $ips->user_id = null;
-                $ips->ip_ministerio = $request->ip_ministerio_viejo;
-                $ips->Observacion = 'Libre';
-                 $ips->update();
-                
-             }
-
-             if($ip_escuela_viejos > '10.2.2.0' and $ip_escuela_viejos < '10.2.2.400' ){
-                 
-                 // $ipviejo = substr($ip_escuela_viejos,7);
-                 $ips = Ips::Find($ipviejo);
-                 $ips->user_id = null;
-                $ips->ip_escuela = $request->ip_escuela_viejo;
-                $ips->Observacion = 'Libre';
-                 $ips->update();    
-                
-
-             }elseif($ip_ministerio_viejos > '10.95.10.0' and $ip_ministerio_viejos < '10.95.10.400' ){
-
-                 // $ipviejo = substr($ip_ministerio_viejos,9);
-                 $ips = Ips::Find($ipviejo);
-                $ips->user_id = null;
-                $ips->ip_ministerio = $request->ip_ministerio_viejo;
-                $ips->Observacion = 'Libre';
-                 $ips->update();
-                
-             }
-
-          // $ip_vieja = $request->dep_viejo;
-          // $Ips = Ips::Find($ip_vieja);
-          // $Ips->user_id = null;
+           $viejo = $request->dep_viejo;
+          $Ips = Ips::Find($id);
+          if($request->Observacion){
+          $Ips->user_id = null;
           // $Ips->ip_escuela = $request->ip_escuela;
           // $Ips->ip_ministerio = $request->ip_ministerio;
-          // $Ips->Observacion = $request->Observacion;
-          // $Ips->update();
+          $Ips->Observacion = 'Libre';
+          $Ips->created_at = ' ';
+            }
+          $Ips->update();
+    }
 
         return redirect('/ListadoIp')->with('Se Actualizo exitosamente');
 
-    }
+    
+
+}
 
 
 
