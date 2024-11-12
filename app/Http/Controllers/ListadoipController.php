@@ -85,7 +85,7 @@ class ListadoipController extends Controller
 
     public function ActualizarIpGeneral(Request $request,$id){
               
-              if($request->guardar == ''){
+               
              $ip_escuelas = $request->ip_escuela;
              $ip_ministerios = $request->ip_ministerio;
 
@@ -93,25 +93,30 @@ class ListadoipController extends Controller
            
             $Users = User::Find($id_usuario);
            
-            if($ip_escuelas > '10.2.2.0' and $ip_escuelas < '10.2.2.400' or $request->input('escuela') == 'X'){
+            if($ip_escuelas > '10.2.2.0' or $ip_escuelas <= '10.2.2.255' or  $request->input('escuela')){
 
               $Users->ip_equipo = $request->ip_escuela;
                
          
-            }elseif($ip_ministerios > '10.95.10.0'  and $ip_ministerios < '10.95.10.400' or $request->input('ministerio') == 'X' ){
+            }elseif($ip_ministerios > '10.95.10.0'  or $ip_ministerios <= '10.95.10.255' or $request->input('ministerio')){
 
               $Users->ip_equipo = $request->ip_ministerio;
              
             
         }
 
-            $Users->update();
+                  $Users->update();
 
+
+
+                  
+          
+               if($request->Observacion == 'Ocupado'){
 
                $ipviejo = $request->dep_viejo;
 
             
-             if($ip_escuelas > '10.2.2.0' and $ip_escuelas < '10.2.2.400' or $request->input('escuela') == 'X'){
+             if($ip_escuelas > '10.2.2.0' or $ip_escuelas < '10.2.2.400' or $request->input('escuela')){
            
              $ipr = substr($ip_escuelas,7);
              $ips = Ips::Find($ipr);
@@ -121,7 +126,7 @@ class ListadoipController extends Controller
              $ips->update();
 
 
-             }elseif($ip_ministerios > '10.95.10.0' and $ip_ministerios < '10.95.10.400' or $request->input('ministerio') == 'X' ){
+             }elseif($ip_ministerios > '10.95.10.0' or $ip_ministerios < '10.95.10.400' or $request->input('ministerio')){
 
                 $ipr = substr($ip_ministerios,9);
                  $ips = Ips::Find($ipr);
@@ -132,19 +137,13 @@ class ListadoipController extends Controller
 
              }
 
-         }else{
-
-        
-           $ip_escuela_viejos = $request->ip_escuela_viejo;
-           $viejo = $request->dep_viejo;
-          $Ips = Ips::Find($id);
-          if($request->Observacion){
-          $Ips->user_id = null;
-          // $Ips->ip_escuela = $request->ip_escuela;
-          // $Ips->ip_ministerio = $request->ip_ministerio;
+         }elseif($request->Observacion == 'libre'){
+    
+           $Ips = Ips::Find($id);
+           $Ips->user_id = null;
           $Ips->Observacion = 'Libre';
-          $Ips->created_at = ' ';
-            }
+          $Ips->created_at = null;
+          $Ips->updated_at = null;
           $Ips->update();
     }
 

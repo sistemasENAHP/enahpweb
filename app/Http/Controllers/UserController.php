@@ -142,7 +142,7 @@ class UserController extends Controller
             $ip = $request->ip_equipo;
             
              
-             if($ip > '10.2.2.0' and $ip < '10.2.2.400' ){
+             if($ip > '10.2.2.0' and $ip < '10.2.2.255' ){
            
              $ipr = substr($ip,7);
              $ips = Ips::Find($ipr);
@@ -152,7 +152,7 @@ class UserController extends Controller
                  $ips->update();
 
 
-             }elseif($ip > '10.95.10.0' and $ip < '10.95.10.400' ){
+             }elseif($ip > '10.95.10.0' and $ip < '10.95.10.255' ){
 
                 $ipr = substr($ip,9);
                  $ips = Ips::Find($ipr);
@@ -171,7 +171,7 @@ class UserController extends Controller
                  $ip_vieja = $request->ip_viejo;
                 
               
-               if($ip_vieja > '10.2.2.0' and $ip_vieja < '10.2.2.400' ){
+               if($ip_vieja > '10.2.2.0' or $ip_vieja <= '10.2.2.255' ){
                  
                  $ipviejo = substr($ip_vieja,7);
                  $ips = Ips::Find($ipviejo);
@@ -181,34 +181,40 @@ class UserController extends Controller
                  $ips->update();    
                 
 
-             }elseif($ip_vieja > '10.95.10.0' and $ip_vieja < '10.95.10.400' ){
+             }elseif($ip_vieja > '10.95.10.0' or $ip_vieja <= '10.95.10.255' ){
 
                  $ipviejo = substr($ip_vieja,9);
                  $ips = Ips::Find($ipviejo);
                 $ips->user_id = null;
                 $ips->ip_ministerio = $request->ip_viejo;
                 $ips->Observacion = 'Libre';
+                $ips->created_at = null;
+                $ips->updated_at = null;
                  $ips->update();
                 
              }
 
-             if($ip_vieja > '10.2.2.0' and $ip_vieja < '10.2.2.400' ){
+             if($ip_vieja > '10.2.2.0' or $ip_vieja <= '10.2.2.255' ){
                  
                  $ipviejo = substr($ip_vieja,7);
                  $ips = Ips::Find($ipviejo);
                  $ips->user_id = null;
                 $ips->ip_escuela = $request->ip_viejo;
                 $ips->Observacion = 'Libre';
+                $ips->created_at = null;
+                $ips->updated_at = null;
                  $ips->update();    
                 
 
-             }elseif($ip_vieja > '10.95.10.0' and $ip_vieja < '10.95.10.400' ){
+             }elseif($ip_vieja > '10.95.10.0' or $ip_vieja <= '10.95.10.255' ){
 
                  $ipviejo = substr($ip_vieja,9);
                  $ips = Ips::Find($ipviejo);
                 $ips->user_id = null;
                 $ips->ip_ministerio = $request->ip_viejo;
                 $ips->Observacion = 'Libre';
+                $ips->created_at = null;
+                $ips->updated_at = null;
                  $ips->update();
                 
              }

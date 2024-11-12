@@ -87,11 +87,12 @@
                         $('#Apellidos').val(datas.surname);
                         $('#Cedula').val(datas.identification_card);
                        $('#NombreEquipo').val(datas.nombre_equipo);
-                        if (datas.ip_equipo > '10.2.2.0' && datas.ip_equipo < '10.2.2.300' ) {
+                        if (datas.ip_equipo > '10.2.2.0' && datas.ip_equipo <= '10.2.2.255' ) {
                         
                           $('#ip_escuela').val(datas.ip_equipo);
                         $('#ip_ministerio').val('');
-                         }else if(datas.ip_equipo > '10.95.10.0' && datas.ip_equipo < '10.95.10.300' ){
+
+                         }else if(datas.ip_equipo > '10.95.10.0' && datas.ip_equipo <= '10.95.10.255' ){
 
                              $('#ip_ministerio').val(datas.ip_equipo);
                              $('#ip_escuela').val(''); 
