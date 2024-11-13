@@ -77,7 +77,7 @@ class UsersSeeder extends Seeder
             'name' => 'Hamilton ',
             'surname' => 'Leon',
             'identification_card' => 12345678,
-            'ip_equipo' => '10.2.2.187',
+            'ip_equipo' => '10.2.2.189',
             'nombre_equipo' => 'sistema-05',
             'telefono' => '0416154545',
             'telefonoI' => '0416154548',

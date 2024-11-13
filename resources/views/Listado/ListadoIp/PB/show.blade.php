@@ -53,8 +53,10 @@
                                           <td class=" py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 text-center">{{++$PB}}</td>
                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->departamentos->Departamento}}</td>
                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Nombre}} - {{$listadoipPB->Apellido}} </td>
-                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Cedula}}</td>
+                                                  
                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Equipo}}</td>
+
+                                                       <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{$listadoipPB->Cedula}}</td>
                                                     
                                                     <td class=" px-3 py-4 text-sm text-gray-500 text-center" colspan="0">{{ $listadoipPB->Escuela }}</td>
 
