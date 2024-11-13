@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('identification_card')->unique();
             $table->timestamp('identification_card_verified_at')->nullable();
             $table->string('ip_equipo');
-            $table->string('nombre_equipo');
+            $table->string('nombre_equipo')->nullable()->default(NULL);
             $table->string('telefono');
             $table->string('telefonoI');
             $table->string('email');
