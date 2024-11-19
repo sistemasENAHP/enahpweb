@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use Spatie\Permission\Models\Role;
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -20,6 +21,8 @@ class AuthenticatedSessionController extends Controller
          // $User = auth()->user();
         $User = User::all();
 
+
+
         return view('auth.login',compact('User'));
     }
 
@@ -28,7 +31,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        
+         $request->authenticate();
         $validated = $request->safe();
 
         $request->session()->regenerate();
@@ -37,7 +41,8 @@ class AuthenticatedSessionController extends Controller
        $request->user()->last_login_ip = $request->ip();
        $request->user()->save();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('dashboard', absolute: true));
+
        
 
     }

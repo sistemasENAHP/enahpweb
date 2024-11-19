@@ -41,13 +41,23 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// ->middleware('can:admin.users')->names('admin.users');
+Route::group(['middleware' => ['role:Administrador|Coordinador|Tecnico']], function () {
 Route::resource('/users', UserController::class);
+});
+
+Route::group(['middleware' => ['role:Administrador|Coordinador|Tecnico|Usuario']], function () {
 Route::resource('Soportes', SoporteController::class);
-Route::get('/buscar',[SoporteController::class,'BuscadorSoporte']);
-Route::get('/buscarUser',[SoporteController::class,'buscarUsers']);
+});
+
+// Route::get('/buscar',[SoporteController::class,'BuscadorSoporte']);
+// Route::get('/buscarUser',[SoporteController::class,'buscarUsers']);
 
 // Route::get('/buscarUser',[SoporteController::class,'buscarUsers']);
-Route::get('/EstatusSoporte', [SoporteController::class,'EstatusSoportes']);
+// Route::get('/EstatusSoporte', [SoporteController::class,'EstatusSoportes']);
+
+Route::group(['middleware' => ['role:Administrador|Coordinador|Tecnico']], function () {
+    
 Route::resource('Tecnico', TecnicoController::class);
 Route::PUT('/Tecnico/{id}',[TecnicoController::class,'Actualizar'])->name('Tecnico.Actualizar');
 
@@ -170,17 +180,20 @@ Route::resource('/ListadoTelefono',ListadoTelefonosController::class);
 Route::resource('/ListadoRouter',ListadoRouterController::class);
 
 Route::resource('/Planos',PlanosController::class);
-
+});
+Route::group(['middleware' => ['role:Administrador|Coordinador']], function () {
 Route::get('/Estadisticas',[EstadisticasController::class,'Highcharts']);
 
 Route::get('/EstadisticasPDF',[PDFController::class,'EstadisticaPDF']);
+});
 
+Route::group(['middleware' => ['role:Administrador|Coordinador|Tecnico']], function () {
 Route::get('/EquiposTerminadoPDF/{id}',[PDFController::class,'ReporteEquiposTerminado'])->name('EquiposTerminadoPDF.ReporteEquiposTerminado');
 
 Route::get('/ListadoEquiposPDF',[PDFController::class,'ListadoEquipo']);
 
 
 Route::get('/ListadosEquiposExel',[ExcelController::class,'ListadoEquipoExcel']);
-
+});
 require __DIR__.'/auth.php';
 

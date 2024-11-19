@@ -14,19 +14,23 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
+// use app\Http\Middleware;
 use App\Models\Departamentos;
 use App\Models\Ips;
-class UserController extends Controller
+use Spatie\Permission\Middleware\RoleMiddleware;
+class UserController extends Controller implements HasMiddleware
 {
 
-    // public function __construct()
-    // {
-    //     // los middleware donde protegera la ruta
-    //     $this->middleware('can:admin.users.index')->only('index');
-    //     $this->middleware('can:admin.users.create')->only('create', 'store', 'destroy');
-    //     $this->middleware('can:admin.users.edit')->only('edit', 'update');
-    //     $this->middleware('can:admin.users.destroy')->only('destroy');
-    // }
+public static function middleware(): array
+{
+    return [
+        // examples with aliases, pipe-separated names, guards, etc:
+        'role_or_permission:Administrador|Coordinador|Tecnico',
+        new Middleware('role:Administrador|Coordinador|Tecnico'),
+        // new Middleware(RoleMiddleware::using('Administrador'), except:['index']),
+        
+    ];
+}
 
 
     /**

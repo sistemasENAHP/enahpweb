@@ -95,8 +95,8 @@ class RolesTableSeeder extends Seeder
         Permission::create([ 'name'=>'admin.Planos.index'])->syncRoles([$rolAdministrador,$rolCoordinador,$rolTecnico]);
          Permission::create([ 'name'=>'admin.Planos.destroy'])->syncRoles([$rolAdministrador,$rolCoordinador,$rolTecnico]);
 
-        Permission::create([ 'name'=>'admin.Estatisticas.index'])->syncRoles([$rolAdministrador,$rolCoordinador,$rolTecnico]);
-        Permission::create([ 'name'=>'admin.Estatisticas.destroy'])->syncRoles([$rolAdministrador,$rolCoordinador,$rolTecnico]);
+        Permission::create([ 'name'=>'admin.Estatisticas.index'])->syncRoles([$rolAdministrador,$rolCoordinador]);
+        Permission::create([ 'name'=>'admin.Estatisticas.destroy'])->syncRoles([$rolAdministrador,$rolCoordinador]);
 
         Permission::create([ 'name'=>'admin.soporte.index'])->syncRoles([$rolAdministrador,$rolCoordinador,$rolTecnico]);
          Permission::create([ 'name'=>'admin.soporte.create'])->syncRoles([$rolAdministrador,$rolCoordinador,$rolUsuario]);

@@ -17,17 +17,24 @@ use App\Notifications\SoporteNotificacion;
 use Illuminate\Notifications\Notifiable;
 use App\Events\SoporteEvento;
 use App\Models\soportehistorials;
-class SoporteController extends Controller
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+use Spatie\Permission\Middleware\RoleMiddleware;
+class SoporteController extends Controller implements HasMiddleware
 {
 
-    // public function __construct()
-    // {
-    //     // los middleware donde protegera la ruta
-    //     $this->middleware('can:admin.soporte.index')->only('index');
-    //     $this->middleware('can:admin.soporte.create')->only('create', 'store', 'destroy');
-    //     $this->middleware('can:admin.soporte.edit')->only('edit', 'update');
-    //     $this->middleware('can:admin.soporte.destroy')->only('destroy');
-    // }
+   
+   public static function middleware(): array
+{
+    return [
+        // examples with aliases, pipe-separated names, guards, etc:
+        'role_or_permission:Administrador|Coordinador|Tecnico|Usuario',
+        new Middleware('role:Administrador|Coordinador|Tecnico|Usuario'),
+        new Middleware(RoleMiddleware::using('Administrador'), except:['create']),
+        
+    ];
+}
+
 
     /**
      * Display a listing of the resource.
