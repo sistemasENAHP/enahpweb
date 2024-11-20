@@ -26,9 +26,17 @@ Route::get('/',[LoginController::class,'index']);
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['role', 'verified'])->name('dashboard');
+
+// Route::get('/Soportes/create', function () {
+//     return view('/Soportes/create');
+// })->middleware(['auth', 'verified'])->name('Soportes.create');
+
+Route::group(['middleware' => ['role:Administrador|Coordinador|Tecnico']], function () {
+return view('dashboard');
+});
 
 Route::get('/dashboard',[HomeControler::class,'index'])->name('dashboard');
 Route::post('/dashboard',[HomeControler::class,'store'])->name('dashboard.store');
@@ -50,6 +58,9 @@ Route::group(['middleware' => ['role:Administrador|Coordinador|Tecnico|Usuario']
 Route::resource('Soportes', SoporteController::class);
 });
 
+// Route::group(['middleware' => ['role:Usuario']], function () {
+// Route::get('Soportes/Create', [SoporteController::class,'create']);
+// })->name('Soportes.Create');
 // Route::get('/buscar',[SoporteController::class,'BuscadorSoporte']);
 // Route::get('/buscarUser',[SoporteController::class,'buscarUsers']);
 

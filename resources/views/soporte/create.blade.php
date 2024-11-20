@@ -22,7 +22,7 @@
         </div>
         <div class="lg:col-span-2">
           <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-            <div class="md:col-span-1" >
+            <div class="md:col-span-1" style="display: none;">
                 <label for="NControl">N° Control</label>
                 @if(!$NControl == '')
                 <x-text-input type="text" name="NControl" id="NControl" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="SP-{{ substr($NControl->NControl++, 3); }}"  autocomplete="NControl" placeholder="" readonly />
@@ -35,56 +35,56 @@
                         <x-input-error class="mt-2" :messages="$errors->get('NControl')"/>
                     @endif
               </div>
-            <div class="md:col-span-2">
+            <div class="md:col-span-2" style="display: none;">
               <label for="Nombre">Nombre</label>
               <x-text-input type="text" id="Nombre" name="Nombre"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$user->name}}" autocomplete="Nombres" placeholder="Nombres" readonly />
               <x-input-error class="mt-2" :messages="$errors->get('Nombre')"/>
 
             </div>
-            <div class="md:col-span-2">
-                <label for="Apellidos">Apellido</label>
+            <div class="md:col-span-2" style="display: none;">
+                <label for="Apellidos" >Apellido</label>
                 <x-text-input type="text" id="Apellidos" name="Apellidos" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$user->surname}}" autocomplete="Apellidos" placeholder="Apellidos" readonly/>
                 <x-input-error class="mt-2" :messages="$errors->get('Apellidos')"/>
 
               </div>
-              <div class="md:col-span-2">
-                <label for="Cedula">Cedula</label>
+              <div class="md:col-span-2" style="display: none;">
+                <label for="Cedula" >Cedula</label>
                 <x-text-input type="text" name="Cedula" id="Cedula" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$user->identification_card}}" autocomplete="Cedula" placeholder="Cedula" readonly/>
                 <x-input-error class="mt-2" :messages="$errors->get('Cedula')"/>
               </div>
-            <div class="md:col-span-3">
+            <div class="md:col-span-3" style="display: none;">
               <label for="email">Correo</label>
               <x-text-input type="email" name="Correo" id="Correo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$user->email}}" autocomplete="Correo" placeholder="enahp@enahp.com"  readonly/>
               <x-input-error class="mt-2" :messages="$errors->get('Correo')"/>
             </div>
 
-            <div class="md:col-span-2">
-                <label for="Telefono">Telefono o Extension</label>
+            <div class="md:col-span-2" style="display: none;">
+                <label for="Telefono" >Telefono o Extension</label>
                 <x-text-input type="text" name="Telefono" id="Telefono" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$user->telefono}}" autocomplete="Telefono"  placeholder="Telefono" readonly/>
                 <x-input-error class="mt-2" :messages="$errors->get('Telefono')"/>
               </div>
 
-              <div class="md:col-span-3">
+              <div class="md:col-span-3" style="display: none;">
                 <label for="Telefono">Celular</label>
                 <x-text-input type="text" name="telefonoI" id="telefonoI" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$user->telefonoI}}" autocomplete="telefonoI"  placeholder="Celular" readonly/>
                 <x-input-error class="mt-2" :messages="$errors->get('telefonoI')"/>
               </div>
 
-           <div class="md:col-span-2">
-                <label for="departamento_id">Departamento</label>
+           <div class="md:col-span-2" style="display: none;">
+                <label for="departamento_id" >Departamento</label>
                 <x-text-input type="hidden" name="departamento_id" id="departamento_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('departamento_id',$user->departamentos->id) }}" autocomplete="departamento_id"  placeholder="" />
                 <x-text-input type="text" name="" id="" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('departamento_id',$user->departamentos->Departamento) }}" autocomplete=""  placeholder=""  readonly/>
                 <x-input-error class="mt-2" :messages="$errors->get('')"/>
               </div>
 
        
-              <div class="md:col-span-3">
-                <label for="address">Fecha / Hora</label>
+              <div class="md:col-span-3" style="display: none;">
+                <label for="address" >Fecha / Hora</label>
                 <x-text-input type="datetime"  name="FechaEntrada" id="FechaEntrada" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value="{{$date,old('FechaEntrada',$user?->FechaEntrada)}}" placeholder="" readonly />
                   <x-input-error class="mt-2" :messages="$errors->get('FechaEntrada')"/>
               </div>
 
-            <div class="md:col-span-5">
+            <div class="md:col-span-5" >
                 <label for="address">Tipo de Falla</label>
                 <select name="tipo_falla_id" id="tipo_falla_id" class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                    {{$sel = 0}}
@@ -132,7 +132,7 @@
               </div>
             <div class="md:col-span-5 text-center">
               <div class="inline-flex items-end" >
-                 <button type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" >Enviar..</button>
+                 <button type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Enviar..</button>
 
                  {{-- <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Actualizar</button> --}}
 
@@ -152,15 +152,6 @@
 </x-app-layout>
 <script>
 
-    function cerrar() { 
-              setTimeout(function(){
-            // window.location.href = 'https://www.google.com/?hl=es';
-             this.myWindow.close();
-
-        },3000); //Dejara un tiempo de 3 seg para que el usuario vea que se envio el formulario correctamente
-
-    }
-
     $(document).ready(function(){
 
               $('#validacion').on('submit', function(e) {
@@ -176,19 +167,35 @@
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
                         this.submit();
+                                   
+                            Swal.fire({
+                title: 'Enviando...',
+                icon: 'success',
+                timer: 5000,
+                // timerProgressBar: true,
+                // willOpen: () => {
+                //     Swal.showLoading();
+                // },
+                // onClose: () => {
 
-                        Swal.fire("Enviado informacion a un Técnico!", "", "success");
-                        // window.location.href = 'https://www.google.com/?hl=es';
+                //     window.location.href = 'https://www.google.com/?hl=es';
+                // }
+            }).then((result) => {
+               if (result.isConfirmed) {
 
-                   // window.location.href = 'https://www.google.com/?hl=es';
-
-
+                {{-- window.location.href = 'https://www.google.com/?hl=es'; --}}
+                window.close();
+               }
+            });
+                       
                     } else if (result.isDenied) {
                         Swal.fire("Los cambios no se guardaran", "", "info");
 
                     }
                 });
             });
+
+
 
 
 
@@ -214,7 +221,7 @@ $('#NotificacionUsuario').append(function(){
 
         }).then((result) => {
 
-            // location.reload();
+            
             tr.hide();
 
         });
@@ -252,7 +259,7 @@ $('#NotificacionUsuario').append(function(){
 
                     }).then((result) => {
 
-                        // location.reload();
+                     
                         tr.hide();
 
                     })

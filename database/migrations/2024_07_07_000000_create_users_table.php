@@ -22,8 +22,8 @@ return new class extends Migration
             $table->timestamp('identification_card_verified_at')->nullable();
             $table->string('ip_equipo');
             $table->string('nombre_equipo')->nullable()->default(NULL);
-            $table->string('telefono');
-            $table->string('telefonoI');
+            $table->string('telefono')->nullable()->default(NULL);
+            $table->string('telefonoI')->nullable()->default(NULL);
             $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

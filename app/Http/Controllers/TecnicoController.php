@@ -101,7 +101,7 @@ class TecnicoController extends Controller
 
 
 
-       return Redirect('Tecnico')->with('success', 'Soporte created successfully.');
+       return Redirect('dashboard')->with('success', 'Soporte created successfully.');
 
   }
 
@@ -170,7 +170,7 @@ class TecnicoController extends Controller
 
 
 
-        return Redirect('Tecnico')->with('success', 'Soporte created successfully.');
+        return Redirect('dashboard')->with('success', 'Soporte created successfully.');
     }
 
     /**
@@ -265,7 +265,7 @@ class TecnicoController extends Controller
 
 
 
-       return Redirect('Espera')->with('success', 'Soporte created successfully.');
+       return Redirect('dashboard')->with('success', 'Soporte created successfully.');
 
 
 
@@ -334,7 +334,7 @@ class TecnicoController extends Controller
 
 
 
-        return Redirect('Espera')->with('success', 'Soporte created successfully.');
+        return Redirect('dashboard')->with('success', 'Soporte created successfully.');
 
     }
 
@@ -441,7 +441,7 @@ class TecnicoController extends Controller
 
 
 
-       return Redirect('Reparacion')->with('success', 'Soporte created successfully.');
+       return Redirect('dashboard')->with('success', 'Soporte created successfully.');
 
 
     }
@@ -525,7 +525,7 @@ class TecnicoController extends Controller
          $soporte->update();
 
 
-       return Redirect('Pendiente')->with('success', 'Soporte created successfully.');
+       return Redirect('dashboard')->with('success', 'Soporte created successfully.');
 
 
     }
@@ -602,7 +602,7 @@ class TecnicoController extends Controller
          $soporte->update();
 
 
-       return Redirect('/Terminado')->with('success', 'Soporte created successfully.');
+       return Redirect('/dashboard')->with('success', 'Soporte created successfully.');
 
 
     }

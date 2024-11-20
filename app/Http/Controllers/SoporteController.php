@@ -30,7 +30,7 @@ class SoporteController extends Controller implements HasMiddleware
         // examples with aliases, pipe-separated names, guards, etc:
         'role_or_permission:Administrador|Coordinador|Tecnico|Usuario',
         new Middleware('role:Administrador|Coordinador|Tecnico|Usuario'),
-        new Middleware(RoleMiddleware::using('Administrador'), except:['create']),
+        new Middleware(RoleMiddleware::using('Administrador|Coordinador|Tecnico|Usuario'), except:['create']),
         
     ];
 }

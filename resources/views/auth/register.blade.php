@@ -48,13 +48,13 @@
 
          <div>
             <x-input-label for="user" :value="__('Telefono')"/>
-        <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full"  autocomplete="telefono" placeholder="" :value="old('telefono')"/>
+        <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full"  autocomplete="telefono" placeholder="" :value="old('telefono')" required/>
         <x-input-error class="mt-2" :messages="$errors->get('telefono')"/>
         </div>
 
         <div>
            <x-input-label for="user" :value="__('Celular')"/>
-         <x-text-input id="telefonoI" name="telefonoI" type="text" class="mt-1 block w-full"  autocomplete="telefonoI" placeholder="" :value="old('telefonoI')"/>
+         <x-text-input id="telefonoI" name="telefonoI" type="text" class="mt-1 block w-full"  autocomplete="telefonoI" placeholder="" :value="old('telefonoI')" />
         <x-input-error class="mt-2" :messages="$errors->get('telefonoI')"/>
         </div>
 

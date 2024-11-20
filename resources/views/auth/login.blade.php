@@ -55,7 +55,7 @@
 
          {{--     @foreach($User as $user)
              @if($user->ip_equipo == $ip) --}}
-            <button type="submit" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Inicia Sesión</button>
+            <button type="submit" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" >Inicia Sesión</button>
 
             {{-- @endif
 
@@ -83,5 +83,21 @@ Swal.fire({
 });
 
 });
+
+        // function abrirPestana() {
+        //     Swal.fire({
+        //         title: '¿Quieres abrir una nueva pestaña?',
+        //         text: "Se abrirá una nueva página.",
+        //         icon: 'question',
+        //         showCancelButton: true,
+        //         confirmButtonText: 'Sí, abrir',
+        //         cancelButtonText: 'Cancelar'
+        //     }).then((result) => {
+        //         if (result.isConfirmed) {
+        //             window.open('/Soportes/create','_blank'); // Cambia la URL según sea necesario
+        //         }
+        //     });
+        // }
+
 
 </script>

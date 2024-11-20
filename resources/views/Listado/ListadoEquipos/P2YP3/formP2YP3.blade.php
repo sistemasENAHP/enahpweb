@@ -307,7 +307,7 @@
                   </div>
 
                   <div class="formimpresoras md:col-span-1">
-            <label for="ip_escuela">Punto de red</label>
+            <label for="ip_escuela">Punto de red de Impresora</label>
             <x-text-input type="text" name="punto_impresora" id="punto_impresora" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="punto_impresora" placeholder="punto impresora" :value="old('Punto_Red',$Impresoras?->Punto_Red)" />
             <x-input-error class="mt-2" :messages="$errors->get('punto_impresora')"/>
           </div>
@@ -411,8 +411,8 @@
 
 
                    <div class=" md:col-span-2">
-                    <label for="punto_red">Punto de Red</label>
-                    <x-text-input type="text" name="punto_red" id="punto_red" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="punto_red" placeholder="Punto Switch / Punto de Red" :value="old('PuntoRed',$ListadoEquipo?->PuntoRed)" />
+                    <label for="punto_red">Punto de Red de Equipo</label>
+                    <x-text-input type="text" name="punto_red" id="punto_red" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" autocomplete="punto_red" placeholder="Punto de Red" :value="old('PuntoRed',$ListadoEquipo?->PuntoRed)" />
                     <x-input-error class="mt-2" :messages="$errors->get('punto_red')" required />
                   </div>
 

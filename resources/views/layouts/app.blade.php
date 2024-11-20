@@ -21,7 +21,7 @@
 {{-- <link rel="stylesheet" href="{{asset('Boostraps/css/bootstrap.css')}}"> --}}
 
 
-<body class="flex flex-col min-h-screen" >
+<body class="flex flex-col min-h-screen">
 
     <header class="bg-eaeeee shadow-md fixed w-full z-50">
         <div class="flex justify-between items-center">
@@ -66,6 +66,7 @@
             </div>
         </div>
         </div>
+        @role('Administrador|Coordinador|Tecnico')
         <ul class="mt-4 px-4 space-y-2">
             @can('admin.home')
             <li><a href="{{ route('dashboard') }}" class="block">Inicio</a></li>
@@ -138,7 +139,9 @@
             @can('admin.Estatisticas.index')<li><a href="/Estadisticas" class="block">Estadisticas</a></li>@endcan
             @can('')<li><a href="/Auditoria" class="block">Auditoria</a></li>@endcan
             @can('admin.users.index')<li><a href="/users" class="block">Usuarios</a></li>@endcan
+            {{-- @endrole --}}
              {{-- @role('Administrador|Coordinador|Tecnico') --}}
+              @endrole
             @auth
             <li type="submit" class="btn btn-danger">
                 <form method="POST" action="{{ route('logout') }}">
@@ -147,12 +150,13 @@
                 </form>
             </li>
             @endauth
-            {{-- @endrole --}}
+           
           
            {{--  @role('Usuario')
             <a href="javascript:cerrar();">Cerrar Sesión </a>
             @endrole --}}
         </ul>
+
     </nav>
     <main class="ml-64 mt-16 flex-1 p-4">
         {{-- <div class="bg-329cca text-eaeeee flex justify-between p-2" style="background-color:#6AA6CB; color:white;">

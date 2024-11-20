@@ -84,25 +84,28 @@ class RegisteredUserController extends Controller
              $ListaIp->save();
 
              $ip = $request->ip();
-             if($ips->ip_escuela > '10.2.2.0' or $ips->ip_escuela < '10.2.2.400'){
-                $ipr = substr($ip,7);
+             $ipr = substr($ip,7);
                $ips = ips::FindOrFail($ipr);
+             if($ips->ip_escuela > '10.2.2.0' and $ips->ip_escuela < '10.2.2.400'){
+              
                 $ips->user_id = $user->id;
                 $ips->ip_escuela = $ip;
                 $ips->Observacion = 'Ocupado';
                  $ips->update();
 
-             }elseif($ips->ip_ministerio > '10.95.10.0' or $ips->ip_ministerio < '10.95.10.400'){
+             }elseif($ips->ip_ministerio > '10.95.10.0' and $ips->ip_ministerio < '10.95.10.400'){
                 
                 $ipr = substr($ip,9);
-               $ips = ips::FindOrFail($ipr);
+               // $ips = ips::FindOrFail($ipr);
                 $ips->user_id = $user->id;
                 $ips->ip_ministerio = $ip;
                 $ips->Observacion = 'Ocupado';
-                   $ips->update();
+                  $ips->update();
+
 
              }
 
+              
           
 
              return redirect(route('dashboard', absolute: false));

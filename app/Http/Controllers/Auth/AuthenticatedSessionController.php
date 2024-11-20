@@ -41,7 +41,24 @@ class AuthenticatedSessionController extends Controller
        $request->user()->last_login_ip = $request->ip();
        $request->user()->save();
 
-        return redirect()->intended(route('dashboard', absolute: true));
+        // return redirect()->intended(route('dashboard', absolute: true));
+
+        if($request->user()->hasRole('Administrador')){
+
+            return redirect()->intended(route('dashboard', absolute: true));
+
+        }elseif($request->user()->hasRole('Coordinador')){
+
+          return redirect()->intended(route('dashboard', absolute: true));
+
+        }elseif($request->user()->hasRole('Tecnico')){
+
+          return redirect()->intended(route('dashboard', absolute: true));
+
+        }elseif($request->user()->hasRole('Usuario')){
+
+             return redirect('/Soportes/create');
+        }
 
        
 
