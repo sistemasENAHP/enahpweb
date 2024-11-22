@@ -143,29 +143,28 @@ public static function middleware(): array
          DB::table('model_has_roles')->where('model_id',$id)->delete();
         $Users->assignRole($request->role_id);
 
-            $ip = $request->ip_equipo;
-            
-             
-             if($ip > '10.2.2.0' and $ip < '10.2.2.255' ){
-           
-             $ipr = substr($ip,7);
-             $ips = Ips::Find($ipr);
-              $ips->user_id = $Users->id;
-              $ips->ip_escuela = $request->ip_equipo;
+            $ip = $request->ip();
+             $ip1 = $request->ip_equipo;     
+             $ipr = substr($ip1,7);
+               $ips = ips::FindOrFail($ipr);
+             if($ips->ip_escuela > '10.2.2.0' and $ips->ip_escuela < '10.2.2.400'){
+              
+                $ips->user_id = $Users->id;
+                $ips->ip_escuela = $request->ip_equipo;
                 $ips->Observacion = 'Ocupado';
                  $ips->update();
 
-
-             }elseif($ip > '10.95.10.0' and $ip < '10.95.10.255' ){
-
-                $ipr = substr($ip,9);
-                 $ips = Ips::Find($ipr);
-                 $ips->user_id = $Users->id;
+             }elseif($ips->ip_ministerio > '10.95.10.0' and $ips->ip_ministerio < '10.95.10.400'){
+                
+                $ipr = substr($ip1,9);
+                $ips->user_id = $Users->id;
                 $ips->ip_ministerio = $request->ip_equipo;
                 $ips->Observacion = 'Ocupado';
-                      $ips->update();
+                  $ips->update();
+
 
              }
+
             
             
                       

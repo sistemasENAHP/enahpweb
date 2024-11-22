@@ -141,7 +141,7 @@
             @can('admin.users.index')<li><a href="/users" class="block">Usuarios</a></li>@endcan
             {{-- @endrole --}}
              {{-- @role('Administrador|Coordinador|Tecnico') --}}
-              @endrole
+           
             @auth
             <li type="submit" class="btn btn-danger">
                 <form method="POST" action="{{ route('logout') }}">
@@ -150,7 +150,7 @@
                 </form>
             </li>
             @endauth
-           
+              @endrole
           
            {{--  @role('Usuario')
             <a href="javascript:cerrar();">Cerrar Sesión </a>
@@ -179,11 +179,11 @@
 
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
         {{-- <script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script> --}}
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script> --}}
+       {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
            <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
            <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
            
@@ -196,6 +196,8 @@
         {{-- <script src="{{ asset('js/ValidacionGeneral.js') }}" type="text/javascript"></script> --}}
         {{-- <script src="{{asset('/JS/Listado.js')}}"></script> --}}
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         
 
 

@@ -151,6 +151,9 @@
       </div>
 </x-app-layout>
 <script>
+//     function Finalizar() {        
+//     window.close();
+// }
 
     $(document).ready(function(){
 
@@ -167,26 +170,17 @@
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
                         this.submit();
-                                   
-                            Swal.fire({
-                title: 'Enviando...',
-                icon: 'success',
-                timer: 5000,
-                // timerProgressBar: true,
-                // willOpen: () => {
-                //     Swal.showLoading();
-                // },
-                // onClose: () => {
+                          setTimeout(function() {
+                        window.close();
+                    },2000);
+                         Swal.fire({
 
-                //     window.location.href = 'https://www.google.com/?hl=es';
-                // }
-            }).then((result) => {
-               if (result.isConfirmed) {
-
-                {{-- window.location.href = 'https://www.google.com/?hl=es'; --}}
-                window.close();
-               }
-            });
+  position: "top-center",
+  icon: "success",
+  title: "Enviando la informacion al Técnico",
+  showConfirmButton: false,
+  timer: 2000
+        });
                        
                     } else if (result.isDenied) {
                         Swal.fire("Los cambios no se guardaran", "", "info");
@@ -194,7 +188,6 @@
                     }
                 });
             });
-
 
 
 

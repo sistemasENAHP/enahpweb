@@ -15,6 +15,7 @@ use App\Models\Departamentos;
 use App\Http\Requests\UserRequest;
 use App\Models\Listadoips;
 use App\Models\Ips;
+// use Spatie\Permission\Traits\HasRoles;
 class RegisteredUserController extends Controller
 {
     /**
@@ -54,6 +55,27 @@ class RegisteredUserController extends Controller
         $user = User::create($users);
         $user->assignRole($roles);
 
+     
+
+
+
+        //  if($request->user()->hasRole('Administrador')){
+
+        //     return redirect()->intended(route('dashboard', absolute: true));
+
+        // }elseif($request->user()->hasRole('Coordinador')){
+
+        //   return redirect()->intended(route('dashboard', absolute: true));
+
+        // }elseif($request->user()->hasRole('Tecnico')){
+
+        //   return redirect()->intended(route('dashboard', absolute: true));
+
+        // }elseif($request->user()->hasRole('Usuario')){
+
+        //      return redirect('/Soportes/create');
+        // }
+
 
         Auth::login($user);
 
@@ -83,31 +105,33 @@ class RegisteredUserController extends Controller
             $ListaIp->Observacion = $request->Observaciones;
              $ListaIp->save();
 
-             $ip = $request->ip();
-             $ipr = substr($ip,7);
+                $ip = $request->ip();
+             $ip1 = $request->ip_equipo;
+             $ipr = substr($ip1,7);
                $ips = ips::FindOrFail($ipr);
-             if($ips->ip_escuela > '10.2.2.0' and $ips->ip_escuela < '10.2.2.400'){
+             if($ips->ip_escuela > '10.2.2.0' or $ips->ip_escuela < '10.2.2.400'){
               
                 $ips->user_id = $user->id;
-                $ips->ip_escuela = $ip;
+                $ips->ip_escuela = $request->ip_equipo;
                 $ips->Observacion = 'Ocupado';
                  $ips->update();
 
-             }elseif($ips->ip_ministerio > '10.95.10.0' and $ips->ip_ministerio < '10.95.10.400'){
+             }elseif($ips->ip_ministerio > '10.95.10.0' or $ips->ip_ministerio < '10.95.10.400'){
                 
-                $ipr = substr($ip,9);
-               // $ips = ips::FindOrFail($ipr);
+                $ipr = substr($ip1,9);
                 $ips->user_id = $user->id;
-                $ips->ip_ministerio = $ip;
+                $ips->ip_ministerio = $request->ip_equipo;
                 $ips->Observacion = 'Ocupado';
                   $ips->update();
 
 
              }
 
+
+             
               
           
-
-             return redirect(route('dashboard', absolute: false));
+              return redirect('/Soportes/create');
+             // return redirect(route('dashboard', absolute: false));
     }
 }
