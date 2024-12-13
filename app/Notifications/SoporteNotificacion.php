@@ -22,29 +22,18 @@ class SoporteNotificacion extends Notification
     }
 
     public function via($notifiable)
+   {
+       return ['pusher'];
+   }
+
+     public function toPusherBeams($notifiable)
     {
-        // return ['pusher'];
-
-        return [PusherChannel::class];
-    }
-
-    public function toPushNotification($notifiable)
-    {
-        // $beamsClient = new PushNotifications();
-
-        // // ... configuración de Pusher
-
-        // return $beamsClient->publish()
-        //     ->toUser('user_id')
-        //     ->with(['title' => 'Nuevo mensaje', 'body' => $this->message])
-        //     ->send();
-
-          return PusherMessage::create()
-            ->iOS()
-            ->badge(1)
-            ->sound('success')
-            ->body("Your {$notifiable->service} account was approved!");
-    }
+       return PusherBeamsMessage::create()
+           ->title('Nueva publicación')
+           ->body('Revisa la nueva publicación: ')
+           ->url('https://tu-app.com/post/');
+   }
+    
 }
 
 

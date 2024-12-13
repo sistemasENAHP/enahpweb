@@ -198,6 +198,10 @@
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
           <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          <script src="{{asset('/js/push.min.js')}}"></script>
+          {{-- <script type="text/javascript " src="/js/push.min.js"></script>
+            <script type="text/javascript " src="/js/push.js"></script> --}}
+            <script src="https://cdn.jsdelivr.net/npm/push.js"></script>
         
 
 

@@ -1,4 +1,4 @@
-<link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css"  rel="stylesheet" />
+{{-- <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css"  rel="stylesheet" /> --}}
 
 
 <x-app-layout>
@@ -9,6 +9,7 @@
 @endrole
 
  @role('Administrador|Coordinador|Tecnico')
+
  <div id="NotificacionesTecnico"></div>
  <div class="flex justify-between">
 <div class="block max-w-sm p-6">
@@ -79,11 +80,13 @@
 
 
 
-
-
 <script>
 
+
+
+
         $(document).ready(function() {
+
            // Enable pusher logging - don't include this in production
             Pusher.logToConsole = false;
 

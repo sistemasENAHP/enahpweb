@@ -12,4 +12,5 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Pusher\Beams\Laravel\PusherBeamsServiceProvider::class,
          Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
+          Neo\PusherBeams\PusherBeamsServiceProvider::class,
 ];

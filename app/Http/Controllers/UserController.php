@@ -18,6 +18,8 @@ use Illuminate\Routing\Controllers\Middleware;
 use App\Models\Departamentos;
 use App\Models\Ips;
 use Spatie\Permission\Middleware\RoleMiddleware;
+use App\Notifications\SoporteNotificacion;
+use Pusher\Pusher;
 class UserController extends Controller implements HasMiddleware
 {
 
@@ -134,11 +136,13 @@ public static function middleware(): array
         else:
          $Users->password = bcrypt($request->password);
         endif;
+
+
          
 
 
         $Users->update();
-        
+         // $Users->notify(new SoporteNotificacion($Users));
 
          DB::table('model_has_roles')->where('model_id',$id)->delete();
         $Users->assignRole($request->role_id);
@@ -166,9 +170,7 @@ public static function middleware(): array
              }
 
             
-            
-                      
-   
+           
 
 
                  $ip_vieja = $request->ip_viejo;
@@ -253,4 +255,27 @@ public static function middleware(): array
         return Redirect::route('users.index')
             ->with('success', 'User deleted successfully');
     }
+
+    //  public function subscribe(Request $request)
+    // {
+    //     // Guarda la suscripción del usuario en la base de datos
+    //     // ...
+
+    //     $options = array(
+    //         'cluster' => 'mt1',
+    //         'useTLS' => true
+    //     );
+    //     $pusher = new Pusher(
+    //         env('PUSHER_APP_KEY'),
+    //         env('PUSHER_APP_SECRET'),
+    //         env('PUSHER_APP_ID'),
+    //         $options 
+
+    //     );
+
+    //     $pusher->trigger('my-channel', 'my-event',"hola");
+
+    //     return response()->json(['success' => true]);
+    // }
+
 }

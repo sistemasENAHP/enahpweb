@@ -23,19 +23,9 @@ use App\Http\Controllers\ListadoRouterController;
 
 Route::get('/',[LoginController::class,'index']);
 
-
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['role', 'verified'])->name('dashboard');
-
-// Route::get('/Soportes/create', function () {
-//     return view('/Soportes/create');
-// })->middleware(['auth', 'verified'])->name('Soportes.create');
-
 Route::group(['middleware' => ['role:Administrador|Coordinador|Tecnico']], function () {
 return view('dashboard');
+
 });
 
 Route::get('/dashboard',[HomeControler::class,'index'])->name('dashboard');
